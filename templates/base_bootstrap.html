@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>지금 뭐하지????</title>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+
+    <!-- 부가적인 테마 -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Jua", sans-serif;
+      }
+      #main_content {
+        margin-top: 5rem;
+        background-color: #3e4149;
+      }
+      #main_photo {
+        margin-bottom: 5rem;
+        height: 50rem;
+        background-image: url("./main_image.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #main_title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .big_title {
+        display: inline-block;
+        color: white;
+        font-size: 8rem;
+        -webkit-text-stroke: 1px #000;
+      }
+      .small_title {
+        display: inline-block;
+        color: white;
+        font-size: 2rem;
+        -webkit-text-stroke: 1px #000;
+      }
+      .navbar-form .form-control{
+        width: 230px;
+      }
+      .btn-default{
+        background-image: none;
+        text-shadow: none;
+        color: white;
+        background-color: #fd999a;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">지금 뭐하지?</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="#">Today's<span class="sr-only">(current)</span></a>
+            </li>
+            <li><a href="#">이벤트 등록</a></li>
+            <!-- <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-expanded="false"
+                >Dropdown <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li> -->
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="찾고 싶은 팀이나 개인명을 입력하세요"
+              />
+            </div>
+            <button type="submit" class="btn btn-default">검색</button>
+          </form>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <div id="main_content">
+      <div id="main_photo">
+        <div id="main_title">
+          <div class="big_title">
+            지금 뭐하지?
+          </div>
+          <div class="small_title">
+            버스킹, 플리마켓, 전시회에 대한 정보를 한눈에 보세요 !
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
+        totam porro ullam debitis velit, eos non amet iure ipsum est suscipit
+        aspernatur eius, maxime doloremque fuga perferendis perspiciatis
+        nesciunt laborum. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Tempora minus fuga magnam, pariatur quisquam itaque asperiores
+        laudantium facilis ex, soluta cumque! Nobis ad aperiam vitae possimus
+        totam rem mollitia iusto! Lorem ipsum dolor sit amet, consectetur
+        adipisicing elit. Consectetur totam porro ullam debitis velit, eos non
+        amet iure ipsum est suscipit aspernatur eius, maxime doloremque fuga
+        perferendis perspiciatis nesciunt laborum. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Tempora minus fuga magnam, pariatur
+        quisquam itaque asperiores laudantium facilis ex, soluta cumque! Nobis
+        ad aperiam vitae possimus totam rem mollitia iusto! Lorem ipsum dolor
+        sit amet, consectetur adipisicing elit. Consectetur totam porro ullam
+        debitis velit, eos non amet iure ipsum est suscipit aspernatur eius,
+        maxime doloremque fuga perferendis perspiciatis nesciunt laborum. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Tempora minus fuga
+        magnam, pariatur quisquam itaque asperiores laudantium facilis ex,
+        soluta cumque! Nobis ad aperiam vitae possimus totam rem mollitia iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
+        totam porro ullam debitis velit, eos non amet iure ipsum est suscipit
+        aspernatur eius, maxime doloremque fuga perferendis perspiciatis
+        nesciunt laborum. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Tempora minus fuga magnam, pariatur quisquam itaque asperiores
+        laudantium facilis ex, soluta cumque! Nobis ad aperiam vitae possimus
+        totam rem mollitia iusto! Lorem ipsum dolor sit amet, consectetur
+        adipisicing elit. Consectetur totam porro ullam debitis velit, eos non
+        amet iure ipsum est suscipit aspernatur eius, maxime doloremque fuga
+        perferendis perspiciatis nesciunt laborum. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Tempora minus fuga magnam, pariatur
+        quisquam itaque asperiores laudantium facilis ex, soluta cumque! Nobis
+        ad aperiam vitae possimus totam rem mollitia iusto! Lorem ipsum dolor
+        sit amet, consectetur adipisicing elit. Consectetur totam porro ullam
+        debitis velit, eos non amet iure ipsum est suscipit aspernatur eius,
+        maxime doloremque fuga perferendis perspiciatis nesciunt laborum. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Tempora minus fuga
+        magnam, pariatur quisquam itaque asperiores laudantium facilis ex,
+        soluta cumque! Nobis ad aperiam vitae possimus totam rem mollitia iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
+        totam porro ullam debitis velit, eos non amet iure ipsum est suscipit
+        aspernatur eius, maxime doloremque fuga perferendis perspiciatis
+        nesciunt laborum. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Tempora minus fuga magnam, pariatur quisquam itaque asperiores
+        laudantium facilis ex, soluta cumque! Nobis ad aperiam vitae possimus
+        totam rem mollitia iusto! Lorem ipsum dolor sit amet, consectetur
+        adipisicing elit. Consectetur totam porro ullam debitis velit, eos non
+        amet iure ipsum est suscipit aspernatur eius, maxime doloremque fuga
+        perferendis perspiciatis nesciunt laborum. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Tempora minus fuga magnam, pariatur
+        quisquam itaque asperiores laudantium facilis ex, soluta cumque! Nobis
+        ad aperiam vitae possimus totam rem mollitia iusto! Lorem ipsum dolor
+        sit amet, consectetur adipisicing elit. Consectetur totam porro ullam
+        debitis velit, eos non amet iure ipsum est suscipit aspernatur eius,
+        maxime doloremque fuga perferendis perspiciatis nesciunt laborum. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Tempora minus fuga
+        magnam, pariatur quisquam itaque asperiores laudantium facilis ex,
+        soluta cumque! Nobis ad aperiam vitae possimus totam rem mollitia iusto!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
+        totam porro ullam debitis velit, eos non amet iure ipsum est suscipit
+        aspernatur eius, maxime doloremque fuga perferendis perspiciatis
+        nesciunt laborum. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Tempora minus fuga magnam, pariatur quisquam itaque asperiores
+        laudantium facilis ex, soluta cumque! Nobis ad aperiam vitae possimus
+        totam rem mollitia iusto! Lorem ipsum dolor sit amet, consectetur
+        adipisicing elit. Consectetur totam porro ullam debitis velit, eos non
+        amet iure ipsum est suscipit aspernatur eius, maxime doloremque fuga
+        perferendis perspiciatis nesciunt laborum. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Tempora minus fuga magnam, pariatur
+        quisquam itaque asperiores laudantium facilis ex, soluta cumque! Nobis
+        ad aperiam vitae possimus totam rem mollitia iusto! Lorem ipsum dolor
+        sit amet, consectetur adipisicing elit. Consectetur totam porro ullam
+        debitis velit, eos non amet iure ipsum est suscipit aspernatur eius,
+        maxime doloremque fuga perferendis perspiciatis nesciunt laborum. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Tempora minus fuga
+        magnam, pariatur quisquam itaque asperiores laudantium facilis ex,
+        soluta cumque! Nobis ad aperiam vitae possimus totam rem mollitia iusto!
+      </div>
+    </div>
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
