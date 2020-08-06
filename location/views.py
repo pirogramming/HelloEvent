@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def showmap_view(request):
+    return render(request,'location/index.html')
