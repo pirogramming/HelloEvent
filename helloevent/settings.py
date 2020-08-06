@@ -150,3 +150,15 @@ ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아�
 
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = '186979884276-52gqf8i68gjbu4700bfg0957n65rnsuh.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'N9Swt35c3Zz0D8yn07_vG_cA'
+
+# 이메일 확인을 하지 않음.
+SOCIAL_ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'Email'
+ACCOUNT_USERNAME_REQUIRED = False
+
+# 유저 커스텀!!!!!!
+SOCIALACCOUNT_ADAPTER = 'adapters.SocialAccountAdapter'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
