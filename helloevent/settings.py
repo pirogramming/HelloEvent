@@ -141,6 +141,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GooglePlusAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
+
 SITE_ID = 1
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
