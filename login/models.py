@@ -15,6 +15,8 @@ class Creator(models.Model):
     like_users = models.ManyToManyField(Member, on_delete = models.CASCADE)
 
 
-
+class Like(models.Model):
+    from_user = models.ForeignKey(Member, on_delete=CASECADE)
+    to_user = models.ForeignKey(Creator, on_delte=CASECADE)
 
 
