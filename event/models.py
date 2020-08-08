@@ -9,9 +9,15 @@ class Event(models.Model):
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE)
     event_name = models.CharField(max_length=200, blank=False)
     desc = models.TextField(blank=True)
-    genre = models.CharField(max_length=100)
+    time = models.DateTimeField(blank=True)
 
-    genre = ["Busking", "Flimarket", ""]
+    GENRE_LIST = (
+        ('Busking', '버스킹'),
+        ('Flee', '플리마켓'),
+        ('Exihibit', '전시'),
+    )
+    genre = models.CharField(max_length=100, choices=GENRE_LIST)
+
 
 def get_image_filename(instance, filename):
     id = instance.post.id
