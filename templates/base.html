@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -111,7 +112,7 @@
             }
         }
 
-        a{
+        a {
             text-decoration: none;
         }
 
@@ -196,6 +197,10 @@
             background-color: #d8e9ef !important;
         }
 
+        #user_icon:hover{
+
+        }
+
     </style>
     <!-- Custom styles for this template -->
 </head>
@@ -231,6 +236,9 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="찾고 싶은 이벤트명이나 팀명을 입력하세요"
                        aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button type="button" id="user_icon" style="border: none; background-color: transparent;"><img
+                        src="/static/img/user_icon.png" alt="user_icon.png"
+                        style="height: 40px; width:40px; background-size: 10px;"></button>
             </form>
         </div>
     </nav>
