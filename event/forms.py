@@ -1,6 +1,6 @@
 from django import forms
 
-from event.models import Event, Event_Image
+from event.models import Event, EventImage
 
 
 class EventForm(forms.ModelForm):
@@ -16,5 +16,5 @@ class ImageForm(forms.ModelForm):
     image = forms.ImageField(label = "Image")
 
     class Meta:
-        model = Event_Image
+        model = EventImage
         fields = ('image',)

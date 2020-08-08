@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
 
     'event',
     'login',
@@ -164,7 +164,7 @@ SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'N9Swt35c3Zz0D8yn07_vG_cA'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 LOGIN_REDIRECT_URL = '/login/'
-LOGOUT_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 # 이메일 확인을 하지 않음.
 SOCIAL_ACCOUNT_EMAIL_VERIFICATION = 'none'
