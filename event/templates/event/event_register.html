@@ -1,0 +1,13 @@
+{% extends layout.html %}
+
+{% block content %}
+    <form id="event_form" action="{% url event:event_register %}" enctype="multipart/form-data">
+        {% for form in eventform %}
+            {{form}}
+        {% endfor %}}
+
+        {% for imageform in formset %}
+            {{imageform}}
+        {% endfor %}}
+    </form>
+{% endblock %}
