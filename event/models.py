@@ -1,4 +1,6 @@
 from django.db import models
+from login.models import Creator
+from location.models import Event_Location
 
 # Create your models here.
 
