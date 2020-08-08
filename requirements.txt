@@ -5,7 +5,6 @@ chardet==3.0.4
 cryptography==3.0
 defusedxml==0.7.0rc1
 Django==3.0.9
-django-allauth==0.42.0
 idna==2.10
 mongoengine==0.20.0
 oauthlib==3.1.0

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Member, Creator
+from .models import Member
 
 
 class MemberForm(forms.ModelForm):
@@ -8,7 +8,7 @@ class MemberForm(forms.ModelForm):
         fields = '__all__' # 모든 필드가 자동 지정이 됨.
 
 
-class CreatorForm(forms.ModelForm):
-    class Meta:
-        model = Creator
-        fields = '__all__'
+# class CreatorForm(forms.ModelForm):
+#     class Meta:
+#         model = Creator
+#         fields = '__all__'
