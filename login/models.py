@@ -12,7 +12,7 @@ class Creator(models.Model):
     # 내가 하고 싶은건 업로드 날마다 날짜명이 기록된 다른 폴더에 들어가게 하는거야 찾아봐
     desc = models.TextField(blank=True)
 
-    like_users = models.ManyToManyField(Member, on_delete = models.CASCADE)
+    # like_users = models.ManyToManyField(Member, on_delete = models.CASCADE)
 
 
 

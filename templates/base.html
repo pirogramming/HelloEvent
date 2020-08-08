@@ -111,6 +111,10 @@
             }
         }
 
+        a{
+            text-decoration: none;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -125,14 +129,91 @@
                 font-size: 3.5rem;
             }
         }
+
+        nav a {
+            margin-left: 15px;
+        }
+
+        .bg-dark {
+            background-color: #454552 !important;
+        }
+
+        header input {
+            width: 330px !important;
+        }
+
+        .btn-outline-success {
+            color: #e85a71 !important;
+            border-color: #e85a71 !important;
+        }
+
+        .btn-outline-success:hover {
+            color: white !important;
+            background-color: #e85a71;
+        }
+
+        .btn-outline-success:active {
+            background-color: #e85a71 !important;
+            box-shadow: #e85a71 !important;
+            /*border-color: #e85a71!important;*/
+        }
+
+        .carousel-caption {
+            bottom: 5rem;
+        }
+
+        .carousel-caption h1 {
+            font-weight: bold;
+            /*color: #e85a71;*/
+        }
+
+        select {
+            -webkit-appearance: none; /* 네이티브 외형 감추기 */
+            -moz-appearance: none;
+            appearance: none;
+            background-color: white !important;
+            /*border-radius: 10px!important;*/
+        }
+
+        /* IE 10, 11의 네이티브 화살표 숨기기 */
+        select::-ms-expand {
+            display: none;
+        }
+
+        select {
+            width: 200px; /* 원하는 너비설정 */
+            padding: .8em .5em; /* 여백으로 높이 설정 */
+            font-family: inherit; /* 폰트 상속 */
+            background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */
+            border: 1px solid #999;
+            border-radius: 0px; /* iOS 둥근모서리 제거 */
+            -webkit-appearance: none; /* 네이티브 외형 감추기 */
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .bd-placeholder-img {
+            background-color: #d8e9ef !important;
+        }
+
     </style>
     <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script> $('.carousel').carousel({interval: 2000 //기본 5초 }) </script>
+
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Carousel</a>
+        <a class="navbar-brand" href="#">지금 뭐하지?</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -140,17 +221,15 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Today's <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="#">이벤트 등록</a>
                 </li>
             </ul>
             <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="찾고 싶은 이벤트명이나 팀명을 입력하세요"
+                       aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -173,10 +252,24 @@
                 </svg>
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                        <h1>지금 뭐하지?</h1>
+                        <p>찾고 싶은 이벤트의 장소를 검색하세요</p>
+                        <label>
+                            <select>
+                                <option selected>셀렉트박스</option>
+                                <option>옵션1</option>
+                                <option>옵션2</option>
+                                <option>옵션3</option>
+                            </select>
+                        </label>
+                        <label>
+                            <select>
+                                <option selected>셀렉트박스</option>
+                                <option>옵션1</option>
+                                <option>옵션2</option>
+                                <option>옵션3</option>
+                            </select>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -225,7 +318,12 @@
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="container marketing">
-
+        <div class="container_title">
+            <h1 style="color: #4ea1d3; font-weight: bold;">주변에</h1>
+            <h1>뭐 재미있는거 없나?</h1>
+            <hr/>
+            <br/>
+        </div>
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4">
@@ -235,12 +333,11 @@
                     <rect width="100%" height="100%" fill="#777"/>
                     <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
                 </svg>
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
-                    vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
-                    cursus magna.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <br/><br/>
+                <h2>Busking</h2><br/>
+                <p> 노래, 춤, 마술, 개그, 토크, 공연 등 <br/>다양한 아티스트의 버스킹을 만나보자</p>
             </div><!-- /.col-lg-4 -->
+
             <div class="col-lg-4">
                 <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
                      xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
@@ -248,12 +345,11 @@
                     <rect width="100%" height="100%" fill="#777"/>
                     <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
                 </svg>
-                <h2>Heading</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras
-                    mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                    condimentum nibh.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <br/><br/>
+                <h2>Flea Market</h2><br/>
+                <p>옷, 가방, 액세서리, 소품 등<br/> 알아두면 유용한 플리마켓 정보를 한눈에</p>
             </div><!-- /.col-lg-4 -->
+
             <div class="col-lg-4">
                 <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
                      xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
@@ -261,11 +357,9 @@
                     <rect width="100%" height="100%" fill="#777"/>
                     <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
                 </svg>
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
-                    porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-                    ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                <br/><br/>
+                <h2>Exhibition</h2><br/>
+                <p>어디에서도 찾아볼 수 없었던 <br/>아마추어 전시의 a-z</p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
@@ -276,8 +370,8 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">First featurette heading. <span
-                        class="text-muted">It’ll blow your mind.</span></h2>
+                <h2 class="featurette-heading" style="font-size: 2.3em; color: #454552!important;">내 주위 이벤트 검색</h2><br/>
+                <span class="text-muted" style="font-size: 1.3em;">내 위치를 기반으로 검색하는 다양한 이벤트</span>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
                     euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
                     tellus ac cursus commodo.</p>
@@ -296,8 +390,8 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Oh yeah, it’s that good. <span
-                        class="text-muted">See for yourself.</span></h2>
+                <h2 class="featurette-heading" style="font-size: 2.3em; color: #454552!important;">내 주위 이벤트 검색</h2><br/>
+                <span class="text-muted" style="font-size: 1.3em;">내 위치를 기반으로 검색하는 다양한 이벤트</span>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
                     euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
                     tellus ac cursus commodo.</p>
@@ -316,7 +410,8 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                <h2 class="featurette-heading" style="font-size: 2.3em; color: #454552!important;">내 주위 이벤트 검색</h2><br/>
+                <span class="text-muted" style="font-size: 1.3em;">내 위치를 기반으로 검색하는 다양한 이벤트</span>
                 <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
                     euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
                     tellus ac cursus commodo.</p>
