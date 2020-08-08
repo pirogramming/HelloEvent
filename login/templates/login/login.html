@@ -1,17 +1,28 @@
 {% extends 'base_bootstrap.html' %}
 
 
+
 {% block content%}
-<a href="/accounts/signup">회원가입</a>
+<a href="/accounts/signup/">회원가입</a>
 <br>
 
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}">로그아웃</a>
+<a href="{% url 'login:logout' %}">로그아웃</a>
 <br>
 {{ user.first_name }} 님이 로그인 중
+<a href="{% url 'login:signup' %}">signup</a>
+<a href="{% url 'login:mypage' user.pk %}">My page</a>
+<br/>
+
+
 {% else %}
 <br/><br/>
 <a href="{% url 'social:begin' 'google-plus' %}">구글로 로그인을 해볼까.</a>
+<hr/>
+<a href="{% url 'social:begin' 'kakao' %}">카카오로 로그인을 해볼까.</a>
+
+
+
 {% endif %}
 
 {% endblock %}

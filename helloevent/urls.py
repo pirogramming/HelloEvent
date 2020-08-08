@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 from django.shortcuts import render, redirect
 import login.views
 from django.contrib.auth import views as auth_views
@@ -24,7 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('location/', include('location.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('login/', login.views.login, name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('event/', include('event.urls')),
+    # path('login/', login.views.login, name='login'),
+    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    # path('accounts/', include('allauth.urls')),
+
 ]

@@ -1,0 +1,23 @@
+{% extends 'base_bootstrap.html' %}
+
+{% block content %}
+<!--{% load humanize %}-->
+    <h1>My Page</h1>
+    <br/>
+    <b>별명: {{ member.nickname }}</b>
+    <br/><br/>
+    선호 지역(도시): {{ member.area }}
+    <br/>
+    선호 지역(구): {{ member.seoul_city }}
+    <br/>
+    <br/>
+    선호 테마: {{ member.theme }}
+    <br/>
+
+<!--삭제, 목록, 수정-->
+<!--    <a href="{% url 'item:item_delete' item.pk %}">삭제</a>-->
+    <a href="/login/">로그인 창으로 돌아가기</a>
+    <a href="{% url 'login:login_update' member.pk %}">수정하기</a>
+
+{% endblock %}
+

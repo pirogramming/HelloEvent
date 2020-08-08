@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'location',
     'comment',
 
-    # 'social_django',
+    'social_django',
 
     # # allauth
     # 'allauth',
@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'helloevent.urls'
@@ -140,8 +141,17 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google.GooglePlusAuth',
+    'social_core.backends.kakao.KakaoOAuth2',
+
     'django.contrib.auth.backends.ModelBackend',
 )
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
+#
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
 
 # SITE_ID = 1
 
