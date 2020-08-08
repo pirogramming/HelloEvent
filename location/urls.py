@@ -4,5 +4,5 @@ from . import views
 app_name = 'location'
 
 urlpatterns = [
-    path('',views.showmap_view)
+    path('',views.show_map,name='show_map')
 ]
