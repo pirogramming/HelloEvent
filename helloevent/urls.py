@@ -26,4 +26,6 @@ urlpatterns = [
     path('login/', login.views.login, name='login'),
     path('accounts/', include('allauth.urls')),
 
+    path('event/', include('event.urls')),
+
 ]
