@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 
     # provider
     # 'allauth.socialaccount.providers.google',
-    'social_django',
+    # 'social_django',
 ]
 
 MIDDLEWARE = [
@@ -164,7 +164,7 @@ SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'N9Swt35c3Zz0D8yn07_vG_cA'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 LOGIN_REDIRECT_URL = '/login/'
-LOGOUT_REDIRECT_URL='main'
+LOGOUT_REDIRECT_URL='/'
 
 # 이메일 확인을 하지 않음.
 SOCIAL_ACCOUNT_EMAIL_VERIFICATION = 'none'
