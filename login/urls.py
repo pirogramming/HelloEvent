@@ -14,5 +14,4 @@ urlpatterns = [
     path('login/<int:pk>/', views.mypage, name='mypage'),
 ]
 
-# , name='main'
 
