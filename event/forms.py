@@ -1,11 +1,11 @@
-from django.forms import forms
+from django import forms
 
-from HelloEvent.event.models import Event, Event_Image
+from event.models import Event, Event_Image
 
 
 class EventForm(forms.ModelForm):
-    event_name = forms.CharField(max_length=200, blank=False)
-    desc = forms.TextField(blank=True)
+    event_name = forms.CharField(max_length=200, required=False)
+    desc = forms.CharField(required=False)
     #genre = ch
 
     class Meta:
