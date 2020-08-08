@@ -1,5 +1,5 @@
 from django.urls import path
-from HelloEvent.event import views
+from event import views
 
 app_name = 'event'
 

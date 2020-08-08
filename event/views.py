@@ -6,8 +6,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.template import RequestContext
 
-from HelloEvent.event.forms import ImageForm, EventForm
-from HelloEvent.event.models import Event_Image
+from event.forms import ImageForm, EventForm
+from event.models import Event_Image
 
 
 @login_required
@@ -24,7 +24,7 @@ def event(request, pk):
                 photo.save()
             messages.success(request, 'Event 사진 업로드 성공')
         else:
-            print form.error, formset.error
+            print (form.error, formset.error)
     else:
         form = EventForm
         formset = ImageForm(queryset = Event_Image.objects.none())
