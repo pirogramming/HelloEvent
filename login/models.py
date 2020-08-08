@@ -11,7 +11,6 @@ class Creator(models.Model):
     creator_photo = models.ImageField(upload_to="creator_photo/%Y/%m/%d/")
     desc = models.TextField(blank=True)
 
-
 class Like(models.Model):
     from_user = models.ForeignKey(Member, on_delete=models.CASCADE)
     to_user = models.ForeignKey(Creator, on_delete=models.CASCADE)

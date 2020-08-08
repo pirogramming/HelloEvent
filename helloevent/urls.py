@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render, redirect
 import login.views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', include('login.urls')),
@@ -24,6 +25,5 @@ urlpatterns = [
     path('location/', include('location.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
     path('login/', login.views.login, name='login'),
-    path('accounts/', include('allauth.urls')),
-
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
