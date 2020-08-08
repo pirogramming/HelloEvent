@@ -44,13 +44,14 @@ INSTALLED_APPS = [
 
     # 'social_django',
 
-    # allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    # # allauth
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
 
     # provider
-    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.google',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -142,15 +143,18 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SITE_ID = 1
+# SITE_ID = 1
 
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
-LOGIN_REDIRECT_URL = '/login/'  # 로그인 후 리디렉션할 페이지
-ACCOUNT_LOGOUT_REDIRECT_URL = "/login/"  # 로그아웃 후 리디렉션 할 페이지
-ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃
+# 로그인 후 리디렉션할 페이지
+# ACCOUNT_LOGOUT_REDIRECT_URL = "/login/"  # 로그아웃 후 리디렉션 할 페이지
+# ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃
 
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = '186979884276-52gqf8i68gjbu4700bfg0957n65rnsuh.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'N9Swt35c3Zz0D8yn07_vG_cA'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+LOGIN_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL='main'
 
 # 이메일 확인을 하지 않음.
 SOCIAL_ACCOUNT_EMAIL_VERIFICATION = 'none'
