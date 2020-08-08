@@ -42,15 +42,15 @@ INSTALLED_APPS = [
     'location',
     'comment',
 
-    # 'social_django',
+    'social_django',
 
-    # allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-
-    # provider
-    'allauth.socialaccount.providers.google',
+    # # allauth
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    #
+    # # provider
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'helloevent.urls'
@@ -139,18 +140,31 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google.GooglePlusAuth',
+    'social_core.backends.kakao.KakaoOAuth2',
+
     'django.contrib.auth.backends.ModelBackend',
 )
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
+#
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
+
 
 SITE_ID = 1
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 LOGIN_REDIRECT_URL = '/login/'  # 로그인 후 리디렉션할 페이지
-ACCOUNT_LOGOUT_REDIRECT_URL = "/login/"  # 로그아웃 후 리디렉션 할 페이지
-ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃
+LOGOUT_REDIRECT_URL = "/login/"  # 로그아웃 후 리디렉션 할 페이지
+LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃
 
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = '186979884276-52gqf8i68gjbu4700bfg0957n65rnsuh.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'N9Swt35c3Zz0D8yn07_vG_cA'
+
+SOCIAL_AUTH_KAKAO_KEY = 'ac59d91d58df12f2d9a626bd7050bdd8'
+# SOCIAL_AUTH_KAKAO_SECRET = 'none'
 
 # 이메일 확인을 하지 않음.
 SOCIAL_ACCOUNT_EMAIL_VERIFICATION = 'none'
