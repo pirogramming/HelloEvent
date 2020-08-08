@@ -1,9 +1,8 @@
-{% extends 'base_bootstrap.html' %}
+{% extends 'base.html' %}
 
 
-
-{% block content%}
-<a href="/accounts/signup/">회원가입</a>
+{% block main%}
+<a href="/accounts/signup">회원가입</a>
 <br>
 
 {% if user.is_authenticated %}
