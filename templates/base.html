@@ -34,7 +34,7 @@
         }
 
         body {
-            min-height: 100%;
+            height: 100%;
             padding-top: 3rem;
             padding-bottom: 3rem;
             color: #5a5a5a;
@@ -65,11 +65,13 @@
         }
 
         .carousel-item > img {
-            position: absolute;
-            top: 0;
+            /*position: absolute;*/
+            /*top: 500px;*/
+            /*margin-top: -110px;*/
+            height: auto;
             left: 0;
-            min-width: 100%;
-            height: 32rem;
+            width: 100%;
+            /*height: 160%;*/
         }
 
 
@@ -164,8 +166,8 @@
             font-weight: 700;
         }
 
-        .nav-item a:hover{
-            color:  #0080ff!important;
+        .nav-item a:hover {
+            color: #0080ff !important;
         }
 
         .bg-dark {
@@ -201,7 +203,9 @@
             font-weight: bold;
             /*color: #e85a71;*/
         }
-
+        .carousel-item h1, .carousel-item p{
+            text-shadow: 1px 2px 2px gray;
+        }
         select {
             -webkit-appearance: none; /* 네이티브 외형 감추기 */
             -moz-appearance: none;
@@ -280,19 +284,37 @@
             margin: 0 auto;
         }
 
-        .shadow:hover{
-            transform: scale( 1.1 );
+        .shadow:hover {
+            transform: scale(1.03);
             transition: transform .35s;
         }
+
         footer {
+            margin-bottom: 30px;
+            padding: 30px;
             width: 100%;
-            /*height: 100px;*/
+            height: 30px;
             position: absolute;
             bottom: 0;
             /*background: #5eaeff;*/
             text-align: center;
             /*color: white;*/
         }
+
+        .signup_form button {
+            background-color: gray;
+        }
+
+        .signup_form button:hover {
+            background-color: #0080ff;
+        }
+
+        #wrapper {
+            position: relative;
+            min-height: 100%;
+        }
+
+
     </style>
     <!-- Custom styles for this template -->
     <script>
@@ -329,58 +351,62 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script> $('.carousel').carousel({interval: 2000 //기본 5초 }) </script>
+<div id="wrapper">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">지금 뭐하지?</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" style="color: gray; ">Today's <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: gray;">이벤트 등록</a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="찾고 싶은 이벤트명이나 팀명을 입력하세요"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <div class="nav-item">
+                        <button type="button" class="user_icon" onclick="myFunction()"
+                                style="border: none; background-color: transparent;"><img
+                                src="/static/img/user_icon.png" alt="user_icon.png"
+                                style="height: 40px; width:40px; background-size: 10px;"></button>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/">지금 뭐하지?</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" style="color: gray; ">Today's <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: gray;" >이벤트 등록</a>
-                </li>
-            </ul>
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="찾고 싶은 이벤트명이나 팀명을 입력하세요"
-                       aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <div class="nav-item">
-                    <button type="button" class="user_icon" onclick="myFunction()"
-                            style="border: none; background-color: transparent;"><img
-                            src="/static/img/user_icon.png" alt="user_icon.png"
-                            style="height: 40px; width:40px; background-size: 10px;"></button>
-
-                    <div class="dropdown-content" id="myDropdown" dir="rtl">
-                        <a href="/login/">로그인</a><br/>
-                        <a href="/login/sign_up/">회원가입</a>
+                        <div class="dropdown-content" id="myDropdown" dir="rtl">
+                            <a href="/login/">로그인</a><br/>
+                            <a href="/login/sign_up/">회원가입</a>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    </nav>
-</header>
-<main role="main">
-    {% block main %}
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main role="main" style="height: 100%">
+        {% block main %}
 
-    {% endblock %}
+        {% endblock %}
 
-    <footer class="container" style="position: relative; bottom:0;">
+    </main>
+    <br/>
+    <footer class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>&copy; 2020 Pirogramming. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
-</main>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</div>
 
 </body>
+
+
 </html>

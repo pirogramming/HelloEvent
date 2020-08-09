@@ -2,22 +2,21 @@
 {% load static %}
 
 {% block main%}
-<div class="content" style="height: 100%;">
-    <div class="shadow p-3 mb-5 bg-white rounded"
-         style="margin: 0 auto; text-align: center; margin-top: 50px; width: 500px; height: 60px; border: 1px solid #0080ff; background-color: #0080ff!important; border-radius: 10px;">
-        <a href="/accounts/signup" style="text-decoration: none; color: white;">회원가입</a>
-        <br>
-    </div>
-    <hr/>
-
+<div class="content" style="max-height: 100%!important;">
+<!--    <div class="shadow p-3 mb-5 bg-white rounded"-->
+<!--         style="margin: 0 auto; text-align: center; margin-top: 50px; width: 500px; height: 60px; border: 1px solid #0080ff; background-color: #0080ff!important; border-radius: 10px;">-->
+<!--        <a href="/accounts/signup" style="text-decoration: none; color: white;">회원가입</a>-->
+<!--        <br>-->
+<!--    </div>-->
+<!--    <hr/>-->
+<br/><br/>
     {% if user.is_authenticated %}
     <br>
-    {{ user.first_name }} 님이 로그인 중<br/>
-    <div class="shadow p-3 mb-5 bg-white rounded"><a href="{% url 'login:signup' %}">signup</a></div>
+    <p style="font-weight: 700; text-align: center;">{{ user.first_name }} 님 안녕하세요</p>
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:signup' %}">signup</a></div>
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:mypage' user.pk %}">My page</a></div>
     <br/>
-    <a href="{% url 'login:mypage' user.pk %}">My page</a>
-    <br/><br/>
-    <a href="{% url 'login:logout' %}">로그아웃</a>
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:logout' %}">로그아웃</a></div>
 
 
     {% else %}
