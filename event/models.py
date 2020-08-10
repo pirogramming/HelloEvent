@@ -20,14 +20,9 @@ class Event(models.Model):
     genre = models.CharField(max_length=100, choices=GENRE_LIST)
 
 
-def get_image_filename(instance, filename):
-    id = instance.post.id
-    return f'event_images/{id}'
-
-
 class EventImage(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, default=None)
-    image = models.ImageField(upload_to='event_images', verbose_name="이벤트 이미지")
+    image = models.ImageField(upload_to='event_images/%Y/%m/%d', verbose_name="이벤트 이미지")
 
 
 class Tag(models.Model):

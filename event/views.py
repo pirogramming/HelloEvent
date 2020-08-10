@@ -8,6 +8,7 @@ from django.template import RequestContext
 
 from event.forms import ImageForm, EventForm
 from event.models import EventImage
+from django.conf import settings
 
 
 @login_required
@@ -26,11 +27,13 @@ def register_event(request, pk):
         else:
             print(form.error, formset.error)
     else:
+        member = settings.AUTH_USER_MODEL
+        creator = member.creator
         form = EventForm()  # TODO : fix me!
-        formset = ImageForm(queryset=EventImage.objects.none())
+        formset = ImageFormSet(queryset=EventImage.objects.none())
     return render(request, 'event/event_register.html',
                   context={
+                      'creator': creator,
                       'eventform': form,
                       'formset': formset,
-                  }
-                  )
+                  })

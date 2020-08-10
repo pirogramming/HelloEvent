@@ -1,7 +1,7 @@
-{% extends layout.html %}
+{% extends 'event/layout.html' %}
 
-{% block content %}
-    <form id="event_form" action="{% url event:event_register %}" enctype="multipart/form-data">
+{% block main %}
+    <form id="event_form" action="{% url 'event:event_register' member.creator.pk %}" enctype="multipart/form-data">
         {% for form in eventform %}
             {{form}}
         {% endfor %}}
