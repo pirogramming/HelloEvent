@@ -1,3 +1,4 @@
+from django.core.checks import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login as auth_login
 from allauth.socialaccount.models import SocialApp
@@ -5,7 +6,7 @@ from allauth.socialaccount.templatetags.socialaccount import get_providers
 from helloevent import settings
 from django.urls import reverse
 
-from .forms import MemberForm
+from .forms import MemberForm, CreatorForm
 from .models import Creator, Member
 
 
@@ -61,6 +62,26 @@ def login_update(request, pk):
 
 # def signup(request):
 #     return render(request, 'login/login_signup.html')
+
+def create_creator(request):
+    if request.method == 'POST':
+        form = CreatorForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(1)
+            creator = form.save(commit=False)
+            creator.member = Member.objects.get(id=request.user.pk)
+            creator.save()
+            return redirect("event:event_register")
+    else:
+        form = CreatorForm()
+        cxt={
+            'form':form,
+        }
+        return render(request, 'login/enroll_creator.html', cxt)
+
+
+
+
 
 
 

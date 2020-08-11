@@ -1,9 +1,8 @@
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import User, AbstractUser, UserManager
 from django.db import models
 from django import forms
 
-User
 def min_length_2_validator(value):
     if len(value) < 2:
         raise forms.ValidationError('2글자 이상 입력해주세요')
@@ -62,3 +61,4 @@ class Like(models.Model):
     to_user = models.ForeignKey(Creator, on_delete=models.CASCADE)
 
 
+from django.contrib.auth.backends import ModelBackend

@@ -12,7 +12,7 @@ class ImageForm(forms.ModelForm):
     image = forms.ImageField(label='')
     class Meta:
         model = EventImage
-        fields = ('image', )
+        fields=('image', )
 
 class TestForm(forms.ModelForm):
 

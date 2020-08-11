@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>크리에이터 계정 만들</h1>
+    <h2>버스킹, 플리마켓, 전시 크리에이터로 등록하시면 이벤트를 업로드 할 수 있어요! 헤</h2>헿
+    <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="등록">
+    </form>
+{% endblock %}

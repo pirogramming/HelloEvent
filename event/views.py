@@ -44,7 +44,7 @@ from login.models import Creator, Member
 
 @login_required
 def register_event(request):
-    ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=2)
+    ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
 
     if request.method == 'POST':
         event_form = EventForm(request.POST)
@@ -52,12 +52,16 @@ def register_event(request):
         if event_form.is_valid() and image_formset.is_valid():
             event = event_form.save(commit=False)
             event.creator = Member.objects.get(id=request.user.pk).creator
+            print(1)
             event.save()
             for form in image_formset.cleaned_data:
-                image = form['image']
-                photo = EventImage(event=event, image=image)
-                photo.save()
-                return redirect('login:login')
+                print(image_formset.cleaned_data)
+                if form :
+                    image = form['image']
+                    photo = EventImage(event=event, image=image)
+                    print(2)
+                    photo.save()
+        return redirect('login:login')
     else:
         form = EventForm()
         formset = ImageFormSet(queryset=EventImage.objects.none())
