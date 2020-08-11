@@ -8,11 +8,54 @@
 </div>
 <br/>
 <div class="signup_form">
-    <form method="post" enctype="multipart/form-data" autocomplete="off" style="margin: 0 auto;">
+    <form method="post"  enctype="multipart/form-data" autocomplete="off" style="margin: 0 auto;">
         {% csrf_token %}
-        <table class="table table-bordered">
-            {{ form.as_table }}
-        </table>
+<!--        <table class="table table-bordered">-->
+<!--            {{ user.as_table }}-->
+<!--        </table>-->
+        닉네임:
+        <input type="text" name="nickname" value="{{user.nickname}}"/>
+        선호도시:
+        <label>
+            <select name = 'city'>
+                <optgroup label = '시'>
+                    <option value='Seoul'>서울특별시</option>
+                </optgroup>
+            </select>
+        </label>
+        선호구:
+        <label>
+            <select name = 'gu'>
+                <optgroup label = '구'>
+                    <option value='Gangnam'>강남구</option>
+                    <option value='Songpa'>송파구</option>
+                    <option value='Seocho'>서초구</option>
+                    <option value='Gangdong'>강동구</option>
+                    <option value='Gwanak'>관악구</option>
+                    <option value='Yeongdeung'>영등포구</option>
+                    <option value='Gangseo'>강서구</option>
+                    <option value='Yangcheon'>양천구</option>
+                    <option value='Guro'>구로구</option>
+                    <option value='Geumcheon'>금천구</option>
+                    <option value='Jongno'>종로구</option>
+                    <option value='Jung'>중구</option>
+                    <option value='Dongdaemun'>동대문구</option>
+                    <option value='Jungrang'>중랑구</option>
+                    <option value='Mapo'>마포구</option>
+                    <option value='Yongsan'>용산구</option>
+                    <option value='Seongdong'>성동구</option>
+                    <option value='Gwangjin'>광진구</option>
+                    <option value='Eunpyeong'>은평구</option>
+                    <option value='Seodaemun'>서대문구</option>
+                    <option value='Seongbuk'>성북구</option>
+                    <option value='Gangbuk'>강북구</option>
+                    <option value='Dobong'>도봉구</option>
+                    <option value='Nowon'>노원구</option>
+
+
+                </optgroup>
+            </select>
+        </label>
         <button type="submit"
                 style="text-align: center!important; margin-left: 45%;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
             저장
