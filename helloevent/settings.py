@@ -177,3 +177,6 @@ SOCIALACCOUNT_ADAPTER = 'adapters.SocialAccountAdapter'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+#유저 Member로 사용할 수 있게 등록
+AUTH_USER_MODEL = 'login.Member'
+

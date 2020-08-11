@@ -29,5 +29,5 @@ urlpatterns = [
     path('login/', login.views.login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     # path('accounts/', include('allauth.urls')),
-
+    path('comment/',include('comment.urls')),
 ]

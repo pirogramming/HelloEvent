@@ -10,4 +10,4 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.comment_text
+        return self.comment_text + ' '+ self.created_at.strftime("%Y-%m-%d %H:%M:%S")

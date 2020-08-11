@@ -1,0 +1,19 @@
+{% extends 'base_bootstrap.html' %}
+{% comment %} 임시 이벤트 디테일 페이지(테스트용) {% endcomment %}
+
+{% block content %}
+<form action="{% url 'comment:comment_read' member.creator.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="hidden" name="creator" value="" />
+        댓글: <input type="text" name='comment_body'/>
+        <button type="submit">작성</button>
+        {{ comment_form.as_table }} 
+    </form><br>
+{{creator_detail}}
+{% for comment in comments %}
+    {{ comment.creator}}
+    {{ member.username }}님의 댓글:
+    {{ comment.comment_text }} <br>
+{% endfor %}
+{% endblock %}
