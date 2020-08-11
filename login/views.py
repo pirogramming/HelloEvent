@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import login as auth_login
+from allauth.socialaccount.models import SocialApp
+from allauth.socialaccount.templatetags.socialaccount import get_providers
+from helloevent import settings
 from django.urls import reverse
 
 from .forms import MemberForm
-from .models import Member, Creator
+from .models import Creator, Member
 
 
 def login(request):
@@ -19,15 +22,18 @@ def login_signup(request):
         form = MemberForm(request.POST, request.FILES)
         if form.is_valid():
             member = form.save(commit=False)
-            member.save()
+            member.save()   # ModelForm에선 2번 저장되어서 member.save()를 빼줘야 Integrity Error가 안뜨는듯..?
             pk = member.id
             url = reverse('login:mypage', kwargs={'pk': pk})
             return redirect(to=url)
     else:
+        from login.forms import MemberForm
         form = MemberForm
     return render(request, 'login/login_signup.html', {
         'form': form,
     })
+
+
 
 
 def mypage(request, pk):
@@ -52,3 +58,10 @@ def login_update(request, pk):
         form = MemberForm(instance=member)
     context = {'form': form}
     return render(request, 'login/login_signup.html', context)
+
+# def signup(request):
+#     return render(request, 'login/login_signup.html')
+
+
+
+
