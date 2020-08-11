@@ -27,6 +27,6 @@ urlpatterns = [
     path('event/', include('event.urls'), name='event'),
     path('login/', login.views.login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('comment/',include('comment.urls')),
     path('accounts/', include('allauth.urls')),
-
 ]
