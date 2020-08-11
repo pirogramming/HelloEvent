@@ -5,39 +5,51 @@
 
 {% block main%}
 <div class="content" style="max-height: 100%!important;">
-<!--    <div class="shadow p-3 mb-5 bg-white rounded"-->
-<!--         style="margin: 0 auto; text-align: center; margin-top: 50px; width: 500px; height: 60px; border: 1px solid #0080ff; background-color: #0080ff!important; border-radius: 10px;">-->
-<!--        <a href="/accounts/signup" style="text-decoration: none; color: white;">회원가입</a>-->
-<!--        <br>-->
-<!--    </div>-->
-<!--    <hr/>-->
-<br/><br/>
+    <!--    <div class="shadow p-3 mb-5 bg-white rounded"-->
+    <!--         style="margin: 0 auto; text-align: center; margin-top: 50px; width: 500px; height: 60px; border: 1px solid #0080ff; background-color: #0080ff!important; border-radius: 10px;">-->
+    <!--        <a href="/accounts/signup" style="text-decoration: none; color: white;">회원가입</a>-->
+    <!--        <br>-->
+    <!--    </div>-->
+    <!--    <hr/>-->
+    <br/><br/>
     {% if user.is_authenticated %}
     <br>
     <p style="font-weight: 700; text-align: center;">{{ user.first_name }} 님 안녕하세요</p>
-    <div class="shadow p-3 mb-5 bg-white rounded" style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:signup' %}">signup</a></div>
-    <div class="shadow p-3 mb-5 bg-white rounded" style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:mypage' user.pk %}">My page</a></div>
+    <div class="shadow p-3 mb-5 bg-white rounded"
+         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:signup' %}">signup</a>
+    </div>
+    <div class="shadow p-3 mb-5 bg-white rounded"
+         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a
+            href="{% url 'login:mypage' user.pk %}">My page</a></div>
     <br/>
-    <div class="shadow p-3 mb-5 bg-white rounded" style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:logout' %}">로그아웃</a></div>
+    <div class="shadow p-3 mb-5 bg-white rounded"
+         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="/accounts/logout">로그아웃</a>
+    </div>
 
 
     {% else %}
     <br/>
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px; background-color: white!important; border-radius: 10px;">
-        <a href="{% url 'social:begin' 'google-plus' %}" style="color: black;"><img src="/static/img/google.jpg"
-                                                                                    alt="google"
-                                                                                    style="height: 40px; width: 40px; margin-right: 10px;">구글로
-            로그인을 해볼까</a>
+        <a href="{% provider_login_url 'google' %}" style="color: black;"><img src="/static/img/google.jpg"
+                                                                               alt="google"
+                                                                               style="height: 40px; width: 40px; margin-right: 10px;">구글로
+            로그인하기</a>
     </div>
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px; background-color: white!important; border-radius: 10px;">
-        <a href="{% url 'social:begin' 'kakao' %}" style="color: black;"><img src="/static/img/kakao.png" alt="kakao"
-                                                                              style="height:40px; width: 40px; margin-right: 10px; ">카카오로
-            로그인을 해볼까</a>
+        <a href="{% provider_login_url 'naver' %}" style="color: black;"><img src="/static/img/naver.png" alt="kakao"
+                                                                              style="height:30px; width: 30px; margin-right: 10px; ">네이버로
+            로그인하기</a>
     </div>
-        <a href="{% provider_login_url 'naver' %}">네이버 로그인</a>
     <hr/>
+    <br/>
+<!--    <h5>혹시 아직 회원이 아니세요? </h5><br/>-->
+<!--    <div class="signup">-->
+<!--        <a href="#">구글로 회원가입하기</a><br/>-->
+<!--        <a href="#">네이버로 회원가입하기</a>-->
+<!--    </div>-->
+
 
     {% endif %}
 </div>
