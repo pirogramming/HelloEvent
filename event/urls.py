@@ -5,5 +5,5 @@ app_name = 'event'
 
 urlpatterns = [
     path('register/', views.register_event, name="event_register"),
-    path('creator/<int:pk>/',views.creator_detail, name='creator_detail'),
+    path('creator_event/<int:pk>/',views.creator_detail, name='creator_detail'),
 ]

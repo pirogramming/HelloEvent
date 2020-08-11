@@ -9,36 +9,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template import RequestContext
 
 from event.forms import ImageForm, EventForm
-from event.models import EventImage, Event
+from event.models import EventImage, Event, Tag
 from django.conf import settings
 
-
-
-# @login_required
-# def register_event(request):
-#     ImageFormSet = inlineformset_factory(Event, EventImage, form=ImageForm, extra=2)
-#     if request.method == "POST":
-#         form = EventForm(request.POST)
-#         formset = ImageFormSet(request.POST, request.FILES)
-#         if form.is_valid() and formset.is_valid():
-#             event = form.save(commit=False)
-#             #event.creator = request.user
-#
-#             with transaction.atomic():
-#                 event.save()
-#                 formset.instance = event
-#                 formset.save()
-#                 messages.success(request, 'Event 사진 업로드 성공')
-#                 return redirect('login:login')
-#
-#     else:
-#         form = EventForm()
-#         formset = ImageFormSet()
-#     return render(request, 'event/event_register.html',
-#                   context={
-#                       'eventform': form,
-#                       'formset': formset,
-#                   })
 from login.models import Creator, Member
 
 
@@ -48,12 +21,17 @@ def register_event(request):
 
     if request.method == 'POST':
         event_form = EventForm(request.POST)
+        tags = request.POST['tag'].split(',')
         image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
         if event_form.is_valid() and image_formset.is_valid():
             event = event_form.save(commit=False)
             event.creator = Member.objects.get(id=request.user.pk).creator
-            print(1)
             event.save()
+            for tag in tags:
+                print(tag)
+                tag = tag.strip()
+                Tag.objects.create(name=tag, event=event)
+
             for form in image_formset.cleaned_data:
                 print(image_formset.cleaned_data)
                 if form :
