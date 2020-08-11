@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.forms import modelformset_factory, inlineformset_factory
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.template import RequestContext
@@ -66,3 +66,19 @@ def register_event(request):
             'formset':formset,
         }
         return render(request, 'event/event_register.html', cxt)
+
+def creator_detail(request, pk):
+    event = Event.objects.get(pk=pk)
+    creator = event.creator
+    # Creator.objects.get(id=1).event_set.get(pk=1)
+    ctx = {
+        # 'event':event,
+        # 'creator':event.creator,
+        # 'event_name' : event.event_name,
+        # 'genre' : event.genre,
+        # 'creator_photo' : creatordetail.creator_photo,
+        # 'creator':creator,
+        'event':event,
+        'creator':creator
+    }
+    return render(request, 'event/creator_event_detail.html', ctx)
