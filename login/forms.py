@@ -1,5 +1,5 @@
 from django import forms
-from .models import Member
+from login.models import Member, Creator
 
 
 class MemberForm(forms.ModelForm):
@@ -65,9 +65,8 @@ class MemberForm(forms.ModelForm):
 
 
 
-# class CreatorForm(forms.ModelForm):
-#     class Meta:
-#         model = Creator
-#         fields = '__all__'
-
+class CreatorForm(forms.ModelForm):
+    class Meta:
+        model = Creator
+        exclude=('member',)
 
