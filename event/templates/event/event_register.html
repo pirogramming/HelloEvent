@@ -1,13 +1,15 @@
 {% extends 'event/layout.html' %}
 
-{% block main %}
-    <form id="event_form" action="{% url 'event:event_register' member.creator.pk %}" enctype="multipart/form-data">
-        {% for form in eventform %}
-            {{form}}
-        {% endfor %}}
 
-        {% for imageform in formset %}
-            {{imageform}}
-        {% endfor %}}
-    </form>
+{% block main %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+
+    {{ formset.management_form }}
+    {% for imageform in formset %}
+            {{ imageform.as_table }}
+    {% endfor %}
+    <input type="submit" value="제출">
+</form>
 {% endblock %}
