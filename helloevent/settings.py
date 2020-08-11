@@ -177,3 +177,8 @@ SOCIALACCOUNT_ADAPTER = 'adapters.SocialAccountAdapter'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
