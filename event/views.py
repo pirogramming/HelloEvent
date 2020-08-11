@@ -39,6 +39,8 @@ from django.conf import settings
 #                       'eventform': form,
 #                       'formset': formset,
 #                   })
+from login.models import Creator, Member
+
 
 @login_required
 def register_event(request):
@@ -49,6 +51,7 @@ def register_event(request):
         image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
         if event_form.is_valid() and image_formset.is_valid():
             event = event_form.save(commit=False)
+            event.creator = Member.objects.get(id=request.user.pk).creator
             event.save()
             for form in image_formset.cleaned_data:
                 image = form['image']

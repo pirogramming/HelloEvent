@@ -15,7 +15,7 @@ class Member(AbstractUser):
     created_on = models.DateTimeField("등록일자", auto_now_add=True)
     updated_on = models.DateTimeField("수정일자", auto_now=True)
 
-    class Meta(AbstractUser.Meta):
+    class Meta:
         db_table = 'member'
         verbose_name = 'member'
 
@@ -23,6 +23,7 @@ class Creator(models.Model):
     creator_name = models.CharField(max_length=100, verbose_name='크리에이터명')
     creator_photo = models.ImageField(upload_to="creator_photo/%Y/%m/%d/")
     desc = models.TextField(blank=True)
+
     member = models.OneToOneField(Member, on_delete=models.CASCADE)
 
 class Like(models.Model):
