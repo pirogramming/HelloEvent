@@ -1,5 +1,8 @@
 <!doctype html>
 {% load static %}
+{% load socialaccount %}
+
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -378,11 +381,18 @@
                                 style="border: none; background-color: transparent;"><img
                                 src="/static/img/user_icon.png" alt="user_icon.png"
                                 style="height: 40px; width:40px; background-size: 10px;"></button>
-
+                        {% if user.is_authenticated %}
+                        <div class="dropdown-content" id="myDropdown" dir="rtl">
+                            <a href="{% url 'login:mypage' user.pk %}">마이페이지</a><br/>
+                            <a href="/accounts/logout">로그아웃</a><br/>
+                        </div>
+                        {% else %}
                         <div class="dropdown-content" id="myDropdown" dir="rtl">
                             <a href="/login/">로그인</a><br/>
-                            <a href="/login/sign_up/">회원가입</a>
+<!--                            <a href="/login/sign_up/">회원가입</a>-->
                         </div>
+
+                        {% endif %}
                     </div>
                 </form>
             </div>
