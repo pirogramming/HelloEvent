@@ -9,7 +9,7 @@ def min_length_2_validator(value):
 
 
 class Member(User):
-    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator])
+    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator], unique=True)
     CITY_CHOICES = (
         ('Seoul', '서울특별시'),
     )
