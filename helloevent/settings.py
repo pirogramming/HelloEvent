@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'django.contrib.sites',
 
     'login.apps.LoginConfig',
@@ -171,6 +172,8 @@ SOCIALACCOUNT_ADAPTER = 'adapters.SocialAccountAdapter'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+AUTH_USER_MODEL = 'login.Member'
+#유저 Member로 사용할 수 있게 등록
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
