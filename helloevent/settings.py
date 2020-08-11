@@ -35,23 +35,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
 
+    'login.apps.LoginConfig',
     'event',
-    'login',
+    # 'login',
     'location',
     'comment',
 
-    'social_django',
+    # 'social_django',
 
-    # # allauth
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # provider
-    # 'allauth.socialaccount.providers.google',
-    # 'social_django',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.kakao',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'helloevent.urls'
@@ -81,8 +82,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'social_django.context_processors.backends',  # social 로그인 관련 template 추가부분
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',  # social 로그인 관련 template 추가부분
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -136,40 +137,33 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',  # 구글 로그인 처리를 위한 파이썬 클래스
-    'social_core.backends.google.GoogleOpenId',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GooglePlusAuth',
-    'social_core.backends.kakao.KakaoOAuth2',
+AUTHENTICATION_BACKENDS = [
+ 'django.contrib.auth.backends.ModelBackend', # 기본 인증 백엔드
+ 'allauth.account.auth_backends.AuthenticationBackend', # 추가 ]
+]
 
-    'django.contrib.auth.backends.ModelBackend',
-)
-# AUTHENTICATION_BACKENDS = (
-#     # Needed to login by username in Django admin, regardless of `allauth`
-#     'django.contrib.auth.backends.ModelBackend',
-#
-#     # `allauth` specific authentication methods, such as login by e-mail
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# )
+SITE_ID = 1
 
-# SITE_ID = 1
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+
 
 # 로그인 후 리디렉션할 페이지
-# ACCOUNT_LOGOUT_REDIRECT_URL = "/login/"  # 로그아웃 후 리디렉션 할 페이지
-# ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃
+ACCOUNT_LOGOUT_REDIRECT_URL = "/login/"  # 로그아웃 후 리디렉션 할 페이지
+ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃
 
-SOCIAL_AUTH_GOOGLE_PLUS_KEY = '186979884276-52gqf8i68gjbu4700bfg0957n65rnsuh.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'N9Swt35c3Zz0D8yn07_vG_cA'
 
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
 LOGIN_REDIRECT_URL = '/login/'
-LOGOUT_REDIRECT_URL = '/login/'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 120  # 비밀번호 5회 틀릴 시 120초 동안 로그인 불가능
+# ACCOUNT_AUTHENTICATION_METHOD = 'username'
+# SOCIALACCOUNT_AUTO_SIGNUP = False  # 회원가입시 자동으로 회원가입 시키지않고 필요정보를 받는다.
+
+
+# ACCOUNT_SIGNUP_FORM_CLASS = "login.profile.SignupForm"
 
 # 이메일 확인을 하지 않음.
-SOCIAL_ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_AUTHENTICATION_METHOD = 'Email'
-ACCOUNT_USERNAME_REQUIRED = False
+# SOCIAL_ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_AUTHENTICATION_METHOD = 'Email'
+# ACCOUNT_USERNAME_REQUIRED = False
 
 # 유저 커스텀!!!!!!
 SOCIALACCOUNT_ADAPTER = 'adapters.SocialAccountAdapter'

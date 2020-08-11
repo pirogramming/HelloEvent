@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 {% block main%}
 <div class="content" style="max-height: 100%!important;">
@@ -34,6 +36,7 @@
                                                                               style="height:40px; width: 40px; margin-right: 10px; ">카카오로
             로그인을 해볼까</a>
     </div>
+        <a href="{% provider_login_url 'naver' %}">네이버 로그인</a>
     <hr/>
 
     {% endif %}
