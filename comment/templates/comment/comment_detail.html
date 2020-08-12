@@ -7,6 +7,8 @@
     {{ comment.creator}}
     {{ member.username }}님의 댓글:
     {{ comment.comment_text }} <br>
+    {% comment %} <a href="{% url 'comment:comment_delete' %}">삭제</a>
+    <a href="{% url 'comment:comment_update' %}">수정</a> {% endcomment %}
 {% endfor %}
 <br><br><br><br>
 <form method="POST" action=''>
