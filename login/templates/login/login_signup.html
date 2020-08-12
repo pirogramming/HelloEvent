@@ -7,7 +7,7 @@
     <p>추가 정보를 입력하시면 가입이 완료됩니다</p>
 </div>
 <br/>
-<div class="signup_form">
+<div class="signup_form" style="margin-top: 50px; text-align: center;">
     <form method="post" enctype="multipart/form-data" autocomplete="off" style="margin: 0 auto;">
         {% csrf_token %}
         <!--        <table class="table table-bordered">-->
@@ -75,4 +75,5 @@
         <br/><br/>
     </form>
 </div>
+
 {% endblock %}

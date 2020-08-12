@@ -65,14 +65,10 @@ def login_signup(request, pk):
         return redirect(to=url)
 
 
-
-
-
 def mypage(request, pk):
-    member = get_object_or_404(Member, pk=pk)
-    print(member)
+    user = get_object_or_404(Member, pk=pk)
     return render(request, 'login/mypage.html', {
-        'member': member,
+        'user': user,
     })
 
 
@@ -84,6 +80,7 @@ def login_update(request, pk):
             'user': user
         }
         return render(request, 'login/login_update.html', context=context)
+
     nickname = request.POST['nickname']
     city = request.POST['city']
     gu = request.POST['gu']
