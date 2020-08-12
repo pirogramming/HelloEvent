@@ -1,11 +1,33 @@
 {% extends 'base.html' %}
 
+{% block custom_style %}
+    .creating{
+        margin-top:50px;
+        margin-left:20%;
+        margin-right:20%;
+    }
+    .creating #enroll_btn{
+        width:200px;
+        height:40px;
+    }
+{% endblock %}
+
 {% block main %}
-    <h1>크리에이터 계정 만들</h1>
-    <h2>버스킹, 플리마켓, 전시 크리에이터로 등록하시면 이벤트를 업로드 할 수 있어요! 헤</h2>헿
-    <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="등록">
-    </form>
+    {% if user.is_authenticated %}
+    <div class="creating">
+        <h1>크리에이터 계정 만들기</h1>
+        <h4>버스킹, 플리마켓, 전시 크리에이터로 등록되면 이벤트를 등록할 수 있어요! 헤헿</h4>
+        <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|linebreaks }}
+            <input id="enroll_btn" type="submit" value="크리에이터 등록">
+        </form>
+    </div>
+    {% else %}
+    <script type="text/javascript">
+        alert('로그인이 필요합니다')
+        window.location.href = '/';
+    </script>
+    {% endif %}
+
 {% endblock %}

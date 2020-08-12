@@ -41,11 +41,13 @@ def register_event(request):
                     photo.save()
         return redirect('login:login')
     else:
+        creator = request.user.creator
         form = EventForm()
         formset = ImageFormSet(queryset=EventImage.objects.none())
         cxt = {
             'form':form,
             'formset':formset,
+            'creator':creator,
         }
         return render(request, 'event/event_register.html', cxt)
 
