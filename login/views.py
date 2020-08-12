@@ -77,19 +77,39 @@ def mypage(request, pk):
 
 
 def login_update(request, pk):
-    member = Member.objects.get(id=pk)
-    if request.method == 'POST':
-        form = MemberForm(request.POST, instance=member)
-        if form.is_valid():
-            member = form.save(commit=False)
-            member.save()
-            pk = member.id
-            url = reverse('login:mypage', kwargs={'pk': pk})
-            return redirect(to=url)
-    else:
-        form = MemberForm(instance=member)
-    context = {'form': form}
-    return render(request, 'login/login_signup.html', context)
+    url = reverse('login:main')
+    user = Member.objects.get(id=pk)
+    if request.method == 'GET':
+        context = {
+            'user': user
+        }
+        return render(request, 'login/login_update.html', context=context)
+    nickname = request.POST['nickname']
+    city = request.POST['city']
+    gu = request.POST['gu']
+
+    user.nickname = nickname
+    user.city = city
+    user.gu = gu
+    user.save()
+
+    return redirect(to=url)
+
+
+
+
+    # if request.method == 'POST':
+    #     form = MemberForm(request.POST, instance=member)
+    #     if form.is_valid():
+    #         member = form.save(commit=False)
+    #         member.save()
+    #         pk = member.id
+    #         url = reverse('login:mypage', kwargs={'pk': pk})
+    #         return redirect(to=url)
+    # else:
+    #     form = MemberForm(instance=member)
+    # context = {'form': form}
+    # return render(request, 'login/login_signup.html', context)
 
 # def signup(request):
 #     return render(request, 'login/login_signup.html')
