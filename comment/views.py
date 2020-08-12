@@ -1,32 +1,31 @@
 from django.shortcuts import redirect,render,get_object_or_404
 from .models import Comment
-from .forms import *
-from login.models import Creator
+from .forms import CommentForm
+from login.models import Creator, Member
+from event.models import Event
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-
-def comment_read(request,creator_id):
-    comments = Comment.objects.all()
-    creator = Creator.objects.get(id=creator_id)
-    return render(request, 'comment_read.html', {'comments':comments, 'creator':creator})
-
 # @login_required
-# def comment_create(request, pk):
-#     member = settings.AUTH_USER_MODEL
-#     creator = member.creator
-#     creator_detail = get_object_or_404(Creator, pk = creator_id)
-#     comment_form = CommentForm(request.POST)
+def comment_detail(request, pk):
+    creator = Creator.objects.get(pk=pk)
+    comments = creator.comments.all()
+    comment_form = CommentForm(request.POST)
     
-#     if comment_form.is_valid():
-#         comment = comment_form.save(commit=False)
-#         comment.writer = request.user
-#         comment.creator = Creator.objects.get(pk=pk)
-#         comment.save()
-#         return redirect('comment_read.html',pk)
-#     else: comment_form = CommentForm()
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.user = request.user
+        comment.save()
+        return redirect('comment/comment_detail.html',pk=pk)
+    else: 
+        comment_form = CommentForm()
 
-#     return render(request, 'comment_read.html', {'comment_form':comment_form})
+    ctx = {
+        'creator':creator,
+        'comments':comments,
+        'comment_form':comment_form,
+    }
+    return render(request, 'comment/comment_detail.html', ctx)
 
 @login_required
 def comment_update():
@@ -35,3 +34,4 @@ def comment_update():
 @login_required
 def comment_delete():
     pass
+

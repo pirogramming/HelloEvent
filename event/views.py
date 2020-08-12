@@ -12,6 +12,8 @@ from event.forms import ImageForm, EventForm
 from event.models import EventImage, Event
 from django.conf import settings
 
+from comment.models import Comment
+
 
 
 # @login_required
@@ -74,15 +76,10 @@ def register_event(request):
 def creator_detail(request, pk):
     event = Event.objects.get(pk=pk)
     creator = event.creator
-    # Creator.objects.get(id=1).event_set.get(pk=1)
+    comments = creator.comments.all()
     ctx = {
-        # 'event':event,
-        # 'creator':event.creator,
-        # 'event_name' : event.event_name,
-        # 'genre' : event.genre,
-        # 'creator_photo' : creatordetail.creator_photo,
-        # 'creator':creator,
         'event':event,
-        'creator':creator
+        'creator':creator,
+        'comments':comments,
     }
     return render(request, 'event/creator_event_detail.html', ctx)

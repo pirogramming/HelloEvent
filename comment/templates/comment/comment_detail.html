@@ -1,0 +1,17 @@
+{% extends 'base_bootstrap.html' %}
+{% comment %} 댓글 작성 페이지 {% endcomment %}
+
+{% block content %}
+댓글 전체 목록: <br> <br>
+{% for comment in comments %}
+    {{ comment.creator}}
+    {{ member.username }}님의 댓글:
+    {{ comment.comment_text }} <br>
+{% endfor %}
+<br><br><br><br>
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">{{ comment_form }}</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
