@@ -10,13 +10,14 @@ from django.conf import settings
 def comment_detail(request, pk):
     creator = Creator.objects.get(pk=pk)
     comments = creator.comments.all()
-    comment_form = CommentForm(request.POST)
-    
-    if comment_form.is_valid():
-        comment = comment_form.save(commit=False)
-        comment.user = request.user
-        comment.save()
-        return redirect('comment/comment_detail.html',pk=pk)
+    if request.method =='POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.creator = creator
+            comment.save()
+            return redirect('event:comment_detail',pk=pk)
     else: 
         comment_form = CommentForm()
 
