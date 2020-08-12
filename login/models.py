@@ -3,15 +3,14 @@ from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 from django import forms
 
-User
+
 def min_length_2_validator(value):
     if len(value) < 2:
         raise forms.ValidationError('2글자 이상 입력해주세요')
 
 
-
 class Member(AbstractUser):
-    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator], unique=True)
+    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator])
     created_on = models.DateTimeField("등록일자", auto_now_add=True)
     updated_on = models.DateTimeField("수정일자", auto_now=True)
     CITY_CHOICES = (
