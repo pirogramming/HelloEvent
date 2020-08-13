@@ -18,6 +18,7 @@ h1,p {color:black;}
         <p>주최자 프로필 사진:</p> <img src="{{ event.creator.creator_photo.url }}" alt="사진있어라" style="width:300px">
     </div>
     <br>
+<<<<<<< HEAD
     <div class="text-center">
         <p>댓글</p>
     </div>
@@ -29,4 +30,11 @@ h1,p {color:black;}
     <a href="{% url 'event:comment_detail' creator.pk %}">전체 댓글</a>
     </div>
 </div>
+=======
+    이벤트명: {{ event.event_name }} <br>
+    주최자: {{ event.creator }} <br>
+    주최자 프로필 사진: <img src="{{ event.creator.creator_photo.url }}" alt="사진있어라"> <br>
+    이벤트 장르: {{ event.genre }}
+     
+>>>>>>> event_feature
 {% endblock %}
