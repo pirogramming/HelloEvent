@@ -20,48 +20,74 @@
             </tr>
             <tr>
                 <td>선호도시</td>
-                <td><label>
-                    <select id='selected_city' name='city'>
-                        <optgroup label='시'>
-                            <option value='서울특별시'>서울특별시</option>
-                        </optgroup>
+<!--                <td><label>-->
+<!--                    <select id='selected_city' name='city'>-->
+<!--                        <optgroup label='시'>-->
+<!--                            <option value='서울특별시'>서울특별시</option>-->
+<!--                        </optgroup>-->
+<!--                    </select>-->
+<!--                </label></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>선호구</td>-->
+<!--                <td><label>-->
+<!--                    <select id='selected_gu' name='gu' value="구">-->
+<!--                        <optgroup label='구'>-->
+<!--                            <option value='강남구'>강남구</option>-->
+<!--                            <option value='송파구'>송파구</option>-->
+<!--                            <option value='서초구'>서초구</option>-->
+<!--                            <option value='강동구'>강동구</option>-->
+<!--                            <option value='관악구'>관악구</option>-->
+<!--                            <option value='영등포구'>영등포구</option>-->
+<!--                            <option value='강서구'>강서구</option>-->
+<!--                            <option value='양천구'>양천구</option>-->
+<!--                            <option value='구로구'>구로구</option>-->
+<!--                            <option value='금천구'>금천구</option>-->
+<!--                            <option value='종로구'>종로구</option>-->
+<!--                            <option value='중구'>중구</option>-->
+<!--                            <option value='동대문구'>동대문구</option>-->
+<!--                            <option value='중랑구'>중랑구</option>-->
+<!--                            <option value='마포구'>마포구</option>-->
+<!--                            <option value='용산구'>용산구</option>-->
+<!--                            <option value='성동구'>성동구</option>-->
+<!--                            <option value='광진구'>광진구</option>-->
+<!--                            <option value='은평구'>은평구</option>-->
+<!--                            <option value='서대문구'>서대문구</option>-->
+<!--                            <option value='성북구'>성북구</option>-->
+<!--                            <option value='강북구'>강북구</option>-->
+<!--                            <option value='도봉구'>도봉구</option>-->
+<!--                            <option value='노원구'>노원구</option>-->
+
+
+<!--                        </optgroup>-->
+<!--                    </select>-->
+<!--                </label></td>-->
+                <div class="choose_city">
+                    <td>
+<!--                        <label for="city">도시 선택</label>-->
+                    <select
+                            name="city"
+                            id="city"
+                            onchange="addressKindChange(this)"
+                            class="selected_city"
+                    >
+                        <option>도시를 선택해주세요</option>
+                        <option value="서울특별시">서울특별시</option>
                     </select>
-                </label></td>
-            </tr>
+                </div>
+                </td>
+            <tr/>
             <tr>
                 <td>선호구</td>
-                <td><label>
-                    <select id='selected_gu' name='gu' value="구">
-                        <optgroup label='구'>
-                            <option value='강남구'>강남구</option>
-                            <option value='송파구'>송파구</option>
-                            <option value='서초구'>서초구</option>
-                            <option value='강동구'>강동구</option>
-                            <option value='관악구'>관악구</option>
-                            <option value='영등포구'>영등포구</option>
-                            <option value='강서구'>강서구</option>
-                            <option value='양천구'>양천구</option>
-                            <option value='구로구'>구로구</option>
-                            <option value='금천구'>금천구</option>
-                            <option value='종로구'>종로구</option>
-                            <option value='중구'>중구</option>
-                            <option value='동대문구'>동대문구</option>
-                            <option value='중랑구'>중랑구</option>
-                            <option value='마포구'>마포구</option>
-                            <option value='용산구'>용산구</option>
-                            <option value='성동구'>성동구</option>
-                            <option value='광진구'>광진구</option>
-                            <option value='은평구'>은평구</option>
-                            <option value='서대문구'>서대문구</option>
-                            <option value='성북구'>성북구</option>
-                            <option value='강북구'>강북구</option>
-                            <option value='도봉구'>도봉구</option>
-                            <option value='노원구'>노원구</option>
-
-
-                        </optgroup>
-                    </select>
-                </label></td>
+                <div class="choose_gu" style="margin-top: 1rem;">
+                    <td>
+<!--                        <label for="gu">구 선택</label>-->
+                        <select name="gu" id="gu" class="selected_gu">
+                            <option>구를 선택해주세요</option>
+                        </select>
+                </div>
+                </td>
+            </tr>
             </tr>
         </table>
         <button id="save_btn" type="submit"
@@ -78,21 +104,51 @@
 
 {% block hanseokscript %}
 <script>
-    // let select_city_tag = document.querySelector('#selected_city')
-    // let option_city_tag = Array.from(select_city_tag.firstElementChild.childNodes).filter(node => node.nodeName == "OPTION")
-    // option_city_tag = option_city_tag.filter(node => node.value == `{{ user.city }}`)[0]
-    // option_city_tag.setAttribute('selected',true)
-    //
-    // let select_gu_tag = document.querySelector('#selected_gu')
-    // let option_gu_tag = Array.from(select_gu_tag.firstElementChild.childNodes).filter(node => node.nodeName == "OPTION")
-    // option_gu_tag = option_gu_tag.filter(node => node.value == `{{ user.gu }}`)[0]
-    // option_gu_tag.setAttribute('selected',true)
-    // console.log(option_gu_tag)
+    function addressKindChange(e) {
+        let city;
+        let seoul = [
+            "강남구",
+            "송파구",
+            "서초구",
+            "강동구",
+            "관악구",
+            "영등포구",
+            "강서구",
+            "양천구",
+            "구로구",
+            "금천구",
+            "종로구",
+            "중구",
+            "동대문구",
+            "중랑구",
+            "마포구",
+            "용산구",
+            "성동구",
+            "광진구",
+            "은평구",
+            "서대문구",
+            "성북구",
+            "강북구",
+            "도봉구",
+            "노원구",
+        ];
+        let target = document.querySelector("#gu");
+
+        if (e.value == "서울특별시") {
+            city = seoul;
+        }
+        for (x in city) {
+            let opt = document.createElement("option");
+            opt.value = city[x];
+            opt.innerHTML = city[x];
+            target.appendChild(opt);
+        }
+    }
 
     let save_btn = document.querySelector('#save_btn')
-    save_btn.addEventListener('click',function(){
+    save_btn.addEventListener('click', function () {
         alert('회원가입이 완료되었습니다.')
-     })
+    })
     // save_btn.onclick = function() {
     //     confirm("회원가입이 완료되었습니다.");
     // }
