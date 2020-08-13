@@ -79,7 +79,18 @@
 
 
 {% block hanseokscript %}
+<script>
+    let select_city_tag = document.querySelector('#selected_city')
+    let option_city_tag = Array.from(select_city_tag.firstElementChild.childNodes).filter(node => node.nodeName == "OPTION")
+    option_city_tag = option_city_tag.filter(node => node.value == `{{ user.city }}`)[0]
+    option_city_tag.setAttribute('selected',true)
 
+    let select_gu_tag = document.querySelector('#selected_gu')
+    let option_gu_tag = Array.from(select_gu_tag.firstElementChild.childNodes).filter(node => node.nodeName == "OPTION")
+    option_gu_tag = option_gu_tag.filter(node => node.value == `{{ user.gu }}`)[0]
+    option_gu_tag.setAttribute('selected',true)
+    console.log(option_gu_tag)
+</script>
 
 
 {% endblock %}
