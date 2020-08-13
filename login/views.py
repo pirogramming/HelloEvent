@@ -93,9 +93,6 @@ def login_update(request, pk):
 
     return redirect(to=url)
 
-
-
-
     # if request.method == 'POST':
     #     form = MemberForm(request.POST, instance=member)
     #     if form.is_valid():
@@ -108,6 +105,7 @@ def login_update(request, pk):
     #     form = MemberForm(instance=member)
     # context = {'form': form}
     # return render(request, 'login/login_signup.html', context)
+
 
 # def signup(request):
 #     return render(request, 'login/login_signup.html')
@@ -123,15 +121,32 @@ def create_creator(request):
             return redirect("event:event_register")
     else:
         form = CreatorForm()
-        cxt={
-            'form':form,
+        cxt = {
+            'form': form,
         }
         return render(request, 'login/enroll_creator.html', cxt)
 
 
+def creator_mypage(request, pk):
+    creator = get_object_or_404(Creator, pk=pk)
+    return render(request, 'login/creator_mypage.html', {
+        'creator': creator,
+    })
 
 
+def creator_update(request, pk):
 
+    temp = get_object_or_404(Creator, pk=pk)
 
-
-
+    if request.method == 'POST':
+        form = CreatorForm(request.POST, request.FILES, instance=temp)
+        if form.is_valid():
+            creator = form.save(commit=False)
+            creator.save()
+            url = reverse('login:creator_mypage', kwargs={'pk': pk})
+            return redirect(to=url)
+    else:
+        form = CreatorForm(instance=temp)
+    return render(request, 'login/creator_update.html', {
+        'form': form
+    })

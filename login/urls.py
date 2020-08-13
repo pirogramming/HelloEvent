@@ -14,4 +14,6 @@ urlpatterns = [
     path('login/<int:pk>/', views.mypage, name='mypage'),
     path('login/create_creator/', views.create_creator, name="create_creator"),
     # path('accounts/social/signup/', views.signup, name='signup')
+    path('login/<int:pk>/creator/', views.creator_mypage, name='creator_mypage'),
+    path('login/<int:pk>/creator/update/', views.creator_update, name='creator_update'),
 ]
