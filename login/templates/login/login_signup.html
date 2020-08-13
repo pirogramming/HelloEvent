@@ -23,7 +23,6 @@
                 <td><label>
                     <select id='selected_city' name='city'>
                         <optgroup label='시'>
-                            <option>선택</option>
                             <option value='서울특별시'>서울특별시</option>
                         </optgroup>
                     </select>
@@ -32,9 +31,8 @@
             <tr>
                 <td>선호구</td>
                 <td><label>
-                    <select id='selected_gu' name='gu'>
+                    <select id='selected_gu' name='gu' value="구">
                         <optgroup label='구'>
-                            <option>선택</option>
                             <option value='강남구'>강남구</option>
                             <option value='송파구'>송파구</option>
                             <option value='서초구'>서초구</option>
@@ -66,7 +64,7 @@
                 </label></td>
             </tr>
         </table>
-        <button type="submit"
+        <button id="save_btn" type="submit"
                 style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
             저장
         </button>
@@ -75,5 +73,31 @@
         <br/><br/>
     </form>
 </div>
+
+{% endblock %}
+
+{% block hanseokscript %}
+<script>
+    // let select_city_tag = document.querySelector('#selected_city')
+    // let option_city_tag = Array.from(select_city_tag.firstElementChild.childNodes).filter(node => node.nodeName == "OPTION")
+    // option_city_tag = option_city_tag.filter(node => node.value == `{{ user.city }}`)[0]
+    // option_city_tag.setAttribute('selected',true)
+    //
+    // let select_gu_tag = document.querySelector('#selected_gu')
+    // let option_gu_tag = Array.from(select_gu_tag.firstElementChild.childNodes).filter(node => node.nodeName == "OPTION")
+    // option_gu_tag = option_gu_tag.filter(node => node.value == `{{ user.gu }}`)[0]
+    // option_gu_tag.setAttribute('selected',true)
+    // console.log(option_gu_tag)
+
+    let save_btn = document.querySelector('#save_btn')
+    save_btn.addEventListener('click',function(){
+        alert('회원가입이 완료되었습니다.')
+     })
+    // save_btn.onclick = function() {
+    //     confirm("회원가입이 완료되었습니다.");
+    // }
+
+</script>
+
 
 {% endblock %}
