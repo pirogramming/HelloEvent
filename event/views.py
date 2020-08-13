@@ -121,7 +121,7 @@ def register_event(request):
         cxt = {
             'form':form,
             'formset':formset,
-            'location':location
+            'location':location,
             'creator':creator,
         }
         return render(request, 'event/event_register.html', cxt)
