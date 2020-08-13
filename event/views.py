@@ -13,6 +13,7 @@ from event.models import EventImage, Event, Tag
 from django.conf import settings
 
 from login.models import Creator, Member
+from comment.models import Comment
 
 class RelatedObjectDoesNotExist(Exception):
     def __init__(self, msg):
@@ -117,3 +118,14 @@ def register_event(request):
             'creator':creator,
         }
         return render(request, 'event/event_register.html', cxt)
+
+def creator_detail(request, pk):
+    event = Event.objects.get(pk=pk)
+    creator = event.creator
+    comments = creator.comments.all()
+    ctx = {
+        'event':event,
+        'creator':creator,
+        'comments':comments,
+    }
+    return render(request, 'event/creator_event_detail.html', ctx)

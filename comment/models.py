@@ -3,7 +3,7 @@ from login.models import Member, Creator
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(Member, on_delete=models.CASCADE)
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE, related_name='comments')
     comment_text = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

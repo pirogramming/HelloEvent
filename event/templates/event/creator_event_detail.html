@@ -1,10 +1,32 @@
 {% extends 'event/layout.html' %}
-
+{% block appendhead %}
+<style>
+h1,p {color:black;}
+.container {
+    margin-top: 100px;
+}
+.text-center {
+    margin-top:50px;
+}
+</style>
+{% endblock appendhead %}
 {% block main %}
+<div class="container">
+    <div class="text-center">
+        <h1>{{ event.event_name }}</h1>
+        <p>주최자: {{ event.genre }} - {{ event.creator }}</p>
+        <p>주최자 프로필 사진:</p> <img src="{{ event.creator.creator_photo.url }}" alt="사진있어라" style="width:300px">
+    </div>
     <br>
-    이벤트명: {{ event.event_name }} <br>
-    주최자: {{ event.creator }} <br>
-    주최자 프로필 사진: <img src="{{ event.creator.creator_photo.url }}" alt="사진있어라"> <br>
-    이벤트 장르: {{ event.genre }}
-     
+    <div class="text-center">
+        <p>댓글</p>
+    </div>
+    <div class="text-center">
+    {% for comment in comments %}
+        <b>{{comment.user.nickname}}</b> : {{comment.comment_text}}              
+        <small>{{comment.created_at}}</small> <br>
+    {% endfor %}
+    <a href="{% url 'event:comment_detail' creator.pk %}">전체 댓글</a>
+    </div>
+</div>
 {% endblock %}
