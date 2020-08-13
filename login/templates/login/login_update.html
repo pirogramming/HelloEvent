@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="signup_title" style="margin-top: 50px; text-align: center;">
+    <h3 style="color: #0080ff;">Update</h3>
+    <p>나의 정보를 수정할 수 있습니다.</p>
+</div>
+<br/>
+<div class="contents">
+<div class="signup_form">
+    <form method="post" enctype="multipart/form-data" autocomplete="off" style="margin: 0 auto;">
+        {% csrf_token %}
+        <!--        <table class="table table-bordered">-->
+        <!--            {{ user.as_table }}-->
+        <!--        </table>-->
+        <table class="additional_info">
+            <tr>
+                <td>닉네임</td>
+                <td><input type="text" name="nickname" value="{{user.nickname}}" required /></td>
+            </tr>
+            <tr>
+                <td>선호도시</td>
+                <td><label>
+                    <select id='selected_city' name='city'>
+                        <optgroup label='시'>
+                            <option value='서울특별시'>서울특별시</option>
+                        </optgroup>
+                    </select>
+                </label></td>
+            </tr>
+            <tr>
+                <td>선호구</td>
+                <td><label>
+                    <select id='selected_gu' name='gu'>
+                        <optgroup label='구'>
+                            <option value='강남구'>강남구</option>
+                            <option value='송파구'>송파구</option>
+                            <option value='서초구'>서초구</option>
+                            <option value='강동구'>강동구</option>
+                            <option value='관악구'>관악구</option>
+                            <option value='영등포구'>영등포구</option>
+                            <option value='강서구'>강서구</option>
+                            <option value='양천구'>양천구</option>
+                            <option value='구로구'>구로구</option>
+                            <option value='금천구'>금천구</option>
+                            <option value='종로구'>종로구</option>
+                            <option value='중구'>중구</option>
+                            <option value='동대문구'>동대문구</option>
+                            <option value='중랑구'>중랑구</option>
+                            <option value='마포구'>마포구</option>
+                            <option value='용산구'>용산구</option>
+                            <option value='성동구'>성동구</option>
+                            <option value='광진구'>광진구</option>
+                            <option value='은평구'>은평구</option>
+                            <option value='서대문구'>서대문구</option>
+                            <option value='성북구'>성북구</option>
+                            <option value='강북구'>강북구</option>
+                            <option value='도봉구'>도봉구</option>
+                            <option value='노원구'>노원구</option>
+
+
+                        </optgroup>
+                    </select>
+                </label></td>
+            </tr>
+        </table>
+        <button type="submit"
+                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+            저장
+        </button>
+        <br/><br/><br/><br/>
+        <hr>
+        <br/><br/>
+    </form>
+</div>
+    </div>
+{% endblock %}
+
+
+{% block hanseokscript %}
+
+
+
+{% endblock %}
