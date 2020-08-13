@@ -14,7 +14,7 @@ def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.user = request.user
+            comment.member = request.user
             comment.creator = creator
             comment.save()
             return redirect('event:comment_detail',pk=pk)
@@ -29,32 +29,28 @@ def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
     return render(request, 'comment/comment_detail.html', ctx)
 
 # @login_required
-# def comment_update(request, pk): # 댓글 수정하기
-#     creator = Creator.objects.get(pk=pk)
-#     comments = creator.comments.all()
-#     comment_creator = Comment.creator
-#     comment_creator = creator
-#     if request.method =='POST':
-#         comment_form = CommentForm(request.POST, instance=comment, pk=comment_creator)
-#         if comment_form.is_valid():
-#             comment = comment_form.save(commit=False)
-#             comment.user = request.user
-#             comment.creator = creator
-#             comment.save()
-#             return redirect('event:comment_detail',pk=pk)
-#     else:
-#         comment_form = CommentForm(instance=comment)
-#         ctx = {
-#             'comment_form':comment_form
-#         }
-#         return render(request, 'comment/comment_detail.html', ctx)
+def comment_update(request, comment_id): # 댓글 수정하기
+    comment = Comment.objects.get(pk=comment_id)
+    creator = comment.creator
+
+    if request.method =='POST':
+        comment_form = CommentForm(request.POST, instance=comment)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.member = request.user
+            comment.creator = creator
+            comment.save()
+            return redirect('event:comment_detail',pk=creator.id)
+    else:
+        comment_form = CommentForm(instance=comment)
+        ctx = {
+            'comment_form':comment_form
+        }
+        return render(request, 'comment/comment_detail.html', ctx)
 
 # @login_required
 def comment_delete(request, comment_id):
     comment = Comment.objects.get(pk=comment_id)
     comment_creator = comment.creator
-    # comment = Comment.objects.get(pk=..)
-    if request.method == 'POST':
-        comment.delete()
-        return redirect('event:comment_detail',pk=comment_creator.id)
+    comment.delete()
     return redirect('event:comment_detail',pk=comment_creator.id)
