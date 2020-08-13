@@ -50,11 +50,11 @@ def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
 #         return render(request, 'comment/comment_detail.html', ctx)
 
 # @login_required
-# def comment_delete(request, comment_id):
-#     comment = creator.comments.get(pk=pk)
-#     comment_creator = Comment.creator
-#     # comment = Comment.objects.get(pk=..)
-#     if request.method == 'POST':
-#         comment.delete()
-#         return redirect('event:comment_detail',pk=comment_creator)
-#     return redirect('event:comment_detail',pk=comment_creator)
+def comment_delete(request, comment_id):
+    comment = Comment.objects.get(pk=comment_id)
+    comment_creator = comment.creator
+    # comment = Comment.objects.get(pk=..)
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('event:comment_detail',pk=comment_creator.id)
+    return redirect('event:comment_detail',pk=comment_creator.id)
