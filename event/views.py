@@ -9,67 +9,60 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template import RequestContext
 
 from event.forms import ImageForm, EventForm
-from event.models import EventImage, Event
+from event.models import EventImage, Event, Tag
 from django.conf import settings
 
+from login.models import Creator, Member
 
+class RelatedObjectDoesNotExist(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
+    def __str__(self):
+        return self.msg
 
 # @login_required
 # def register_event(request):
-#     ImageFormSet = inlineformset_factory(Event, EventImage, form=ImageForm, extra=2)
-#     if request.method == "POST":
-#         form = EventForm(request.POST)
-#         formset = ImageFormSet(request.POST, request.FILES)
-#         if form.is_valid() and formset.is_valid():
-#             event = form.save(commit=False)
-#             #event.creator = request.user
+#     try:
+#         if not request.user.creator:
+#             raise RelatedObjectDoesNotExist("오류!")
+#         else:
+#             ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
 #
-#             with transaction.atomic():
-#                 event.save()
-#                 formset.instance = event
-#                 formset.save()
-#                 messages.success(request, 'Event 사진 업로드 성공')
+#             if request.method == 'POST':
+#                 event_form = EventForm(request.POST)
+#                 tags = request.POST['tag'].split(',')
+#                 image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
+#                 if event_form.is_valid() and image_formset.is_valid():
+#                     event = event_form.save(commit=False)
+#                     event.creator = Member.objects.get(id=request.user.pk).creator
+#                     event.save()
+#                     for tag in tags:
+#                         print(tag)
+#                         tag = tag.strip()
+#                         Tag.objects.create(name=tag, event=event)
+#
+#                     for form in image_formset.cleaned_data:
+#                         print(image_formset.cleaned_data)
+#                         if form :
+#                             image = form['image']
+#                             photo = EventImage(event=event, image=image)
+#                             print(2)
+#                             photo.save()
 #                 return redirect('login:login')
-#
-#     else:
-#         form = EventForm()
-#         formset = ImageFormSet()
-#     return render(request, 'event/event_register.html',
-#                   context={
-#                       'eventform': form,
-#                       'formset': formset,
-#                   })
-from login.models import Creator, Member
+#             else:
+#                 creator = request.user.creator
+#                 form = EventForm()
+#                 formset = ImageFormSet(queryset=EventImage.objects.none())
+#                 cxt = {
+#                     'form':form,
+#                     'formset':formset,
+#                     'creator':creator,
+#                 }
+#                 return render(request, 'event/event_register.html', cxt)
+#     except RelatedObjectDoesNotExist:
+#         return redirect('login:create_creator')
 
-
-@login_required
-def register_event(request):
-    ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
-
-    if request.method == 'POST':
-        event_form = EventForm(request.POST)
-        image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
-        if event_form.is_valid() and image_formset.is_valid():
-            event = event_form.save(commit=False)
-            event.creator = Member.objects.get(id=request.user.pk).creator
-            print(1)
-            event.save()
-            for form in image_formset.cleaned_data:
-                print(image_formset.cleaned_data)
-                if form :
-                    image = form['image']
-                    photo = EventImage(event=event, image=image)
-                    print(2)
-                    photo.save()
-        return redirect('login:login')
-    else:
-        form = EventForm()
-        formset = ImageFormSet(queryset=EventImage.objects.none())
-        cxt = {
-            'form':form,
-            'formset':formset,
-        }
-        return render(request, 'event/event_register.html', cxt)
 
 def creator_detail(request, pk):
     event = Event.objects.get(pk=pk)
@@ -86,3 +79,41 @@ def creator_detail(request, pk):
         'creator':creator
     }
     return render(request, 'event/creator_event_detail.html', ctx)
+
+
+@login_required
+def register_event(request):
+
+    ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
+
+    if request.method == 'POST':
+        event_form = EventForm(request.POST)
+        tags = request.POST['tag'].split(',')
+        image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
+        if event_form.is_valid() and image_formset.is_valid():
+            event = event_form.save(commit=False)
+            event.creator = Member.objects.get(id=request.user.pk).creator
+            event.save()
+            for tag in tags:
+                print(tag)
+                tag = tag.strip()
+                Tag.objects.create(name=tag, event=event)
+
+            for form in image_formset.cleaned_data:
+                print(image_formset.cleaned_data)
+                if form :
+                    image = form['image']
+                    photo = EventImage(event=event, image=image)
+                    print(2)
+                    photo.save()
+        return redirect('login:login')
+    else:
+        creator = request.user.creator
+        form = EventForm()
+        formset = ImageFormSet(queryset=EventImage.objects.none())
+        cxt = {
+            'form':form,
+            'formset':formset,
+            'creator':creator,
+        }
+        return render(request, 'event/event_register.html', cxt)

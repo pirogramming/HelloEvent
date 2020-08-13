@@ -27,8 +27,10 @@ class EventImage(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=None)
 
-class Test(models.Model):
-    name = models.CharField(max_length=100)
+
+
+
 
 

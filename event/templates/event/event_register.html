@@ -1,17 +1,44 @@
 {% extends 'event/layout.html' %}
 
+{% block custom_style %}
+    .registering{
+        margin-top:10px;
+        margin-left:20%;
+        margin-right:20%;
+    }
+    #tag_input{
+        width:100%;
+    }
+    #enroll_btn{
+        margin-top:20px;
+        height:40px;
+    }
+{% endblock %}
 
 {% block main %}
-<form id="event_form" action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
+    {% if user.is_authenticated %}
+    <div class="registering">
+        <h1>이벤트 등록하기</h1>
+        <h4>{{ creator.creator_name }}님의 개성있는 이벤트를 등록해주세요</h4>
+        <form id="event_form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|linebreaks }}
 
-    {{ formset.management_form }}
-    {% for imageform in formset %}
-            {{ imageform.as_table }}
-    {% endfor %}
-    <input type="submit" value="제출">
-</form>
+            {{ formset.management_form }}
+            {% for imageform in formset %}
+                {{ imageform|linebreaks }}
+            {% endfor %}
+        <input id="tag_input" name="tag" type="text" size=100 value="태그를 쉼표(,)로 구분해주세요">
+        <br>
+        <input id="enroll_btn" type="submit" value="이벤트 등록">
+    </form>
+    </div>
+    {% else %}
+    <script type="text/javascript">
+        alert('로그인이 필요합니')
+        window.location.href = '/';
+    </script>
+    {% endif %}
 
 
 {% endblock %}
