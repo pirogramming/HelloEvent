@@ -16,14 +16,15 @@
         <table class="additional_info">
             <tr>
                 <td>닉네임</td>
-                <td><input type="text" name="nickname" value="{{user.nickname}}" required/></td>
+                <td><input type="text" name="nickname" value="{{user.nickname}}" required /></td>
             </tr>
             <tr>
                 <td>선호도시</td>
                 <td><label>
-                    <select name='city'>
+                    <select id='selected_city' name='city'>
                         <optgroup label='시'>
-                            <option value='Seoul'>서울특별시</option>
+                            <option>선택</option>
+                            <option value='서울특별시'>서울특별시</option>
                         </optgroup>
                     </select>
                 </label></td>
@@ -31,32 +32,33 @@
             <tr>
                 <td>선호구</td>
                 <td><label>
-                    <select name='gu'>
+                    <select id='selected_gu' name='gu'>
                         <optgroup label='구'>
-                            <option value='Gangnam'>강남구</option>
-                            <option value='Songpa'>송파구</option>
-                            <option value='Seocho'>서초구</option>
-                            <option value='Gangdong'>강동구</option>
-                            <option value='Gwanak'>관악구</option>
-                            <option value='Yeongdeung'>영등포구</option>
-                            <option value='Gangseo'>강서구</option>
-                            <option value='Yangcheon'>양천구</option>
-                            <option value='Guro'>구로구</option>
-                            <option value='Geumcheon'>금천구</option>
-                            <option value='Jongno'>종로구</option>
-                            <option value='Jung'>중구</option>
-                            <option value='Dongdaemun'>동대문구</option>
-                            <option value='Jungrang'>중랑구</option>
-                            <option value='Mapo'>마포구</option>
-                            <option value='Yongsan'>용산구</option>
-                            <option value='Seongdong'>성동구</option>
-                            <option value='Gwangjin'>광진구</option>
-                            <option value='Eunpyeong'>은평구</option>
-                            <option value='Seodaemun'>서대문구</option>
-                            <option value='Seongbuk'>성북구</option>
-                            <option value='Gangbuk'>강북구</option>
-                            <option value='Dobong'>도봉구</option>
-                            <option value='Nowon'>노원구</option>
+                            <option>선택</option>
+                            <option value='강남구'>강남구</option>
+                            <option value='송파구'>송파구</option>
+                            <option value='서초구'>서초구</option>
+                            <option value='강동구'>강동구</option>
+                            <option value='관악구'>관악구</option>
+                            <option value='영등포구'>영등포구</option>
+                            <option value='강서구'>강서구</option>
+                            <option value='양천구'>양천구</option>
+                            <option value='구로구'>구로구</option>
+                            <option value='금천구'>금천구</option>
+                            <option value='종로구'>종로구</option>
+                            <option value='중구'>중구</option>
+                            <option value='동대문구'>동대문구</option>
+                            <option value='중랑구'>중랑구</option>
+                            <option value='마포구'>마포구</option>
+                            <option value='용산구'>용산구</option>
+                            <option value='성동구'>성동구</option>
+                            <option value='광진구'>광진구</option>
+                            <option value='은평구'>은평구</option>
+                            <option value='서대문구'>서대문구</option>
+                            <option value='성북구'>성북구</option>
+                            <option value='강북구'>강북구</option>
+                            <option value='도봉구'>도봉구</option>
+                            <option value='노원구'>노원구</option>
 
 
                         </optgroup>
@@ -64,48 +66,6 @@
                 </label></td>
             </tr>
         </table>
-
-<!--        선호도시:-->
-<!--        <label>-->
-<!--            <select name='city'>-->
-<!--                <optgroup label='시'>-->
-<!--                    <option value='Seoul'>서울특별시</option>-->
-<!--                </optgroup>-->
-<!--            </select>-->
-<!--        </label>-->
-<!--        선호구:-->
-<!--        <label>-->
-<!--            <select name='gu'>-->
-<!--                <optgroup label='구'>-->
-<!--                    <option value='Gangnam'>강남구</option>-->
-<!--                    <option value='Songpa'>송파구</option>-->
-<!--                    <option value='Seocho'>서초구</option>-->
-<!--                    <option value='Gangdong'>강동구</option>-->
-<!--                    <option value='Gwanak'>관악구</option>-->
-<!--                    <option value='Yeongdeung'>영등포구</option>-->
-<!--                    <option value='Gangseo'>강서구</option>-->
-<!--                    <option value='Yangcheon'>양천구</option>-->
-<!--                    <option value='Guro'>구로구</option>-->
-<!--                    <option value='Geumcheon'>금천구</option>-->
-<!--                    <option value='Jongno'>종로구</option>-->
-<!--                    <option value='Jung'>중구</option>-->
-<!--                    <option value='Dongdaemun'>동대문구</option>-->
-<!--                    <option value='Jungrang'>중랑구</option>-->
-<!--                    <option value='Mapo'>마포구</option>-->
-<!--                    <option value='Yongsan'>용산구</option>-->
-<!--                    <option value='Seongdong'>성동구</option>-->
-<!--                    <option value='Gwangjin'>광진구</option>-->
-<!--                    <option value='Eunpyeong'>은평구</option>-->
-<!--                    <option value='Seodaemun'>서대문구</option>-->
-<!--                    <option value='Seongbuk'>성북구</option>-->
-<!--                    <option value='Gangbuk'>강북구</option>-->
-<!--                    <option value='Dobong'>도봉구</option>-->
-<!--                    <option value='Nowon'>노원구</option>-->
-
-
-<!--                </optgroup>-->
-<!--            </select>-->
-<!--        </label>-->
         <button type="submit"
                 style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
             저장
@@ -115,4 +75,5 @@
         <br/><br/>
     </form>
 </div>
+
 {% endblock %}
