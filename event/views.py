@@ -10,6 +10,7 @@ from django.template import RequestContext
 
 from event.forms import ImageForm, EventForm
 from event.models import EventImage, Event, Tag
+from location.forms import LocationForm
 from django.conf import settings
 
 from login.models import Creator, Member
@@ -91,15 +92,19 @@ def register_event(request):
         event_form = EventForm(request.POST)
         tags = request.POST['tag'].split(',')
         image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
-        if event_form.is_valid() and image_formset.is_valid():
+        location_form = LocationForm(request.POST)
+        if event_form.is_valid() and image_formset.is_valid() and location_form.is_valid():
             event = event_form.save(commit=False)
+            location = location_form.save(commit=False)
+            location.save()
+            
             event.creator = Member.objects.get(id=request.user.pk).creator
+            event.location = location
             event.save()
             for tag in tags:
                 print(tag)
                 tag = tag.strip()
                 Tag.objects.create(name=tag, event=event)
-
             for form in image_formset.cleaned_data:
                 print(image_formset.cleaned_data)
                 if form :
@@ -110,11 +115,13 @@ def register_event(request):
         return redirect('login:login')
     else:
         creator = request.user.creator
+        location = LocationForm()
         form = EventForm()
         formset = ImageFormSet(queryset=EventImage.objects.none())
         cxt = {
             'form':form,
             'formset':formset,
+            'location':location
             'creator':creator,
         }
         return render(request, 'event/event_register.html', cxt)
