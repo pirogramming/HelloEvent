@@ -6,8 +6,8 @@ from location.models import Event_Location
 
 
 class Event(models.Model):
-    location = models.ForeignKey(Event_Location, on_delete=models.CASCADE)
-    creator = models.ForeignKey(Creator, on_delete=models.CASCADE)
+    location = models.ForeignKey(Event_Location, on_delete=models.CASCADE,default=None)
+    creator = models.ForeignKey(Creator, on_delete=models.CASCADE,default=None)
     event_name = models.CharField(max_length=200, blank=False)
     desc = models.TextField(blank=True)
     #time = models.DateTimeField(blank=True)
