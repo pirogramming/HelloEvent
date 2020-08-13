@@ -11,8 +11,8 @@
     <div class="signup_form">
         <form method="post" enctype="multipart/form-data" autocomplete="off" style="margin: 0 auto;">
             {% csrf_token %}
-            <table class="table table-bordered">
-                {{ form.as_p }}
+            <table class="table table-bordered" style="max-width: 1000px; margin: 0 auto;">
+                {{ form.as_table }}
             </table>
             <button type="submit"
                     style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
