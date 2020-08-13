@@ -6,7 +6,7 @@ from allauth.socialaccount.templatetags.socialaccount import get_providers
 from helloevent import settings
 from django.urls import reverse
 
-from login.forms import MemberForm
+from login.forms import MemberForm, CreatorForm
 from login.models import Creator, Member
 
 
