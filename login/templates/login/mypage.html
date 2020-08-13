@@ -1,22 +1,38 @@
-{% extends 'base_bootstrap.html' %}
+{% extends 'base.html' %}
 
-{% block content %}
-    <h1>My Page</h1>
-    <br/>
-    <b>별명: {{ member.nickname }}</b>
+{% block main %}
+<div class="signup_title" style="margin-top: 50px; text-align: center;">
+    <h3 style="color: #0080ff;">My page</h3>
+    <p>나의 정보를 확인할 수 있습니다.</p>
+</div>
+<div class="contents" style="margin-top: 100px; text-align: center;">
+    {% if user.nickname == '' %}
+    <b>설정된 닉네임이 없습니다.</b>
+    <b>수정하기를 눌러 설정해주세요!</b>
+    {% else %}
+    <b>닉네임 : {{ user.nickname }}</b>
+    {% endif %}
+<br/><br/>
+<b>선호 지역 : {{ user.city }} {{ user.gu }}</b>
     <br/><br/>
-    선호 지역(도시): {{ member.area }}
-    <br/>
-    선호 지역(구): {{ member.seoul_city }}
-    <br/>
-    <br/>
-    선호 테마: {{ member.theme }}
+
     <br/>
 
-<!--삭제, 목록, 수정-->
-<!--    <a href="{% url 'item:item_delete' item.pk %}">삭제</a>-->
-    <a href="/login/">로그인 창으로 돌아가기</a>
-    <a href="{% url 'login:login_update' member.pk %}">수정하기</a>
+        <button type="button"
+                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+            <a href="{% url 'login:update' user.pk %}">수정하기</a>
+        </button>
+        <button type="button"
+                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+            <a href="{% url 'login:main' %}">메인으로</a>
+        </button>
+        <button type="button"
+                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+            <a href="#">호스트 등록</a>
+        </button>
+    <br/><br/><br/>
+            <a href="#">계정 삭제</a>
 
+</div>
 {% endblock %}
 
