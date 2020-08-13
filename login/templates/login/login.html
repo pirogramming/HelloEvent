@@ -14,10 +14,14 @@
     <br/><br/>
     {% if user.is_authenticated %}
     <br>
+    {% if user.nickname == '' %}
+    <meta http-equiv="refresh" content="0.1;url={% url 'login:signup' user.pk %}"/>
+    <!--    <p style="text-align: center">더 편리한 서비스를 위해 추가 정보를 입력하세요</p>-->
+    <!--    <div class="shadow p-3 mb-5 bg-white rounded"-->
+    <!--         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:signup' user.pk %}">signup</a>-->
+    <!--    </div>-->
+    {% else %}
     <p style="font-weight: 700; text-align: center;">{{ user.first_name }} 님 안녕하세요</p>
-    <div class="shadow p-3 mb-5 bg-white rounded"
-         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:signup' %}">signup</a>
-    </div>
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a
             href="{% url 'login:mypage' user.pk %}">My page</a></div>
@@ -25,7 +29,7 @@
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="/accounts/logout">로그아웃</a>
     </div>
-
+    {% endif %}
 
     {% else %}
     <br/>
@@ -44,11 +48,11 @@
     </div>
     <hr/>
     <br/>
-<!--    <h5>혹시 아직 회원이 아니세요? </h5><br/>-->
-<!--    <div class="signup">-->
-<!--        <a href="#">구글로 회원가입하기</a><br/>-->
-<!--        <a href="#">네이버로 회원가입하기</a>-->
-<!--    </div>-->
+    <!--    <h5>혹시 아직 회원이 아니세요? </h5><br/>-->
+    <!--    <div class="signup">-->
+    <!--        <a href="#">구글로 회원가입하기</a><br/>-->
+    <!--        <a href="#">네이버로 회원가입하기</a>-->
+    <!--    </div>-->
 
 
     {% endif %}
