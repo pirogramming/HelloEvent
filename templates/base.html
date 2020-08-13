@@ -206,9 +206,11 @@
             font-weight: bold;
             /*color: #e85a71;*/
         }
-        .carousel-item h1, .carousel-item p{
+
+        .carousel-item h1, .carousel-item p {
             text-shadow: 1px 2px 2px gray;
         }
+
         select {
             -webkit-appearance: none; /* 네이티브 외형 감추기 */
             -moz-appearance: none;
@@ -319,6 +321,43 @@
         {% block custom_style %}
         {% endblock %}
 
+        /*---------------------------*/
+        .signup_form {
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /*.signup_form form {*/
+        /*    width: 100%;*/
+        /*    text-align: center;*/
+        /*    margin: 0 auto;*/
+        /*    border: 1px solid red;*/
+        /*}*/
+
+        .additional_info {
+            border-collapse: separate;
+            border-spacing: 1px;
+            text-align: left;
+            line-height: 1.5;
+            border-top: 1px solid #ccc;
+            margin: 0 auto;
+        }
+
+        .additional_info th {
+            width: 150px;
+            padding: 10px;
+            font-weight: bold;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .additional_info td {
+            width: 350px;
+            padding: 10px;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+        }
     </style>
     <!-- Custom styles for this template -->
     <script>
@@ -392,7 +431,7 @@
                         {% else %}
                         <div class="dropdown-content" id="myDropdown" dir="rtl">
                             <a href="/login/">로그인</a><br/>
-<!--                            <a href="/login/sign_up/">회원가입</a>-->
+                            <!--                            <a href="/login/sign_up/">회원가입</a>-->
                         </div>
 
                         {% endif %}
