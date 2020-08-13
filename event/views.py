@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template import RequestContext
 
 from event.forms import ImageForm, EventForm
+from location.forms import LocationForm
 from event.models import EventImage, Event
 from django.conf import settings
 
@@ -49,11 +50,17 @@ def register_event(request):
     if request.method == 'POST':
         event_form = EventForm(request.POST)
         image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
-        if event_form.is_valid() and image_formset.is_valid():
+        location_form = LocationForm(request.POST)
+        if event_form.is_valid() and image_formset.is_valid() and location_form.is_valid():
             event = event_form.save(commit=False)
+            location = location_form.save(commit=False)
+            location.save()
+            
             event.creator = Member.objects.get(id=request.user.pk).creator
-            print(1)
+            event.location = location
+            print('request city : ', event.location)
             event.save()
+            print(1)
             for form in image_formset.cleaned_data:
                 print(image_formset.cleaned_data)
                 if form :
@@ -63,11 +70,13 @@ def register_event(request):
                     photo.save()
         return redirect('login:login')
     else:
+        location = LocationForm()
         form = EventForm()
         formset = ImageFormSet(queryset=EventImage.objects.none())
         cxt = {
             'form':form,
             'formset':formset,
+            'location':location
         }
         return render(request, 'event/event_register.html', cxt)
 
