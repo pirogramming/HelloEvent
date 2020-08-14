@@ -86,22 +86,23 @@ def creator_detail(request, pk):
 @login_required
 def register_event(request):
     try:
-        tmp = Member.objects.get(id=request.user.pk).creator
-        # if tmp.creator.exists() :
-        #     raise RelatedObjectDoesNotExist("오류!")
+        print('출력은 되는거니')
+        # tmp = Member.objects.get(id=request.user.pk).creator
 
         ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
 
         if request.method == 'POST':
+            print("post 시작")
             event_form = EventForm(request.POST)
             tags = request.POST['tag'].split(',')
             image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
             location_form = LocationForm(request.POST)
-            if event_form.is_valid() and image_formset.is_valid() and location_form.is_valid():
+            if event_form.is_valid() and image_formset.is_valid() and location_form.is_valid() :
                 event = event_form.save(commit=False)
                 location = location_form.save(commit=False)
                 location.save()
-
+                event.start_date_time = request.POST['start_date_time']
+                event.end_date_time = request.POST['end_date_time']
                 event.creator = Member.objects.get(id=request.user.pk).creator
                 event.location = location
                 event.save()
@@ -116,7 +117,7 @@ def register_event(request):
                         photo = EventImage(event=event, image=image)
                         print(2)
                         photo.save()
-            return redirect('login:login')
+                return redirect('login:login')
         else:
             creator = request.user.creator
             location = LocationForm()
@@ -129,7 +130,8 @@ def register_event(request):
                 'creator':creator,
             }
             return render(request, 'event/event_register.html', cxt)
-    except :
+    except Exception as e:
+        print('예외 발생 ', e)
         return redirect("login:create_creator")
 
 def creator_detail(request, pk):

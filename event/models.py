@@ -10,7 +10,10 @@ class Event(models.Model):
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE,default=None)
     event_name = models.CharField(max_length=200, blank=False)
     desc = models.TextField(blank=True)
-    #time = models.DateTimeField(blank=True)
+
+    start_date_time = models.DateTimeField(auto_now=False, blank=False)
+    end_date_time = models.DateTimeField(auto_now=False, blank=False)
+
 
     GENRE_LIST = (
         ('Busking', '버스킹'),
