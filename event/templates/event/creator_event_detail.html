@@ -1,15 +1,14 @@
 {% extends 'event/layout.html' %}
-{% block appendhead %}
-<style>
-h1,p {color:black;}
-.container {
-    margin-top: 100px;
-}
-.text-center {
-    margin-top:50px;
-}
-</style>
-{% endblock appendhead %}
+
+{% block custom_style %}
+    .container {
+        margin-top: 100px;
+    }
+    .text-center {
+        margin-top:50px;
+    }
+{% endblock %}
+
 {% block main %}
 <div class="container">
     <div class="text-center">
