@@ -1,7 +1,6 @@
 from django import forms
 
-from event.models import Event, EventImage, Tag
-from event.widgets import DatePickerWidget
+from event.models import Event, EventImage
 
 
 class DateTimeInput(forms.DateTimeInput):
