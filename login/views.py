@@ -1,5 +1,6 @@
 from django.core.checks import messages
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import auth, messages
 from django.contrib.auth import login as auth_login
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.templatetags.socialaccount import get_providers
@@ -11,12 +12,8 @@ from login.models import Creator, Member
 
 
 def login(request):
-    # pk = request.GET['pk']
-    # nickname = request.GET['nickname']
-    # if nickname == '':
     return render(request, 'login/login.html')
-    # else:
-    #     return render(request, 'login/login_signup.html', pk)
+
 
 
 def main(request):
@@ -150,3 +147,37 @@ def creator_update(request, pk):
     return render(request, 'login/creator_update.html', {
         'form': form
     })
+
+def signup_form(request):
+    if request.method == 'POST':
+        if request.POST['password1'] == request.POST['password2']:
+            user = Member.objects.create_user(
+                request.POST['username'],
+                nickname=request.POST['nickname'],
+                password=request.POST['password1'],
+                email=request.POST['email'],
+                city=request.POST['city'],
+                gu=request.POST['gu'],
+            )
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect("login:login")
+    return render(request, 'login/signup_form.html')
+
+def login_form(request):
+    if request.method=='POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect("login:login")
+        else:
+            # messages.error(request, 'username or password is incorrect')
+            # return redirect("login:login")
+            return render(request, 'login/login_form.html', {
+                'error': 'username or password is incorrect'
+            })
+    else:
+        return render(request, 'login/login_form.html')

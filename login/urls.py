@@ -16,4 +16,7 @@ urlpatterns = [
     # path('accounts/social/signup/', views.signup, name='signup')
     path('login/<int:pk>/creator/', views.creator_mypage, name='creator_mypage'),
     path('login/<int:pk>/creator/update/', views.creator_update, name='creator_update'),
+
+    path('login/signup_form/', views.signup_form, name="signup_form"),
+    path('login/login_form/', views.login_form, name="login_form"),
 ]
