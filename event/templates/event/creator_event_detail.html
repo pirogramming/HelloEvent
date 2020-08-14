@@ -23,7 +23,7 @@
         <div class="col">
             <h4>EVENT INFORMATION</h4>
             <p>일시: </p>
-            <p>장소: {{event.location}}</p>
+            <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
         </div>
     </div>
 <hr>
@@ -32,7 +32,7 @@
         <h4>EVENT HISTORY</h4>
             {% for creator_event in events %}
                 <p>일시: model 수정중...</p>
-                <p>장소: {{creator_event.location}}</p>
+                <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
             {% endfor %}
         </div>
     </div>
@@ -52,7 +52,7 @@
             {% if comment_num > 3 %}
                 <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
             {% else %}
-                <a href="{% url 'event:comment_detail' creator.pk %}">댓글 작성하러가기</a>
+                <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
             {% endif %}
         </div>
     </div>
