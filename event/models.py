@@ -24,7 +24,7 @@ class Event(models.Model):
 
 
 class EventImage(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=None)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, default=None, related_name='images')
     image = models.ImageField(upload_to='event_images/%Y/%m/%d', verbose_name="이벤트 이미지")
 
 

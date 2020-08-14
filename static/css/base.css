@@ -261,15 +261,7 @@ select {
 }
 
 footer {
-    margin-bottom: 30px;
-    padding: 30px;
-    width: 100%;
-    height: 30px;
-    position: absolute;
-    bottom: 0;
-    /*background: #5eaeff;*/
-    text-align: center;
-    /*color: white;*/
+    margin-top: auto;
 }
 
 .signup_form button {
@@ -287,6 +279,8 @@ footer {
 }
 
 #wrapper {
+    display:flex;
+    flex-direction: column;
     position: relative;
     min-height: 100%;
 }

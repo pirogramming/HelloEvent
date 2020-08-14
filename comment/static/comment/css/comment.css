@@ -13,7 +13,7 @@ textarea {
 #id_comment_text {
     height:50px; width:80%; 
     resize:none;
-    line=height:50px;
+    line-height:50px;
 }
 form {
     text-align:center;
