@@ -2,7 +2,6 @@
 {% load static %}
 {% load socialaccount %}
 
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -12,396 +11,36 @@
     <meta name="generator" content="Jekyll v4.1.1">
     <title>지금 뭐하지?</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-
+    <!--<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">-->
+    
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
     <!--font-->
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!--    font-family: 'Noto Sans KR', sans-serif;-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <!--    font-family: 'Roboto', sans-serif;-->
-
-
-    <style>
-        /* GLOBAL STYLES
--------------------------------------------------- */
-        /* Padding below the footer and lighter body text */
-        * {
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-        body {
-            height: 100%;
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-            color: #5a5a5a;
-        }
-
-        html {
-            height: 100%;
-        }
-
-
-        /* CUSTOMIZE THE CAROUSEL
-        -------------------------------------------------- */
-
-        /* Carousel base class */
-        .carousel {
-            margin-bottom: 4rem;
-        }
-
-        /* Since positioning the image, we need to help out the caption */
-        .carousel-caption {
-            bottom: 3rem;
-            z-index: 10;
-        }
-
-        /* Declare heights because of positioning of img element */
-        .carousel-item {
-            height: 32rem;
-        }
-
-        .carousel-item > img {
-            /*position: absolute;*/
-            /*top: 500px;*/
-            /*margin-top: -110px;*/
-            height: auto;
-            left: 0;
-            width: 100%;
-            /*height: 160%;*/
-        }
-
-
-        /* MARKETING CONTENT
-        -------------------------------------------------- */
-
-        /* Center align the text within the three columns below the carousel */
-        .marketing .col-lg-4 {
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .marketing h2 {
-            font-weight: 400;
-        }
-
-        .marketing .col-lg-4 p {
-            margin-right: .75rem;
-            margin-left: .75rem;
-        }
-
-
-        /* Featurettes
-        ------------------------- */
-
-        .featurette-divider {
-            margin: 5rem 0; /* Space out the Bootstrap <hr> more */
-        }
-
-        /* Thin out the marketing headings */
-        .featurette-heading {
-            font-weight: 300;
-            line-height: 1;
-            letter-spacing: -.05rem;
-        }
-
-
-        /* RESPONSIVE CSS
-        -------------------------------------------------- */
-
-        @media (min-width: 40em) {
-            /* Bump up size of carousel content */
-            .carousel-caption p {
-                margin-bottom: 1.25rem;
-                font-size: 1.25rem;
-                line-height: 1.4;
-            }
-
-            .featurette-heading {
-                font-size: 50px;
-            }
-        }
-
-        @media (min-width: 62em) {
-            .featurette-heading {
-                margin-top: 7rem;
-            }
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        nav {
-            box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
-        }
-
-        nav a {
-            margin-left: 15px;
-            /*color: #0080ff !important;*/
-            font-weight: 400;
-        }
-
-        nav > a {
-            margin-left: 15px;
-            color: #0080ff !important;
-            font-weight: 700;
-        }
-
-        .nav-item a:hover {
-            color: #0080ff !important;
-        }
-
-        .bg-dark {
-            background-color: white !important;
-            color: #4ea1d3 !important;
-        }
-
-        header input {
-            width: 330px !important;
-        }
-
-        .btn-outline-success {
-            color: #0080ff !important;
-            border-color: #0080ff !important;
-        }
-
-        .btn-outline-success:hover {
-            color: white !important;
-            background-color: #0080ff;
-        }
-
-        .btn-outline-success:active {
-            background-color: #0080ff !important;
-            box-shadow: #0080ff !important;
-            /*border-color: #e85a71!important;*/
-        }
-
-        .carousel-caption {
-            bottom: 5rem;
-        }
-
-        .carousel-caption h1 {
-            font-weight: bold;
-            /*color: #e85a71;*/
-        }
-
-        .carousel-item h1, .carousel-item p {
-            text-shadow: 1px 2px 2px gray;
-        }
-
-        select {
-            -webkit-appearance: none; /* 네이티브 외형 감추기 */
-            -moz-appearance: none;
-            appearance: none;
-            background-color: white !important;
-            /*border-radius: 10px!important;*/
-        }
-
-        /* IE 10, 11의 네이티브 화살표 숨기기 */
-        select::-ms-expand {
-            display: none;
-        }
-
-        select {
-            width: 200px; /* 원하는 너비설정 */
-            padding: .8em .5em; /* 여백으로 높이 설정 */
-            font-family: inherit; /* 폰트 상속 */
-            background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */
-            border: 1px solid #999;
-            border-radius: 0px; /* iOS 둥근모서리 제거 */
-            -webkit-appearance: none; /* 네이티브 외형 감추기 */
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        .bd-placeholder-img {
-            /*background-color: white !important;*/
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 130px;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            right: 1rem;
-            left: auto;
-            /*border: 2px solid gray;*/
-            border-radius: 7px;
-        }
-
-        .dropdown-content a {
-            margin: 2px;
-            float: none;
-            color: black;
-            padding: 7px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        /*지우지마마마ㅏ마*/
-        .show {
-            display: block;
-        }
-
-        .carousel-item {
-            /*min-height: 350px;*/
-            background: no-repeat center center scroll;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-
-        .row h2 {
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .row div {
-            margin: 0 auto;
-        }
-
-        .shadow:hover {
-            transform: scale(1.03);
-            transition: transform .35s;
-        }
-
-        footer {
-            margin-bottom: 30px;
-            padding: 30px;
-            width: 100%;
-            height: 30px;
-            position: absolute;
-            bottom: 0;
-            /*background: #5eaeff;*/
-            text-align: center;
-            /*color: white;*/
-        }
-
-        .signup_form button {
-            background-color: gray;
-        }
-
-        .signup_form button:hover {
-            background-color: #0080ff;
-        }
-
-        .signup_form {
-            width: 100%;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        #wrapper {
-            position: relative;
-            min-height: 100%;
-        }
-        {% block custom_style %}
-        {% endblock %}
-
-        /*---------------------------*/
-        .signup_form {
-            width: 100%;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        /*.signup_form form {*/
-        /*    width: 100%;*/
-        /*    text-align: center;*/
-        /*    margin: 0 auto;*/
-        /*    border: 1px solid red;*/
-        /*}*/
-
-        .additional_info {
-            border-collapse: separate;
-            border-spacing: 1px;
-            text-align: left;
-            line-height: 1.5;
-            border-top: 1px solid #ccc;
-            margin: 0 auto;
-        }
-
-        .additional_info th {
-            width: 150px;
-            padding: 10px;
-            font-weight: bold;
-            vertical-align: top;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .additional_info td {
-            width: 350px;
-            padding: 10px;
-            vertical-align: top;
-            border-bottom: 1px solid #ccc;
-        }
-    </style>
-    <!-- Custom styles for this template -->
-    <script>
-        function myFunction() {
-            var position = $('#myDropdown');
-
-            position.offset({});
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        $(document).ready(function () {
-            window.onclick = function (e) {
-                if (!e.target.matches('.dropbtn')) {
-                    var myDropdown = document.getElementById("myDropdown");
-
-                    if (myDropdown.classList.contains('show')) {
-                        myDropdown.classList.remove('show');
-                    }
-                }
-            }
-        });
-    </script>
-    {% block appendhead %}
-    {% endblock appendhead %}
+    
+    {% block custom_style %}
+    {% endblock %}
 </head>
 
-
 <body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-<script> $('.carousel').carousel({interval: 2000 //기본 5초 }) </script>
+    <script src={% static 'js/base.js' %}></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script> $('.carousel').carousel({interval: 2000})</script>
+    
 <div id="wrapper">
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -413,8 +52,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" style="color: gray; ">Today's <span
-                                class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#" style="color: gray;">Today's <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'event:event_register' %}" style="color: gray;">이벤트 등록</a>
@@ -425,21 +63,19 @@
                            aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     <div class="nav-item">
-                        <button type="button" class="user_icon" onclick="myFunction()"
-                                style="border: none; background-color: transparent;"><img
-                                src="/static/img/user_icon.png" alt="user_icon.png"
-                                style="height: 40px; width:40px; background-size: 10px;"></button>
+                        <button type="button" class="user_icon" onclick="myFunction()" style="border: none; background-color: transparent;">
+                            <img src="/static/img/user_icon.png" alt="user_icon.png" style="height: 40px; width:40px; background-size: 10px;">
+                        </button>
                         {% if user.is_authenticated %}
-                        <div class="dropdown-content" id="myDropdown" dir="rtl">
-                            <a href="{% url 'login:mypage' user.pk %}">마이페이지</a><br/>
-                            <a href="/accounts/logout">로그아웃</a><br/>
-                        </div>
+                            <div class="dropdown-content" id="myDropdown" dir="rtl">
+                                <a href="{% url 'login:mypage' user.pk %}">마이페이지</a><br/>
+                                <a href="/accounts/logout">로그아웃</a><br/>
+                            </div>
                         {% else %}
-                        <div class="dropdown-content" id="myDropdown" dir="rtl">
-                            <a href="/login/">로그인</a><br/>
-                            <!--                            <a href="/login/sign_up/">회원가입</a>-->
-                        </div>
-
+                            <div class="dropdown-content" id="myDropdown" dir="rtl">
+                                <a href="/login/">로그인</a><br/>
+                                <!--                            <a href="/login/sign_up/">회원가입</a>-->
+                            </div>
                         {% endif %}
                     </div>
                 </form>
@@ -450,7 +86,6 @@
         {% block main %}
 
         {% endblock %}
-
     </main>
     <br/>
     <footer class="container">
@@ -466,11 +101,7 @@
 </div>
     {% block jinheescript %}
     {% endblock %}
-{% block hanseokscript %}
-
-{% endblock %}
+    {% block hanseokscript %}
+    {% endblock %}
 </body>
-
-
-
 </html>

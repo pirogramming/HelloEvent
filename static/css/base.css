@@ -1,0 +1,345 @@
+/* Initializing */
+* {font-family: 'Noto Sans KR', sans-serif;}
+
+body {
+    height: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #5a5a5a;
+}
+
+html {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+    height: 32rem;
+}
+
+.carousel-item > img {
+    /*position: absolute;*/
+    /*top: 500px;*/
+    /*margin-top: -110px;*/
+    height: auto;
+    left: 0;
+    width: 100%;
+    /*height: 160%;*/
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.marketing h2 {
+    font-weight: 400;
+}
+
+.marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+}
+
+
+/* Featurettes
+------------------------- */
+
+/* Space out the Bootstrap <hr> more */
+.featurette-divider {
+    margin: 5rem 0; 
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
+    }
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+nav {
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+}
+
+nav a {
+    margin-left: 15px;
+    /*color: #0080ff !important;*/
+    font-weight: 400;
+}
+
+nav > a {
+    margin-left: 15px;
+    color: #0080ff !important;
+    font-weight: 700;
+}
+
+.nav-item a:hover {
+    color: #0080ff !important;
+}
+
+.bg-dark {
+    background-color: white !important;
+    color: #4ea1d3 !important;
+}
+
+header input {
+    width: 330px !important;
+}
+
+.btn-outline-success {
+    color: #0080ff !important;
+    border-color: #0080ff !important;
+}
+
+.btn-outline-success:hover {
+    color: white !important;
+    background-color: #0080ff;
+}
+
+.btn-outline-success:active {
+    background-color: #0080ff !important;
+    box-shadow: #0080ff !important;
+    /*border-color: #e85a71!important;*/
+}
+
+.carousel-caption {
+    bottom: 5rem;
+}
+
+.carousel-caption h1 {
+    font-weight: bold;
+    /*color: #e85a71;*/
+}
+
+.carousel-item h1, .carousel-item p {
+    text-shadow: 1px 2px 2px gray;
+}
+
+select {
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white !important;
+    /*border-radius: 10px!important;*/
+}
+
+/* IE 10, 11의 네이티브 화살표 숨기기 */
+select::-ms-expand {
+    display: none;
+}
+
+select {
+    width: 200px; /* 원하는 너비설정 */
+    padding: .8em .5em; /* 여백으로 높이 설정 */
+    font-family: inherit; /* 폰트 상속 */
+    background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */
+    border: 1px solid #999;
+    border-radius: 0px; /* iOS 둥근모서리 제거 */
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.bd-placeholder-img {
+    /*background-color: white !important;*/
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 130px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 1rem;
+    left: auto;
+    /*border: 2px solid gray;*/
+    border-radius: 7px;
+}
+
+.dropdown-content a {
+    margin: 2px;
+    float: none;
+    color: black;
+    padding: 7px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/*지우지마마마ㅏ마*/
+.show {
+    display: block;
+}
+
+.carousel-item {
+    /*min-height: 350px;*/
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.row h2 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.row div {
+    margin: 0 auto;
+}
+
+.shadow:hover {
+    transform: scale(1.03);
+    transition: transform .35s;
+}
+
+footer {
+    margin-bottom: 30px;
+    padding: 30px;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    /*background: #5eaeff;*/
+    text-align: center;
+    /*color: white;*/
+}
+
+.signup_form button {
+    background-color: gray;
+}
+
+.signup_form button:hover {
+    background-color: #0080ff;
+}
+
+.signup_form {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#wrapper {
+    position: relative;
+    min-height: 100%;
+}
+
+
+/*---------------------------*/
+.signup_form {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*.signup_form form {*/
+/*    width: 100%;*/
+/*    text-align: center;*/
+/*    margin: 0 auto;*/
+/*    border: 1px solid red;*/
+/*}*/
+
+.additional_info {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin: 0 auto;
+}
+
+.additional_info th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+.additional_info td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* enroll_creator.html css 
+-------------------------------------------*/
+.creating{
+    margin-top:50px;
+    margin-left:20%;
+    margin-right:20%;
+}
+.creating #enroll_btn{
+    width:200px;
+    height:40px;
+}
+/* -------------------------------------- */
