@@ -26,7 +26,7 @@ class RelatedObjectDoesNotExist(Exception):
 # @login_required
 # def register_event(request):
 #     try:
-#         if not request.user.creator:
+#         if request.user.creator is None:
 #             raise RelatedObjectDoesNotExist("오류!")
 #         else:
 #             ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
@@ -85,46 +85,52 @@ def creator_detail(request, pk):
 
 @login_required
 def register_event(request):
+    try:
+        tmp = Member.objects.get(id=request.user.pk).creator
+        # if tmp.creator.exists() :
+        #     raise RelatedObjectDoesNotExist("오류!")
 
-    ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
+        ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
 
-    if request.method == 'POST':
-        event_form = EventForm(request.POST)
-        tags = request.POST['tag'].split(',')
-        image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
-        location_form = LocationForm(request.POST)
-        if event_form.is_valid() and image_formset.is_valid() and location_form.is_valid():
-            event = event_form.save(commit=False)
-            location = location_form.save(commit=False)
-            location.save()
-            
-            event.creator = Member.objects.get(id=request.user.pk).creator
-            event.location = location
-            event.save()
-            for tag in tags:
-                print(tag)
-                tag = tag.strip()
-                Tag.objects.create(name=tag, event=event)
-            for form in image_formset.cleaned_data:
-                print(image_formset.cleaned_data)
-                if form :
-                    image = form['image']
-                    photo = EventImage(event=event, image=image)
-                    print(2)
-                    photo.save()
-        return redirect('login:login')
-    else:
-        creator = request.user.creator
-        location = LocationForm()
-        form = EventForm()
-        formset = ImageFormSet(queryset=EventImage.objects.none())
-        cxt = {
-            'form':form,
-            'formset':formset,
-            'location':location,
-            'creator':creator,
-        }
-        return render(request, 'event/event_register.html', cxt)
+        if request.method == 'POST':
+            event_form = EventForm(request.POST)
+            tags = request.POST['tag'].split(',')
+            image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
+            location_form = LocationForm(request.POST)
+            if event_form.is_valid() and image_formset.is_valid() and location_form.is_valid():
+                event = event_form.save(commit=False)
+                location = location_form.save(commit=False)
+                location.save()
+
+                event.creator = Member.objects.get(id=request.user.pk).creator
+                event.location = location
+                event.save()
+                for tag in tags:
+                    print(tag)
+                    tag = tag.strip()
+                    Tag.objects.create(name=tag, event=event)
+                for form in image_formset.cleaned_data:
+                    print(image_formset.cleaned_data)
+                    if form :
+                        image = form['image']
+                        photo = EventImage(event=event, image=image)
+                        print(2)
+                        photo.save()
+            return redirect('login:login')
+        else:
+            creator = request.user.creator
+            location = LocationForm()
+            form = EventForm()
+            formset = ImageFormSet(queryset=EventImage.objects.none())
+            cxt = {
+                'form':form,
+                'formset':formset,
+                'location':location,
+                'creator':creator,
+            }
+            return render(request, 'event/event_register.html', cxt)
+    except :
+        return redirect("login:create_creator")
 
 def creator_detail(request, pk):
     event = Event.objects.get(pk=pk)

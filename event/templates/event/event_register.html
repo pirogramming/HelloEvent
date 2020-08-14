@@ -28,84 +28,81 @@
             {% for imageform in formset %}
                 {{ imageform|linebreaks }}
             {% endfor %}
-        <input id="tag_input" name="tag" type="text" size=100 value="태그를 쉼표(,)로 구분해주세요">
-        <br>
-    <div class="location_form_section">
-    {{ location }}
-    </div>
-    <div class="wrap" style="display: flex; align-items: center; padding: 2rem;">
-  <div
-    class="choose_section"
-    style="
+            <input id="tag_input" name="tag" type="text" size=100 value="태그를 쉼표(,)로 구분해주세요">
+            <br>
+        <div class="location_form_section">
+            {{ location }}
+        </div>
+        <div class="wrap" style="display: flex; align-items: center; padding: 2rem;">
+        <div class="choose_section" style="
       display: flex;
       flex-direction: column;
       height: 350px;
       justify-content: center;
-    "
-  >
-    <div class="choose_city">
-      <label for="city">도시 선택</label>
-      <select
-        name="city"
-        id="city"
-        onchange="addressKindChange(this)"
-        class="selected_city"
-      >
-        <option>도시를 선택해주세요</option>
-        <option value="서울특별시">서울특별시</option>
-      </select>
+    ">
+            <div class="choose_city">
+                <label for="city">도시 선택</label>
+                <select
+                    name="city"
+                    id="city"
+                    onchange="addressKindChange(this)"
+                    class="selected_city"
+                >
+                <option>도시를 선택해주세요</option>
+                <option value="서울특별시">서울특별시</option>
+                </select>
+            </div>
+            <div class="choose_gu" style="margin-top: 1rem;">
+                <label for="gu">구 선택</label>
+                <select name="gu" id="gu" class="selected_gu">
+                    <option>구를 선택해주세요</option>
+                </select>
+            </div>
+            <button
+                type="button"
+                class="btn btn-primary search_btn"
+                style="width: 97%; margin-top: 1rem;"
+                onclick="map_reset(this)"
+            >
+                검색
+            </button>
+        </div>
+        </div>
+        <div class="map_wrap" style="position: relative; width: 50%; height: 350px;margin-bottom:2rem">
+            <div id="map" style="width: 100%; height: 350px;"></div>
+                <div
+                    class="hAddr"
+                    style="
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    border-radius: 2px;
+                    background: #fff;
+                    background: rgba(255, 255, 255, 0.8);
+                    z-index: 1;
+                    padding: 5px;
+                    "
+                >
+            <span class="title" style="font-weight: bold; display: block;"
+             >지도중심기준 행정동 주소정보</span>
+            <span
+                id="centerAddr"
+                style="display: block; margin-top: 2px; font-weight: normal;"></span>
+        </div>
     </div>
-    <div class="choose_gu" style="margin-top: 1rem;">
-      <label for="gu">구 선택</label>
-      <select name="gu" id="gu" class="selected_gu">
-        <option>구를 선택해주세요</option>
-      </select>
-    </div>
-    <button
-      type="button"
-      class="btn btn-primary search_btn"
-      style="width: 97%; margin-top: 1rem;"
-      onclick="map_reset(this)"
-    >
-      검색
-    </button>
 
-  </div>
-  <div class="map_wrap" style="position: relative; width: 50%; height: 350px;margin-bottom:2rem">
-    <div
-    <div id="map" style="width: 100%; height: 350px;"></div>
-      class="hAddr"
-      style="
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        border-radius: 2px;
-        background: #fff;
-        background: rgba(255, 255, 255, 0.8);
-        z-index: 1;
-        padding: 5px;
-      "
-    >
-      <span class="title" style="font-weight: bold; display: block;"
-        >지도중심기준 행정동 주소정보</span
-      >
-      <span
-        id="centerAddr"
-        style="display: block; margin-top: 2px; font-weight: normal;"
-      ></span>
-    </div>
-  </div>
-</div>
         <input id="enroll_btn" type="submit" value="이벤트 등록">
     </form>
     </div>
     {% else %}
-    <script type="text/javascript">
-        alert('로그인이 필요합니')
-        window.location.href = '/';
-    </script>
+        <script type="text/javascript">
+            alert('로그인이 필요합니다')
+            window.location.href = '/';
+        </script>
     {% endif %}
 {% endblock %}
+
+
 {% block jinheescript %}
 <script
   type="text/javascript"
