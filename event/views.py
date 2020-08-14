@@ -129,10 +129,16 @@ def register_event(request):
 def creator_detail(request, pk):
     event = Event.objects.get(pk=pk)
     creator = event.creator
+    events = creator.events.all()
     comments = creator.comments.all()
+    comment_num = comments.count()
+    comment_3 = creator.comments.order_by('-created_at')[:3]
     ctx = {
         'event':event,
+        'events':events,
         'creator':creator,
         'comments':comments,
+        'comment_3':comment_3,
+        'comment_num':comment_num,
     }
     return render(request, 'event/creator_event_detail.html', ctx)

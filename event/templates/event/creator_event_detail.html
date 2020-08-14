@@ -1,40 +1,61 @@
 {% extends 'event/layout.html' %}
-{% block appendhead %}
-<style>
-h1,p {color:black;}
-.container {
-    margin-top: 100px;
-}
-.text-center {
-    margin-top:50px;
-}
-</style>
-{% endblock appendhead %}
+
+{% block custom_style %}
+    .container {
+        margin-top: 100px;
+        text-align:center;
+    }
+    .text-center {
+        margin-top:50px;
+    }
+{% endblock %}
+
 {% block main %}
 <div class="container">
-    <div class="text-center">
-        <h1>{{ event.event_name }}</h1>
-        <p>주최자: {{ event.genre }} - {{ event.creator }}</p>
-        <p>주최자 프로필 사진:</p> <img src="{{ event.creator.creator_photo.url }}" alt="사진있어라" style="width:300px">
+    <div class="row">
+        <div class="col">
+            <h1>{{ event.event_name }}</h1>
+            <p>주최자: {{ event.get_genre_display }} - {{ event.creator.creator_name }}</p>
+            <p>주최자 프로필 사진:</p> <img src="{{ event.creator.creator_photo.url }}" style="width:300px">
+        </div>
     </div>
-    <br>
-<<<<<<< HEAD
-    <div class="text-center">
-        <p>댓글</p>
+    <div class="row">
+        <div class="col">
+            <h4>EVENT INFORMATION</h4>
+            <p>일시: </p>
+            <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
+        </div>
     </div>
-    <div class="text-center">
-    {% for comment in comments %}
-        <b>{{comment.user.nickname}}</b> : {{comment.comment_text}}              
-        <small>{{comment.created_at}}</small> <br>
-    {% endfor %}
-    <a href="{% url 'event:comment_detail' creator.pk %}">전체 댓글</a>
+<hr>
+    <div class="row">
+        <div class="col">
+        <h4>EVENT HISTORY</h4>
+            {% for creator_event in events %}
+                <p>일시: model 수정중...</p>
+                <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
+            {% endfor %}
+        </div>
     </div>
+<hr>
+    <div class="row">
+        <div class="col">
+            <h4>EVENT PICTURES</h4>
+        </div>
+    </div>
+<hr>
+    <div class="row">
+        <div class="col">
+            {% for comment in comment_3 %}
+                <b>{{comment.member.nickname}}</b> : {{comment.comment_text}}              
+                <small>{{comment.created_at}}</small> <br>
+            {% endfor %}
+            {% if comment_num > 3 %}
+                <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
+            {% else %}
+                <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
+            {% endif %}
+        </div>
+    </div>
+<hr>
 </div>
-=======
-    이벤트명: {{ event.event_name }} <br>
-    주최자: {{ event.creator }} <br>
-    주최자 프로필 사진: <img src="{{ event.creator.creator_photo.url }}" alt="사진있어라"> <br>
-    이벤트 장르: {{ event.genre }}
-     
->>>>>>> event_feature
 {% endblock %}

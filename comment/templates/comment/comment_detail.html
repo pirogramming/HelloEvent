@@ -1,19 +1,82 @@
-{% extends 'base_bootstrap.html' %}
+{% extends 'base.html' %}
 {% comment %} 댓글 작성 페이지 {% endcomment %}
 
-{% block content %}
-댓글 전체 목록: <br> <br>
-{% for comment in comments %}
-    {{ comment.creator}}
-    {{ member.username }}님의 댓글:
-    {{ comment.comment_text }} 
-    <a href="">삭제</a>
-    <a href="">수정</a> <br>
-{% endfor %}
-<br><br><br><br>
-<form method="POST" action=''>
-    {% csrf_token %}
-    <div class="form-group">{{ comment_form }}</div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+{% block custom_style %}
+    main .container {
+        height:650px;
+
+        position:relative;
+    }
+    main .container .row:last-child() {
+        margin-bottom:0;
+    }
+
+    textarea {
+        vertical-align:middle;
+    }
+    #id_comment_text {
+        height:50px; width:80%; 
+        resize:none;
+        line=height:50px;
+    }
+    form {
+        text-align:center;
+    }
+    #comment_list {
+        height:580px;
+        overflow-y:auto;
+    }
+    #comment_create {
+        position:absolute;
+        bottom: 0;
+        width: 100%; 
+    }
+    hr {
+        margin:5px;
+    }
+    a { color:rgb(40,0,0); text-decoration:none; font-size:small; float:right;}
+    a:hover { color: black; text-decoration:none;}
+
+    li {
+        list-style:none;
+    }
+    #create_at {
+        font-size:small;
+    }
+{% endblock %}
+
+
+{% block main %}
+<div class="signup_title" style="margin-top: 50px; text-align: center;">
+    <h1>COMMENT</h1><br>
+</div>
+
+<div class="container">
+    <div class="row" id='comment_list'>
+        <div class="col">
+        <ul>
+        {% for comment in comments %}
+            <li>{{ comment.member.nickname }}님의 댓글 : {{ comment.comment_text }} </li>
+            
+            {% if comment.member == request.user %}
+                <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
+                <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
+            {% endif %}
+            <li id='create_at'>{{comment.created_at}}</li>
+            <hr>
+        {% endfor %}
+        </ul> 
+        </div>
+    </div>
+    <div class="row" id='comment_create'>
+        <div class="col">
+        <form method="POST" action=''>
+            {% csrf_token %}
+            {{ user.nickname }} : {{ comment_form.comment_text }}
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
