@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+    <link rel="stylesheet" href="{% static 'login/login.css' %}">
+{% endblock %}
 
 {% block main %}
     {% if user.is_authenticated %}

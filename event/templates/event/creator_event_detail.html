@@ -1,13 +1,8 @@
-{% extends 'event/layout.html' %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block custom_style %}
-    .container {
-        margin-top: 100px;
-        text-align:center;
-    }
-    .text-center {
-        margin-top:50px;
-    }
+    <link rel="stylesheet" href="{% static 'event/css/creator_detail.css' %}">
 {% endblock %}
 
 {% block main %}
