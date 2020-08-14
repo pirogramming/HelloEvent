@@ -106,6 +106,7 @@ def register_event(request):
                 event.creator = Member.objects.get(id=request.user.pk).creator
                 event.location = location
                 event.save()
+                print("세이브가 되었을까?????")
                 for tag in tags:
                     print(tag)
                     tag = tag.strip()
