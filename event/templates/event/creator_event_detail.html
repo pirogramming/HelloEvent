@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col">
             <h4>EVENT INFORMATION</h4>
-            <p>일시: </p>
+            <p>일시: {{event.start_date_time}} ~ {{event.end_date_time}}</p>
             <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
         </div>
     </div>
@@ -31,8 +31,9 @@
         <div class="col">
         <h4>EVENT HISTORY</h4>
             {% for creator_event in events %}
-                <p>일시: model 수정중...</p>
-                <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
+                <p>이벤트명: {{creator_event.event_name}}</p>
+                <p>일시: {{creator_event.start_date_time}} ~ {{creator_event.end_date_time}}</p>
+                <p>장소: {{creator_event.location.city}} {{creator_event.location.gu}} {{creator_event.location.rest_address}}</p>
             {% endfor %}
         </div>
     </div>
