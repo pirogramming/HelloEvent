@@ -1,50 +1,72 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+<link rel="stylesheet" href="{% static 'login/mypage.css' %}">
+{% endblock %}
 
 {% block main %}
-    <div class="signup_title" style="margin-top: 50px; text-align: center;">
-        <h3 style="color: #0080ff;">My page</h3>
-        <p>나의 정보를 확인할 수 있습니다.</p>
-    </div>
-    <div class="contents" style="margin-top: 100px; text-align: center;">
+<div class="signup_title" style="margin-top: 50px; text-align: center;">
+    <h3 style="color: #0080ff;">My page</h3>
+    <p>나의 프로필 정보를 확인할 수 있습니다</p>
+</div>
+<br/>
+<div class="contents" style="text-align: center; ; width: 500px; margin: 0 auto;">
         {% if user.nickname == '' %}
-            <b>설정된 닉네임이 없습니다.</b>
-            <b>수정하기를 눌러 설정해주세요!</b>
+        <b>설정된 닉네임이 없습니다.</b>
+        <b>수정하기를 눌러 설정해주세요!</b>
         {% else %}
-            <b>닉네임 : {{ user.nickname }}</b>
+
+        <table class="type03">
+            <tr>
+                <th scope="row">닉네임</th>
+                <td>{{ user.nickname }}</td>
+            </tr>
+            <tr>
+                <th scope="row">선호지역</th>
+                <td>{{ user.city }} {{ user.gu }}</td>
+            </tr>
+            <tr>
+                <th scope="row">이메일</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th scope="row">가입 날짜</th>
+                <td>{{ user.created_on }}</td>
+            </tr>
+        </table>
         {% endif %}
+        <!--        <p><b>닉네임</b> {{ user.nickname }}</p>-->
 
-        <br/><br/>
+        <!--        <b>선호 지역 : {{ user.city }} {{ user.gu }}</b>-->
+        <!--        <p>이메일: {{ user.email }}</p>-->
+        <!--        <p>가입 날짜: {{ user.created_on }}</p>-->
 
-        <b>선호 지역 : {{ user.city }} {{ user.gu }}</b>
 
-        <br/><br/><br/>
-
-        <button type="button"
+    <button type="button"
             style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-                <a href="{% url 'login:update' user.pk %}">수정하기</a>
-        </button>
-        <button type="button"
+        <a href="{% url 'login:update' user.pk %}">수정하기</a>
+    </button>
+    <button type="button"
             style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-                <a href="{% url 'login:main' %}">메인으로</a>
-        </button>
+        <a href="{% url 'login:main' %}">메인으로</a>
+    </button>
 
-        {% if user.pk.creator == None %}
-        <button type="button"
-                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-            <a href="{% url 'login:create_creator' %}">크리에이터 등록</a>
-        </button>
-        {% else %}
-        <button type="button"
-        style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-        <a href="#">크리에이터 페이지</a>
-        </button>
-        {% endif %}
+    {% if creator is None %}
+    <button type="button"
+            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+        <a href="{% url 'login:create_creator' %}">크리에이터 등록</a>
+    </button>
+    {% else %}
+    <button type="button"
+            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 140px; border:none; border-radius: 10px;color: white; ">
+        <a href="{% url 'login:creator_mypage' user.pk %}">크리에이터 페이지</a>
+    </button>
+    {% endif %}
     <br/><br/><br/>
-            <a href="#">계정 삭제</a>
+    <a href="#">계정 삭제</a>
 
-        <br/><br/><br/>
-
-        <a href="#">계정 삭제</a>
-    </div>
+    <br/><br/><br/>
+</div>
 {% endblock %}
 

@@ -1,0 +1,40 @@
+table.type03 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #0080ff;
+    margin: 20px 10px;
+}
+
+table.type03 th {
+    width: 147px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #0080ff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+
+table.type03 td {
+    width: 349px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+button a {
+    text-decoration: none!important;
+    color: white!important;
+}
+
+button{
+    background-color: lightgray;
+}
+button:hover {
+    background-color: gray;
+    color: white;
+}

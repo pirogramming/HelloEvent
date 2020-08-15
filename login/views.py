@@ -66,8 +66,10 @@ def signup(request, pk):
 
 def mypage(request, pk):
     user = get_object_or_404(Member, pk=pk)
+    creator = Member.objects.get(id=request.user.pk).creator
     return render(request, 'login/mypage.html', {
         'user': user,
+        'creator': creator,
     })
 
 
