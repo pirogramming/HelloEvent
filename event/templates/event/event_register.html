@@ -7,7 +7,7 @@
 
 {% block main %}
     {% if user.is_authenticated %}
-    <div class="registering">
+    <div class="registering" stlye="margin-top: 200px;">
         <h1>이벤트 등록하기</h1>
         <h4>{{ creator.creator_name }}님의 개성있는 이벤트를 등록해주세요</h4>
         <form id="event_form" action="" method="post" enctype="multipart/form-data">

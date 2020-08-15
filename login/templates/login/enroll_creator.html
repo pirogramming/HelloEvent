@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block custom_style %}
-<link rel="stylesheet" href="{% static 'login/login.css' %}">
+
 <link rel="stylesheet" href="{% static 'login/enroll_creator.css' %}">
 {% endblock %}
 
@@ -16,10 +16,13 @@
     <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|linebreaks }}
-        <button type="submit" value="크리에이터 등록"
-            style="margin-left: 35%; text-align: center!important;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-        등록하기
-    </button>
+        <input id="enroll_btn" type="submit" value="크리에이터 등록" style="margin-left: 35%;
+               text-align: center !important;
+               height: 50px;
+               width: 130px;
+               border: none;
+               border-radius: 10px;
+               color: white;">
     </form>
 
 </div>
