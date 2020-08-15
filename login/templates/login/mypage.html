@@ -26,10 +26,18 @@
                 style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
             <a href="{% url 'login:main' %}">메인으로</a>
         </button>
+
+        {% if user.pk.creator == None %}
         <button type="button"
                 style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-            <a href="#">크리에이터 등록</a>
+            <a href="{% url 'login:create_creator' %}">크리에이터 등록</a>
         </button>
+        {% else %}
+        <button type="button"
+        style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+        <a href="#">크리에이터 페이지</a>
+        </button>
+        {% endif %}
     <br/><br/><br/>
             <a href="#">계정 삭제</a>
 
