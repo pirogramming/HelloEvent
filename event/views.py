@@ -66,23 +66,6 @@ class RelatedObjectDoesNotExist(Exception):
 #         return redirect('login:create_creator')
 
 
-def creator_detail(request, pk):
-    event = Event.objects.get(pk=pk)
-    creator = event.creator
-    # Creator.objects.get(id=1).event_set.get(pk=1)
-    ctx = {
-        # 'event':event,
-        # 'creator':event.creator,
-        # 'event_name' : event.event_name,
-        # 'genre' : event.genre,
-        # 'creator_photo' : creatordetail.creator_photo,
-        # 'creator':creator,
-        'event':event,
-        'creator':creator
-    }
-    return render(request, 'event/creator_event_detail.html', ctx)
-
-
 @login_required
 def register_event(request):
     try:
@@ -141,6 +124,8 @@ def creator_detail(request, pk):
     events = creator.events.all()
     comments = creator.comments.all()
     comment_num = comments.count()
+    images = event.images.all()
+    image_num = event.images.count()
     comment_3 = creator.comments.order_by('-created_at')[:3]
     ctx = {
         'event':event,
@@ -149,5 +134,7 @@ def creator_detail(request, pk):
         'comments':comments,
         'comment_3':comment_3,
         'comment_num':comment_num,
+        'images':images,
+        'image_num':image_num,
     }
     return render(request, 'event/creator_event_detail.html', ctx)

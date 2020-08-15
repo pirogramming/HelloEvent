@@ -1,61 +1,95 @@
-{% extends 'event/layout.html' %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block custom_style %}
-    .container {
-        margin-top: 100px;
-        text-align:center;
-    }
-    .text-center {
-        margin-top:50px;
-    }
+    <link rel="stylesheet" href="{% static 'event/css/creator_detail.css' %}">
 {% endblock %}
 
 {% block main %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>{{ event.event_name }}</h1>
-            <p>주최자: {{ event.get_genre_display }} - {{ event.creator.creator_name }}</p>
-            <p>주최자 프로필 사진:</p> <img src="{{ event.creator.creator_photo.url }}" style="width:300px">
+{% if event.genre == 'Busking' %}
+    <div class='header'style="background: url('{% static 'event/img/busking.jpg' %}') no-repeat; 
+    background-size: 100% auto; height:350px;"> 
+{% elif event.genre == 'Flee' %}
+    <div class='header'style="background: url('{% static 'event/img/fleamarket.jpg' %}') no-repeat; 
+    background-size: 100% auto; height:350px"> 
+{% else %}
+    <div class='header'style="background: url('{% static 'event/img/exhibition.jpg' %}') no-repeat; 
+        background-size: 100% auto; height:350px"> 
+{% endif %}
+    <div class='flex-item'>
+        <p>{{ event.creator.creator_name }}</p>
+        <p>장르: {{event.get_genre_display}}</p>
+        <p>.....hash tags......</p>
+    </div>
+</div>
+<div class="content">
+    <div class="content_1">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+            {% for event_image in images %}
+                <li data-target="#myCarousel" data-slide-to={{event_image.pk}} ></li>
+            {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+            {% for event_image in images %}
+                <div class="carousel-item active">
+                    <img src="{{ event_image.image.url }}" alt="background" style="">
+                </div>
+            {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <h4>EVENT INFORMATION</h4>
-            <p>일시: </p>
+
+    <div class="content_2">
+        <div class="flex-item">
+            <h2>EVENT INFORMATION</h2>
+            <br>
+            <p>이벤트명: {{event.event_name}}</p>
+            <p>일시: {{event.start_date_time}} ~ {{event.end_date_time}}</p>
             <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
         </div>
     </div>
+</div>
 <hr>
+<div class="container history">
+    <h2>{{event.creator.creator_name}}'s EVENT HISTORY</h2>
+    <br>
+    {% for creator_event in events %}
+        <h5>이벤트명: {{creator_event.event_name}}</h5>
+        <p>일시: {{creator_event.start_date_time}} ~ {{creator_event.end_date_time}}</p>
+        <p>장소: {{creator_event.location.city}} {{creator_event.location.gu}} {{creator_event.location.rest_address}}</p>
+        <hr>
+    {% endfor %}
+</div>
+<hr>
+<div class="container comment_list">
+    <h2>{{event.creator.creator_name}}'s REVIEW</h2>
+    <br>
+    {% for comment in comment_3 %}
     <div class="row">
-        <div class="col">
-        <h4>EVENT HISTORY</h4>
-            {% for creator_event in events %}
-                <p>일시: model 수정중...</p>
-                <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
-            {% endfor %}
-        </div>
+        <b>{{comment.member.nickname}}</b> : {{comment.comment_text}}              
+        <small>{{comment.created_at}}</small> <br>
     </div>
-<hr>
+    {% endfor %}
     <div class="row">
-        <div class="col">
-            <h4>EVENT PICTURES</h4>
-        </div>
+    {% if comment_num > 3 %}
+        <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
+    {% else %}
+        <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
+    {% endif %}
     </div>
-<hr>
-    <div class="row">
-        <div class="col">
-            {% for comment in comment_3 %}
-                <b>{{comment.member.nickname}}</b> : {{comment.comment_text}}              
-                <small>{{comment.created_at}}</small> <br>
-            {% endfor %}
-            {% if comment_num > 3 %}
-                <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
-            {% else %}
-                <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
-            {% endif %}
-        </div>
-    </div>
-<hr>
 </div>
 {% endblock %}
+
+{% block injiscript %}
+    <script> $('.carousel').carousel({interval: 2000})</script>
+{% endblock %}
+

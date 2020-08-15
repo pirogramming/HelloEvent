@@ -1,15 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block custom_style %}
-    .creating{
-        margin-top:50px;
-        margin-left:20%;
-        margin-right:20%;
-    }
-    .creating #enroll_btn{
-        width:200px;
-        height:40px;
-    }
+    <link rel="stylesheet" href="{% static 'login/login.css' %}">
 {% endblock %}
 
 {% block main %}
@@ -24,10 +17,8 @@
         </form>
     </div>
     {% else %}
-    <script type="text/javascript">
-        alert('로그인이 필요합니다')
+    <script type="text/javascript">alert('로그인이 필요합니다')
         window.location.href = '/';
     </script>
     {% endif %}
-
 {% endblock %}

@@ -1,0 +1,9 @@
+.creating{
+    margin-top:50px;
+    margin-left:20%;
+    margin-right:20%;
+}
+.creating #enroll_btn{
+    width:200px;
+    height:40px;
+}
