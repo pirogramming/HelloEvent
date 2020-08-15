@@ -10,7 +10,7 @@ def min_length_2_validator(value):
 
 
 class Member(AbstractUser):
-    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator])
+    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator], unique=True)
     created_on = models.DateTimeField("등록일자", auto_now_add=True)
     updated_on = models.DateTimeField("수정일자", auto_now=True)
     CITY_CHOICES = (

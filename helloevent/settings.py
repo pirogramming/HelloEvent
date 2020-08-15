@@ -138,9 +138,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 AUTHENTICATION_BACKENDS = [
  'django.contrib.auth.backends.ModelBackend', # 기본 인증 백엔드
- 'allauth.account.auth_backends.AuthenticationBackend', # 추가 ]
+ 'allauth.account.auth_backends.AuthenticationBackend',  # 추가
 ]
 
 SITE_ID = 1
@@ -180,5 +181,20 @@ STATICFILES_DIRS = [
     STATIC_DIR,
     # os.path.join(BASE_DIR, 'event', 'static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL ='/static/'
+
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
