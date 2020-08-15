@@ -16,9 +16,12 @@ from django.conf import settings
 from login.models import Creator, Member
 from comment.models import Comment
 
+from django.db.models import Q
+from datetime import datetime
+
 class RelatedObjectDoesNotExist(Exception):
-    def __init__(self, msg):
-        self.msg = msg
+    def __init__(self):
+        self.msg = '크리에이터 존재 오류'
 
     def __str__(self):
         return self.msg
@@ -66,11 +69,14 @@ class RelatedObjectDoesNotExist(Exception):
 #         return redirect('login:create_creator')
 
 
-@login_required
+
 def register_event(request):
     try:
+        if not request.user.is_authenticated:
+            return redirect("login:create_creator")
         print('출력은 되는거니')
-        #tmp = Member.objects.get(id=request.user.pk).creator
+        if Member.objects.get(id=request.user.pk).creator is None:
+            raise RelatedObjectDoesNotExist
 
         ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
 
@@ -93,7 +99,8 @@ def register_event(request):
                 for tag in tags:
                     print(tag)
                     tag = tag.strip()
-                    Tag.objects.create(name=tag, event=event)
+                    _tag, _ = Tag.objects.get_or_create(name=tag)
+                    event.tags.add(_tag)
                 for form in image_formset.cleaned_data:
                     print(image_formset.cleaned_data)
                     if form :
@@ -138,3 +145,16 @@ def creator_detail(request, pk):
         'image_num':image_num,
     }
     return render(request, 'event/creator_event_detail.html', ctx)
+
+def search_result(request):
+    # startdate = datetime.today()
+    # endtime = startdate + datetime.timedelta()
+    if 'search_data' in request.GET:
+        data = request.GET['search_data']
+        eventsall = Tag.objects.all().filter(Q(name__contains=data))
+        print(eventsall)
+    # events = eventsall.filter('start_date_time')
+    ctx = {
+        'events':eventsall,
+    }
+    return render(request, "event/search_result.html", ctx)
