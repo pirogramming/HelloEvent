@@ -11,32 +11,11 @@
     <!--        <br>-->
     <!--    </div>-->
     <!--    <hr/>-->
-    <br/><br/>
-    {% if user.is_authenticated %}
-    <br>
-    {% if user.nickname == '' %}
-    <meta http-equiv="refresh" content="0.1;url={% url 'login:signup' user.pk %}"/>
-    <!--    <p style="text-align: center">더 편리한 서비스를 위해 추가 정보를 입력하세요</p>-->
-    <!--    <div class="shadow p-3 mb-5 bg-white rounded"-->
-    <!--         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="{% url 'login:signup' user.pk %}">signup</a>-->
-    <!--    </div>-->
-    {% else %}
-    <p style="font-weight: 700; text-align: center;">{{ user.nickname }} 님 안녕하세요</p>
-    <div class="shadow p-3 mb-5 bg-white rounded"
-         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a
-            href="{% url 'login:mypage' user.pk %}">My page</a></div>
-    <br/>
-    <div class="shadow p-3 mb-5 bg-white rounded"
-         style="margin: 0 auto; text-align: center; width: 500px; height: 60px;"><a href="/accounts/logout">로그아웃</a>
-    </div>
-    {% endif %}
-
-    {% else %}
-    <br/>
+    <br/><br/><br/>
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px; background-color: white!important; border-radius: 10px;">
-        <a href="{% url 'login:login_form' %}" style="color: black;">일반 계정으로
-            로그인하기</a>
+        <a href="{% url 'login:signup_form' %}" style="color: black;">일반 계정으로
+            회원가입하기</a>
     </div>
 
     <div class="shadow p-3 mb-5 bg-white rounded"
@@ -44,23 +23,21 @@
         <a href="{% provider_login_url 'google' %}" style="color: black;"><img src="/static/img/google.jpg"
                                                                                alt="google"
                                                                                style="height: 40px; width: 40px; margin-right: 10px;">구글로
-            로그인하기</a>
+            회원가입하기</a>
     </div>
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px; background-color: white!important; border-radius: 10px;">
         <a href="{% provider_login_url 'naver' %}" style="color: black;"><img src="/static/img/naver.png" alt="kakao"
                                                                               style="height:30px; width: 30px; margin-right: 10px; ">네이버로
-            로그인하기</a>
+            회원가입하기</a>
     </div>
     <hr/>
     <div style="text-align: center;">
-        <b>혹시 아직 회원이 아니신가요?</b> <br/>
+        <b>이미 회원이신가요?</b> <br/>
         <br/>
-        <a href="{% url 'login:signup_general' %}">회원가입</a>
+        <a href="{% url 'login:login' %}">로그인</a>
     </div>
-    {% endif %}
     <hr/>
-    <br/>
 
 </div>
 {% endblock %}

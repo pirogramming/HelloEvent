@@ -14,10 +14,11 @@ from login.models import Creator, Member
 def login(request):
     return render(request, 'login/login.html')
 
-
-
 def main(request):
     return render(request, 'login/main.html')
+
+def signup_general(request):
+    return render(request, 'login/signup.html')
 
 
 # def login_signup(request):
@@ -36,7 +37,7 @@ def main(request):
 #     })
 
 
-def login_signup(request, pk):
+def signup(request, pk):
     url = reverse('login:main')
 
     user = Member.objects.get(id=pk)
@@ -181,3 +182,5 @@ def login_form(request):
             })
     else:
         return render(request, 'login/login_form.html')
+
+
