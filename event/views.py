@@ -70,7 +70,7 @@ class RelatedObjectDoesNotExist(Exception):
 def register_event(request):
     try:
         print('출력은 되는거니')
-        # tmp = Member.objects.get(id=request.user.pk).creator
+        #tmp = Member.objects.get(id=request.user.pk).creator
 
         ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
 

@@ -13,8 +13,8 @@
     <h1 style="color: #0080ff; font-weight: 700; font-size: 1.7rem; ">크리에이터 계정 만들기</h1>
     <p>크리에이터가 되어 버스킹, 플리마켓, 전시 등의 이벤트를 등록해보세요</p>
     <br/>
-    <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
+    <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
         {{ form|linebreaks }}
         <input id="enroll_btn" type="submit" value="크리에이터 등록" style="margin-left: 35%;
                text-align: center !important;
@@ -28,7 +28,7 @@
 </div>
 {% else %}
 <script type="text/javascript">alert('로그인이 필요합니다')
-window.location.href = '/';
-</script>
-{% endif %}
+        window.location.href = '{% url "login:login" %}';
+    </script>
+    {% endif %}
 {% endblock %}

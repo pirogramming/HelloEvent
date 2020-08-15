@@ -160,6 +160,12 @@ def signup_form(request):
                 city=request.POST['city'],
                 gu=request.POST['gu'],
             )
+            # username_check = auth.authenticate(request, username=request.POST['username'])
+            # nickname_check = auth.authenticate(request, nickname=request.POST['nickname'])
+            #
+            # if username_check is not None:
+            #     auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect("login:login")
     return render(request, 'login/signup_form.html')
