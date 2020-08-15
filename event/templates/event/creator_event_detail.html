@@ -75,20 +75,28 @@
 </div>
 <hr>
 <div class="container comment_list">
-    <h2>{{event.creator.creator_name}}'s REVIEW</h2>
-    <br>
-    {% for comment in comment_3 %}
     <div class="row">
-        <b>{{comment.member.nickname}}</b> : {{comment.comment_text}}              
-        <small>{{comment.created_at}}</small> <br>
+        <h2>{{event.creator.creator_name}}'s REVIEW</h2>
     </div>
-    {% endfor %}
+    <br>
     <div class="row">
-    {% if comment_num > 3 %}
-        <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
-    {% else %}
-        <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
-    {% endif %}
+        <div class="col"><img src="{% static 'event/img/user1.png' %} " alt="" class='comment_user'></div>
+        <div class="col"><p>말풍선 테스트</p></div>
+    </div>
+    <div class="row">
+        {% for comment in comment_3 %}
+        <div class="row"><div class="col">
+            <b>{{comment.member.nickname}}</b> : {{comment.comment_text}}              
+            <small>{{comment.created_at}}</small></div> <br>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% if comment_num > 3 %}
+            <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
+        {% else %}
+            <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
