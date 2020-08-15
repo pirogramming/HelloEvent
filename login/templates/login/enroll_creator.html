@@ -18,7 +18,7 @@
     </div>
     {% else %}
     <script type="text/javascript">alert('로그인이 필요합니다')
-        window.location.href = '/';
+        window.location.href = '{% url "login:login" %}';
     </script>
     {% endif %}
 {% endblock %}

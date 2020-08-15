@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&49792s4z%ceyjh-#mye6u1+b&z2(-)x$(dlk$$3u7s#ywrg^m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True   # 나중에 배포할 때는 꼭 False로 바꿔주어야 함.
 
 ALLOWED_HOSTS = []
 
@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     # provider
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
-    'allauth.socialaccount.providers.kakao',
+    # 'allauth.socialaccount.providers.kakao',
 ]
 
 MIDDLEWARE = [
