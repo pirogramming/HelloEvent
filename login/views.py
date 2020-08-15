@@ -182,3 +182,13 @@ def login_form(request):
             })
     else:
         return render(request, 'login/login_form.html')
+
+
+
+#크리에이터 계정 삭제
+def delete_creator(request):
+    if request.method == 'POST':
+        creator = Member.objects.get(id=request.user.pk).creator
+        creator.delete()
+        return redirect("login:mypage", request.id)
+

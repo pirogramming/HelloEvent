@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <br>
+    <br>
+    {% for event in events %}
+        {% for a in event.event_set.all %}
+            {{ a.event_name }}
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}

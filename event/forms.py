@@ -17,7 +17,7 @@ class EventForm(forms.ModelForm):
                        'placeholder': '이벤트 이름을 입력하세요'}
             ),
             'genre':forms.Select(
-                attrs={'class':'form-control', 'style': 'width:30%;',}
+                attrs={'class':'form-control', 'style': 'width:30%;'}
             ),
             'desc': forms.Textarea(
                 attrs={'class': 'form-control', 'placeholder': '이벤트에 대한 소개를 적어주세요'}

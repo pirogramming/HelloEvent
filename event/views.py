@@ -16,6 +16,9 @@ from django.conf import settings
 from login.models import Creator, Member
 from comment.models import Comment
 
+from django.db.models import Q
+from datetime import datetime
+
 class RelatedObjectDoesNotExist(Exception):
     def __init__(self):
         self.msg = '크리에이터 존재 오류'
@@ -142,3 +145,16 @@ def creator_detail(request, pk):
         'image_num':image_num,
     }
     return render(request, 'event/creator_event_detail.html', ctx)
+
+def search_result(request):
+    # startdate = datetime.today()
+    # endtime = startdate + datetime.timedelta()
+    if 'search_data' in request.GET:
+        data = request.GET['search_data']
+        eventsall = Tag.objects.all().filter(Q(name__contains=data))
+        print(eventsall)
+    # events = eventsall.filter('start_date_time')
+    ctx = {
+        'events':eventsall,
+    }
+    return render(request, "event/search_result.html", ctx)

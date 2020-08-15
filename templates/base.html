@@ -58,9 +58,10 @@
                         <a class="nav-link" href="{% url 'event:event_register' %}" style="color: gray;">이벤트 등록</a>
                     </li>
                 </ul>
-                <form class="form-inline mt-2 mt-md-0">
+                <form class="form-inline mt-2 mt-md-0" action="{% url 'event:search_result' %}" method="get">
+                    {% csrf_token %}
                     <input class="form-control mr-sm-2" type="text" placeholder="찾고 싶은 이벤트명이나 팀명을 입력하세요"
-                           aria-label="Search">
+                           aria-label="Search" name="search_data">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     <div class="nav-item">
                         <button type="button" class="user_icon" onclick="myFunction()" style="border: none; background-color: transparent;">
