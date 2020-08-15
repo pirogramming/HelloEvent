@@ -4,14 +4,13 @@
 {% providers_media_js %}
 
 {% block main %}
-<div class="content" style="max-height: 100%!important;">
+<div class="content" style="margin: 50px auto; border: 1px solid lightgray;  width: 600px; border-radius: 30px;">
     <!--    <div class="shadow p-3 mb-5 bg-white rounded"-->
     <!--         style="margin: 0 auto; text-align: center; margin-top: 50px; width: 500px; height: 60px; border: 1px solid #0080ff; background-color: #0080ff!important; border-radius: 10px;">-->
     <!--        <a href="/accounts/signup" style="text-decoration: none; color: white;">회원가입</a>-->
     <!--        <br>-->
     <!--    </div>-->
     <!--    <hr/>-->
-    <br/><br/>
     {% if user.is_authenticated %}
     <br>
     {% if user.nickname == '' %}
@@ -32,6 +31,7 @@
     {% endif %}
 
     {% else %}
+    <br/>
     <br/>
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px; background-color: white!important; border-radius: 10px;">
@@ -59,8 +59,7 @@
         <a href="{% url 'login:signup_general' %}">회원가입</a>
     </div>
     {% endif %}
-    <hr/>
-    <br/>
+<br/>
 
 </div>
 {% endblock %}

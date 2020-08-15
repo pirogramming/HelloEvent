@@ -4,14 +4,14 @@
 {% providers_media_js %}
 
 {% block main %}
-<div class="content" style="max-height: 100%!important;">
+<div class="content" style="margin: 50px auto; border: 1px solid lightgray;  width: 600px; border-radius: 30px;">
     <!--    <div class="shadow p-3 mb-5 bg-white rounded"-->
     <!--         style="margin: 0 auto; text-align: center; margin-top: 50px; width: 500px; height: 60px; border: 1px solid #0080ff; background-color: #0080ff!important; border-radius: 10px;">-->
     <!--        <a href="/accounts/signup" style="text-decoration: none; color: white;">회원가입</a>-->
     <!--        <br>-->
     <!--    </div>-->
     <!--    <hr/>-->
-    <br/><br/><br/>
+    <br/><br/>
     <div class="shadow p-3 mb-5 bg-white rounded"
          style="margin: 0 auto; text-align: center; width: 500px; height: 60px; background-color: white!important; border-radius: 10px;">
         <a href="{% url 'login:signup_form' %}" style="color: black;">일반 계정으로
@@ -37,7 +37,7 @@
         <br/>
         <a href="{% url 'login:login' %}">로그인</a>
     </div>
-    <hr/>
+    <br/>
 
 </div>
 {% endblock %}
