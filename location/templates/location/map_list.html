@@ -1,113 +1,33 @@
-{% extends 'event/layout.html' %}
-
-{% block custom_style %}
-    .registering{
-        margin-top:10px;
-        margin-left:5%;
-        margin-right:5%;
-    }
-    #tag_input{
-        width:100%;
-    }
-    #enroll_btn{
-        margin-top:20px;
-        height:40px;
-    }
-{% endblock %}
-
+{% extends 'base.html' %} {% block custom_style %} {% endblock %} 
 {% block main %}
-    {% if user.is_authenticated %}
-    <div class="registering">
-        <h1>이벤트 등록하기</h1>
-        <h4>{{ creator.creator_name }}님의 개성있는 이벤트를 등록해주세요</h4>
-        <div class="wrap" style="display: flex; align-items: center;">
+<div
+  class="map_wrap"
+  style="position: relative; width: 50%; height: 39rem; float: right;"
+>
+  <div id="map" style="width: 100%; height: 39rem;"></div>
   <div
-    class="choose_section"
+    class="hAddr"
     style="
-      display: flex;
-      flex-direction: column;
-      height: 350px;
-      justify-content: center;
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      border-radius: 2px;
+      background: #fff;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: 1;
+      padding: 5px;
     "
   >
-    <div class="choose_city">
-      <label for="city">도시 선택</label>
-      <select
-        name="city"
-        id="city"
-        onchange="addressKindChange(this)"
-        class="selected_city"
-      >
-        <option>도시를 선택해주세요</option>
-        <option value="서울특별시">서울특별시</option>
-      </select>
-    </div>
-    <div class="choose_gu" style="margin-top: 1rem;">
-      <label for="gu">구 선택</label>
-      <select name="gu" id="gu" class="selected_gu">
-        <option>구를 선택해주세요</option>
-      </select>
-    </div>
-    <button
-      type="button"
-      class="btn btn-primary search_btn"
-      style="width: 97%; margin-top: 1rem;"
-      onclick="map_reset(this)"
-    >
-      검색
-    </button>
-
-  </div>
-  <div class="map_wrap" style="position: relative; width: 60rem; height: 350px;margin-bottom:2rem; margin-left:2rem">
-    <div id="map" style="width: 100%; height: 350px;"></div>
-    <div
-      class="hAddr"
-      style="
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        border-radius: 2px;
-        background: #fff;
-        background: rgba(255, 255, 255, 0.8);
-        z-index: 1;
-        padding: 5px;
-      "
-    >
-      <span class="title" style="font-weight: bold; display: block;"
-        >지도중심기준 행정동 주소정보</span
-      >
-      <span
-        id="centerAddr"
-        style="display: block; margin-top: 2px; font-weight: normal;"
-      ></span>
-    </div>
+    <!-- <span class="title" style="font-weight: bold; display: block;"
+      >지도중심기준 행정동 주소정보</span
+    > -->
+    <span
+      id="centerAddr"
+      style="display: block; font-weight: bold;"
+    ></span>
   </div>
 </div>
-        <form id="event_form" action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form|linebreaks }}
-
-            {{ formset.management_form }}
-            {% for imageform in formset %}
-                {{ imageform|linebreaks }}
-            {% endfor %}
-        <input id="tag_input" name="tag" type="text" size=100 value="태그를 쉼표(,)로 구분해주세요">
-        <br>
-    <div class="location_form_section">
-    {{ location }}
-    </div>
-    
-        <input id="enroll_btn" type="submit" value="이벤트 등록">
-    </form>
-    </div>
-    {% else %}
-    <script type="text/javascript">
-        alert('로그인이 필요합니')
-        window.location.href = '/';
-    </script>
-    {% endif %}
-{% endblock %}
-{% block jinheescript %}
+{% endblock %} {% block jinheescript%}
 <script
   type="text/javascript"
   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4be94fffa6f06598b351be42b3a70113&libraries=services"
@@ -122,6 +42,10 @@
     };
 
   var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+  //유저가 등록한 선호 장소로 맵이 바로 나타나게 함
+  findUserPreferLocation(); 
+  
   var map_infowindow = new kakao.maps.InfoWindow({ zindex: 1 }); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
   // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
@@ -134,6 +58,9 @@
   // 지도를 클릭한 위치에 표출할 마커입니다
   var marker = new kakao.maps.Marker();
   marker.setMap(map);
+
+  
+
 
   // 지도에 클릭 이벤트를 등록합니다
   // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -149,8 +76,7 @@
             "</div>"
           : "";
         detailAddr +=
-          "<div>지번 주소 : " + result[0].address.address_name + "</div><div>이 곳을 이벤트 등록 위치로 설정합니다.</div>";
-        
+          "<div>지번 주소 : " + result[0].address.address_name + "</div>";
 
         // 도시, 구까지 파싱하고 나머지 주소 파싱 과정
         let restAddr = result[0].address.address_name.split(" ");
@@ -166,16 +92,6 @@
         //최종 restAddr = 도시, 구를 제외한 나머지 주소
         restAddr = restAddr.join(" ");
         console.log(cityName, guName, restAddr);
-
-        // 지도에 찍은 위치를 location_form에다가 넣어주는 작업
-        let city_input = document.querySelector('#id_city');
-        let gu_input = document.querySelector('#id_gu');
-        let rest_address_input = document.querySelector('#id_rest_address');
-
-        city_input.value = cityName
-        gu_input.value = guName
-        rest_address_input.value = restAddr
-
 
         var content =
           '<div class="bAddr" style="padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">' +
@@ -274,26 +190,71 @@
     map.panTo(moveLatLon);
   }
 
-  // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
-  if (navigator.geolocation) {
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function (position) {
-      var lat = position.coords.latitude, // 위도
-        lon = position.coords.longitude; // 경도
+  //   // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+  //   if (navigator.geolocation) {
+  //     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+  //     navigator.geolocation.getCurrentPosition(function (position) {
+  //       var lat = position.coords.latitude, // 위도
+  //         lon = position.coords.longitude; // 경도
 
-      var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-        message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
+  //       var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+  //         message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
 
-      // 마커와 인포윈도우를 표시합니다
-      displayMarker(locPosition, message);
-    });
-  } else {
-    // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+  //       // 마커와 인포윈도우를 표시합니다
+  //       displayMarker(locPosition, message);
+  //     });
+  //   } else {
+  //     // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-      message = "geolocation을 사용할수 없어요..";
+  //     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+  //       message = "geolocation을 사용할수 없어요..";
 
-    displayMarker(locPosition, message);
+  //     displayMarker(locPosition, message);
+  //   }
+
+  // 유저의 선호 지역을 가져와 바로 맵으로 띄워주는 함수
+  function findUserPreferLocation() {
+    let prefer_city = `{{prefer_city}}`;
+    let prefer_gu = `{{prefer_gu}}`;
+    let gu_coordinate_list;
+
+    let seoul_gu_coordinate = {
+      강남구: [37.5173319258532, 127.047377408384],
+      송파구: [37.5145909234015, 127.105922243305],
+      서초구: [37.4835924256371, 127.032693842117],
+      강동구: [37.5301933196159, 127.123792501252],
+      관악구: [37.4783683761333, 126.951561853868],
+      영등포구: [37.5263671784802, 126.896278443882],
+      강서구: [37.5509646154244, 126.849533759514],
+      양천구: [37.5169884752609, 126.866501409661],
+      구로구: [37.4954330863648, 126.88750531451],
+      금천구: [37.4568411485785, 126.895456780023],
+      종로구: [37.5731294715895, 126.979230043705],
+      중구: [37.563814978331, 126.997555182057],
+      동대문구: [37.5745229817122, 127.039657001091],
+      중랑구: [37.6065432383919, 127.092820287004],
+      마포구: [37.5662141900954, 126.901955141101],
+      용산구: [37.5324310391314, 126.990582345331],
+      성동구: [37.563427205337, 127.036930141185],
+      광진구: [37.5385583136667, 127.082385189457],
+      은평구: [37.6028246477271, 126.928945504408],
+      서대문구: [37.579161863979, 126.9368156604],
+      성북구: [37.5893588153919, 127.016702905651],
+      강북구: [37.6397513275882, 127.025538071854],
+      도봉구: [37.6686914100284, 127.04721049936],
+      노원구: [37.6543617567057, 127.056430475216],
+    };
+    let city_list = { 서울: seoul_gu_coordinate };
+    if (prefer_city === "서울") {
+      gu_coordinate_list = city_list["서울"];
+      gu_coordinate = gu_coordinate_list[prefer_gu];
+      let prefer_LatLon = new kakao.maps.LatLng(
+        gu_coordinate[0],
+        gu_coordinate[1]
+      );
+      map.setCenter(prefer_LatLon);
+    }
+    return gu_coordinate_list;
   }
 
   //도시를 선택했을 때 해당 도시의 구가 다음 select box에 뜰 수 있게 하는 함수
