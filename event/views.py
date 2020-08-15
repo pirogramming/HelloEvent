@@ -151,10 +151,11 @@ def search_result(request):
     # endtime = startdate + datetime.timedelta()
     if 'search_data' in request.GET:
         data = request.GET['search_data']
-        eventsall = Tag.objects.all().filter(Q(name__contains=data))
-        print(eventsall)
+        tags = Tag.objects.all().filter(Q(name__contains=data))
+        print(tags)
     # events = eventsall.filter('start_date_time')
     ctx = {
-        'events':eventsall,
+        'data':data,
+        'tags':tags,
     }
     return render(request, "event/search_result.html", ctx)

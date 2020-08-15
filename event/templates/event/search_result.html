@@ -1,12 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+    <link rel="stylesheet" href="{% static 'event/css/search_result.css' %}">
+{% endblock %}
 
 {% block main %}
-    <br>
-    <br>
-    {% for event in events %}
-        {% for a in event.event_set.all %}
-            {{ a.event_name }}
+    <div class="about-search-data">
+        <p>"{{ data }}"를 포함한 태그를 가진 이벤트 검색결과</p>
+    </div>
+    {% if tags is None %}
+        <p>검색결과가 없습니다</p>
+    {% else %}
+    <div class="events-container">
+        {% for tag in tags %}
+            {% for event in tag.event_set.all %}
+                <div class="s_event-container">
+                    <div id="event_name">
+                        {{ event.event_name }}
+                    </div>
+                    <div id="event_desc">
+                        {{ event.desc }}
+                    </div>
+                </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    </div>
+    {% endif %}
 
 {% endblock %}

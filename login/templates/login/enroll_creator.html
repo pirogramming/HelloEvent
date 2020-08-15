@@ -15,6 +15,7 @@
     <br/>
         {% csrf_token %}
     <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
         {{ form|linebreaks }}
         <input id="enroll_btn" type="submit" value="크리에이터 등록" style="margin-left: 35%;
                text-align: center !important;
