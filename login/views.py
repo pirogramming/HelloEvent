@@ -115,6 +115,7 @@ def create_creator(request):
             creator = form.save(commit=False)
             creator.member = Member.objects.get(id=request.user.pk)
             creator.save()
+            print(2)
             return redirect("event:event_register")
     else:
         form = CreatorForm()

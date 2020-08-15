@@ -46,7 +46,6 @@ class Member(AbstractUser):
     gu = models.CharField(max_length=30, choices=GU_CHOICES, verbose_name='선호구')
 
 
-
     class Meta:
         db_table = 'member'
         verbose_name = 'member'
@@ -56,12 +55,9 @@ class Creator(models.Model):
     creator_photo = models.ImageField(upload_to="creator_photo/%Y/%m/%d/")
     desc = models.TextField(blank=True)
 
-    member = models.OneToOneField(Member, on_delete=models.CASCADE, default=None)
-
+    member = models.OneToOneField(Member, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
 class Like(models.Model):
     from_user = models.ForeignKey(Member, on_delete=models.CASCADE)
     to_user = models.ForeignKey(Creator, on_delete=models.CASCADE)
 
-
-from django.contrib.auth.backends import ModelBackend
