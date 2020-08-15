@@ -11,8 +11,13 @@
         <table class="additional_info">
             <tr>
                 <td>아이디</td>
-                <td><input type="text" name="username" value="{{user.username}}" required
-                placeholder="아이디를 입력해주세요"/></td>
+<!--                <td><input type="text" name="username" value="{{user.username}}" required-->
+<!--                placeholder="아이디를 입력해주세요"/></td>-->
+                <td><input type="text" class="username_input" name="username" check_result="fail" required
+                    placeholder="아이디를 입력해주세요"/>
+                <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복검사</button>
+<!--                <img id="id_check_success" style="display: none;">-->
+                <button type="button" id="id_check_success" style="display: none;">확인완료</button></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
@@ -119,6 +124,56 @@
 
 {% block hanseokscript %}
 <script>
+    function id_overlap_check() {
+
+        $('.username_input').change(function () {
+            $('#id_check_success').hide();
+            $('.id_overlap_button').show();
+            $('.username_input').attr('check_result', "fail");
+        })
+
+        if ($('.username_input').val() == '') {
+            alert('아이디를 입력해주세요')
+            return;
+        }
+
+        if ($('.username_input').attr("check_result") == "fail"){
+            alert('아이디 중복체크를 해주세요');
+            $('.username_input').focus();
+            return false;
+        }
+
+        id_overlap_input = document.querySelector('input[name="username"]');
+
+        $.ajax({
+            url: "{% url 'login:id_overlap_check' %}",
+            data: {
+                'username': id_overlap_input.value
+            },
+            datatype: 'json',
+            success: function (data) {
+                console.log(data['overlap']);
+                if (data['overlap'] == "fail") {
+                    alert("이미 존재하는 아이디입니다");
+                    id_overlap_input.focus();
+                    return;
+                } else {
+                    alert('사용가능한 아이디입니다');
+                    $('.username_input').attr('check_result', "success");
+                    $("#id_check_success").show();
+                    $('.id_overlap_button').hide();
+                    return;
+                }
+            }
+        });
+
+
+
+    }
+
+
+
+
     function addressKindChange(e) {
         let city;
         let seoul = [

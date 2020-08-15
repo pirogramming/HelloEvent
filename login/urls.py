@@ -21,4 +21,6 @@ urlpatterns = [
 
     path('login/signup_form/', views.signup_form, name="signup_form"), # 일반 회원가입 폼
     path('login/login_form/', views.login_form, name="login_form"), # 일반 로그인 폼
+
+    path('login/check/', views.id_overlap_check, name='id_overlap_check')  # id 중복 체크
 ]

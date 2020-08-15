@@ -1,4 +1,5 @@
 from django.core.checks import messages
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth import login as auth_login
@@ -199,3 +200,18 @@ def delete_creator(request):
         creator.delete()
         return redirect("login:mypage", request.id)
 
+
+def id_overlap_check(request):
+    username = request.GET.get('username')
+    try:
+        # 중복 검사 실패
+        user = Member.objects.get(username=username)
+    except:
+        # 중복 검사 성공
+        user = None
+    if user in None:
+        overlap = 'pass'
+    else:
+        overlap = 'fail'
+    context = {'overlap': overlap}
+    return JsonResponse(context)

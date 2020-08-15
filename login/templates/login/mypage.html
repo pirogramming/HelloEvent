@@ -31,7 +31,7 @@
         {% if user.pk.creator == None %}
         <button type="button"
                 style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-            <a href="{% url 'login:create_creator' %}">크리에이터 등록</a>
+            <a href="{% url 'event:event_register' %}">크리에이터 등록</a>
         </button>
         {% else %}
         <button type="button"
