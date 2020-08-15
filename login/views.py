@@ -112,7 +112,7 @@ def create_creator(request):
     if request.method == 'POST':
         form = CreatorForm(request.POST, request.FILES)
         if form.is_valid():
-            print(1)
+            # print(1)
             creator = form.save(commit=False)
             creator.member = Member.objects.get(id=request.user.pk)
             creator.save()

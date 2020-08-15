@@ -1,0 +1,14 @@
+main {
+    /*background-color: yellow;*/
+    background-image: url("/static/img/이건가.jpg");
+    background-size: cover;
+
+}
+
+button {
+     background-color: lightgray;
+}
+
+button:hover {
+    background-color: #0080ff;
+}

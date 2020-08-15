@@ -2,23 +2,30 @@
 {% load static %}
 
 {% block custom_style %}
-    <link rel="stylesheet" href="{% static 'login/login.css' %}">
+<link rel="stylesheet" href="{% static 'login/login.css' %}">
+<link rel="stylesheet" href="{% static 'login/enroll_creator.css' %}">
 {% endblock %}
 
 {% block main %}
-    {% if user.is_authenticated %}
-    <div class="creating">
-        <h1>크리에이터 계정 만들기</h1>
-        <h4>버스킹, 플리마켓, 전시 크리에이터로 등록되면 이벤트를 등록할 수 있어요! 헤헿</h4>
-        <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form|linebreaks }}
-            <input id="enroll_btn" type="submit" value="크리에이터 등록">
-        </form>
-    </div>
-    {% else %}
-    <script type="text/javascript">alert('로그인이 필요합니다')
-        window.location.href = '/';
-    </script>
-    {% endif %}
+{% if user.is_authenticated %}
+<div class="creating"
+     style="margin-right: 70px; margin-bottom: 30px; float: right; border: 1px solid lightgray; padding: 25px; border-radius: 10px; background-color: white;">
+    <h1 style="color: #0080ff; font-weight: 700; font-size: 1.7rem; ">크리에이터 계정 만들기</h1>
+    <p>크리에이터가 되어 버스킹, 플리마켓, 전시 등의 이벤트를 등록해보세요</p>
+    <br/>
+    <form id="enroll_creator" method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|linebreaks }}
+        <button type="submit" value="크리에이터 등록"
+            style="margin-left: 35%; text-align: center!important;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+        등록하기
+    </button>
+    </form>
+
+</div>
+{% else %}
+<script type="text/javascript">alert('로그인이 필요합니다')
+window.location.href = '/';
+</script>
+{% endif %}
 {% endblock %}
