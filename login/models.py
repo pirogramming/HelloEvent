@@ -9,8 +9,10 @@ def min_length_2_validator(value):
         raise forms.ValidationError('2글자 이상 입력해주세요')
 
 
+
+
 class Member(AbstractUser):
-    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator])
+    nickname = models.CharField(max_length=100, verbose_name='닉네임', validators=[min_length_2_validator], unique=True)
     created_on = models.DateTimeField("등록일자", auto_now_add=True)
     updated_on = models.DateTimeField("수정일자", auto_now=True)
     CITY_CHOICES = (
@@ -45,11 +47,10 @@ class Member(AbstractUser):
     city = models.CharField(max_length=30, choices=CITY_CHOICES, verbose_name='선호도시')
     gu = models.CharField(max_length=30, choices=GU_CHOICES, verbose_name='선호구')
 
-
-
     class Meta:
         db_table = 'member'
         verbose_name = 'member'
+
 
 class Creator(models.Model):
     creator_name = models.CharField(max_length=100, verbose_name='크리에이터명')

@@ -69,11 +69,12 @@ class CreatorForm(forms.ModelForm):
         exclude = ('member',)
         widgets = {
             'creator_name': forms.TextInput(
-                attrs={'class': 'form-control', 'style': 'width:80%', 'style': 'margin:0 auto',
+                attrs={'class': 'form-control', 'style': 'width: 80%', 'style': 'margin:0 auto',
                        'placeholder': '개인 혹은 팀 이름을 입력하세요'}
             ),
+
             'desc': forms.Textarea(
-                attrs={'class': 'form-control', 'style': 'width:100%', 'placeholder': '크리에이터 개인/팀 간략한 소개를 적어주세요'}
+                attrs={'class': 'form-control', 'style': 'width:100%', 'style': 'height: 150px;', 'placeholder': '크리에이터 개인/팀 간략한 소개를 적어주세요', }
             )
         }
         labels = {

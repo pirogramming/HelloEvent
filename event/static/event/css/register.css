@@ -1,5 +1,5 @@
 .registering{
-    margin-top:10px;
+    margin-top:100px;
     margin-left:20%;
     margin-right:20%;
 }
@@ -10,7 +10,6 @@
     margin-top:20px;
     height:40px;
 }
-
 
 .registering .wrap {
     display: flex; 

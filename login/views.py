@@ -14,10 +14,11 @@ from login.models import Creator, Member
 def login(request):
     return render(request, 'login/login.html')
 
-
-
 def main(request):
     return render(request, 'login/main.html')
+
+def signup_general(request):
+    return render(request, 'login/signup.html')
 
 
 # def login_signup(request):
@@ -36,7 +37,7 @@ def main(request):
 #     })
 
 
-def login_signup(request, pk):
+def signup(request, pk):
     url = reverse('login:main')
 
     user = Member.objects.get(id=pk)
@@ -111,7 +112,7 @@ def create_creator(request):
     if request.method == 'POST':
         form = CreatorForm(request.POST, request.FILES)
         if form.is_valid():
-            print(1)
+            # print(1)
             creator = form.save(commit=False)
             creator.member = Member.objects.get(id=request.user.pk)
             creator.save()
@@ -181,3 +182,5 @@ def login_form(request):
             })
     else:
         return render(request, 'login/login_form.html')
+
+
