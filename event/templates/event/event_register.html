@@ -3,23 +3,11 @@
 
 {% block custom_style %}
     <link rel="stylesheet" href="{% static 'event/css/register.css' %}">
-    .registering{
-        margin-top:10px;
-        margin-left:5%;
-        margin-right:5%;
-    }
-    #tag_input{
-        width:100%;
-    }
-    #enroll_btn{
-        margin-top:20px;
-        height:40px;
-    }
 {% endblock %}
 
 {% block main %}
     {% if user.is_authenticated %}
-    <div class="registering" stlye="margin-top: 200px;">
+    <div class="registering">
         <h1>이벤트 등록하기</h1>
         <h4>{{ creator.creator_name }}님의 개성있는 이벤트를 등록해주세요</h4>
         <div class="wrap" style="display: flex; align-items: center;">
@@ -96,8 +84,9 @@
                 <input id="edt" type="datetime-local" name="end_date_time"/>
 
                 {% for imageform in formset %}
-                {% endfor %}
                     {{ imageform|linebreaks }}
+                {% endfor %}
+
             <label for="tag_input">태그(많이 할수록 검색에 잘 걸려요!)</label>
             <input id="tag_input" name="tag" type="text" size=100 placeholder="ex) 플리마켓, 목걸이, 감성, 가성비">
             <br>
