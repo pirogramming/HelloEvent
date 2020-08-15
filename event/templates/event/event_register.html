@@ -12,7 +12,7 @@
         <h4>{{ creator.creator_name }}님의 개성있는 이벤트를 등록해주세요</h4>
         <form id="event_form" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-                {{ form|linebreaks }}
+                {{ form }}
                 {{ formset.management_form }}
                 <label for="sdt">이벤트 시작 날짜/시간 : </label>
                 <input id="sdt" type="datetime-local" name="start_date_time"/>
