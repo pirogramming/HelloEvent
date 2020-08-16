@@ -13,7 +13,7 @@ class EventForm(forms.ModelForm):
         exclude = ('start_date_time', 'end_date_time',)
         widgets = {
             'event_name': forms.TextInput(
-                attrs={'class': 'form-control', 'style': 'width:100%; margin:0 auto',
+                attrs={'class': 'form-control', 'style': 'width:100%; margin:0 auto;',
                        'placeholder': '이벤트 이름을 입력하세요'}
             ),
             'genre':forms.Select(
