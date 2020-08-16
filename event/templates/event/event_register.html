@@ -76,34 +76,35 @@
         </div>
     </div>
 </div>
-<form id="event_form" action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form|linebreaks }}
-    {{ formset.management_form }}
-    <label for="sdt">이벤트 시작 날짜/시간 : </label>
-    <input id="sdt" type="datetime-local" name="start_date_time"/>
-    <label for="edt">이벤트 종료 날짜/시간 : </label>
-    <input id="edt" type="datetime-local" name="end_date_time"/>
+    </div>
+        <form id="event_form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{ form }}
+                {{ formset.management_form }}
+                <label for="sdt">이벤트 시작 날짜/시간 : </label>
+                <input id="sdt" type="datetime-local" name="start_date_time"/>
+                <label for="edt">이벤트 종료 날짜/시간 : </label>
+                <input id="edt" type="datetime-local" name="end_date_time"/>
 
     {% for imageform in formset %}
     {{ imageform|linebreaks }}
     {% endfor %}
 
-    <label for="tag_input">태그(많이 할수록 검색에 잘 걸려요!)</label>
-    <input id="tag_input" name="tag" type="text" size=100 placeholder="ex) 플리마켓, 목걸이, 감성, 가성비">
-    <br>
-    <div class="location_form_section">
-        {{ location }}
-    </div>
-    <input id="enroll_btn" type="submit" value="이벤트 등록">
-</form>
-</div>
-{% else %}
-<script type="text/javascript">
-    alert('로그인이 필요합니다')
-    window.location.href = '{% url "login:login" %}';
-</script>
-{% endif %}
+            <label for="tag_input">태그(많이 할수록 검색에 잘 걸려요!)</label>
+            <input id="tag_input" name="tag" type="text" size=100 placeholder="ex) 플리마켓, 목걸이, 감성, 가성비">
+            <br>
+            <div class="location_form_section">
+                {{ location }}
+            </div>
+            <input id="enroll_btn" type="submit" value="이벤트 등록">
+        </form>
+
+    {% else %}
+        <script type="text/javascript">
+            alert('로그인이 필요합니다')
+            window.location.href = '{% url "login:login" %}';
+        </script>
+    {% endif %}
 {% endblock %}
 
 
@@ -112,9 +113,7 @@
         type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4be94fffa6f06598b351be42b3a70113&libraries=services"
 ></script>
-<script src={% static 'event/js/register.js' %}>
+<script src= "{% static 'event/js/register.js' %}">
 
 </script>
-{%
-    endblock %
-}
+{% endblock %}

@@ -133,7 +133,8 @@ def create_creator(request):
 
 
 def creator_mypage(request, pk):
-    creator = get_object_or_404(Creator, pk=pk)
+    # creator = get_object_or_404(Creator, pk=pk)
+    creator = Member.objects.get(id=request.user.pk).creator
     return render(request, 'login/creator_mypage.html', {
         'creator': creator,
     })
