@@ -60,6 +60,9 @@ body {
 
 
 /* content */
+.first_content {
+    margin-bottom: 50px;
+}
 .content_1, .content_2 {
     margin-top: 30px !important;
 }
