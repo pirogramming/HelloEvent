@@ -75,6 +75,7 @@ def register_event(request):
         if not request.user.is_authenticated:
             return redirect("login:create_creator")
         print('출력은 되는거니')
+        print(Member.objects.get(id=request.user.pk).creator)
         if Member.objects.get(id=request.user.pk).creator is None:
             raise RelatedObjectDoesNotExist
 
@@ -109,7 +110,9 @@ def register_event(request):
                         print(2)
                         photo.save()
                 return redirect('login:login')
+
         else:
+            print(100)
             creator = request.user.creator
             location = LocationForm()
             form = EventForm()
