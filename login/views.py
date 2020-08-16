@@ -209,7 +209,7 @@ def id_overlap_check(request):
     except:
         # 중복 검사 성공
         user = None
-    if user in None:
+    if user is None:
         overlap = 'pass'
     else:
         overlap = 'fail'

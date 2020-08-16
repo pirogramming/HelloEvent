@@ -123,6 +123,8 @@
 
 
 {% block hanseokscript %}
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<!--jquery사용하려면 필요한 스크립트 코드  (메서드 사용 가능하게 해줌)-->
 <script>
     function id_overlap_check() {
 
@@ -137,16 +139,12 @@
             return;
         }
 
-        if ($('.username_input').attr("check_result") == "fail"){
-            alert('아이디 중복체크를 해주세요');
-            $('.username_input').focus();
-            return false;
-        }
 
         id_overlap_input = document.querySelector('input[name="username"]');
 
         $.ajax({
             url: "{% url 'login:id_overlap_check' %}",
+            // type: "POST",
             data: {
                 'username': id_overlap_input.value
             },
@@ -166,9 +164,11 @@
                 }
             }
         });
-
-
-
+        // if ($('.username_input').attr("check_result") == "fail"){
+        //     alert('아이디 중복체크를 해주세요');
+        //     $('.username_input').focus();
+        //     return false;
+        // }
     }
 
 
