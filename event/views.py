@@ -131,8 +131,8 @@ def creator_detail(request, pk):
     events = creator.events.all()
     comments = creator.comments.all()
     comment_num = comments.count()
-    images = event.images.all()
-    image_num = event.images.count()
+    images = event.eventimage_set.all()
+    image_num = event.eventimage_set.count()
     comment_3 = creator.comments.order_by('-created_at')[:3]
     ctx = {
         'event':event,
