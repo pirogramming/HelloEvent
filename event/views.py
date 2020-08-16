@@ -137,6 +137,7 @@ def creator_detail(request, pk):
     images = event.eventimage_set.all()
     image_num = event.eventimage_set.count()
     comment_3 = creator.comments.order_by('-created_at')[:3]
+    tags = event.tags.all()
     ctx = {
         'event':event,
         'events':events,
@@ -146,6 +147,7 @@ def creator_detail(request, pk):
         'comment_num':comment_num,
         'images':images,
         'image_num':image_num,
+        'tags':tags,
     }
     return render(request, 'event/creator_event_detail.html', ctx)
 

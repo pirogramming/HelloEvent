@@ -2,42 +2,29 @@ body {
     background-color:rgba(255, 255, 255, 0.904);
 }
 
-/* .container {
-    margin-top: 50px;
-    text-align:center;
-} */
 .text-center {
     margin-top:50px;
 }
+
+.wrapper {
+     background: #f9f9f9; /* Old browsers */
+     background: -moz-radial-gradient(center, ellipse cover,  #f9f9f9 1%, #ffffff 10%, #f6f6f6 29%, #e0ddce 100%); /* FF3.6-15 */
+     background: -webkit-radial-gradient(center, ellipse cover,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); /* Chrome10-25,Safari5.1-6 */
+     background: radial-gradient(ellipse at center,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#e0ddce',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+     padding:10px 0;
+}
+/* --------------------------------------------- */
+
+
 /* header */
 .header {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    content: '';
-    
-    /* position: absolute;
-    
-    top: 0; left:0; right:0; bottom:0;
-     */
-    background: inherit;
-    
-    z-index:-1;
-    
-    filter: blur(6px); 
-    
-    -webkit-filter: blur(6px); 
-    
-    -moz-filter: blur(6px);
-    
-    -o-filter: blur(6px);
-    
-    filter:url(#blur);
-
 }
 
-.flex-item {
+.flex-item, .grid-item {
     color:black;
     width: 80%;
     padding: 50px;
@@ -49,63 +36,81 @@ body {
     font-size: 50px;
     font-weight: bold;
 }
-/* --------------------------------------------- */
-/* content */
-.contentwrap {
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f9f9f9+1,ffffff+10,f6f6f6+29,e0ddce+100 */
-    background: #f9f9f9; /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover,  #f9f9f9 1%, #ffffff 10%, #f6f6f6 29%, #e0ddce 100%); /* FF3.6-15 */
-    background: -webkit-radial-gradient(center, ellipse cover,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at center,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#e0ddce',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+#creator_name {
+    font-family: 'Jua', sans-serif;
+    font-size:4rem;
+    font-weight: lighter;
 }
-.content {
-    display: flex;
-    width:80%;
-    margin:0 auto;
-    padding-top:20px;
-    padding-bottom:20px;
-    align-items: center;
-    justify-content: center;
+
+#genre {
+    color: rgb(59, 54, 48);
+    font-size:2.5rem;
+    font-family: 'Lobster', cursive;
+    font-weight: lighter;
+    margin-bottom:5px;
+}
+/* --------------------------------------------- */
+
+
+/* content */
+.first_content {
+    /* background-color:red; */
 }
 
 .content_1, .content_2 {
-    height:500px;
+    /* background-color:yellow;
+    border:1px solid black; */
 }
 
 /* content_1 */
 .content_1 {
-    flex-basis:50%;
+
 }
+
 .carousel {
     width: 100%; height: 100%;
 }
 
 .carousel .carousel-inner {
     width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.carousel img{
-    height:inherit;
+.carousel .carousel-inner .carousel-item {
+    position: relative;
+    max-height:500px;
+    text-align:center;
 }
+
+.carousel .carousel-inner .carousel-item img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 500px;
+    max-width: 570px;
+    width: auto; height: auto; 
+}
+
+
+
+
+
+
 
 /* content_2 */
 .content_2 {
-    flex-basis:50%;
-    display: flex;
-    align-items: center;
-    padding-left:30px;
-}
-.content_2 .flex-item {
-    color:rgb(6, 6, 97);
-    margin: 0 auto;
-    padding: 0;
-}
-.flex-item p {
-    color:black;
-    font-size: 1.2rem;
+    display: grid;
 }
 
+.content_2 .grid-item {
+    width: inherit;
+    padding:0px;
+    margin: auto;
+}
 /* --------------------------------------------- */
 
 

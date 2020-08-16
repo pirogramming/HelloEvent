@@ -3,9 +3,11 @@
 
 {% block custom_style %}
     <link rel="stylesheet" href="{% static 'event/css/creator_detail.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lobster&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
+<!--header-->
 {% if event.genre == 'Busking' %}
     <div class='header'style="background: url('{% static 'event/img/busking.jpg' %}') no-repeat; 
     background-size: 100% auto; height:350px;"> 
@@ -17,56 +19,72 @@
         background-size: 100% auto; height:350px"> 
 {% endif %}
     <div class='flex-item'>
-        <p>{{ event.creator.creator_name }}</p>
-        <p>장르: {{event.get_genre_display}}</p>
-        <p>.....hash tags......</p>
+    {% if event.genre == 'Busking' %}
+        <p id='genre'>Busking</p>
+    {% elif event.genre == 'Flee' %}
+        <p id='genre'>Flea Market</p>
+    {% else %}
+        <p id='genre'>Exhibition</p>
+    {% endif %}
+        <p id='creator_name'>{{ event.creator.creator_name }}</p>
     </div>
 </div>
-<div class="contentwrap">
-<div class="content">
-    <div class="content_1">
-        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-interval="2000">
-                {% for event_image in images %}
-                    <img src="{{ event_image.image.url }}" alt="background" style="">
-                    {% if not forloop.last %}
+
+<!--content-->
+<div class="wrapper">
+    <div class="container first_content">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 content_1">
+                <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-interval="4000">
+                        {% for event_image in images %}
+                            <img src="{{ event_image.image.url }}" alt="background" style="">
+                            {% if not forloop.last %}
+                            </div>
+                            <div class="carousel-item">  
+                            {% endif %}
+                        {% endfor %}
+                        </div>
                     </div>
-                    <div class="carousel-item">  
-                    {% endif %}
-                {% endfor %}
+                    <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            </div>
-    </div>
 
-    <div class="content_2">
-        <div class="flex-item">
-            <h2>EVENT INFORMATION</h2>
-            <br>
-            <p>이벤트명: {{event.event_name}}</p>
-            <p>일시: {{event.start_date_time}} ~ {{event.end_date_time}}</p>
-            <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
+            <div class="col-lg-6 col-md-12 content_2">
+                <div class="grid-item">
+                    <h2>EVENT INFORMATION</h2>
+                    <br>
+                    <p id="event_name">{{event.event_name}}</p>
+                    <p id="event_desc">{{event.desc|linebreaksbr}}</p>
+                    <p>일시: {{event.start_date_time}} ~ {{event.end_date_time}}</p>
+                    <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
+                    <p id='tag_name'>
+                    {% for tag in tags %}
+                        #{{tag.name}}
+                    {% endfor %}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
-<hr>
 <div class="container history">
     <h2>{{event.creator.creator_name}}'s EVENT HISTORY</h2>
     <br>
     {% for creator_event in events %}
-        <h5>이벤트명: {{creator_event.event_name}}</h5>
+        <h5>{{creator_event.event_name}}</h5>
+        <p>{{creator_event.desc}}</p>
         <p>일시: {{creator_event.start_date_time}} ~ {{creator_event.end_date_time}}</p>
         <p>장소: {{creator_event.location.city}} {{creator_event.location.gu}} {{creator_event.location.rest_address}}</p>
+        <img src="{{creator_event.}}" alt="">
         {% if not forloop.last %}
         <hr>
         {% else %}
@@ -103,5 +121,7 @@
 {% endblock %}
 
 {% block injiscript %}
-    <script> $('.carousel').carousel({interval: 2000})</script>
+    <script> 
+    $('.carousel').carousel({interval: 2000,})
+    </script>
 {% endblock %}
