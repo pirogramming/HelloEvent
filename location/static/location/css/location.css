@@ -1,0 +1,33 @@
+/* start map_list.html */
+.map_wrap {
+  position: relative;
+  width: 50%;
+  height: 39rem;
+  float: right;
+}
+
+#map {
+  width: 100%;
+  height: 39rem;
+}
+
+.hAddr {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  border-radius: 2px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  padding: 5px;
+}
+
+#centerAddr {
+  display: block;
+  font-weight: bold;
+}
+
+.template_variable_section {
+  display: none;
+}
+/* end map_list.html */
