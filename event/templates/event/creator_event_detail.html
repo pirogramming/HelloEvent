@@ -3,7 +3,7 @@
 
 {% block custom_style %}
     <link rel="stylesheet" href="{% static 'event/css/creator_detail.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Lobster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Jua&family=Lobster&family=Yeon+Sung&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
@@ -31,21 +31,24 @@
 </div>
 
 <!--content-->
-<div class="wrapper">
+<div class="container_wrapper">
     <div class="container first_content">
         <div class="row">
             <div class="col-lg-6 col-md-12 content_1">
                 <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" data-interval="4000">
                         {% for event_image in images %}
+                            {% if forloop.first %}
+                            <div class="carousel-item active" data-interval="4000">
+                            <div class="imgwrapper">
+                            <img src="{{ event_image.image.url }}" alt="background" style=""></div>
+                            </div> 
+                            {% else %}
+                            <div class="carousel-item" data-interval="4000">
                             <img src="{{ event_image.image.url }}" alt="background" style="">
-                            {% if not forloop.last %}
                             </div>
-                            <div class="carousel-item">  
                             {% endif %}
                         {% endfor %}
-                        </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -57,18 +60,18 @@
                     </a>
                 </div>
             </div>
-
             <div class="col-lg-6 col-md-12 content_2">
                 <div class="grid-item">
-                    <h2>EVENT INFORMATION</h2>
+                    <h2 id="title">Event Information</h2>
                     <br>
-                    <p id="event_name">{{event.event_name}}</p>
-                    <p id="event_desc">{{event.desc|linebreaksbr}}</p>
-                    <p>일시: {{event.start_date_time}} ~ {{event.end_date_time}}</p>
-                    <p>장소: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
+                    <p id="event_name">[ {{event.event_name}} ]</p>
+                    <p id="event_time"><b>일시</b>: {{event.start_date_time}} ~ {{event.end_date_time}}</p>
+                    <p id="event_location"><b>장소</b>: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
+                    <p id="event_desc"><b>설명</b>: {{event.desc|linebreaksbr}}</p>
+                    <br>
                     <p id='tag_name'>
                     {% for tag in tags %}
-                        #{{tag.name}}
+                        <a href="">#{{tag.name}}</a>
                     {% endfor %}
                     </p>
                 </div>
@@ -76,46 +79,62 @@
         </div>
     </div>
 </div>
-<div class="container history">
-    <h2>{{event.creator.creator_name}}'s EVENT HISTORY</h2>
-    <br>
-    {% for creator_event in events %}
-        <h5>{{creator_event.event_name}}</h5>
-        <p>{{creator_event.desc}}</p>
-        <p>일시: {{creator_event.start_date_time}} ~ {{creator_event.end_date_time}}</p>
-        <p>장소: {{creator_event.location.city}} {{creator_event.location.gu}} {{creator_event.location.rest_address}}</p>
-        <img src="{{creator_event.}}" alt="">
-        {% if not forloop.last %}
+
+<div class="container_wrapper">
+    <div class="container history">
+        <h2 id="title">{{event.creator.creator_name}}'s Event History</h2>
+        {% for creator_event in events %}
         <hr>
-        {% else %}
-        <br>
-        {% endif %}
-    {% endfor %}
-</div>
-<hr>
-<div class="container comment_list">
-    <div class="row">
-        <h2>{{event.creator.creator_name}}'s REVIEW</h2>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col"><img src="{% static 'event/img/user1.png' %} " alt="" class='comment_user'></div>
-        <div class="col"><p>말풍선 테스트</p></div>
-    </div>
-    <div class="row">
-        {% for comment in comment_3 %}
-        <div class="row"><div class="col">
-            <b>{{comment.member.nickname}}</b> : {{comment.comment_text}}              
-            <small>{{comment.created_at}}</small></div> <br>
+        <div class="row history_event">
+            <div class="col-lg-9 col-md-12 history_col">
+            <div class="infowrapper">
+                <p id="event_name">[ {{creator_event.event_name}} ]</p>
+                <p id="event_time"><b>일시</b>: {{creator_event.start_date_time}} ~ {{creator_event.end_date_time}}</p>
+                <p id="event_location"><b>장소</b>: {{creator_event.location.city}} {{creator_event.location.gu}} {{creator_event.location.rest_address}}</p>
+                <p id="event_desc"><b>설명</b>: {{creator_event.desc}}</p>
+                <p id='tag_name'>
+                    {% for tag in creator_event.tags.all %}
+                        <a href="">#{{tag.name}}</a>
+                    {% endfor %}
+                </p>
+            </div>
+            </div>
+            <div class="col-lg-3 d-none d-lg-block history_col">
+                <div class="imgwrapper">
+                    <!--{{creator_event.eventimage_set.all}}-->
+                    <img src="{{creator_event.eventimage_set.all.first.image.url}}" alt="" class='history_imgs'/>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
-    <div class="row">
-        {% if comment_num > 3 %}
-            <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
-        {% else %}
-            <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
-        {% endif %}
+</div>
+
+<div class="container_wrapper">
+    <div class="container comment_list">
+        <div class="row">
+            <h2 id='title'>{{event.creator.creator_name}}'s Visitor Book</h2>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col"><img src="{% static 'event/img/user1.png' %} " alt="" class='comment_user'></div>
+            <div class="col"><p>말풍선 테스트</p></div>
+        </div>
+        <div class="row">
+            {% for comment in comment_3 %}
+            <div class="row"><div class="col">
+                <b>{{comment.member.nickname}}</b> : {{comment.comment_text}}              
+                <small>{{comment.created_at}}</small></div> <br>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% if comment_num > 3 %}
+                <a href="{% url 'event:comment_detail' creator.pk %}">더보기</a>
+            {% else %}
+                <a href="{% url 'event:comment_detail' creator.pk %}">후기 작성하러가기</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

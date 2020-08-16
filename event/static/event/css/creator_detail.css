@@ -6,7 +6,7 @@ body {
     margin-top:50px;
 }
 
-.wrapper {
+.container_wrapper {
      background: #f9f9f9; /* Old browsers */
      background: -moz-radial-gradient(center, ellipse cover,  #f9f9f9 1%, #ffffff 10%, #f6f6f6 29%, #e0ddce 100%); /* FF3.6-15 */
      background: -webkit-radial-gradient(center, ellipse cover,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); /* Chrome10-25,Safari5.1-6 */
@@ -14,6 +14,7 @@ body {
      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#e0ddce',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
      padding:10px 0;
 }
+
 /* --------------------------------------------- */
 
 
@@ -24,12 +25,17 @@ body {
     justify-content: center;
 }
 
-.flex-item, .grid-item {
+.flex-item  {
     color:black;
     width: 80%;
     padding: 50px;
     text-align: center;
     background-color: rgba( 255, 255, 255, 0.5 );
+}
+
+.grid-item {
+    border-top: 2px solid rgba(31, 152, 223, 0.507);
+    border-bottom: 2px solid rgba(31, 152, 223, 0.507);
 }
 
 .flex-item p:first-child {
@@ -54,20 +60,25 @@ body {
 
 
 /* content */
-.first_content {
-    /* background-color:red; */
+.content_1, .content_2 {
+    margin-top: 30px !important;
 }
 
-.content_1, .content_2 {
-    /* background-color:yellow;
-    border:1px solid black; */
+#event_name {
+    color: rgb(53, 49, 45);
+    font-size:2rem;
+    font-family: 'Yeon Sung', cursive;
+}
+
+#event_time, #event_location {
+    font-size:1.1rem;
+    margin-bottom:3px;
+}
+#event_desc {
+    margin-top:10px;
 }
 
 /* content_1 */
-.content_1 {
-
-}
-
 .carousel {
     width: 100%; height: 100%;
 }
@@ -81,11 +92,16 @@ body {
 
 .carousel .carousel-inner .carousel-item {
     position: relative;
-    max-height:500px;
+    max-height:500px; 
     text-align:center;
+
+}
+.carousel .carousel-inner .carousel-item .imgwrapper {
+    height:inherit;
 }
 
 .carousel .carousel-inner .carousel-item img{
+    
     position: absolute;
     top: 50%;
     left: 50%;
@@ -94,12 +110,6 @@ body {
     max-width: 570px;
     width: auto; height: auto; 
 }
-
-
-
-
-
-
 
 /* content_2 */
 .content_2 {
@@ -111,10 +121,49 @@ body {
     padding:0px;
     margin: auto;
 }
+
+#title{
+    color:black;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+#tag_name {
+    font-style: italic;
+}
+#tag_name a {
+    text-decoration: none;
+    color: rgb(33, 33, 138);
+}
+#tag_name a:hover {
+    text-decoration: none;
+    color: indigo;
+}
 /* --------------------------------------------- */
 
 
 /* event history */
+.history {
+    border-top: 2px solid rgba(5, 4, 59, 0.507);
+    border-bottom: 2px solid rgba(5, 4, 59, 0.507);
+    padding-top:10px;
+}
+
+.history .history_event {
+    margin-bottom:30px;
+
+}
+
+.history_imgs {
+    display: block;
+    width:100%;
+    max-width: 285px;
+    max-height: inherit;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 /* --------------------------------------------- */
 
 
