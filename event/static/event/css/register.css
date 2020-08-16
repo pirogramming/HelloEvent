@@ -1,19 +1,21 @@
-.registering{
-    margin-top:100px;
-    margin-left:20%;
-    margin-right:20%;
+.registering {
+    margin-top: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
 }
-#tag_input{
-    width:100%;
+
+#tag_input {
+    width: 100%;
 }
-#enroll_btn{
-    margin-top:20px;
-    height:40px;
+
+#enroll_btn {
+    margin-top: 20px;
+    height: 40px;
 }
 
 .registering .wrap {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     padding: 2rem;
 }
 
@@ -25,15 +27,20 @@
 }
 
 .choose_section button {
-    width: 97%; margin-top: 1rem;
+    width: 97%;
+    margin-top: 1rem;
 }
 
 .map_wrap {
-    position: relative; width: 50%; height: 350px;margin-bottom:2rem
+    position: relative;
+    width: 50%;
+    height: 350px;
+    margin-bottom: 2rem
 }
 
 #map {
-    width: 100%; height: 350px;
+    width: 100%;
+    height: 350px;
 }
 
 .hAddr {
@@ -48,12 +55,21 @@
 }
 
 .hAddr .title {
-    font-weight: bold; 
+    font-weight: bold;
     display: block;
 }
 
 .hAddr #centerAddr {
-    display: block; 
-    margin-top: 2px; 
+    display: block;
+    margin-top: 2px;
     font-weight: normal;
+}
+
+.registering h1 {
+    color: #0080ff;
+    font-size: 2.2rem;
+}
+
+.registering h4 {
+    font-size: 1.2rem;
 }
