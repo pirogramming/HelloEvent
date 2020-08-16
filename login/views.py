@@ -200,7 +200,7 @@ def delete_creator(request):
         creator.delete()
         return redirect("login:mypage", request.id)
 
-
+#로그인 중복확인
 def id_overlap_check(request):
     username = request.GET.get('username')
     try:
@@ -214,4 +214,20 @@ def id_overlap_check(request):
     else:
         overlap = 'fail'
     context = {'overlap': overlap}
+    return JsonResponse(context)
+
+#닉네임 중복확인
+def nickname_lap_check(request):
+    nickname = request.GET.get('nickname')
+    try:
+        # 중복 검사 실패
+        user = Member.objects.get(nickname=nickname)
+    except:
+        # 중복 검사 성공
+        user = None
+    if user is None:
+        lap = 'pass'
+    else:
+        lap = 'fail'
+    context = {'lap': lap}
     return JsonResponse(context)
