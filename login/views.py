@@ -66,7 +66,11 @@ def signup(request, pk):
 
 def mypage(request, pk):
     user = get_object_or_404(Member, pk=pk)
-    creator = Member.objects.get(id=request.user.pk).creator
+    try:
+        creator = Member.objects.get(id=request.user.pk).creator
+    except:
+        creator = None
+        # creator 가 없을 때 발생하는 RelatedObjectDoesNotExist 예외 처리
     return render(request, 'login/mypage.html', {
         'user': user,
         'creator': creator,
@@ -129,7 +133,8 @@ def create_creator(request):
 
 
 def creator_mypage(request, pk):
-    creator = get_object_or_404(Creator, pk=pk)
+    # creator = get_object_or_404(Creator, pk=pk)
+    creator = Member.objects.get(id=request.user.pk).creator
     return render(request, 'login/creator_mypage.html', {
         'creator': creator,
     })

@@ -75,6 +75,7 @@ def register_event(request):
         if not request.user.is_authenticated:
             return redirect("login:create_creator")
         print('출력은 되는거니')
+        print(Member.objects.get(id=request.user.pk).creator)
         if Member.objects.get(id=request.user.pk).creator is None:
             raise RelatedObjectDoesNotExist
 
@@ -109,7 +110,9 @@ def register_event(request):
                         print(2)
                         photo.save()
                 return redirect('login:login')
+
         else:
+            print(100)
             creator = request.user.creator
             location = LocationForm()
             form = EventForm()
@@ -134,6 +137,7 @@ def creator_detail(request, pk):
     images = event.eventimage_set.all()
     image_num = event.eventimage_set.count()
     comment_3 = creator.comments.order_by('-created_at')[:3]
+    tags = event.tags.all()
     ctx = {
         'event':event,
         'events':events,
@@ -143,6 +147,7 @@ def creator_detail(request, pk):
         'comment_num':comment_num,
         'images':images,
         'image_num':image_num,
+        'tags':tags,
     }
     return render(request, 'event/creator_event_detail.html', ctx)
 
