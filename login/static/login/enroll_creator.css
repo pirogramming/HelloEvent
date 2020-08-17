@@ -6,9 +6,18 @@ main {
 }
 
 .creating {
-    margin-top: 50px;
-    margin-left: 20%;
-    margin-right: 20%;
+    width: 520px;
+    height: 560px;
+    margin-left: 55%;
+    /*margin-bottom: 30px;*/
+    float: right;
+    border: 1px solid lightgray;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 30px;
+    /*margin-left: 20%;*/
+    /*margin-right: 20%;*/
 }
 
 button {

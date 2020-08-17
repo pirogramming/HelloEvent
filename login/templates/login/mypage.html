@@ -18,6 +18,14 @@
         {% else %}
 
         <table class="type03">
+<!--            <tr>-->
+<!--                <th scope="row">가입 유형</th>-->
+<!--                <td>{{ user.username }}</td>-->
+<!--            </tr>-->
+            <tr>
+                <th scope="row">아이디</th>
+                <td>{{ user.username }}</td>
+            </tr>
             <tr>
                 <th scope="row">닉네임</th>
                 <td>{{ user.nickname }}</td>
@@ -25,10 +33,6 @@
             <tr>
                 <th scope="row">선호지역</th>
                 <td>{{ user.city }} {{ user.gu }}</td>
-            </tr>
-            <tr>
-                <th scope="row">이메일</th>
-                <td>{{ user.email }}</td>
             </tr>
             <tr>
                 <th scope="row">가입 날짜</th>
