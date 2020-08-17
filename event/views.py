@@ -19,6 +19,8 @@ from comment.models import Comment
 from django.db.models import Q
 from datetime import datetime
 
+import arrow
+
 class RelatedObjectDoesNotExist(Exception):
     def __init__(self):
         self.msg = '크리에이터 존재 오류'
@@ -90,8 +92,9 @@ def register_event(request):
                 event = event_form.save(commit=False)
                 location = location_form.save(commit=False)
                 location.save()
-                event.start_date_time = request.POST['start_date_time']
-                event.end_date_time = request.POST['end_date_time']
+                event.start_date_time = str(request.POST['start_date_time'])
+                event.end_date_time = str(request.POST['end_date_time'])
+                print(event.end_date_time)
                 event.creator = Member.objects.get(id=request.user.pk).creator
                 event.location = location
                 event.save()
@@ -151,11 +154,22 @@ def search_result(request):
     # endtime = startdate + datetime.timedelta()
     if 'search_data' in request.GET:
         data = request.GET['search_data']
-        tags = Tag.objects.all().filter(Q(name__contains=data))
+        tags = Tag.objects.filter(Q(name__icontains=data))
         print(tags)
-    # events = eventsall.filter('start_date_time')
+        startdatetime = datetime.today()
+        print(startdatetime)
+        results = Event.objects.none()
+        for tag in tags:
+            print(tag)
+            print(tag.event_set.all())
+            q = tag.event_set.all().filter(start_date_time__gte=startdatetime)
+            q = q.order_by('start_date_time')
+            print(q)
+            results = results | q
+            print(results)
+        print(results)
     ctx = {
         'data':data,
-        'tags':tags,
+        'results':results,
     }
     return render(request, "event/search_result.html", ctx)

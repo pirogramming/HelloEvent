@@ -9,21 +9,20 @@
     <div class="about-search-data">
         <p>"{{ data }}"를 포함한 태그를 가진 이벤트 검색결과</p>
     </div>
-    {% if tags is None %}
+    {% if results is None %}
         <p>검색결과가 없습니다</p>
     {% else %}
     <div class="events-container">
-        {% for tag in tags %}
-            {% for event in tag.event_set.all %}
+        {% for event in results %}
                 <div class="s_event-container">
                     <div id="event_name">
                         {{ event.event_name }}
                     </div>
                     <div id="event_desc">
                         {{ event.desc }}
+                        {{ event.start_date_time }}
                     </div>
                 </div>
-            {% endfor %}
         {% endfor %}
     </div>
     {% endif %}
