@@ -111,12 +111,14 @@
                 if (data['overlap'] == "fail") {
                     alert("이미 존재하는 아이디입니다");
                     id_overlap_input.focus();
+                    document.querySelector('.submit_btn').setAttribute('disabled', true);
                     return;
                 } else {
                     alert('사용가능한 아이디입니다');
                     $('.username_input').attr('check_result', "success");
                     $("#id_check_success").show();
                     $('.id_overlap_button').hide();
+                    document.querySelector('.submit_btn').removeAttribute('disabled');
                     return;
                 }
             }
@@ -150,12 +152,14 @@
                 if (data['lap'] == "fail") {
                     alert("이미 존재하는 닉네임입니다");
                     nickname_lap_input.focus();
+                    document.querySelector('.submit_btn').setAttribute('disabled', true);                    
                     return;
                 } else {
                     alert('사용가능한 닉네임입니다');
                     $('.nickname_input').attr('check_result', "success");
                     $("#nickname_check_success").show();
                     $('.nickname_lap_button').hide();
+                    document.querySelector('.submit_btn').removeAttribute('disabled');
                     return;
                 }
             }
