@@ -1,59 +1,68 @@
-.registering{
-    margin-top:100px;
-    margin-left:20%;
-    margin-right:20%;
+.registering {
+  margin: 2rem 3rem 0;
 }
-#tag_input{
-    width:100%;
+
+#tag_input {
+  width: 100%;
 }
-#enroll_btn{
-    margin-top:20px;
-    height:40px;
+#enroll_btn {
+  margin-top: 20px;
+  height: 40px;
 }
 
 .registering .wrap {
-    display: flex; 
-    align-items: center; 
-    padding: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
 }
 
 .registering .wrap .choose_section {
-    display: flex;
-    flex-direction: column;
-    height: 350px;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  justify-content: center;
 }
 
-.choose_section button {
-    width: 97%; margin-top: 1rem;
+.choose_gu {
+  margin-top: 1rem;
+}
+
+.choose_section .search_button {
+  width: 97%;
+  margin-top: 1rem;
 }
 
 .map_wrap {
-    position: relative; width: 50%; height: 350px;margin-bottom:2rem
+  position: relative;
+  width: 50%;
+  height: 350px;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
 }
 
 #map {
-    width: 100%; height: 350px;
+  width: 100%;
+  height: 350px;
 }
 
 .hAddr {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    border-radius: 2px;
-    background: #fff;
-    background: rgba(255, 255, 255, 0.8);
-    z-index: 1;
-    padding: 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 2px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  padding: 5px;
 }
 
 .hAddr .title {
-    font-weight: bold; 
-    display: block;
+  font-weight: bold;
+  display: block;
 }
 
 .hAddr #centerAddr {
-    display: block; 
-    margin-top: 2px; 
-    font-weight: normal;
+  display: block;
+  margin-top: 2px;
+  font-weight: normal;
 }

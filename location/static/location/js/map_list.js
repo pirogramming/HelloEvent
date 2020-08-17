@@ -13,8 +13,8 @@ findUserPreferLocation();
 
 var map_infowindow = new kakao.maps.InfoWindow({ zindex: 1 }); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
-// 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
-searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+// // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
+// searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 
 // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
 var markers = [];
