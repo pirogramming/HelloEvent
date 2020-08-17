@@ -7,38 +7,46 @@
 
 {% block main %}
     {% if user.is_authenticated %}
+    
     <div class="registering">
         <h1>이벤트 등록하기</h1>
         <h4>{{ creator.creator_name }}님의 개성있는 이벤트를 등록해주세요</h4>
-        <div class="wrap">
-            <div class="choose_section">
-                <div class="choose_city">
-                    <label for="city">도시 선택</label>
+        <div class="wrap row">
+            <!-- 사용자의 선호 지역을 받기 위한 구역(보이지는 않음) -->
+            <div class="template_variable_section">
+                <div class="template_variable_city">{{prefer_city}}</div>
+                <div class="template_variable_gu">{{prefer_gu}}</div>
+            </div>
+            <div class="choose_section row col-md-3 col-sm-12 col-xs-12">
+                <div class="choose_city row col-md-12 col-sm-12 col-xs-12">
+                    <label for="city" class="col-md-12 col-sm-12 col-xs-12">도시 선택</label>
                     <select
                         name="city"
                         id="city"
                         onchange="addressKindChange(this)"
-                        class="selected_city"
+                        class="selected_city col-md-12 col-sm-12 col-xs-12"
                     >
-                        <option>도시를 선택해주세요</option>
+                        <option class="col-md-12 col-sm-12 col-xs-12">도시를 선택해주세요</option>
                         <option value="서울특별시">서울특별시</option>
                     </select>
                 </div>
-                <div class="choose_gu">
-                    <label for="gu">구 선택</label>
-                    <select name="gu" id="gu" class="selected_gu">
-                        <option>구를 선택해주세요</option>
+                <div class="choose_gu col-md-12 col-sm-12 col-xs-12">
+                    <label for="gu" class="col-md-12 col-sm-12 col-xs-12">구 선택</label>
+                    <select name="gu" id="gu" class="selected_gu col-md-12 col-sm-12 col-xs-12">
+                        <option class="col-md-12 col-sm-12 col-xs-12">구를 선택해주세요</option>
                     </select>
                 </div>
-                <button
-                type="button"
-                class="btn btn-primary search_btn"
-                onclick="map_reset(this)"
-                >
-                검색
+                <div class="search_btn_section col-md-12 col-sm-12 col-xs-12">
+                    <button
+                    type="button"
+                    class="btn btn-primary search_btn"
+                    onclick="map_reset(this)"
+                    >
+                    검색
+                </div>
                 </button>
             </div>
-            <div class="map_wrap">
+            <div class="map_wrap col-md-9 col-sm-12 col-xs-12">
                 <div id="map"></div>
                 <div class="hAddr">
                     <span class="title">지도중심기준 행정동 주소정보</span>

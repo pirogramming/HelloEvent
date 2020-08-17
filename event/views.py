@@ -114,11 +114,15 @@ def register_event(request):
             location = LocationForm()
             form = EventForm()
             formset = ImageFormSet(queryset=EventImage.objects.none())
+            prefer_city = Member.objects.get(id=request.user.pk).city
+            prefer_gu = Member.objects.get(id=request.user.pk).gu
             cxt = {
                 'form':form,
                 'formset':formset,
                 'location':location,
                 'creator':creator,
+                'prefer_city' : prefer_city,
+                'prefer_gu' : prefer_gu,
             }
             return render(request, 'event/event_register.html', cxt)
     except Exception as e:

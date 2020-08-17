@@ -20,13 +20,17 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 let events = Array.from(
   document.querySelector("#event_wrap").childNodes
 ).filter((node) => node.nodeName == "DIV");
+
 // 현재 등록된 이벤트의 갯수(view로부터 넘어온 Event_event queryset의 갯수)
 let events_count = events.length;
 for (let i = 0; i < events_count; i++) {
   let events_div_list = Array.from(events[i].childNodes).filter(
     (node) => node.nodeName == "DIV"
   );
-
+  events_div_list = events_div_list[1];
+  events_div_list = Array.from(events_div_list.childNodes).filter(
+    (node) => node.nodeName == "DIV"
+  );
   let inputAddress =
     events_div_list[3].textContent +
     " " +
@@ -48,11 +52,11 @@ for (let i = 0; i < events_count; i++) {
       // 인포윈도우로 장소에 대한 설명을 표시합니다
       var infowindow = new kakao.maps.InfoWindow({
         content: `<div style="width:16.5rem;text-align:center;padding:6px 0;">
-         이벤트 이름 : ${events_div_list[0].textContent} <br>
-         장르 : ${events_div_list[1].textContent} <br>
-         장소 : ${events_div_list[3].textContent} ${events_div_list[4].textContent} ${events_div_list[5].textContent}<br>
-         시작시간 : ${events_div_list[6].textContent}<br>
-         종료시간 : ${events_div_list[7].textContent}
+         ${events_div_list[0].textContent} <br>
+         ${events_div_list[1].textContent} <br>
+         ${events_div_list[3].textContent} ${events_div_list[4].textContent} ${events_div_list[5].textContent}<br>
+         ${events_div_list[6].textContent}<br>
+         ${events_div_list[7].textContent}
          </div>`,
       });
 
