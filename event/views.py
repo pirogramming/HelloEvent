@@ -156,13 +156,13 @@ def search_result(request):
         data = request.GET['search_data']
         tags = Tag.objects.filter(Q(name__icontains=data))
         print(tags)
-        startdatetime = datetime.today()
-        print(startdatetime)
+        today = datetime.today()
+        print(today)
         results = Event.objects.none()
         for tag in tags:
             print(tag)
             print(tag.event_set.all())
-            q = tag.event_set.all().filter(start_date_time__gte=startdatetime)
+            q = tag.event_set.all().filter(end_date_time__gte=today)
             q = q.order_by('start_date_time')
             print(q)
             results = results | q

@@ -11,20 +11,25 @@
     </div>
     {% if results is None %}
         <p>검색결과가 없습니다</p>
+    {% elif data == "" %}
+        <p>검색어가 없습니다. 검색어를 입력해주세요!</p>
     {% else %}
-    <div class="events-container">
+        <div class="events-container">
         {% for event in results %}
                 <div class="s_event-container">
-                    <div id="event_name">
-                        {{ event.event_name }}
-                    </div>
-                    <div id="event_desc">
-                        {{ event.desc }}
-                        {{ event.start_date_time }}
+                    <div id="left_section">
+                        <div id="event_name">
+                            {{ event.event_name }}
+                        </div>
+                        <div id="event_desc">
+                            {{ event.desc }}<br>
+                            {{ event.start_date_time }}<br>
+                            {{ event.end_date_time }}
+                        </div>
                     </div>
                 </div>
         {% endfor %}
-    </div>
+        </div>
     {% endif %}
 
 {% endblock %}
