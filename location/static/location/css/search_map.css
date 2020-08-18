@@ -1,3 +1,29 @@
+li {
+  list-style: none;
+}
+
+#category_list {
+  padding-left: 0;
+  display: flex;
+  margin-top: 2rem;
+}
+
+#category_list li {
+  margin-right: 2rem;
+}
+
+.container-fluid {
+  margin-top: 1rem;
+}
+#event_content_wrap {
+  display: inline-block;
+  padding: 2rem;
+}
+
+#event_wrap:nth-child(n) {
+  margin-bottom: 2rem;
+}
+
 .map_wrap {
   position: relative;
   width: 50%;
@@ -27,9 +53,5 @@
 }
 
 .template_variable_section {
-  display: none;
-}
-
-#event_wrap {
   display: none;
 }
