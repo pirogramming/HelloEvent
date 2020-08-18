@@ -11,8 +11,14 @@
         <table class="additional_info">
             <tr>
                 <td>아이디</td>
-                <td><input type="text" name="username" value="{{user.username}}" required
-                placeholder="아이디를 입력해주세요"/></td>
+<!--                <td><input type="text" name="username" value="{{user.username}}" required-->
+<!--                placeholder="아이디를 입력해주세요"/></td>-->
+                <td><input type="text" class="username_input" name="username" check_result="fail" required 
+                minlength="4" maxlength="12" value="{{user.username}}" placeholder="4~12자의 영문 대소문자와 숫자로만 입력"/>
+                <button type="button" class="id_overlap_button" onclick="id_overlap_check()"
+                >중복검사</button>
+                <img src="/static/img/green_check.png" id="id_check_success"
+                 ></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
@@ -26,63 +32,20 @@
             </tr>
             <tr>
                 <td>닉네임</td>
-                <td><input type="text" name="nickname" value="{{user.nickname}}" required
-                placeholder="닉네임을 입력해주세요"/></td>
+                <td><input type="text" class="nickname_input" check_result="fail" name="nickname" value="{{user.nickname}}" 
+                required minlength="2" maxlength="12" placeholder="닉네임을 입력해주세요"/>
+                <button type="button" class="nickname_lap_button" onclick="nickname_lap_check()"
+                >중복검사</button>
+                <img src="/static/img/green_check.png" id="nickname_check_success"
+                > </td>           
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="email" value="{{user.email}}" required
-                placeholder="이메일을 입력해주세요"/></td>
+                <td><input type="email" name="email" value="{{user.email}}" required placeholder="이메일을 입력해주세요"/></td>
             </tr>
             <tr>
-<!--                <td>선호도시</td>-->
-<!--                <td><label>-->
-<!--                    <select id='selected_city' name='city' required>-->
-<!--                        <optgroup label='시'>-->
-<!--                            <option>선택</option>-->
-<!--                            <option value='서울특별시'>서울특별시</option>-->
-<!--                        </optgroup>-->
-<!--                    </select>-->
-<!--                </label></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>선호구</td>-->
-<!--                <td><label>-->
-<!--                    <select id='selected_gu' name='gu' required>-->
-<!--                        <optgroup label='구'>-->
-<!--                            <option>선택</option>-->
-<!--                            <option value='강남구'>강남구</option>-->
-<!--                            <option value='송파구'>송파구</option>-->
-<!--                            <option value='서초구'>서초구</option>-->
-<!--                            <option value='강동구'>강동구</option>-->
-<!--                            <option value='관악구'>관악구</option>-->
-<!--                            <option value='영등포구'>영등포구</option>-->
-<!--                            <option value='강서구'>강서구</option>-->
-<!--                            <option value='양천구'>양천구</option>-->
-<!--                            <option value='구로구'>구로구</option>-->
-<!--                            <option value='금천구'>금천구</option>-->
-<!--                            <option value='종로구'>종로구</option>-->
-<!--                            <option value='중구'>중구</option>-->
-<!--                            <option value='동대문구'>동대문구</option>-->
-<!--                            <option value='중랑구'>중랑구</option>-->
-<!--                            <option value='마포구'>마포구</option>-->
-<!--                            <option value='용산구'>용산구</option>-->
-<!--                            <option value='성동구'>성동구</option>-->
-<!--                            <option value='광진구'>광진구</option>-->
-<!--                            <option value='은평구'>은평구</option>-->
-<!--                            <option value='서대문구'>서대문구</option>-->
-<!--                            <option value='성북구'>성북구</option>-->
-<!--                            <option value='강북구'>강북구</option>-->
-<!--                            <option value='도봉구'>도봉구</option>-->
-<!--                            <option value='노원구'>노원구</option>-->
-
-
-<!--                        </optgroup>-->
-<!--                    </select>-->
-<!--                </label></td>-->
                                 <td>선호도시</td>
                 <td>
-<!--                        <label for="city">도시 선택</label>-->
                     <select
                             name="city"
                             id="city"
@@ -107,8 +70,7 @@
                 </td>
             </tr>
         </table>
-        <button type="submit"
-                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+        <button type="submit" class="submit_btn">
             회원가입
         </button>
     </form>
@@ -118,7 +80,93 @@
 
 
 {% block hanseokscript %}
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<!--jquery사용하려면 필요한 스크립트 코드  (메서드 사용 가능하게 해줌)-->
 <script>
+    function id_overlap_check() {
+//  아이디 중복 확인
+        $('.username_input').change(function () {
+            $('#id_check_success').hide();
+            $('.id_overlap_button').show();
+            $('.username_input').attr('check_result', "fail");
+        })
+
+        if ($('.username_input').val() == '') {
+            alert('아이디를 입력해주세요')
+            return;
+        }
+
+
+        id_overlap_input = document.querySelector('input[name="username"]');
+
+        $.ajax({
+            url: "{% url 'login:id_overlap_check' %}",
+            // type: "POST",
+            data: {
+                'username': id_overlap_input.value
+            },
+            datatype: 'json',
+            success: function (data) {
+                console.log(data['overlap']);
+                if (data['overlap'] == "fail") {
+                    alert("이미 존재하는 아이디입니다");
+                    id_overlap_input.focus();
+                    document.querySelector('.submit_btn').setAttribute('disabled', true);
+                    return;
+                } else {
+                    alert('사용가능한 아이디입니다');
+                    $('.username_input').attr('check_result', "success");
+                    $("#id_check_success").show();
+                    $('.id_overlap_button').hide();
+                    document.querySelector('.submit_btn').removeAttribute('disabled');
+                    return;
+                }
+            }
+        });
+    }
+
+    function nickname_lap_check() {
+        // 닉네임 중복 확인
+        $('.nickname_input').change(function () {
+            $('#nickname_check_success').hide();
+            $('.nickname_lap_button').show();
+            $('.nickname_input').attr('check_result', "fail");
+        })
+
+        if ($('.nickname_input').val() == '') {
+            alert('닉네임을 입력해주세요')
+            return;
+        }
+
+        nickname_lap_input = document.querySelector('input[name="nickname"]');
+
+        $.ajax({
+            url: "{% url 'login:nickname_lap_check' %}",
+            // type: "POST",
+            data: {
+                'nickname': nickname_lap_input.value
+            },
+            datatype: 'json',
+            success: function (data) {
+                console.log(data['overlap']);
+                if (data['lap'] == "fail") {
+                    alert("이미 존재하는 닉네임입니다");
+                    nickname_lap_input.focus();
+                    document.querySelector('.submit_btn').setAttribute('disabled', true);                    
+                    return;
+                } else {
+                    alert('사용가능한 닉네임입니다');
+                    $('.nickname_input').attr('check_result', "success");
+                    $("#nickname_check_success").show();
+                    $('.nickname_lap_button').hide();
+                    document.querySelector('.submit_btn').removeAttribute('disabled');
+                    return;
+                }
+            }
+        });
+        }
+
+
     function addressKindChange(e) {
         let city;
         let seoul = [
@@ -167,6 +215,21 @@
     // save_btn.onclick = function() {
     //     confirm("회원가입이 완료되었습니다.");
     // }
+
+
+    //유효성 검사
+    {% comment %} function validate() {
+        var re = /^[a-zA-Z0-9]{4,12}$
+
+        var id = document.getElementById("username");
+
+
+        if(!check(re,id,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+            alert("아이디는 4~12자의 영문 대소문자와 숫자로만 입력해주세요.")
+           return false;
+       }
+
+    } {% endcomment %}
 
 </script>
 
