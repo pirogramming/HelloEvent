@@ -10,35 +10,33 @@ from django.conf import settings
 def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
     creator = Creator.objects.get(pk=pk)
     comments = creator.comments.all()
-    try:
-        recomments = comments.recomment_set.all()
-    except Exception as e:
-        print('대댓글이 없습니다.')
     if request.method =='POST':
         print('post시작')
-        comment_form = CommentForm(request.POST)
-        recomment_form = CommentForm(request.POST)
+        comment_form = CommentForm(request.POST, request.FILES)
+        print(1)
         if comment_form.is_valid():
+            print(2)
             comment = comment_form.save(commit=False)
+            print(comment.comment_text)
+            print(comment.comment_photo)
             comment.member = request.user
+            print(4)
             comment.creator = creator
+            print(5)
             comment.save()
-            if recomment_form.is_valid():
-                recomment = recomment_form.save(commit=False)
-                recomment.parent = parent
-                recomment.member = request.user
-                # 
+            print(6)
             return redirect('event:comment_detail',pk=pk)
+            print(7)
     else:
         print('get시작') 
         comment_form = CommentForm()
-    print('ctx반환직전')
-    ctx = {
-        'creator':creator,
-        'comments':comments,
-        'comment_form':comment_form,
-    }
-    return render(request, 'comment/comment_detail.html', ctx)
+        print('ctx반환직전')
+        ctx = {
+            'creator':creator,
+            'comments':comments,
+            'comment_form':comment_form,
+        }
+        return render(request, 'comment/comment_detail.html', ctx)
 
 # @login_required
 def comment_update(request, comment_id): # 댓글 수정하기
@@ -66,3 +64,35 @@ def comment_delete(request, comment_id):
     comment_creator = comment.creator
     comment.delete()
     return redirect('event:comment_detail',pk=comment_creator.id)
+
+# ------------------------------------------------------------
+# 대댓글 보여주기
+# def recomment_detail(request, comment_id):
+#     comment = Comment.objects.get(pk=comment_id)
+#     comments = creator.comments.all()
+#     if request.method =='POST':
+#         print('post시작')
+#         comment_form = CommentForm(request.POST)
+#         recomment_form = CommentForm(request.POST)
+#         if comment_form.is_valid():
+#             comment = comment_form.save(commit=False)
+#             comment.member = request.user
+#             comment.creator = creator
+#             comment.save()
+#             if recomment_form.is_valid():
+#                 recomment = recomment_form.save(commit=False)
+#                 recomment.parent = parent
+#                 recomment.member = request.user
+#                 # 
+#             return redirect('event:comment_detail',pk=pk)
+#     else:
+#         print('get시작') 
+#         comment_form = CommentForm()
+#     print('ctx반환직전')
+#     ctx = {
+#         'creator':creator,
+#         'comments':comments,
+#         'comment_form':comment_form,
+#     }
+#     return render(request, 'comment/comment_detail.html', ctx)
+#         recomments = comments.recomment_set.all()
