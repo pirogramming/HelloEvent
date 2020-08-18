@@ -1,6 +1,6 @@
-.row div {
+/* .row div {
   margin-bottom: 1rem;
-}
+} */
 
 .registering {
   margin: 2rem 3rem 0;
@@ -27,14 +27,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0;
 }
 
-.choose_gu {
-  margin-top: 1rem;
+.row .choose_city {
+  margin-bottom: 1rem;
+}
+.row .choose_gu {
+  margin-bottom: 1rem;
 }
 
 .choose_section .search_btn {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .map_wrap {
@@ -70,35 +75,17 @@
   font-weight: bold;
 }
 
+.bAddr {
+  padding: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.bAddr_detail:nth-child(n) {
+  margin-bottom: 0;
+}
+
 .location_form_section {
   display: none;
-}
-
-
-.registering h1 {
-    color: #0080ff;
-    font-size: 2.2rem;
-}
-
-.registering h4 {
-    font-size: 1.2rem;
-}
-
-#event_info form {
-    margin: 0 auto;
-    max-width: 900px !important;
-}
-
-#enroll_btn {
-    margin-left: 45%;
-    border: none;
-    width: 110px;
-    height: 50px;
-    border-radius: 10px;
-    color: white;
-    background-color: #0080ff;
-}
-
-#enroll_btn:hover {
-    background-color: #3875d7;
 }
