@@ -1,6 +1,6 @@
-.row div {
+/* .row div {
   margin-bottom: 1rem;
-}
+} */
 
 .registering {
   margin: 2rem 3rem 0;
@@ -27,14 +27,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0;
 }
 
-.choose_gu {
-  margin-top: 1rem;
+.row .choose_city {
+  margin-bottom: 1rem;
+}
+.row .choose_gu {
+  margin-bottom: 1rem;
 }
 
 .choose_section .search_btn {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .map_wrap {
@@ -68,6 +73,17 @@
   display: block;
   margin-left: 1rem;
   font-weight: bold;
+}
+
+.bAddr {
+  padding: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.bAddr_detail:nth-child(n) {
+  margin-bottom: 0;
 }
 
 .location_form_section {

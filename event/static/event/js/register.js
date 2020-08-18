@@ -9,6 +9,8 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 //유저가 등록한 선호 장소로 맵이 바로 나타나게 함
 findUserPreferLocation();
 
+var map_infowindow = new kakao.maps.InfoWindow({ zindex: 1 }); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+
 // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
 searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 
@@ -28,14 +30,13 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
 
   searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
     if (status === kakao.maps.services.Status.OK) {
-      var detailAddr = !!result[0].road_address
-        ? "<div>도로명주소 : " + result[0].road_address.address_name + "</div>"
-        : "";
-      detailAddr +=
-        "<div>지번 주소 : " +
+      // var detailAddr = !!result[0].road_address
+      //   ? "<div>도로명주소 : " + result[0].road_address.address_name + "</div>"
+      //   : "";
+      var detailAddr =
+        "<div class='bAddr_detail'>지번 주소 : " +
         result[0].address.address_name +
-        "</div><div>이 곳을 이벤트 등록 위치로 설정합니다.</div>";
-
+        "</div><div class='bAddr_detail'>이 곳을 이벤트 등록 위치로 설정합니다.</div>";
       // 도시, 구까지 파싱하고 나머지 주소 파싱 과정
       let restAddr = result[0].address.address_name.split(" ");
       // 파싱한 도시 이름
@@ -60,12 +61,8 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       gu_input.value = guName;
       rest_address_input.value = restAddr;
 
-      var content =
-        '<div class="bAddr" style="padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">' +
-        '<span class="title">법정동 주소정보</span>' +
-        detailAddr +
-        "</div>";
-
+      var content = '<div class="bAddr">' + detailAddr + "</div>";
+      console.log(content);
       // 마커를 클릭한 위치에 표시합니다
       marker.setPosition(mouseEvent.latLng);
       marker.setMap(map);
