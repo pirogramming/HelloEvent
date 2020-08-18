@@ -1,0 +1,46 @@
+.carousel-inner {
+    height: 620px;
+}
+
+.btn-primary {
+    background-color: #fd8b83;
+    border-color: #fd8b83;
+}
+
+@media (min-width: 1200px) {
+    .container_title, .row{
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container_title, .row{
+        max-width: 1000px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container_title. .row {
+        max-width: 720px;
+    }
+}
+
+.container_title, .row{
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin: 0 auto;
+}
+
+.container_custom > .row, .container_custom > .row span{
+    color: #383A3F!important;
+}
+
+a {
+    color: #dd445b ;
+}
+
+.btn-primary{
+    background-color: #fd8b83!important;
+    border: none;
+}

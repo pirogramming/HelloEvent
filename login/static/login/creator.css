@@ -1,0 +1,25 @@
+button a {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+
+.contents button {
+    text-align: center !important;
+    margin-top: 50px;
+    height: 45px;
+    width: 110px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: lightgray;
+}
+
+.contents button:hover {
+    background-color: darkgray;
+}
+
+#nickname_lap_button {
+    width: 60px!important;
+    height: 20px!important;
+}

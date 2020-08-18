@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+<link rel="stylesheet" href="{% static 'login/creator.css' %}">
+{% endblock %}
 
 {% block main %}
 <div class="mypage_title" style="margin-top: 50px; text-align: center;">
-    <h3 style="color: #0080ff;">Creator page</h3>
+    <h2 style="color: #dd445b ;">Creator page</h2>
     <p>나의 크리에이터 정보를 확인할 수 있습니다.</p>
 </div>
 <div class="contents" style="margin-top: 100px; text-align: center; margin-bottom: 70px;">
