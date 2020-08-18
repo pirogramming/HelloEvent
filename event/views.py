@@ -26,49 +26,6 @@ class RelatedObjectDoesNotExist(Exception):
     def __str__(self):
         return self.msg
 
-# @login_required
-# def register_event(request):
-#     try:
-#         if request.user.creator is None:
-#             raise RelatedObjectDoesNotExist("오류!")
-#         else:
-#             ImageFormSet = modelformset_factory(EventImage, form=ImageForm, extra=3)
-#
-#             if request.method == 'POST':
-#                 event_form = EventForm(request.POST)
-#                 tags = request.POST['tag'].split(',')
-#                 image_formset = ImageFormSet(request.POST, request.FILES, queryset=EventImage.objects.none())
-#                 if event_form.is_valid() and image_formset.is_valid():
-#                     event = event_form.save(commit=False)
-#                     event.creator = Member.objects.get(id=request.user.pk).creator
-#                     event.save()
-#                     for tag in tags:
-#                         print(tag)
-#                         tag = tag.strip()
-#                         Tag.objects.create(name=tag, event=event)
-#
-#                     for form in image_formset.cleaned_data:
-#                         print(image_formset.cleaned_data)
-#                         if form :
-#                             image = form['image']
-#                             photo = EventImage(event=event, image=image)
-#                             print(2)
-#                             photo.save()
-#                 return redirect('login:login')
-#             else:
-#                 creator = request.user.creator
-#                 form = EventForm()
-#                 formset = ImageFormSet(queryset=EventImage.objects.none())
-#                 cxt = {
-#                     'form':form,
-#                     'formset':formset,
-#                     'creator':creator,
-#                 }
-#                 return render(request, 'event/event_register.html', cxt)
-#     except RelatedObjectDoesNotExist:
-#         return redirect('login:create_creator')
-
-
 
 def register_event(request):
     try:
@@ -180,3 +137,28 @@ def search_result(request):
         'results':results,
     }
     return render(request, "event/search_result.html", ctx)
+
+# def delete_event
+
+def search_result_click(request, tag):
+    data = tag
+    tags = Tag.objects.filter(Q(name__icontains=data))
+    print(tags)
+    today = datetime.today()
+    print(today)
+    results = Event.objects.none()
+    for tag in tags:
+        print(tag)
+        print(tag.event_set.all())
+        q = tag.event_set.all().filter(end_date_time__gte=today)
+        q = q.order_by('start_date_time')
+        print(q)
+        results = results | q
+        print(results)
+    print(results)
+    ctx = {
+        'data':data,
+        'results':results,
+    }
+    return render(request, "event/search_result.html", ctx)
+

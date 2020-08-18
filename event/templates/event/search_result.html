@@ -6,23 +6,38 @@
 {% endblock %}
 
 {% block main %}
-    <div class="about-search-data">
-        <p>"{{ data }}"를 포함한 태그를 가진 이벤트 검색결과</p>
+    <div class="container">
+    <div class="top-desc">
+        "<b>{{ data }}</b>"를 포함한 태그를 가진 이벤트 검색결과
     </div>
     {% if results is None %}
-        <p>검색결과가 없습니다</p>
+        <div class="top-desc">
+            검색결과가 없습니다<br><br>
+            <img id="not-found-img" src="{% static "event/img/emojis.png" %}">
+        </div>
     {% elif data == "" %}
-        <p>검색어가 없습니다. 검색어를 입력해주세요!</p>
+        <div class="top-desc">
+            검색어가 없습니다. 검색어를 입력해주세요!<br><br>
+            <img id="not-found-img" src="{% static "event/img/emojis.png" %}" >
+        </div>
     {% else %}
         <div class="events-container">
         {% for event in results %}
-                <div class="s_event-container">
+                <div class="s_event-container ">
                     <div id="left_section">
+                        {% for tag in event.tags.all %}
+                            <a href="{% url "event:search_result_click" tag.name %}">
+                                <div id="tag-box">{{ tag.name }}</div>
+                            </a>
+                        {% endfor %}
                         <div id="event_name">
                             {{ event.event_name }}
                         </div>
+                        <div id="event_time">
+                            {{ event.start_date_time }} ~ {{ event.end_date_time }}
+                        </div>
                         <div id="event_desc">
-                            {{ event.desc }}<br>
+                            {{ event.desc|linebreaksbr}}<br>
                             {{ event.start_date_time }}<br>
                             {{ event.end_date_time }}
                         </div>
@@ -31,5 +46,6 @@
         {% endfor %}
         </div>
     {% endif %}
+    </div>
 
 {% endblock %}
