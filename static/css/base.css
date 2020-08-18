@@ -309,8 +309,8 @@ footer {
     margin: 0 auto;
 }
 
-.additional_info th {
-    width: 150px;
+.additional_info tr {
+    width: 200px;
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
@@ -318,7 +318,8 @@ footer {
 }
 
 .additional_info td {
-    width: 350px;
+    width: 400px;
+    /*width: 500px;*/
     padding: 10px;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
