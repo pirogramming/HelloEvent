@@ -3,7 +3,7 @@ table.type03 {
     text-align: left;
     line-height: 1.5;
     border-top: 1px solid #ccc;
-    border-left: 3px solid #0080ff;
+    border-left: 3px solid dimgray;
     margin: 20px 10px;
 }
 
@@ -12,7 +12,7 @@ table.type03 th {
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
-    color: #0080ff;
+    color: dimgray;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 
@@ -27,14 +27,23 @@ table.type03 td {
 }
 
 button a {
-    text-decoration: none!important;
-    color: white!important;
+    text-decoration: none !important;
+    color: white !important;
 }
 
-button{
-    background-color: lightgray;
-}
-button:hover {
-    background-color: gray;
+
+.contents button {
+    text-align: center !important;
+    margin-top: 50px;
+    height: 45px;
+    width: 110px;
+    border: none;
+    border-radius: 10px;
     color: white;
+    background-color: lightgray;
+
+}
+
+.contents button:hover {
+    background-color: darkgray;
 }

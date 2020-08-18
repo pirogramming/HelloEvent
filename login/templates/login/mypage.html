@@ -7,7 +7,7 @@
 
 {% block main %}
 <div class="signup_title" style="margin-top: 50px; text-align: center;">
-    <h3 style="color: #0080ff;">My page</h3>
+    <h2 style="color: #dd445b ;">My page</h2>
     <p>나의 프로필 정보를 확인할 수 있습니다</p>
 </div>
 <br/>
@@ -47,23 +47,19 @@
         <!--        <p>가입 날짜: {{ user.created_on }}</p>-->
 
 
-    <button type="button"
-            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+    <button type="button">
         <a href="{% url 'login:update' user.pk %}">수정하기</a>
     </button>
-    <button type="button"
-            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+    <button type="button">
         <a href="{% url 'login:main' %}">메인으로</a>
     </button>
 
     {% if creator is None %}
-    <button type="button"
-            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+    <button type="button" style="width: 140px!important;">
         <a href="{% url 'login:create_creator' %}">크리에이터 등록</a>
     </button>
     {% else %}
-    <button type="button"
-            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 140px; border:none; border-radius: 10px;color: white; ">
+    <button type="button" style="width: 140px!important;">
         <a href="{% url 'login:creator_mypage' user.pk %}">크리에이터 페이지</a>
     </button>
     {% endif %}
