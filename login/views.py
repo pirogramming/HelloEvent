@@ -44,7 +44,6 @@ def signup(request, pk):
     user = Member.objects.get(id=pk)
 
     if user.nickname != '':
-        console.log(user.pk)
         return redirect(to=url)
     else:
         if request.method == 'GET':
@@ -79,7 +78,6 @@ def mypage(request, pk):
 
 
 def login_update(request, pk):
-    url = reverse('login:main')
     user = Member.objects.get(id=pk)
     if request.method == 'GET':
         context = {
@@ -96,7 +94,7 @@ def login_update(request, pk):
     user.gu = gu
     user.save()
 
-    return redirect(to=url)
+    return redirect('login:mypage', pk)
 
     # if request.method == 'POST':
     #     form = MemberForm(request.POST, instance=member)
@@ -199,13 +197,20 @@ def login_form(request):
         return render(request, 'login/login_form.html')
 
 
-
 #크리에이터 계정 삭제
-def delete_creator(request):
-    if request.method == 'POST':
-        creator = Member.objects.get(id=request.user.pk).creator
+# def creator_delete(request, pk):
+#     if request.method == 'POST':
+#         creator = Member.objects.get(id=request.user.pk).creator
+#         creator.delete()
+#         return redirect("login:mypage", request.id)
+def creator_delete(request, pk):
+    user = get_object_or_404(Member, pk=pk)
+    creator = user.creator
+    # creator = Member.objects.get(id=request.user.pk).creator
+    if creator:
         creator.delete()
-        return redirect("login:mypage", request.id)
+        return redirect('login:mypage', pk)
+    return redirect("login:creator_mypage", pk)  
 
 #로그인 중복확인
 def id_overlap_check(request):
@@ -238,3 +243,27 @@ def nickname_lap_check(request):
         lap = 'fail'
     context = {'lap': lap}
     return JsonResponse(context)
+
+#이메일 중복확인
+def email_lap_check(request):
+    email = request.GET.get('email')
+    try:
+        # 중복 검사 실패
+        user = Member.objects.get(email=email)
+    except:
+        # 중복 검사 성공
+        user = None
+    if user is None:
+        lap = 'pass'
+    else:
+        lap = 'fail'
+    context = {'lap': lap}
+    return JsonResponse(context)
+
+#일반, 소셜로그인 계정 삭제 (해당 user의 pk값으로 찾아 데이터에서 삭제)
+def user_delete(request, pk):
+    user = get_object_or_404(Member, pk=pk)
+    if user:
+        user.delete()
+        return render(request, "login/main.html")  
+    return redirect('login:mypage', pk)

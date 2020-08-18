@@ -70,10 +70,12 @@
                 </label></td>
             </tr>
         </table>
-        <button id="save_btn" type="submit" style="margin: 0 auto; text-align: center!important; margin-top: 50px;
-                  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-                  <a href="{% url 'login:mypage' user.pk %}">저장</a>
-        </button>
+        <div id="user_pk_section" style="display:none">{{user.pk}}</div>
+
+            <a href="{% url 'login:mypage' user.pk %}" id='save_a'>
+            <button id="save_btn" type="submit" style="margin: 0 auto; text-align: center!important; margin-top: 50px;
+            height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">저장
+            </button></a>
         <br/><br/><br/><br/>
         <hr>
         <br/><br/>
@@ -139,11 +141,33 @@
     option_gu_tag.setAttribute('selected',true)
     console.log(option_gu_tag)
 
-    let save_btn = document.querySelector('#save_btn')
-    save_btn.addEventListener('click',function(){
-        confirm('수정하시겠습니까?')
+    // 취소눌러도 수정이 그대로 되는 부분 수정함.
+    let user_pk_tag = document.querySelector('#user_pk_section')
+    let user_pk = user_pk_tag.textContent
+    let returnUrl = '/login/' + user_pk +'/update/'
+
+
+    let save_a = document.querySelector('#save_a')
+    save_a.onclick = function() {
+        let confirm_result = alert('수정되었습니다!');
+
+
+        if (confirm_result === false){
+            //document.querySelector('#save_btn').setAttribute('disabled',true)
+            document.querySelector('#save_a').setAttribute('href', returnUrl)
+        }
+      //  else{
+      //      document.querySelector('#save_btn').setAttribute('disabled',false)
+       // }
+    }
+    
+    // save_a.addEventListener('click', function(){
+    //   alert('수정이 완료되었습니다.') 
+    // })
+    // save_btn.addEventListener('click',function(){
+    //    confirm('수정하시겠습니까?')
     //    alert("수정이 완료되었습니다.")  -> 이거 넣을 수 있는건지 진희형한테 물어보기 (마이페이지로 이동과 동시에 나타나야 함.)
-     })
+    // })
 
     // save_btn.onclick = function() {
     //     confirm("수정하시겠습니까?");
