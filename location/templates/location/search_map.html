@@ -1,16 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block custom_style %}
 <link rel="stylesheet" href="{% static 'location/css/search_map.css' %}" />
 {% endblock %} {% block main %}
-<div class="container-fluid row">
-  <div class="map_wrap col-md-6 col-sm-12 col-xs-12">
-    <div id="map"></div>
-    <div class="hAddr">
-      <!-- <span class="title" style="font-weight: bold; display: block;"
-      >지도중심기준 행정동 주소정보</span
-    > -->
-      <span id="centerAddr"></span>
-    </div>
-  </div>
+<div class="container-fluid row flex-column-reverse flex-md-row">
   <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
     <div id="event_title_wrap">
       <div id="event_title">
@@ -76,7 +67,15 @@
       {% endif %} {% endfor %}
     </div>
   </div>
-
+  <div class="map_wrap col-md-6 col-sm-12 col-xs-12">
+    <div id="map"></div>
+    <div class="hAddr">
+      <!-- <span class="title" style="font-weight: bold; display: block;"
+      >지도중심기준 행정동 주소정보</span
+    > -->
+      <span id="centerAddr"></span>
+    </div>
+  </div>
   <!-- 템플릿 변수를 자바스크립트 파일에 전달하기 위한 구역 -->
   <div class="template_variable_section">
     <div class="template_variable_city">{{selected_city}}</div>
