@@ -25,4 +25,5 @@ urlpatterns = [
     path('login/check_id/', views.id_overlap_check, name='id_overlap_check'),  # id 중복 체크
     path('login/check_nickname/', views.nickname_lap_check, name='nickname_lap_check'),  # nickname 중복 체크
 
+    path('creator/<int:pk>/like/', views.like, name="like_creator")
 ]

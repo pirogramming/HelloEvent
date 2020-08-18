@@ -5,6 +5,8 @@ from django.contrib import auth, messages
 from django.contrib.auth import login as auth_login
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.templatetags.socialaccount import get_providers
+
+from event.models import Event
 from helloevent import settings
 from django.urls import reverse
 
@@ -238,3 +240,15 @@ def nickname_lap_check(request):
         lap = 'fail'
     context = {'lap': lap}
     return JsonResponse(context)
+
+def like(request, pk):
+    creator = get_object_or_404(Event, id=pk).creator
+    if request.user in creator.like_users.all() :
+        creator.like_users.remove(request.user)
+    else:
+        creator.like_users.add(request.user)
+
+    return redirect("event:creator_detail", pk)
+
+
+

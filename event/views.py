@@ -67,7 +67,7 @@ def register_event(request):
                         photo = EventImage(event=event, image=image)
                         print(2)
                         photo.save()
-                return redirect('login:login')
+                return redirect('event:creator_detail', event.pk)
 
         else:
             print(100)

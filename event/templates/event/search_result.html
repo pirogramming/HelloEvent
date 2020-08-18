@@ -33,6 +33,9 @@
                         <div id="event_name">
                             {{ event.event_name }}
                         </div>
+                        <div id="creator_name">
+                            크리에이터 : <b>{{ event.creator.creator_name }}</b>
+                        </div>
                         <div id="event_time">
                             {{ event.start_date_time }} ~ {{ event.end_date_time }}
                         </div>
@@ -41,6 +44,13 @@
                             {{ event.start_date_time }}<br>
                             {{ event.end_date_time }}
                         </div>
+                    </div>
+                    <div id="right_section">
+                        <a href="{% url "login:like_creator" event.creator.pk %}">
+                            <div id="like">
+                                좋아요
+                            </div>
+                        </a>
                     </div>
                 </div>
         {% endfor %}
