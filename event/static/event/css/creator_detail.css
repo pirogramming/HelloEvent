@@ -15,6 +15,9 @@ body {
      padding:10px 0;
 }
 
+a, a:hover {
+    text-decoration: none;
+}
 /* --------------------------------------------- */
 
 
@@ -67,8 +70,23 @@ body {
     margin-top: 30px !important;
 }
 
-#event_name {
+#event_name{
+    padding-bottom: 20px;
     color: rgb(53, 49, 45);
+    font-size:2rem;
+    font-family: 'Yeon Sung', cursive;
+}
+
+#event_name a{
+    padding-bottom: 20px;
+    color: rgb(53, 49, 45);
+    font-size:2rem;
+    font-family: 'Yeon Sung', cursive;
+}
+
+#event_name a:hover{
+    padding-bottom: 20px;
+    color: rgb(17, 5, 119);
     font-size:2rem;
     font-family: 'Yeon Sung', cursive;
 }
@@ -157,57 +175,89 @@ body {
 
 }
 
+.history_col:nth-child(2) {
+    height:inherit;
+}
+
 .history_imgs {
-    display: block;
-    width:100%;
-    max-width: 285px;
-    max-height: inherit;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    max-height: 200px;
+    max-width: 285px;
+    width: auto; height: auto; 
 }
 /* --------------------------------------------- */
 
-
-/* comment list */
-/* .comment_list .row {
-    display:block;
-    text-align: center;
-} */
-
-.arrow_box {
-    font-size: 15px;
-	/* position: relative; */
-	background: #9bd0f2;
-	border: 4px solid #f5f5f5;
-}
-.arrow_box:after, .arrow_box:before {
-	right: 100%;
-	top: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.arrow_box:after {
-	border-color: rgba(155, 208, 242, 0);
-	border-right-color: #9bd0f2;
-	border-width: 5px;
-	margin-top: -5px;
-}
-.arrow_box:before {
-	border-color: rgba(245, 245, 245, 0);
-	border-right-color: #f5f5f5;
-	border-width: 11px;
-	margin-top: -11px;
-}
-
+/* comment */
 .comment_user {
-    width:50px;
+    width:100px;
     /* float: left; */
 }
+
+.grid2 {
+    position: relative;
+}
+
+.comment_list .row{
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.comment_list .row .grid2 .left {
+    text-align: left;
+    float: left;
+}
+.comment_list .row .grid2 .right {
+    text-align: right;
+    float:right;
+}
+
+
+/* 말풍선 css */
+.speech-bubble1 {
+	position: relative;
+	background: #d1ebff;
+    border-radius: .4em;
+    padding:20px;
+    margin-right:10px !important;
+}
+.speech-bubble1:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 24px solid transparent;
+	border-right-color: #d1ebff;
+	border-left: 0;
+	border-top: 0;
+	margin-top: -12px;
+	margin-left: -24px;
+}
+
+.speech-bubble2 {
+	position: relative;
+	background: #d1ebff;
+    border-radius: .4em;
+    padding:20px;
+    margin-left:10px !important;
+}
+.speech-bubble2:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 24px solid transparent;
+	border-left-color: #d1ebff;
+	border-right: 0;
+	border-top: 0;
+	margin-top: -12px;
+	margin-right: -24px;
+}
+
 /* --------------------------------------------- */
