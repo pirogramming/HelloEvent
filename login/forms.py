@@ -66,7 +66,7 @@ class MemberForm(forms.ModelForm):
 class CreatorForm(forms.ModelForm):
     class Meta:
         model = Creator
-        exclude = ('member',)
+        exclude = ('member', 'like_users',)
         widgets = {
             'creator_name': forms.TextInput(
                 attrs={'class': 'form-control', 'style': 'width: 80%', 'style': 'margin:0 auto',

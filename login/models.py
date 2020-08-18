@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import User, AbstractUser, UserManager
 from django.db import models
@@ -59,8 +60,5 @@ class Creator(models.Model):
     desc = models.TextField(blank=True)
 
     member = models.OneToOneField(Member, on_delete=models.CASCADE, default=None, null=True, blank=True)
-
-class Like(models.Model):
-    from_user = models.ForeignKey(Member, on_delete=models.CASCADE)
-    to_user = models.ForeignKey(Creator, on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_creators")
 
