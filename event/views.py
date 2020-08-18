@@ -19,8 +19,6 @@ from comment.models import Comment
 from django.db.models import Q
 from datetime import datetime
 
-import arrow
-
 class RelatedObjectDoesNotExist(Exception):
     def __init__(self):
         self.msg = '크리에이터 존재 오류'
