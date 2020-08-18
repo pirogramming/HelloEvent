@@ -59,13 +59,17 @@
   padding: 5px;
 }
 
-.hAddr .title {
-  font-weight: bold;
-  display: block;
+.hAddr {
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .hAddr #centerAddr {
   display: block;
-  margin-top: 2px;
-  font-weight: normal;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.location_form_section {
+  display: none;
 }

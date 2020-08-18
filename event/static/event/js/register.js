@@ -319,22 +319,31 @@ function map_reset(e) {
     도봉구: [37.6686914100284, 127.04721049936],
     노원구: [37.6543617567057, 127.056430475216],
   };
-  let siblings = Array.from($(e).siblings());
-  let choosed_city = siblings.filter((node) => node.className == "choose_city");
-  let selected_city = Array.from(choosed_city[0].childNodes).filter(
-    (node) => node.className == "selected_city"
+  // console.log($(e).parent().siblings());
+  let siblings = Array.from($(e).parent().siblings());
+  // siblings.forEach((node) =>
+  //   console.log(node.classList.contains("choose_city"))
+  // );
+  let choosed_city = siblings.filter((node) =>
+    node.classList.contains("choose_city")
   );
+  let selected_city = Array.from(choosed_city[0].childNodes).filter(
+    (node) => node.nodeName == "SELECT"
+  );
+
   let selected_city_options = Array.from(selected_city[0].childNodes);
 
   //사용자가 지정한 도시 이름 = selected_city_option[0].value
   selected_city_option = selected_city_options.filter(
     (node) => node.nodeName == "OPTION" && node.selected
   );
-  // console.log(selected_city_option[0].value);
 
-  let choosed_gu = siblings.filter((node) => node.className == "choose_gu");
+  let choosed_gu = siblings.filter((node) =>
+    node.classList.contains("choose_gu")
+  );
+  // console.log(choosed_gu);
   let selected_gu = Array.from(choosed_gu[0].childNodes).filter(
-    (node) => node.className == "selected_gu"
+    (node) => node.nodeName == "SELECT"
   );
   let selected_gu_options = Array.from(selected_gu[0].childNodes);
 
@@ -343,13 +352,14 @@ function map_reset(e) {
     (node) => node.nodeName == "OPTION" && node.selected
   );
 
-  // console.log(selected_option[0].value);
   // 주소-좌표 변환 객체를 생성합니다
   var geocoder = new kakao.maps.services.Geocoder();
 
   //사용자가 선택한 옵션을 토대로 주소 파싱
   let search_address =
     selected_city_option[0].value + " " + selected_gu_option[0].value;
+
+  console.log(search_address);
 
   // 주소로 좌표를 검색합니다
   geocoder.addressSearch(search_address, function (result, status) {
