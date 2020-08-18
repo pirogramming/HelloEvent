@@ -1,42 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block custom_style %}
 <link rel="stylesheet" href="{% static 'location/css/search_map.css' %}" />
 {% endblock %} {% block main %}
-<div class="container-fluid">
-  <div id="event_content_wrap">
-    <div id="event_title_wrap">
-      <div id="event_title">
-        <h1>"{{selected_city}} {{selected_gu}}" 지역 검색 결과</h1>
-      </div>
-    </div>
-    <div id="event_category_wrap">
-      <ul id="category_list">
-        <li>버스킹</li>
-        <li>플리마켓</li>
-        <li>전시</li>
-      </ul>
-    </div>
-    <div id="event_wrap">
-      {% for event in events %}
-      <div id="event_{{event.pk}}">
-        <div class="event_image_section">
-          <!-- TODO : 이벤트 이미지 넣기-->
-          <!-- {% for event_image in event_images %} {%endfor%} -->
-        </div>
-        <div class="event_content_section">
-          <div>이벤트명 : {{event.event_name}}</div>
-          <div>주최자 : {{event.creator}}</div>
-          <div>장르 : {{event.genre}}</div>
-          <div>{{event.location.city}}</div>
-          <div>{{event.location.gu}}</div>
-          <div>{{event.location.rest_address}}</div>
-          <div>시작일시 : {{event.start_date_time}}</div>
-          <div>종료일시 : {{event.end_date_time}}</div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div class="map_wrap">
+<div class="container-fluid row">
+  <div class="map_wrap col-md-6 col-sm-12 col-xs-12">
     <div id="map"></div>
     <div class="hAddr">
       <!-- <span class="title" style="font-weight: bold; display: block;"
@@ -45,6 +11,72 @@
       <span id="centerAddr"></span>
     </div>
   </div>
+  <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
+    <div id="event_title_wrap">
+      <div id="event_title">
+        <h1>"{{selected_city}} {{selected_gu}}" 지역 검색 결과</h1>
+      </div>
+      <hr />
+    </div>
+    <div id="event_category_wrap">
+      <ul id="category_list">
+        <li><a href="#">버스킹</a></li>
+        <li><a href="#">플리마켓</a></li>
+        <li><a href="#">전시</a></li>
+      </ul>
+    </div>
+    <hr />
+    <div id="event_wrap">
+      {% for event in events %}   
+      {% if event.location.city == selected_city and event.location.gu == selected_gu %}
+      <div id="event_{{event.pk}}" class="row event_post">
+        <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row">
+          {% if event.eventimage_set.first.image.url %}
+            <img
+              class="col-xs-12 col-sm-12 col-md-12"
+              src="{{event.eventimage_set.first.image.url}}"
+              alt="이벤트 이미지"
+            />
+          {% else %}
+            <img
+            class="col-xs-12 col-sm-12 col-md-12"
+            src="/media/creator_photo/default.jpg"
+            alt="기본 이미지"
+           />
+          {% endif %}
+        </div>
+        <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
+          <div class="event_content" id="event_title_{{event.pk}}">
+            이벤트명 : {{event.event_name}}
+          </div>
+          <div class="event_content" id="event_creator_{{event.pk}}">
+            주최자 : {{event.creator}}
+          </div>
+          <div class="event_content" id="event_genre_{{event.pk}}">
+            장르 : {{event.genre}}
+          </div>
+          <div class="event_content" id="event_city_{{event.pk}}">
+            {{event.location.city}}
+          </div>
+          <div class="event_content" id="event_gu_{{event.pk}}">
+            {{event.location.gu}}
+          </div>
+          <div class="event_content" id="event_restAdress_{{event.pk}}">
+            {{event.location.rest_address}}
+          </div>
+          <div class="event_content" id="event_startTime_{{event.pk}}">
+            시작일시 : {{event.start_date_time}}
+          </div>
+          <div class="event_content" id="event_endTime_{{event.pk}}">
+            종료일시 : {{event.end_date_time}}
+          </div>
+        </div>
+      </div>
+      <hr />
+      {% endif %} {% endfor %}
+    </div>
+  </div>
+
   <!-- 템플릿 변수를 자바스크립트 파일에 전달하기 위한 구역 -->
   <div class="template_variable_section">
     <div class="template_variable_city">{{selected_city}}</div>

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from login.models import Member 
-from event.models import Event,EventImage
+from event.models import Event
 
 def show_map(request):
     prefer_city = Member.objects.get(id=request.user.pk).city
@@ -18,13 +18,10 @@ def search_map(request):
         if selected_city == '시' or selected_gu == '구':
             return redirect('login:main')
         events = Event.objects.all()
-        event_images = EventImage.objects.all()
-
         ctx = {
             'selected_city' : selected_city,
             'selected_gu' : selected_gu,
             'events' : events,
-            'event_images' : event_images,
         }
     
     return render(request,'location/search_map.html',ctx)

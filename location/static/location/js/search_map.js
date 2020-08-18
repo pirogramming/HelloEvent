@@ -104,60 +104,60 @@ marker.setMap(map);
 
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-kakao.maps.event.addListener(map, "click", function (mouseEvent) {
-  // 클릭한 위도, 경도 정보를 가져옵니다
-  var latlng = mouseEvent.latLng;
+// kakao.maps.event.addListener(map, "click", function (mouseEvent) {
+//   // 클릭한 위도, 경도 정보를 가져옵니다
+//   var latlng = mouseEvent.latLng;
 
-  searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-      var detailAddr = !!result[0].road_address
-        ? "<div>도로명주소 : " + result[0].road_address.address_name + "</div>"
-        : "";
-      detailAddr +=
-        "<div>지번 주소 : " + result[0].address.address_name + "</div>";
+//   searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
+//     if (status === kakao.maps.services.Status.OK) {
+//       var detailAddr = !!result[0].road_address
+//         ? "<div>도로명주소 : " + result[0].road_address.address_name + "</div>"
+//         : "";
+//       detailAddr +=
+//         "<div>지번 주소 : " + result[0].address.address_name + "</div>";
 
-      // 도시, 구까지 파싱하고 나머지 주소 파싱 과정
-      let restAddr = result[0].address.address_name.split(" ");
-      // 파싱한 도시 이름
-      let cityName = restAddr[0];
-      // 파싱한 구 이름
-      let guName = restAddr[1];
-      restAddr = restAddr.filter(
-        (address) =>
-          restAddr.indexOf(address) != 0 && restAddr.indexOf(address) != 1
-      );
+//       // 도시, 구까지 파싱하고 나머지 주소 파싱 과정
+//       let restAddr = result[0].address.address_name.split(" ");
+//       // 파싱한 도시 이름
+//       let cityName = restAddr[0];
+//       // 파싱한 구 이름
+//       let guName = restAddr[1];
+//       restAddr = restAddr.filter(
+//         (address) =>
+//           restAddr.indexOf(address) != 0 && restAddr.indexOf(address) != 1
+//       );
 
-      //최종 restAddr = 도시, 구를 제외한 나머지 주소
-      restAddr = restAddr.join(" ");
-      console.log(cityName, guName, restAddr);
+//       //최종 restAddr = 도시, 구를 제외한 나머지 주소
+//       restAddr = restAddr.join(" ");
+//       console.log(cityName, guName, restAddr);
 
-      var content =
-        '<div class="bAddr" style="padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">' +
-        '<span class="title">법정동 주소정보</span>' +
-        detailAddr +
-        "</div>";
+//       var content =
+//         '<div class="bAddr" style="padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">' +
+//         '<span class="title">법정동 주소정보</span>' +
+//         detailAddr +
+//         "</div>";
 
-      // 마커를 클릭한 위치에 표시합니다
-      marker.setPosition(mouseEvent.latLng);
-      marker.setMap(map);
+//       // 마커를 클릭한 위치에 표시합니다
+//       marker.setPosition(mouseEvent.latLng);
+//       marker.setMap(map);
 
-      // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-      map_infowindow.setContent(content);
-      map_infowindow.open(map, marker);
-    }
-  });
+//       // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+//       map_infowindow.setContent(content);
+//       map_infowindow.open(map, marker);
+//     }
+//   });
 
-  // 마커 위치를 클릭한 위치로 옮깁니다
-  // marker.setPosition(latlng);
-  addMarker(latlng);
-  hideMarkers();
+//   // 마커 위치를 클릭한 위치로 옮깁니다
+//   // marker.setPosition(latlng);
+//   addMarker(latlng);
+//   hideMarkers();
 
-  changed_coordinate = [latlng.getLat(), latlng.getLng()];
-  var message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
-  message += "경도는 " + latlng.getLng() + " 입니다";
-  panTo();
-  console.log(message);
-});
+//   changed_coordinate = [latlng.getLat(), latlng.getLng()];
+//   var message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
+//   message += "경도는 " + latlng.getLng() + " 입니다";
+//   panTo();
+//   console.log(message);
+// });
 
 function searchAddrFromCoords(coords, callback) {
   // 좌표로 행정동 주소 정보를 요청합니다
