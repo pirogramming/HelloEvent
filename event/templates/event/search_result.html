@@ -9,23 +9,27 @@
     <div class="about-search-data">
         <p>"{{ data }}"를 포함한 태그를 가진 이벤트 검색결과</p>
     </div>
-    {% if tags is None %}
+    {% if results is None %}
         <p>검색결과가 없습니다</p>
+    {% elif data == "" %}
+        <p>검색어가 없습니다. 검색어를 입력해주세요!</p>
     {% else %}
-    <div class="events-container">
-        {% for tag in tags %}
-            {% for event in tag.event_set.all %}
+        <div class="events-container">
+        {% for event in results %}
                 <div class="s_event-container">
-                    <div id="event_name">
-                        {{ event.event_name }}
-                    </div>
-                    <div id="event_desc">
-                        {{ event.desc }}
+                    <div id="left_section">
+                        <div id="event_name">
+                            {{ event.event_name }}
+                        </div>
+                        <div id="event_desc">
+                            {{ event.desc }}<br>
+                            {{ event.start_date_time }}<br>
+                            {{ event.end_date_time }}
+                        </div>
                     </div>
                 </div>
-            {% endfor %}
         {% endfor %}
-    </div>
+        </div>
     {% endif %}
 
 {% endblock %}
