@@ -18,7 +18,19 @@ class CommentForm(forms.ModelForm):
             'comment_photo': '',
         }
 
-class ReCommentForm(forms.ModelForm):
+class RecommentForm(forms.ModelForm):
     class Meta:
         model = Recomment
-        fields = ['parent', 'recomment_text','recomment_photo',]
+        fields = ['recomment_text','recomment_photo',]
+        
+        widgets = {
+            'recomment_text': forms.TextInput(
+                attrs={'class': 'form-control', 'style': 'width: 80%', 'style': 'margin:0 auto',
+                    'placeholder': '대댓글을 입력하세요'}
+            ),
+
+        }
+        labels = {
+            'recomment_text': '',
+            'recomment_photo': '',
+        }
