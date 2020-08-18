@@ -11,37 +11,75 @@
     <h1>Visitor Book</h1><br>
 </div>
 
-<div class="container">
-    <div class="row" id='comment_list'>
-        <div class="col">
-        <ul>
-        {% for comment in comments %}
-            <li>{{ comment.member.nickname }}님의 댓글 : {{ comment.comment_text }} </li>
-            
-            {% if comment.comment_photo %}
-                <li><img src="{{comment.comment_photo.url}}" style='max-width:300px'></li>
+<div class="container comment_list">  
+    {% for comment in comments %}
+        <div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> {{ comment.comment_text }} </div>
+        {% if comment.comment_photo %}
+        <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
+        {% endif %}
+        <div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
+        <div class='row'>
+            <a href="#" id='recomment_btn_{{comment.id}}'>대댓글</a>
+        {% if comment.member == request.user %}
+            <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
+            <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
+        {% endif %}
+
+        <div class='row' id='recomment_form_{{comment.id}}'>
+            <div class="container">
+            {% for recomment in comment.recomment_set.all %}
+            <div class='row'><b>{{ recomment.writer.nickname }} :</b> {{ recomment.recomment_text }} </div>
+            {% if recomment.recomment_photo %}
+            <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
             {% endif %}
-                
-            {% if comment.member == request.user %}
-                <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
-                <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
-            {% endif %}
-            <li id='create_at'>{{comment.created_at}}</li>
+            {% endfor %}
             <hr>
-        {% endfor %}
-        </ul> 
         </div>
-    </div>
+
+            <form  action="{% url 'comment:recomment_create' comment.id %}" enctype='multipart/form-data' method='POST'>
+                {% csrf_token %}
+                {{ recomment_form }}
+                <button type="submit">Submit</button>
+            </form>
+            <a href="#" id="recomment_fold_{{comment.id}}">접기</a>
+        </div>
+        <hr>
+        <br>
+    </div>    
+        
+    {% endfor %}
+
+</div>
     <hr>
-    <div class="row" id='comment_create'>
-        <div class="col">
-        <form method="POST" action=''>
-            {% csrf_token %}
-            {{ comment_form }}
-            <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        </div>
+<div class="container">
+    <div class="col">
+    <form method="POST" action='' enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{ comment_form }}
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
     </div>
 </div>
+{% endblock %}
+{% block injiscript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        {% for comment in comments %}
+            let recobtn_{{comment.id}} = $('#recomment_btn_{{comment.id}}')
+            let fold_btn_{{comment.id}} = $('#recomment_fold_{{comment.id}}')
+
+            $('#recomment_form_{{comment.id}}').hide()
+            recobtn_{{comment.id}}.click(function(){
+                $('#recomment_form_{{comment.id}}').toggle()
+            })
+
+            fold_btn_{{comment.id}}.click(function(){
+            $('#recomment_form_{{comment.id}}').hide()
+            })
+        {% endfor %}
+            
+        
+
+    </script>
 {% endblock %}
