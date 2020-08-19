@@ -6,13 +6,18 @@ from event.models import Event
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
+from django.http import HttpResponse
+import json
+
 # @login_required
 def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
+    
     creator = Creator.objects.get(pk=pk)
     comments = creator.comments.all
     # recomments = parent.recomments.all()
     if request.method =='POST':
         print('post시작')
+        is_ajax = request.POST.get('is_ajax')
         comment_form = CommentForm(request.POST, request.FILES)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -30,7 +35,6 @@ def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
             'creator':creator,
             'comments':comments,
             'comment_form':comment_form,
-            # 'recomments':recomments,
             'recomment_form':recomment_form,
         }
         return render(request, 'comment/comment_detail.html', ctx)
@@ -90,3 +94,18 @@ def comment_delete(request, comment_id):
 
 # ------------------------------------------------------------
 
+def comment_create_ajax(request):
+    creator = Creator.objects.get(pk=Request.POST.get('creator_id'))
+    comments = creator.comments.all
+
+    comment_form = CommentForm(request.POST, request.FILES)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.member = request.user
+        comment.creator = creator
+        comment.save()
+    ctx = {
+        'comment':comment_form,
+        'comment':comment,
+    }   
+    return HttpResponse(json.dump(ctx), content_type="application/json")
