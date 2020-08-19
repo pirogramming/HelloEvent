@@ -1,9 +1,49 @@
-{% extends 'base.html' %}
 {% load static %}
-
-{% block custom_style %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="{% static 'comment/css/comment.css' %}">
-{% endblock %}
+    
+</head>
+<body>
+    
+<div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> {{ comment.comment_text }} </div>
+        {% if comment.comment_photo %}
+        <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
+        {% endif %}
+        <div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
+        <div class='row'>
+            <a href="#" id='recomment_btn_{{comment.id}}'>대댓글</a>
+        {% if comment.member == request.user %}
+            <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
+            <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
+        {% endif %}
 
+        <div class='row' id='recomment_form_{{comment.id}}'>
+            <div class="container">
+            {% for recomment in comment.recomment_set.all %}
+            <div class='row'><b>{{ recomment.writer.nickname }} :</b> {{ recomment.recomment_text }} </div>
+            {% if recomment.recomment_photo %}
+            <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
+            {% endif %}
+            {% endfor %}
+            <hr>
+        </div>
 
-{% block main %}
+            <form  action="{% url 'comment:recomment_create' comment.id %}" enctype='multipart/form-data' method='POST'>
+                {% csrf_token %}
+                {{ recomment_form }}
+                <button type="submit">Submit</button>
+            </form>
+            <a href="#" id="recomment_fold_{{comment.id}}">접기</a>
+        </div>
+        <hr>
+        <br>
+    </div>
+</body>
+</html>
+
+    

@@ -1,43 +1,78 @@
 from django.shortcuts import redirect,render,get_object_or_404
+from django.urls import reverse
 from .models import Comment, Recomment
 from .forms import CommentForm, RecommentForm
 from login.models import Creator, Member
 from event.models import Event
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
-from django.http import HttpResponse
-import json
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # @login_required
+@csrf_exempt
 def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
-    
-    creator = Creator.objects.get(pk=pk)
-    comments = creator.comments.all
-    # recomments = parent.recomments.all()
-    if request.method =='POST':
-        print('post시작')
-        is_ajax = request.POST.get('is_ajax')
-        comment_form = CommentForm(request.POST, request.FILES)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.member = request.user
-            comment.creator = creator
-            comment.save()
-            return redirect('event:comment_detail',pk=pk)
+    # ajax
+    # receive_comment = request.POST.get('comment',None)
 
-    else:
-        print('get시작') 
-        comment_form = CommentForm()
-        recomment_form = RecommentForm()
-        print('ctx반환직전')
-        ctx = {
-            'creator':creator,
-            'comments':comments,
-            'comment_form':comment_form,
-            'recomment_form':recomment_form,
-        }
-        return render(request, 'comment/comment_detail.html', ctx)
+    creator = Creator.objects.get(pk=pk)
+    comments = creator.comments.all()
+
+
+    print('get시작') 
+    comment_form = CommentForm()
+    recomment_form = RecommentForm()
+    print('ctx반환직전')
+    ctx = {
+        'creator':creator,
+        'comments':comments,
+        'comment_form':comment_form,
+        'recomment_form':recomment_form,
+    }
+    return render(request, 'comment/comment_detail.html', ctx)
+
+def comment_create_ajax(request, pk):
+    # is_ajax : ajax 기능에 의해 호출된 것인지 구분하기 위한 값
+    is_ajax = request.POST.get('is_ajax')
+    print(is_ajax)
+    creator = Creator.objects.get(pk=pk)
+    print(1)
+    comment_form = CommentForm(request.POST, request.FILES)
+    print(2)
+
+    # def form_valid(self, comment_form):
+    #     comment = comment_form.save(commit=False)
+    #     comment.post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
+    #     response = super().form_valid(form)
+    #     html = render_to_string('comment/comment_create.html',{'comment':comment})
+    #     print(1111)
+    #     return JsonResponse({'html':html})
+
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.member = request.user
+        comment.creator = creator
+        comment.save()
+
+    if is_ajax:
+        # 데이터 만들어서 던져주기
+        html = render_to_string('comment/comment_create.html',{'comment':comment})
+        return JsonResponse({'html':html})
+    return redirect(reverse('event:comment_detail', args=[pk]))
+
+        # if self.request.is_ajax():
+        #     print('ajax request')   #ajax요청일때는 jsonresponse로 응답!
+        #     return JsonResponse({
+        #         'id': comment.id,
+        #         #  'message': comment.message,
+        #         #  'updated_at': comment.updated_at,
+        #         #  'edit_url': resolve_url('blog:comment_edit', comment.post.pk, comment.pk),
+        #         #  'delete_url': resolve_url('blog:comment_delete', comment.post.pk, comment.pk),
+        #         }) 
+        # return response
+
+
 
 
 # 대댓글 달기
@@ -94,18 +129,3 @@ def comment_delete(request, comment_id):
 
 # ------------------------------------------------------------
 
-def comment_create_ajax(request):
-    creator = Creator.objects.get(pk=Request.POST.get('creator_id'))
-    comments = creator.comments.all
-
-    comment_form = CommentForm(request.POST, request.FILES)
-    if comment_form.is_valid():
-        comment = comment_form.save(commit=False)
-        comment.member = request.user
-        comment.creator = creator
-        comment.save()
-    ctx = {
-        'comment':comment_form,
-        'comment':comment,
-    }   
-    return HttpResponse(json.dump(ctx), content_type="application/json")

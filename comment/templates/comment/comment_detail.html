@@ -13,51 +13,19 @@
 
 <div class="container comment_list">  
     {% for comment in comments %}
-        <div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> {{ comment.comment_text }} </div>
-        {% if comment.comment_photo %}
-        <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
-        {% endif %}
-        <div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
-        <div class='row'>
-            <a href="#" id='recomment_btn_{{comment.id}}'>대댓글</a>
-        {% if comment.member == request.user %}
-            <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
-            <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
-        {% endif %}
-
-        <div class='row' id='recomment_form_{{comment.id}}'>
-            <div class="container">
-            {% for recomment in comment.recomment_set.all %}
-            <div class='row'><b>{{ recomment.writer.nickname }} :</b> {{ recomment.recomment_text }} </div>
-            {% if recomment.recomment_photo %}
-            <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
-            {% endif %}
-            {% endfor %}
-            <hr>
-        </div>
-
-            <form  action="{% url 'comment:recomment_create' comment.id %}" enctype='multipart/form-data' method='POST'>
-                {% csrf_token %}
-                {{ recomment_form }}
-                <button type="submit">Submit</button>
-            </form>
-            <a href="#" id="recomment_fold_{{comment.id}}">접기</a>
-        </div>
-        <hr>
-        <br>
-    </div>    
-        
+        {% include 'comment/comment_create.html' %}
     {% endfor %}
 
 </div>
     <hr>
 <div class="container">
     <div class="col">
-    <form method="POST" action='' enctype='multipart/form-data'>
+    <form method="POST" action="{% url "event:comment_create_ajax" creator.pk %}" enctype='multipart/form-data' id='comment_form'>
         {% csrf_token %}
         {{ comment_form }}
+        <input type="text" name='is_ajax' value=''>
         <br>
-        <button type="submit" class="btn btn-primary" onclick="make_comment({{creator.id}})">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     </div>
 </div>
@@ -80,5 +48,5 @@
             })
         {% endfor %}
     </script>
-    
+    <script src="{% static 'comment/js/create.js' %}"></script>
 {% endblock %}
