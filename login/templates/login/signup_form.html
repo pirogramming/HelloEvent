@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+    <link rel="stylesheet" href="{% static 'login/signup_form.css' %}">
+{% endblock %}
 
 {% block main %}
 <div class="signup_title" style="margin-top: 50px; text-align: center;">

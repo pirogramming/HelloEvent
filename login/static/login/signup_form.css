@@ -1,0 +1,25 @@
+.submit_btn {
+    margin-top: 30px;
+    background-color: #fd8b83 ;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 45px;
+}
+
+.submit_btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.submit_btn:hover {
+    background-color: #fc655a;!important;
+}
+
+.id_overlap_button, .nickname_lap_button, .email_lap_button {
+    border: 1px solid gray;
+    background-color: lightgray!important;
+    border-radius: 5px!important;
+
+}

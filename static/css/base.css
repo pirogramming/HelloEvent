@@ -271,13 +271,6 @@ footer {
     margin-top: auto;
 }
 
-.signup_form button {
-    background-color: gray;
-}
-
-.signup_form button:hover {
-    background-color: #0080ff;
-}
 
 .signup_form {
     width: 100%;
@@ -294,11 +287,7 @@ footer {
 
 
 /*---------------------------*/
-.signup_form {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-}
+
 
 .additional_info {
     border-collapse: separate;
@@ -343,11 +332,6 @@ footer {
 /*    display: none; width: 20px; margin-left: 7px*/
 /*}*/
 
-.signup_form .submit_btn {
-    margin: 0 auto; text-align: center!important; 
-    margin-top: 50px; height: 50px; width: 130px; border:none;
-    border-radius: 10px;color: white;
-}
 
 /* enroll_creator.html css 
 -------------------------------------------*/

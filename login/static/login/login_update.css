@@ -1,0 +1,23 @@
+.nickname_lap_button {
+    width: 65px !important;
+    height: 30px !important;
+    border: 1px solid gray !important;
+    background-color: lightgray !important;
+    border-radius: 5px !important;
+    color: black !important;
+}
+
+#save_btn {
+    text-align: center !important;
+    margin-top: 50px;
+    height: 45px;
+    width: 110px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #fd8b83 ;
+}
+
+#save_btn:hover {
+    background-color: #fc655a;!important;
+}

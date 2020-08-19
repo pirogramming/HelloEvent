@@ -1,0 +1,18 @@
+.signup_form button {
+    margin-top: 30px;
+    background-color: #fd8b83 ;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 45px;
+}
+
+.signup_form button a {
+    text-decoration: none;
+    color: white;
+}
+
+.signup_form button:hover {
+    background-color: #fc655a;!important;
+}

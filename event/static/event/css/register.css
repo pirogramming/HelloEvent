@@ -115,6 +115,21 @@
   height: 30px;
   float: left;
 }
-/*.btn-primary:hover{*/
-/*  background-color: #dd445b ;*/
-/*}*/
+.btn-primary:hover{
+  background-color: #fc655a;!important;
+}
+
+#enroll_btn {
+  text-align: center !important;
+    margin-top: 50px;
+    height: 45px;
+    width: 110px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #fd8b83 ;
+}
+
+#enroll_btn:hover {
+   background-color: #fc655a;!important;
+}

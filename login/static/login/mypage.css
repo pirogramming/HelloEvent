@@ -40,10 +40,10 @@ button a {
     border: none;
     border-radius: 10px;
     color: white;
-    background-color: lightgray;
+    background-color: #fd8b83 ;
 
 }
 
 .contents button:hover {
-    background-color: darkgray;
+    background-color: #fc655a;!important;
 }

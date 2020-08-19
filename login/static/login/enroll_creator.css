@@ -15,13 +15,13 @@
     /*margin-left: 500px;*/
     /*margin-bottom: 30px;*/
     float: right;
-    border: 1px solid lightgray;
+    /*border: 1px solid lightgray;*/
     padding: 25px;
     border-radius: 20px;
     background-color: white;
     margin-top: 40px;
     /*margin-left: 20%;*/
-    margin-right: 30px;
+    margin-right: 40px;
 }
 
 @media (min-width: 1200px) {
@@ -99,10 +99,11 @@
 }
 
 #enroll_btn{
-    background-color: lightgray;
+    margin-top: 15px;
+    background-color: #fd8b83 ;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 #enroll_btn:hover{
-    background-color: darkgray;
+    background-color: #fc655a;!important;
 }
