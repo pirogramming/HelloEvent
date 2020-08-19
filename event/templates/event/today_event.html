@@ -34,21 +34,55 @@
     <br><br>
 
 
-    <p>------아직 시작 안한 이벤트---------</p>
-    {% for not_yet_event in not_yet_events.all %}
-        {{ not_yet_event.event_name }}<br>
-        {{ not_yet_event.start_date_time}}<br><br>
-    {% endfor %}
+<div class='container_wra'>
+    <div class='col-lg-12 col-md-12 main'> 
+        <div class="row not_yet_event_header">
+            <p>------아직 시작 안한 이벤트---------</p>
+        </div>
 
-    <p>-------진행중인 이벤트-------------</p>
-    {% for ing_event in ing_events.all %}
-        {{ ing_event.event_name }}<br>
-        {{ ing_event.start_date_time}} ~ {{ ing_event.end_date_time }}<br><br>
-    {% endfor %}
+        <div class="row not_yet_event">
+            {% for not_yet_event in not_yet_events.all %}
+            <div class='col-lg-4 col-md-4 not_yet_event_section'>
+                {{ not_yet_event.event_name }}<br>
+                <div class='hovereffect'>
+                    <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs'>
+                        <div class="overlay">
+                            <h2>{{ not_yet_event.genre }}</h2>
+                            <p>
+                                <b>시작 시간</b><br>
+                                {{ not_yet_event.start_date_time }}<br>
+                                <a href="#">LINK HERE</a>
+                            </p>
+                        </div>  
+                </div>
+                {{ not_yet_event.start_date_time}}<br>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row ing_event_header"> 
+            <p>-------진행중인 이벤트-------------</p>
+        </div>
+        <div class="row ing_event">
+            {% for ing_event in ing_events.all %}
+            <div class='col-lg-4 col-md-12 ing_event_section'>
+                {{ ing_event.event_name }}<br>
+                {{ ing_event.start_date_time}} ~ {{ ing_event.end_date_time }}<br><br>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row row_event_header"> 
+            <p>----------종료한 이벤트------------</p>
+        </div>
+        <div class='row end_event'>
+            {% for end_event in end_events.all %}
+            <div class='col-lg-4 col-md-12 end_event'>
+                {{ end_event.event_name }}
+                {{ end_event.start_date_time}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
-    <p>----------종료한 이벤트------------</p>
-    {% for end_event in end_events.all %}
-        {{ end_event.event_name }}
-        {{ end_event.start_date_time}}
-    {% endfor %}
+
 {% endblock %}
