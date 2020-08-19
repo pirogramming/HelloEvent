@@ -8,7 +8,8 @@
 {% block main %}
     <div class="container">
     <div class="top-desc">
-        "<b>{{ data }}</b>"를 포함한 태그를 가진 이벤트 검색결과
+<!--        <img src="/static/img/search.png" alt="search icon">-->
+        <p>"<b>{{ data }}</b>"를 포함한 태그를 가진 이벤트 검색결과</p>
     </div>
     {% if results is None %}
         <div class="top-desc">
@@ -25,25 +26,28 @@
         {% for event in results %}
                 <div class="s_event-container ">
                     <div id="left_section">
-                        {% for tag in event.tags.all %}
-                            <a href="{% url "event:search_result_click" tag.name %}">
-                                <div id="tag-box">{{ tag.name }}</div>
-                            </a>
-                        {% endfor %}
                         <div id="event_name">
                             {{ event.event_name }}
                         </div>
                         <div id="creator_name">
                             크리에이터 : <b>{{ event.creator.creator_name }}</b>
                         </div>
+                        <hr/>
                         <div id="event_time">
                             {{ event.start_date_time }} ~ {{ event.end_date_time }}
                         </div>
+                        <br/>
                         <div id="event_desc">
                             {{ event.desc|linebreaksbr}}<br>
                             {{ event.start_date_time }}<br>
                             {{ event.end_date_time }}
                         </div>
+                        <br/>
+                        {% for tag in event.tags.all %}
+                            <a href="{% url "event:search_result_click" tag.name %}">
+                                <div id="tag-box">{{ tag.name }}</div>
+                            </a>
+                        {% endfor %}
                     </div>
                     <div id="right_section">
                         <a href="{% url "login:like_creator" event.creator.pk %}">
