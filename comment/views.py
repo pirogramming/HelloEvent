@@ -38,16 +38,10 @@ def comment_create_ajax(request, pk):
     print(is_ajax)
     creator = Creator.objects.get(pk=pk)
     print(1)
+    
     comment_form = CommentForm(request.POST, request.FILES)
-    print(2)
 
-    # def form_valid(self, comment_form):
-    #     comment = comment_form.save(commit=False)
-    #     comment.post = get_object_or_404(Post, pk=self.kwargs['post_pk'])
-    #     response = super().form_valid(form)
-    #     html = render_to_string('comment/comment_create.html',{'comment':comment})
-    #     print(1111)
-    #     return JsonResponse({'html':html})
+    print(2)
 
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)

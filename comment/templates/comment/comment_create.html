@@ -9,7 +9,7 @@
     
 </head>
 <body>
-    
+
 <div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> {{ comment.comment_text }} </div>
         {% if comment.comment_photo %}
         <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
@@ -43,6 +43,20 @@
         <hr>
         <br>
     </div>
+
+<script>
+    let recobtn_{{comment.id}} = $('#recomment_btn_{{comment.id}}')
+    let fold_btn_{{comment.id}} = $('#recomment_fold_{{comment.id}}')
+
+    $('#recomment_form_{{comment.id}}').hide()
+    recobtn_{{comment.id}}.click(function(){
+        $('#recomment_form_{{comment.id}}').toggle()
+    })
+
+    fold_btn_{{comment.id}}.click(function(){
+    $('#recomment_form_{{comment.id}}').hide()
+    })
+</script>
 </body>
 </html>
 
