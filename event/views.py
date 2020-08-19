@@ -151,6 +151,7 @@ def search_result_click(request, tag):
         print(tag)
         print(tag.event_set.all())
         q = tag.event_set.all().filter(end_date_time__gte=today)
+        print(q)
         q = q.order_by('start_date_time')
         print(q)
         results = results | q

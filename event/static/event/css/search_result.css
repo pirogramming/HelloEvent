@@ -82,14 +82,18 @@ body {
     color: #7E526b;
 }
 
-#like {
-    display: inline-block;
-    font-size: 0.8rem;
-    color: darkgray;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid darkgray;
-    text-align: center;
-    padding: 0.3rem 0.3rem;
-    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+/*#like {*/
+/*    display: inline-block;*/
+/*    font-size: 0.8rem;*/
+/*    color: darkgray;*/
+/*    background-color: white;*/
+/*    border-radius: 5px;*/
+/*    border: 1px solid darkgray;*/
+/*    text-align: center;*/
+/*    padding: 0.3rem 0.3rem;*/
+/*    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);*/
+/*}*/
+
+.like{
+    cursor:pointer;
 }

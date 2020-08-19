@@ -50,11 +50,13 @@
                         {% endfor %}
                     </div>
                     <div id="right_section">
-                        <a href="{% url "login:like_creator" event.creator.pk %}">
-                            <div id="like">
-                                좋아요
-                            </div>
-                        </a>
+                        <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}"> <i class="fas fa-heart" ></i></a>
+                        <p id="count-{{ event.creator.id }}">{{ event.creator.like_count }}개</p>
+                        <p id="like-user-{{ event.creator.id }}">
+                            {% for like_user in event.creator.like_users.all %}
+                                {{ like_user.nickname }}
+                            {% endfor %}
+                        </p>
                     </div>
                 </div>
         {% endfor %}
@@ -62,4 +64,10 @@
     {% endif %}
     </div>
 
+{% endblock %}
+
+{% block kiyunscript %}
+    <script src="https://kit.fontawesome.com/7d6a50a6b2.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{% static 'login/js/like.js' %}"></script>
 {% endblock %}

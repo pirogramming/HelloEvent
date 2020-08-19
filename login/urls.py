@@ -29,5 +29,5 @@ urlpatterns = [
     path('login/check_nickname/', views.nickname_lap_check, name='nickname_lap_check'),  # nickname 중복 체크
     path('login/check_email/', views.email_lap_check, name='email_lap_check'),  # email 중복 체크
 
-    path('creator/<int:pk>/like/', views.like, name="like_creator")
+    path('creator/like/', views.like, name="like_creator"), #크리에이터 좋아요/구독
 ]

@@ -1,5 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
-from django.http import JsonResponse
+import json
+
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth import login as auth_login
@@ -12,6 +15,12 @@ from django.urls import reverse
 
 from login.forms import MemberForm, CreatorForm
 from login.models import Creator, Member
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+
+
 
 
 def login(request):
@@ -270,13 +279,29 @@ def user_delete(request, pk):
         return render(request, "login/main.html")  
     return redirect('login:mypage', pk)
 
-def like(request, pk):
+@login_required
+@csrf_exempt
+def like(request):
+    pk = request.POST.get('pk', None)
+    print(0)
     creator = get_object_or_404(Event, id=pk).creator
-    if request.user in creator.like_users.all() :
+    print(creator)
+    if request.user in creator.like_users.all():
+        print(1)
         creator.like_users.remove(request.user)
+        message = "좋아요 취소"
     else:
+        print(2)
         creator.like_users.add(request.user)
+        message = "좋아요"
 
-    return redirect("event:creator_detail", pk)
+    ctx = {
+        'like-count':creator.like_count,
+        'message':message,
+        'creator_name':creator.creator_name,
+    }
+
+    return HttpResponse(json.dumps(ctx), content_type="application/json")
+
 
 
