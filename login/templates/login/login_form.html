@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+<link rel="stylesheet" href="{% static 'login/login_form.css' %}">
+{% endblock %}
 
 {% block main %}
 <div class="signup_title" style="margin-top: 50px; text-align: center;">
@@ -16,18 +21,16 @@
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="password"  placeholder="비밀번호를 입력해주세요"
+                <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요"
                            required minlength="4" value="{{user.password}}"/></td>
             </tr>
         </table>
-        <button type="submit"
-                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+        <button type="submit">
             로그인
         </button>
 
-        <button type='button'
-            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-            <a href="{% url 'login:signup_general' %}" style="color: white;">회원가입</a>
+        <button type='button'>
+            <a href="{% url 'login:signup_general' %}">회원가입</a>
         </button>
     </form>
 </div>

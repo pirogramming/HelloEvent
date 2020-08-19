@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block custom_style %}
-<link rel="stylesheet" href="{% static 'login/creator.css' %}">
+<link rel="stylesheet" href="{% static 'login/login_update.css' %}">
 {% endblock %}
 
 {% block main %}
@@ -78,8 +78,7 @@
         <div id="user_pk_section" style="display:none">{{user.pk}}</div>
 
             <a href="{% url 'login:mypage' user.pk %}" id='save_a'>
-            <button id="save_btn" type="submit" style="margin: 0 auto; text-align: center!important; margin-top: 50px;
-            height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">저장
+            <button id="save_btn" type="submit">저장
             </button></a>
         <br/><br/><br/><br/>
         <hr>

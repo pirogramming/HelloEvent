@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+    <link rel="stylesheet" href="{% static 'login/signup_form.css' %}">
+{% endblock %}
 
 {% block main %}
 <div class="signup_title" style="margin-top: 50px; text-align: center;">
-    <h3 style="color: #0080ff;">Sign up</h3>
+    <h3 style="color: #dd445b;">Sign up</h3>
     <p>아래 정보를 입력하시면 가입이 완료됩니다</p>
 </div>
 <div class="signup_form" style="margin-bottom: 100px;">
@@ -13,7 +18,7 @@
                 <td>아이디</td>
 <!--                <td><input type="text" name="username" value="{{user.username}}" required-->
 <!--                placeholder="아이디를 입력해주세요"/></td>-->
-                <td><input type="text" class="username_input" name="username" check_result="fail" required 
+                <td><input type="text" class="username_input" name="username" check_result="fail" required
                 minlength="4" maxlength="12" value="{{user.username}}" placeholder="4~12자의 영문 대소문자와 숫자로만 입력"/>
                 <button type="button" class="id_overlap_button" onclick="id_overlap_check()"
                 >Check!</button>
@@ -32,7 +37,7 @@
             </tr>
             <tr>
                 <td>닉네임</td>
-                <td><input type="text" class="nickname_input" check_result="fail" name="nickname" value="{{user.nickname}}" 
+                <td><input type="text" class="nickname_input" check_result="fail" name="nickname" value="{{user.nickname}}"
                 required minlength="2" maxlength="12" placeholder="닉네임을 입력해주세요"/>
                 <button type="button" class="nickname_lap_button" onclick="nickname_lap_check()"
                 >Check!</button>
@@ -41,7 +46,7 @@
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" class="email_input" check_result="fail" name="email" value="{{user.email}}" 
+                <td><input type="email" class="email_input" check_result="fail" name="email" value="{{user.email}}"
                 required placeholder="이메일을 입력해주세요"/>
                 <button type="button" class="email_lap_button" onclick="email_lap_check()">Check!</button>
                 <img src="/static/img/green_check.png" id="email_check_success" class="check_box">
@@ -156,7 +161,7 @@
                 if (data['lap'] == "fail") {
                     alert("이미 존재하는 닉네임입니다");
                     nickname_lap_input.focus();
-                    document.querySelector('.submit_btn').setAttribute('disabled', true);                    
+                    document.querySelector('.submit_btn').setAttribute('disabled', true);
                     return;
                 } else {
                     alert('사용가능한 닉네임입니다');
@@ -197,7 +202,7 @@
                 if (data['lap'] == "fail") {
                     alert("이미 존재하는 이메일입니다");
                     email_lap_input.focus();
-                    document.querySelector('.submit_btn').setAttribute('disabled', true);                    
+                    document.querySelector('.submit_btn').setAttribute('disabled', true);
                     return;
                 } else {
                     alert('사용가능한 이메일입니다');

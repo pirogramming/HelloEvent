@@ -3,15 +3,24 @@
 } */
 
 .registering {
-  margin: 2rem 3rem 0;
+  margin: 4rem 15rem 0;
 }
 
 #tag_input {
   width: 100%;
 }
 #enroll_btn {
-  margin-top: 20px;
-  height: 40px;
+  margin-top: 40px;
+  height: 45px;
+  width: 120px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fd8b83;
+  color: white;
+  text-align: center;
+  /*margin: 0 auto;*/
+  margin-left: 43%;
+  margin-bottom: 30px;
 }
 
 .registering .wrap {
@@ -88,4 +97,39 @@
 
 .location_form_section {
   display: none;
+}
+
+.btn-primary {
+  background-color: #fd8b83!important ;
+  border:none;
+}
+
+/*.event_helptext {*/
+/*  float: left;*/
+/*}*/
+
+.event_helptext img {
+  margin-top: 5px;
+  padding-right: 10px;
+  width: 40px;
+  height: 30px;
+  float: left;
+}
+.btn-primary:hover{
+  background-color: #fc655a;!important;
+}
+
+#enroll_btn {
+  text-align: center !important;
+    margin-top: 50px;
+    height: 45px;
+    width: 110px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #fd8b83 ;
+}
+
+#enroll_btn:hover {
+   background-color: #fc655a;!important;
 }

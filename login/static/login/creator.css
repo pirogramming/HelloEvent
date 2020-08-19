@@ -12,14 +12,9 @@ button a {
     border: none;
     border-radius: 10px;
     color: white;
-    background-color: lightgray;
+    background-color: #fd8b83 ;
 }
 
 .contents button:hover {
-    background-color: darkgray;
-}
-
-#nickname_lap_button {
-    width: 60px!important;
-    height: 20px!important;
+    background-color: #fc655a;!important;
 }
