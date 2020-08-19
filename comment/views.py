@@ -32,6 +32,7 @@ def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
     }
     return render(request, 'comment/comment_detail.html', ctx)
 
+@csrf_exempt
 def comment_create_ajax(request, pk):
     # is_ajax : ajax 기능에 의해 호출된 것인지 구분하기 위한 값
     is_ajax = request.POST.get('is_ajax')
@@ -51,7 +52,7 @@ def comment_create_ajax(request, pk):
 
     if is_ajax:
         # 데이터 만들어서 던져주기
-        html = render_to_string('comment/comment_create.html',{'comment':comment})
+        html = render_to_string('comment/comment_create.html',{'comment':comment, 'username':request.user})
         return JsonResponse({'html':html})
     return redirect(reverse('event:comment_detail', args=[pk]))
 

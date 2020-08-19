@@ -17,7 +17,12 @@
         <div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
         <div class='row'>
             <a href="#" id='recomment_btn_{{comment.id}}'>대댓글</a>
-        {% if comment.member == request.user %}
+            <!-- 댓글작성자:{{comment.member}}
+            접속자:{{username}}-->
+        {% if comment.member == username %}
+            <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
+            <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
+        {% elif comment.member == request.user %}
             <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
             <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
         {% endif %}
@@ -32,7 +37,6 @@
             {% endfor %}
             <hr>
         </div>
-
             <form  action="{% url 'comment:recomment_create' comment.id %}" enctype='multipart/form-data' method='POST'>
                 {% csrf_token %}
                 {{ recomment_form }}
@@ -56,6 +60,7 @@
     fold_btn_{{comment.id}}.click(function(){
     $('#recomment_form_{{comment.id}}').hide()
     })
+
 </script>
 </body>
 </html>

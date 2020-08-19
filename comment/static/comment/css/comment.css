@@ -15,7 +15,7 @@ hr { margin:5px; }
     
 } */
 
-.comment_list {
+#comment_list {
     max-height:580px;
     overflow-y:auto;
 }
