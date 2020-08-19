@@ -11,9 +11,9 @@
     </div>
     <div id="event_category_wrap">
       <ul id="category_list">
-        <li><a href="#">버스킹</a></li>
-        <li><a href="#">플리마켓</a></li>
-        <li><a href="#">전시</a></li>
+        <li><button class="category Busking">버스킹</button></li>
+        <li><button class="category Flea">플리마켓</button></li>
+        <li><button class="category Exhibit">전시</button></li>
       </ul>
     </div>
     <hr />
@@ -47,7 +47,7 @@
             장르 : {{event.genre}}
           </div>
           <div class="event_content" id="event_city_{{event.pk}}">
-            {{event.location.city}}
+            위치 : {{event.location.city}}
           </div>
           <div class="event_content" id="event_gu_{{event.pk}}">
             {{event.location.gu}}
@@ -87,5 +87,6 @@
   type="text/javascript"
   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4be94fffa6f06598b351be42b3a70113&libraries=services"
 ></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="{% static 'location/js/search_map.js' %}"></script>
 {% endblock %}

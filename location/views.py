@@ -1,7 +1,11 @@
+from django.http import HttpResponse,JsonResponse
+from django.core import serializers
 from django.shortcuts import render,redirect
-from login.models import Member 
+from login.models import Member,Creator 
 from event.models import Event
-
+from location.models import Event_Location
+from django.views.decorators.csrf import csrf_exempt
+import json
 def show_map(request):
     prefer_city = Member.objects.get(id=request.user.pk).city
     prefer_gu = Member.objects.get(id=request.user.pk).gu
@@ -26,3 +30,29 @@ def search_map(request):
     
     return render(request,'location/search_map.html',ctx)
 
+@csrf_exempt
+def ajax_search_genre(request):
+    genre = request.POST.get('genre',None)
+    events = Event.objects.filter(genre=genre)
+    # for event in events:
+        # print(event.location.city)
+    locations = Event_Location.objects.all()
+    creators = Creator.objects.all()
+    # print(events)
+    event = serializers.serialize('json', events)
+    location = serializers.serialize('json',locations)
+    creator = serializers.serialize('json',creators)
+    response_data = {}
+    response_data['event'] = event
+    response_data['location'] = location
+    response_data['creator'] = creator
+    # data = json.loads(data)
+    # print(event)
+    print(creator)
+    # message = '성공'
+    # context = {
+    #     'find_events':events,
+    #     'message':message,
+    # }
+    return JsonResponse(response_data)
+        

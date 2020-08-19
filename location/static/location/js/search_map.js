@@ -450,3 +450,51 @@ function map_reset(e) {
     }
   });
 }
+
+// Ajax code
+$(".category").click(function (e) {
+  let choosed_genre = e.target.classList[1];
+  console.log(choosed_genre);
+  $.ajax({
+    type: "POST",
+    url: "genre/",
+    data: { genre: choosed_genre, csrfmiddlewaretoken: "{{ csrf_token }}" },
+    dataType: "json",
+    success: function (response) {
+      event_list = JSON.parse(response.event);
+      location_list = JSON.parse(response.location);
+      creator_list = JSON.parse(response.creator);
+      location_city = [];
+      location_gu = [];
+      location_rest_address = [];
+      event_creator = [];
+      // JSON.parse(response.data)[0].fields.event_name
+      // JSON.parse(response.data)[0].fields.creator
+      // JSON.parse(response.data)[0].fields.genre
+      for (let i = 0; i < Object.keys(location_list).length; i++) {
+        for (let j = 0; j < Object.keys(event_list).length; j++) {
+          if (location_list[i].pk == event_list[j].fields.location) {
+            location_city.push(location_list[i].fields.city);
+            location_gu.push(location_list[i].fields.gu);
+            location_rest_address.push(location_list[i].fields.rest_address);
+          }
+        }
+      }
+
+      for (let i = 0; i < Object.keys(creator_list).length; i++) {
+        for (let j = 0; j < Object.keys(event_list).length; j++) {
+          if (creator_list[i].pk == event_list[j].fields.creator) {
+            event_creator.push(creator_list[i].fields.creator_name);
+          }
+        }
+      }
+
+      console.log(
+        location_city,
+        location_gu,
+        location_rest_address,
+        event_creator
+      );
+    },
+  });
+});
