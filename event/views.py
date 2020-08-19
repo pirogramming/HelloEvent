@@ -162,3 +162,21 @@ def search_result_click(request, tag):
     }
     return render(request, "event/search_result.html", ctx)
 
+def today_event(request):
+    today_date = datetime.today().date()
+    print(today_date)
+    today_date_time = datetime.today()
+
+    not_yet = Event.objects.all().filter(Q(start_date_time__date__exact = today_date) & Q(start_date_time__gt=today_date_time))
+    ing = Event.objects.all().filter(Q(end_date_time__gte=today_date_time) & Q(start_date_time__lte=today_date_time))
+    end = Event.objects.all().filter(Q(end_date_time__date__exact = today_date) & Q(end_date_time__lt=today_date_time))
+
+    ctx = {
+        'today_date' : today_date,
+        'today_date_time' : today_date_time,
+        'not_yet_events' : not_yet,
+        'end_events': end,
+        'ing_events' : ing,
+    }
+
+    return render(request, "event/today_test.html", ctx)
