@@ -58,10 +58,12 @@
 
     let delete_creator = document.querySelector('#delete_creator')
 
-     delete_creator.onclick = function() {
+     delete_creator.onclick = function(e) {
         let confirm_result = confirm("정말 크리에이터를 지우시겠습니까?\n되돌릴 수 없습니다.");
         if (confirm_result === false){
-            document.querySelector('#delete_creator').setAttribute('href', returnUrl)
+            //return true
+            //document.querySelector('#delete_creator').setAttribute('href', returnUrl)
+            e.preventDefault()   //이게 더 많이 쓰이는 방법이라고 함.
         }
     }
   

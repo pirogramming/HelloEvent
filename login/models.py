@@ -59,6 +59,6 @@ class Creator(models.Model):
     creator_photo = models.ImageField(upload_to="creator_photo/%Y/%m/%d/")
     desc = models.TextField(blank=True)
 
-    member = models.OneToOneField(Member, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    member = models.OneToOneField(Member, on_delete=models.CASCADE, default=None, null=True, blank=True, related_name="creator")
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_creators")
 
