@@ -17,7 +17,7 @@
                 minlength="4" maxlength="12" value="{{user.username}}" placeholder="4~12자의 영문 대소문자와 숫자로만 입력"/>
                 <button type="button" class="id_overlap_button" onclick="id_overlap_check()"
                 >Check!</button>
-                <img src="/static/img/green_check.png" id="id_check_success"
+                <img src="/static/img/green_check.png" id="id_check_success" class="check_box"
                  ></td>
             </tr>
             <tr>
@@ -36,7 +36,7 @@
                 required minlength="2" maxlength="12" placeholder="닉네임을 입력해주세요"/>
                 <button type="button" class="nickname_lap_button" onclick="nickname_lap_check()"
                 >Check!</button>
-                <img src="/static/img/green_check.png" id="nickname_check_success"
+                <img src="/static/img/green_check.png" id="nickname_check_success" class="check_box"
                 > </td>           
             </tr>
             <tr>
@@ -44,7 +44,7 @@
                 <td><input type="email" class="email_input" check_result="fail" name="email" value="{{user.email}}" 
                 required placeholder="이메일을 입력해주세요"/>
                 <button type="button" class="email_lap_button" onclick="email_lap_check()">Check!</button>
-                <img src="/static/img/green_check.png" id="email_check_success">
+                <img src="/static/img/green_check.png" id="email_check_success" class="check_box">
                 </td>
             </tr>
             <tr>

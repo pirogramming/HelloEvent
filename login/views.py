@@ -206,8 +206,8 @@ def login_form(request):
 #         creator.delete()
 #         return redirect("login:mypage", request.id)
 def creator_delete(request, pk):
-    user = get_object_or_404(Member, pk=pk)
-    creator = user.creator
+    member = get_object_or_404(Member, pk=pk)
+    creator = member.creator
     # creator = Member.objects.get(id=request.user.pk).creator
     if creator:
         creator.delete()

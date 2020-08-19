@@ -385,3 +385,13 @@ function map_reset(e) {
     }
   });
 }
+
+
+// let enroll_btn = document.querySelector('#enroll_btn')
+// let template_variable_city = document.querySelector('.template_variable_city')
+
+// enroll_btn.onclick = function() { 
+//   if (template_variable_city === false){
+//     alert('지도를 클릭해서 정확한 위치를 잡아주세요!')
+//   }
+// }
