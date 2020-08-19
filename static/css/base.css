@@ -329,7 +329,7 @@ footer {
     width: 250px;
 }
 
-.additional_info button {
+.signup_form .additional_info button {
     border-radius: 6px;
     color: black;
     background-color: #fd8b83;
