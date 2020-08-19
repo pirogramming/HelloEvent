@@ -280,4 +280,3 @@ def like(request, pk):
     return redirect("event:creator_detail", pk)
 
 
-
