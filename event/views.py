@@ -168,7 +168,8 @@ def today_event(request):
     today_date_time = datetime.today()
 
     not_yet = Event.objects.all().filter(Q(start_date_time__date__exact = today_date) & Q(start_date_time__gt=today_date_time))
-    ing = Event.objects.all().filter(Q(end_date_time__gte=today_date_time) & Q(start_date_time__lte=today_date_time))
+    ing = Event.objects.all().filter(Q(end_date_time__gte=today_date_time) & Q(start_date_time__lte=today_date_time)) 
+    # gte: 이상, lte: 이하 gt: 초과 lt: 미만
     end = Event.objects.all().filter(Q(end_date_time__date__exact = today_date) & Q(end_date_time__lt=today_date_time))
 
     ctx = {
@@ -179,4 +180,4 @@ def today_event(request):
         'ing_events' : ing,
     }
 
-    return render(request, "event/today_test.html", ctx)
+    return render(request, "event/today_event.html", ctx)

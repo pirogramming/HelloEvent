@@ -387,11 +387,11 @@ function map_reset(e) {
 }
 
 
-// let enroll_btn = document.querySelector('#enroll_btn')
-// let template_variable_city = document.querySelector('.template_variable_city')
+let enroll_btn = document.querySelector('#enroll_btn')
+let id_city = document.querySelector('#id_city')
 
-// enroll_btn.onclick = function() { 
-//   if (template_variable_city === false){
-//     alert('지도를 클릭해서 정확한 위치를 잡아주세요!')
-//   }
-// }
+enroll_btn.onclick = function() { 
+  if (id_city.value === ''){
+    alert('지도를 클릭해서 정확한 위치를 잡아주세요!')
+  }
+}

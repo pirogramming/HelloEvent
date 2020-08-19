@@ -1,16 +1,54 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-{% block custom_style %}  <!--css-->
-
-
+{% block custom_style %}
+    <link rel="stylesheet" href="{% static 'event/css/today_event.css' %}">
 {% endblock %}
 
+{% block main %}
+<div class="container_wrapper">
+    <h1 style="color: #dd445b;">오늘의 이벤트</h1>
+    <h4>오늘 진행되는 이벤트들을 둘러볼 수 있습니다!</h4><hr>
+    <div class="row">
+        <div class='col-lg-4 col-md-12 select_box1'>
+            <button type="button">버스킹</button>
+            <button type="button">플리마켓</button>
+            <button type="button">전시회</button>
+        </div>
+        <div class='col-lg-4 col-md-12 select_box2'>
+            <p>{{ today_date_time }}</p>
+        </div>
+        <div class='col-lg-4 col-md-12 select_box3'>
+            <button type="button">시작전</button>
+            <button type="button">진행중</button>
+            <button type="button">마감</button>
+        </div>
+    </div>
+    <hr>
+    {% comment %} <div class='container '> {% endcomment %}
+
+</div>
+            <p>현재날짜 : {{ today_date }}</p><br>
+            <p>현재시간 : {{ today_date_time }}</p><br>
+
+    <br><br>
 
 
-{% block main %} <!--main-->
+    <p>------아직 시작 안한 이벤트---------</p>
+    {% for not_yet_event in not_yet_events.all %}
+        {{ not_yet_event.event_name }}<br>
+        {{ not_yet_event.start_date_time}}<br><br>
+    {% endfor %}
 
+    <p>-------진행중인 이벤트-------------</p>
+    {% for ing_event in ing_events.all %}
+        {{ ing_event.event_name }}<br>
+        {{ ing_event.start_date_time}} ~ {{ ing_event.end_date_time }}<br><br>
+    {% endfor %}
 
+    <p>----------종료한 이벤트------------</p>
+    {% for end_event in end_events.all %}
+        {{ end_event.event_name }}
+        {{ end_event.start_date_time}}
+    {% endfor %}
 {% endblock %}
-

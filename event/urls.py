@@ -12,5 +12,5 @@ urlpatterns = [
     path('search_result/', views.search_result, name='search_result'),
     path('search_result_click/<str:tag>', views.search_result_click, name='search_result_click'),
 
-    path('today_test/', views.today_event, name="today_event")
+    path('today_event/', views.today_event, name="today_event")
 ]

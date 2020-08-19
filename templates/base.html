@@ -60,7 +60,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" style="color: gray;">Today's <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'event:today_event' %}" style="color: gray;">Today's <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'event:event_register' %}" style="color: gray;">이벤트 등록</a>
