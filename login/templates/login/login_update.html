@@ -157,8 +157,6 @@
     let save_a = document.querySelector('#save_a')
     save_a.onclick = function() {
         let confirm_result = alert('수정되었습니다!');
-
-
         if (confirm_result === false){
             //document.querySelector('#save_btn').setAttribute('disabled',true)
             document.querySelector('#save_a').setAttribute('href', returnUrl)

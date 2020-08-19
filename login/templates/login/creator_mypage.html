@@ -38,6 +38,10 @@
             style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
         <a href="{% url 'login:main' %}" style="text-decoration: none; color: white;">메인으로</a>
     </button>
+    <button type="button"
+        style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+    <a href="{% url 'event:event_register' %}" style="text-decoration: none; color: white;">이벤트 등록</a>
+</button>
     <br/>
         <div id="user_pk_section" style="display:none">{{user.pk}}</div>
         <a href="{% url 'login:creator_delete' user.pk %}" id="delete_creator" style="text-decoration: none; color: white;">
