@@ -7,10 +7,12 @@
 
 {% block main %}
     {% if user.is_authenticated %}
-    
+
     <div class="registering">
-        <h1>이벤트 등록하기</h1>
-        <h4>{{ creator.creator_name }}님의 개성있는 이벤트를 등록해주세요</h4>
+        <h1 style="color: #dd445b;">이벤트 등록하기</h1>
+        <h4><b>{{ creator.creator_name }}</b> 님의 개성있는 이벤트를 등록해주세요</h4>
+        <hr/>
+        <br/>
         <div class="wrap row">
             <!-- 사용자의 선호 지역을 받기 위한 구역(보이지는 않음) -->
             <div class="template_variable_section">
@@ -57,20 +59,46 @@
             {% csrf_token %}
                 {{ form }}
                 {{ formset.management_form }}
+                <br/><br/>
                 <label for="sdt">이벤트 시작 날짜/시간 : </label>
                 <input id="sdt" type="datetime-local" name="start_date_time"/>
+            <br/>
                 <label for="edt">이벤트 종료 날짜/시간 : </label>
                 <input id="edt" type="datetime-local" name="end_date_time"/>
-
+<br/><br/>
                 {% for imageform in formset %}
                     {{ imageform|linebreaks }}
                 {% endfor %}
-
+<br/>
             <label for="tag_input">태그(많이 할수록 검색에 잘 걸려요!)</label>
             <input id="tag_input" name="tag" type="text" size=100 placeholder="ex) 플리마켓, 목걸이, 감성, 가성비">
             <br>
             <div class="location_form_section">
                 {{ location }}
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <h4>이벤트 등록 방법</h4>
+            <hr/>
+            <br/>
+            <div>
+                <div class="event_helptext">
+                    <img src="/static/img/black_check.png" alt="">
+                    <p>'이벤트 장소'는 특정 건물뿐만 아니라 길거리 어디든 설정할 수 있어요. <br/>먼저 원하는 도시와 구를 선택한 후, 우측의 지도를 통해 원하는 위치를 클릭하세요.</p>
+                </div>
+                <div class="event_helptext">
+                    <img src="/static/img/black_check.png" alt="">
+                    <p>'이벤트 종류'는 버스킹, 플리마켓, 전시 총 세가지 카테고리 중 하나를 선택하실 수 있습니다. <br/>이벤트에 대해 추가로 설명이 필요한 부분은 '이벤트 소개'에서 자유롭게 작성해주세요.</p>
+                </div>
+                <div class="event_helptext">
+                    <img src="/static/img/black_check.png" alt="">
+                    <p>'이벤트 사진'은 0개에서 최대 3개까지 업로드하실 수 있습니다. <br/>관람객들에게 이벤트의 분위기를 한눈에 보여줄 수 있는 중요한 요소이니, 이벤트의 성격에 맞는 사진을 신중히 골라주세요!</p>
+                </div>
+                <div class="event_helptext">
+                    <img src="/static/img/black_check.png" alt="">
+                    <p>'태그'에는 이벤트를 잘 나타낼 수 있는 키워드를 작성하시면 됩니다. <br/>검색은 '태그'를 기준으로 분류되니, '크리에이터명' '이벤트 이름' '이벤트 종류'를 포함하여 최대한 다양하게 작성해주세요.</p>
+                </div>
             </div>
             <input id="enroll_btn" type="submit" value="이벤트 등록">
         </form>

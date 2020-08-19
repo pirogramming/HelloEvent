@@ -325,6 +325,10 @@ footer {
     border-bottom: 1px solid #ccc;
 }
 
+.additional_info .check_box{
+    display: none; width: 20px; margin-left: 7px;
+}
+
 .additional_info input {
     width: 250px;
 }
