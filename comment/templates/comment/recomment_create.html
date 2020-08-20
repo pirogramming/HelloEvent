@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class='row'><b>{{ recomment.writer.nickname }} :</b> {{ recomment.recomment_text }} </div>
+            {% if recomment.recomment_photo %}
+            <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
+            {% endif %}
+</body>
+</html>

@@ -12,13 +12,12 @@ from django.views.decorators.csrf import csrf_exempt
 
 # @login_required
 @csrf_exempt
-def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
+def comment_detail(request, pk): # 댓글 보여주기
     # ajax
     # receive_comment = request.POST.get('comment',None)
 
     creator = Creator.objects.get(pk=pk)
     comments = creator.comments.all()
-
 
     print('get시작') 
     comment_form = CommentForm()
@@ -33,16 +32,12 @@ def comment_detail(request, pk): # 댓글 보여주기 + 생성하기
     return render(request, 'comment/comment_detail.html', ctx)
 
 @csrf_exempt
-def comment_create_ajax(request, pk):
+def comment_create_ajax(request, pk): # 댓글 생성하기
     # is_ajax : ajax 기능에 의해 호출된 것인지 구분하기 위한 값
     is_ajax = request.POST.get('is_ajax')
-    print(is_ajax)
-    creator = Creator.objects.get(pk=pk)
-    print(1)
-    
-    comment_form = CommentForm(request.POST, request.FILES)
 
-    print(2)
+    creator = Creator.objects.get(pk=pk)
+    comment_form = CommentForm(request.POST, request.FILES)
 
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
@@ -68,31 +63,40 @@ def comment_create_ajax(request, pk):
         # return response
 
 
-
-
-# 대댓글 달기
-def recomment_create(request, comment_id):
+def recomment_detail(request, comment_id): # 대댓글 보여주기
     comment = Comment.objects.get(pk=comment_id)
     creator = comment.creator
-    if request.method =='POST':
-        print('re post시작')
-        recomment_form = RecommentForm(request.POST, request.FILES)
-        if recomment_form.is_valid():
-            recomment = recomment_form.save(commit=False)
-            recomment.parent = comment
-            recomment.writer = request.user
-            recomment.save()
-            if recomment_form.is_valid():
-                recomment = recomment_form.save(commit=False)
-                return redirect('event:comment_detail',pk=creator.id)
-    else:
-        print('re get시작') 
-        recomment_form = RecommentForm()
-    print('re ctx반환직전')
+    recomment_form = RecommentForm()
     ctx = {
+        'comment':comment,
+        'creator':creator,
         'recomment_form':recomment_form,
     }
     return render(request, 'comment/comment_detail.html', ctx)
+
+
+def recomment_create_ajax(request, comment_id): # 대댓글 생성하기
+    # is_ajax : ajax 기능에 의해 호출된 것인지 구분하기 위한 값
+    is_ajax2 = request.POST.get('is_ajax2')
+    print(is_ajax2)
+    comment = Comment.objects.get(pk=comment_id)
+    creator = comment.creator
+    recomment_form = RecommentForm(request.POST, request.FILES)
+    if recomment_form.is_valid():
+        recomment = recomment_form.save(commit=False)
+        recomment.parent = comment
+        recomment.writer = request.user
+        recomment.save()
+        
+    if is_ajax2:
+        print("ajax성공")
+        html = render_to_string('comment/recomment_create.html',{'recomment':recomment, 'username':request.user})
+        print(html)
+        return JsonResponse({'html':html})
+    else:
+        print("ajax실패")
+    return redirect(reverse('event:comment_detail', args=[creator.pk]))
+
 
 # @login_required
 def comment_update(request, comment_id): # 댓글 수정하기

@@ -16,7 +16,8 @@
         {% endif %}
         <div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
         <div class='row'>
-            <a href="#" id='recomment_btn_{{comment.id}}'>대댓글</a>
+            <button id='recomment_btn_{{comment.id}}'>대댓글</button>
+            
             <!-- 댓글작성자:{{comment.member}}
             접속자:{{username}}-->
         {% if comment.member == username %}
@@ -26,29 +27,28 @@
             <a href="{% url 'comment:comment_update' comment.id %}">수정/</a>
             <a href="{% url 'comment:comment_delete' comment.id %}">삭제</a>
         {% endif %}
-
         <div class='row' id='recomment_form_{{comment.id}}'>
-            <div class="container">
+            <div class="container" id="recoment_list">
             {% for recomment in comment.recomment_set.all %}
-            <div class='row'><b>{{ recomment.writer.nickname }} :</b> {{ recomment.recomment_text }} </div>
-            {% if recomment.recomment_photo %}
-            <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
-            {% endif %}
+                {% include 'comment/recomment_create.html' %}
             {% endfor %}
             <hr>
-        </div>
-            <form  action="{% url 'comment:recomment_create' comment.id %}" enctype='multipart/form-data' method='POST'>
+            </div>
+            <form  action="{% url 'comment:recomment_create_ajax' comment.id %}" enctype='multipart/form-data' method='POST' id="recommentForm">
                 {% csrf_token %}
+                <input type="hidden" name='is_ajax2' value=''>
                 {{ recomment_form }}
-                <button type="submit">Submit</button>
+                <input type="submit" class="btn btn-primary" value='대댓글 입력' id='recomment_submit_btn'>
             </form>
-            <a href="#" id="recomment_fold_{{comment.id}}">접기</a>
+            <button id="recomment_fold_{{comment.id}}">접기</button>
         </div>
         <hr>
         <br>
     </div>
 
 <script>
+    //$("#comment_list").scrollTop($("#comment_list")[0].scrollHeight);
+
     let recobtn_{{comment.id}} = $('#recomment_btn_{{comment.id}}')
     let fold_btn_{{comment.id}} = $('#recomment_fold_{{comment.id}}')
 
@@ -60,8 +60,8 @@
     fold_btn_{{comment.id}}.click(function(){
     $('#recomment_form_{{comment.id}}').hide()
     })
-
 </script>
+<script src="{% static 'comment/js/create2.js' %}"></script>
 </body>
 </html>
 

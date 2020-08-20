@@ -1,3 +1,7 @@
+// scroll 하단에 고정
+// $("#comment_list").scrollTop($("#comment_list")[0].scrollHeight);
+
+// 댓글 작성
 $('#comment_form').submit(function(e){
     e.preventDefault();
     $('input[name="is_ajax"]').val("1");
@@ -6,12 +10,12 @@ $('#comment_form').submit(function(e){
     var writer = $('input[name="comment_writer"]').val();
     formData.append("user",writer)
     // console.log(formData)
-    for (var key of formData.keys()) {
-        console.log(key); 
-     }
-     for (var value of formData.values()) {
-        console.log(value); 
-     }
+    // for (var key of formData.keys()) {
+    //     console.log(key); 
+    //  }
+    //  for (var value of formData.values()) {
+    //     console.log(value); 
+    //  }
     $.ajax({
         url:url,
         method:"POST",
@@ -27,8 +31,5 @@ $('#comment_form').submit(function(e){
         $('#id_comment_photo').val("");
     });
     return false;
-
-    
 });
-
 
