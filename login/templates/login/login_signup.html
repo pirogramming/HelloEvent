@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+<link rel="stylesheet" href="{% static 'login/login_signup.css' %}">
+{% endblock %}
 
 {% block main %}
 
@@ -89,8 +94,7 @@
                 </td>
             </tr>
         </table>
-        <button id="save_btn" type="submit"
-                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+        <button id="save_btn" type="submit">
             저장
         </button>
         <br/><br/><br/><br/>

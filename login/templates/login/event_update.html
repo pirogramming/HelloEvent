@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+<link rel="stylesheet" href="{% static 'login/event_update.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="update_title" style="margin-top: 50px; text-align: center;">
+    <h2 style="color: #dd445b ;">Event Update</h2>
+    <p>내가 등록한 이벤트 정보를 수정할 수 있습니다.</p>
+</div>
+<br/>
+<div class="contents">
+    <div class="signup_form">
+        <form method="post" enctype="multipart/form-data" autocomplete="off" style="margin: 0 auto;">
+            {% csrf_token %}
+            <table class="table table-bordered" style="max-width: 1000px; margin: 0 auto;">
+                {{ form.as_table }}
+                {{ image_formset.management_form }}
+                {% for image in image_formset %}
+                    {{ image }}
+                {% endfor %}
+
+                {% for image in image_formset %}
+                    {{ image }}
+                {% endfor %}
+                <tr>
+                    <td><b>시작 시간</b></td>
+                    <td><input type="datetime-local" name="start_date_time" value="{{ starttime_value }}" required /></td>
+                </tr>
+                <tr>
+                    <td><b>종료 시간</b></td>
+                    <td><input type="datetime-local" name="end_date_time" value="{{ endtime_value }}" required /></td>
+                </tr>
+                <tr>
+                    <td><b>태그</b></td>
+                    <td><input type="text" name="tags" value="{% for tag in tags %}{{ tag.name }}, {% endfor %}" required /></td>
+                </tr>
+            </table>
+            <button type="submit"
+                    style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+                저장
+            </button>
+            <br/><br/><br/><br/>
+            <hr>
+            <br/><br/>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -68,9 +68,11 @@
     <!--    <button type="button" style="width: 140px!important;">-->
     <!--    <a href="/accounts/logout" id='logout_btn'>로그아웃</a>-->
     <!--    </button>-->
-    <button type="button" style="width: 140px!important;">
-        <a href="{% url 'login:delete' user.pk %}" id="delete_btn">계정 삭제</a>
-    </button>
+    <a href="{% url 'login:delete' user.pk %}" id="delete_btn">
+        <button type="button" style="width: 140px!important;">
+            계정 삭제
+        </button>
+    </a>
     <br/><br/><br/>
 </div>
 {% endblock %}
@@ -81,18 +83,7 @@
     let user_pk = user_pk_tag.textContent
     let returnUrl = '/login/' + user_pk
 
-
     let delete_btn = document.querySelector('#delete_btn')
-    {%
-        comment %
-    }
-    delete_btn.addEventListener('click', function () {
-        confirm('정말 계정을 삭제하시겠습니까?\n확인을 누르면 되돌릴 수 없습니다!')
-    })
-    {%
-        endcomment %
-    }
-
     delete_btn.onclick = function () {
         let confirm_result = confirm("정말 계정을 삭제하시겠습니까?\n되돌릴 수 없습니다.");
         if (confirm_result === false) {
@@ -100,25 +91,13 @@
         }
     }
 
-
     let logout_btn = document.querySelector('#logout_btn')
-    {%
-        comment %
-    }
-    logout_btn.addEventListener('click', function () {
-        confirm('로그아웃 하시겠습니까?')
-    })
-    {%
-        endcomment %
-    }
-
     logout_btn.onclick = function () {
         let confirm_result = confirm("로그아웃을 하시겠습니까?");
         if (confirm_result === false) {
             document.querySelector('#logout_btn').setAttribute('href', returnUrl)
         }
     }
-
 
 </script>
 {% endblock %}
