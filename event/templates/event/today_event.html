@@ -79,7 +79,7 @@
             <div class='col-lg-4 col-md-4 not_yet_event_section'>
                 이벤트 이름 : {{ not_yet_event.event_name }}<br>
                 <div class='hovereffect'>
-                    <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs'>
+                    <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs1'>
                         <div class="overlay">
                             <h2>{{ not_yet_event.get_genre_display }}</h2>
                             <p>
@@ -102,7 +102,7 @@
             <div class='col-lg-4 col-md-12 ing_event_section'>
                 이벤트 이름 : {{ ing_event.event_name }}<br>
                 <div class='hovereffect'>
-                    <img src="{{ ing_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs'>
+                    <img src="{{ ing_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs2'>
                         <div class="overlay">
                             <h2>{{ ing_event.get_genre_display }}</h2>
                             <p>
@@ -124,7 +124,7 @@
             <div class='col-lg-4 col-md-12 end_event'>
             이벤트 이름 : {{ end_event.event_name }}
             <div class='hovereffect'>
-                <img src="{{ end_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs'>
+                <img src="{{ end_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs3'>
                     <div class="overlay">
                         <h2>{{ end_event.get_genre_display }}</h2>
                         <p>
@@ -162,6 +162,8 @@ var div_notyet = document.getElementById("not_yet_event");
 var div_ing = document.getElementById("ing_event");
 var div_end = document.getElementById("end_event");
 
+var div_img2 = document.getElementByClassName('history_imgs2');
+
 // var display_notyet = div_notyet.style.display;
 // var display_ing = div_ing.style.display;
 // var display_end = div_end.style.display;
@@ -170,6 +172,7 @@ var div_end = document.getElementById("end_event");
 //시작전
 function div_notyet_event() {
     div_notyet.setAttribute("style",'display:block;'); 
+    div_notyet.setAttribute("style",'float:left;'); 
     div_ing.setAttribute("style",'display:none;'); 
     div_end.setAttribute("style",'display:none;'); 
  }
@@ -178,6 +181,7 @@ function div_notyet_event() {
  function div_ing_event() {
     div_notyet.setAttribute("style",'display:none;'); 
     div_ing.setAttribute("style",'display:block;'); 
+    div_img2.setAttribute("style",'float:left;'); 
     div_end.setAttribute("style",'display:none;'); 
  }
 
@@ -185,7 +189,8 @@ function div_notyet_event() {
 function div_end_event() {
     div_notyet.setAttribute("style",'display:none;'); 
     div_ing.setAttribute("style",'display:none;'); 
-    div_end.setAttribute("style",'display:block;'); 
+    div_end.setAttribute("style",'display:block;');
+    div_end.setAttribute("style",'float:left;');  
  }
 
 
