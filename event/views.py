@@ -167,6 +167,11 @@ def today_event(request):
     print(today_date)
     today_date_time = datetime.today()
 
+    # number = today_date_time.weekday()
+
+    day_name = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
+    today_name = day_name[today_date_time.weekday()]
+    
     not_yet = Event.objects.all().filter(Q(start_date_time__date__exact = today_date) & Q(start_date_time__gt=today_date_time))
     ing = Event.objects.all().filter(Q(end_date_time__gte=today_date_time) & Q(start_date_time__lte=today_date_time)) 
     # gte: 이상, lte: 이하 gt: 초과 lt: 미만
@@ -178,6 +183,7 @@ def today_event(request):
         'not_yet_events' : not_yet,
         'end_events': end,
         'ing_events' : ing,
+        'today_name': today_name
     }
 
     return render(request, "event/today_event.html", ctx)

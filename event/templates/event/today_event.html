@@ -7,51 +7,86 @@
 
 {% block main %}
 <div class="container_wrapper">
-    <h1 style="color: #dd445b;">오늘의 이벤트</h1>
-    <h4>오늘 진행되는 이벤트들을 둘러볼 수 있습니다!</h4><hr>
+    <h1 style="color: #dd445b;">오늘의 이벤트</h1><br>
+    <h4><span>{{user.nickname}}</span> 님의 선호지역인 
+        <span>{{user.city}} {{user.gu}}</span> 기반으로 검색된 결과입니다!
+        <!-- <a href='{% url "login:main" %}'><button>다른지역 검색하러 가기</button></a> -->
+    </h4>
+    <hr>
+    <p></p>
+    
     <div class="row">
         <div class='col-lg-4 col-md-12 select_box1'>
-            <button type="button">버스킹</button>
-            <button type="button">플리마켓</button>
-            <button type="button">전시회</button>
+            <!-- <h5>오늘은</h5>
+            <h6>{{ today_date_time.date }} {{ today_name }}입니다.</h6> -->
+            <button type="button" id='not_yet_btn' onclick="div_notyet_event();">시작전</button>
+            <button type="button" id='ing_btn' onclick="div_ing_event();">진행중</button>
+            <button type="button" id='end_btn' onclick="div_end_event();">마감</button>
         </div>
-        <div class='col-lg-4 col-md-12 select_box2'>
-            <p>{{ today_date_time }}</p>
-        </div>
-        <div class='col-lg-4 col-md-12 select_box3'>
-            <button type="button">시작전</button>
-            <button type="button">진행중</button>
-            <button type="button">마감</button>
+        <!-- <div class='col-lg-4 col-md-12 select_box2'>
+            <h5>현재 시간</h5>
+            <h6>{{ today_date_time.time }}</h6>  
+            <p>(새로고침을 기준으로 변경 됨에 주의!)</p>
+        </div> -->
+        <div class='col-lg-8 col-md-12 select_box3'>
+            <p>다른 지역 이벤트를 알아보고 싶나요?</p>
+                    <form action="{% url 'location:search_map'%}" method="post">
+                        {% csrf_token %}
+                        <select name="selected_city">
+                            <option selected>시</option>
+                            <option value="서울">서울특별시</option>
+                        </select>
+                        <select name="selected_gu">
+                            <option selected>구</option>
+                            <option>강남구</option>
+                            <option>송파구</option>
+                            <option>서초구</option>
+                            <option>강동구</option>
+                            <option>관악구</option>
+                            <option>영등포구</option>
+                            <option>강서구</option>
+                            <option>양천구</option>
+                            <option>구로구</option>
+                            <option>금천구</option>
+                            <option>종로구</option>
+                            <option>중구</option>
+                            <option>동대문구</option>
+                            <option>중랑구</option>
+                            <option>마포구</option>
+                            <option>용산구</option>
+                            <option>성동구</option>
+                            <option>광진구</option>
+                            <option>은평구</option>
+                            <option>서대문구</option>
+                            <option>성북구</option>
+                            <option>강북구</option>
+                            <option>도봉구</option>
+                            <option>노원구</option>
+                        </select>
+                        <button type="submit" class="search_icon">검색하기</button>
         </div>
     </div>
     <hr>
-    {% comment %} <div class='container '> {% endcomment %}
-
 </div>
-            <p>현재날짜 : {{ today_date }}</p><br>
-            <p>현재시간 : {{ today_date_time }}</p><br>
 
-    <br><br>
-
-
-<div class='container_wra'>
+<div class='container_wrapper2'>
     <div class='col-lg-12 col-md-12 main'> 
-        <div class="row not_yet_event_header">
-            <p>------아직 시작 안한 이벤트---------</p>
+        <div class="row event_header" id="eventheader">
+            <h3>------아직 시작 안한 이벤트---------</h3>
         </div>
-
-        <div class="row not_yet_event">
+        <div id="not_yet_event" class="row not_yet_event">
             {% for not_yet_event in not_yet_events.all %}
             <div class='col-lg-4 col-md-4 not_yet_event_section'>
-                {{ not_yet_event.event_name }}<br>
+                이벤트 이름 : {{ not_yet_event.event_name }}<br>
                 <div class='hovereffect'>
                     <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs'>
                         <div class="overlay">
-                            <h2>{{ not_yet_event.genre }}</h2>
+                            <h2>{{ not_yet_event.get_genre_display }}</h2>
                             <p>
-                                <b>시작 시간</b><br>
-                                {{ not_yet_event.start_date_time }}<br>
-                                <a href="#">LINK HERE</a>
+                                <b>두근두근! 곧 시작해요🤩</b><br>
+                                {{ not_yet_event.start_date_time.time }}
+                                {{ not_yet_event.end_date_time.time }}<br>
+                                <a href="#">{{ not_yet_event.genre }} LINK</a>
                             </p>
                         </div>  
                 </div>
@@ -59,30 +94,104 @@
             </div>
             {% endfor %}
         </div>
-        <div class="row ing_event_header"> 
-            <p>-------진행중인 이벤트-------------</p>
+        <div class="row event_header" id="eventheader">
+            <h3>-------진행중인 이벤트-------------</h3>
         </div>
-        <div class="row ing_event">
+        <div id="ing_event" class="row ing_event">
             {% for ing_event in ing_events.all %}
             <div class='col-lg-4 col-md-12 ing_event_section'>
-                {{ ing_event.event_name }}<br>
-                {{ ing_event.start_date_time}} ~ {{ ing_event.end_date_time }}<br><br>
+                이벤트 이름 : {{ ing_event.event_name }}<br>
+                <div class='hovereffect'>
+                    <img src="{{ ing_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs'>
+                        <div class="overlay">
+                            <h2>{{ ing_event.get_genre_display }}</h2>
+                            <p>
+                                <b>아직 진행 중이에요😎</b><br>
+                                {{ ing_event.start_date_time.time}} ~
+                                {{ ing_event.end_date_time.time }}<br><br>
+                                <a href="#">{{ ing_event.genre }} LINK</a>
+                            </p>
+                        </div>  
+                </div>
             </div>
             {% endfor %}
         </div>
-        <div class="row row_event_header"> 
-            <p>----------종료한 이벤트------------</p>
+        <div class="row event_header" id="eventheader">
+            <h3>----------종료한 이벤트------------</h3>
         </div>
-        <div class='row end_event'>
+        <div id="end_event" class='row end_event'>
             {% for end_event in end_events.all %}
             <div class='col-lg-4 col-md-12 end_event'>
-                {{ end_event.event_name }}
-                {{ end_event.start_date_time}}
+            이벤트 이름 : {{ end_event.event_name }}
+            <div class='hovereffect'>
+                <img src="{{ end_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs'>
+                    <div class="overlay">
+                        <h2>{{ end_event.get_genre_display }}</h2>
+                        <p>
+                            <b>아쉽지만 종료되었어요😢</b><br>
+                            {{ end_event.start_date_time.time}} ~
+                            {{ end_event.end_date_time.time }}<br>
+                            <br>
+                            <a href="#">크리에이터 LINK</a>
+                        </p>
+                    </div>  
+            </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
 
+
+{% endblock %}
+
+
+{% block hanseokscript %}
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<!--jquery사용하려면 필요한 스크립트 코드  (메서드 사용 가능하게 해줌)-->
+<script>
+// let not_yet_btn = document.querySelector('#not_yet_btn')
+// not_yet_btn.onclick = function() {
+//     $('.row not_yet_event').show();
+//     $('.row ing_event').hide();
+//     $('.row end_event').hide();
+// }
+
+
+var div_notyet = document.getElementById("not_yet_event");
+var div_ing = document.getElementById("ing_event");
+var div_end = document.getElementById("end_event");
+
+// var display_notyet = div_notyet.style.display;
+// var display_ing = div_ing.style.display;
+// var display_end = div_end.style.display;
+
+
+//시작전
+function div_notyet_event() {
+    div_notyet.setAttribute("style",'display:block;'); 
+    div_ing.setAttribute("style",'display:none;'); 
+    div_end.setAttribute("style",'display:none;'); 
+ }
+ 
+ //진행중
+ function div_ing_event() {
+    div_notyet.setAttribute("style",'display:none;'); 
+    div_ing.setAttribute("style",'display:block;'); 
+    div_end.setAttribute("style",'display:none;'); 
+ }
+
+//마감
+function div_end_event() {
+    div_notyet.setAttribute("style",'display:none;'); 
+    div_ing.setAttribute("style",'display:none;'); 
+    div_end.setAttribute("style",'display:block;'); 
+ }
+
+
+
+
+
+</script>
 
 {% endblock %}
