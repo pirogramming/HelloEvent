@@ -283,24 +283,20 @@ def user_delete(request, pk):
 @csrf_exempt
 def like(request):
     pk = request.POST.get('pk', None)
-    print(0)
-    creator = get_object_or_404(Event, id=pk).creator
+    print(pk)
+    creator = get_object_or_404(Event, pk=pk).creator
     print(creator)
     if request.user in creator.like_users.all():
-        print(1)
         creator.like_users.remove(request.user)
         message = "좋아요 취소"
     else:
-        print(2)
         creator.like_users.add(request.user)
         message = "좋아요"
-
     ctx = {
-        'like-count':creator.like_count,
+        'like_count':creator.like_count,
         'message':message,
         'creator_name':creator.creator_name,
     }
-
     return HttpResponse(json.dumps(ctx), content_type="application/json")
 
 

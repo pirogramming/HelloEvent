@@ -52,11 +52,6 @@
                     <div id="right_section">
                         <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}"> <i class="fas fa-heart" ></i></a>
                         <p id="count-{{ event.creator.id }}">{{ event.creator.like_count }}개</p>
-                        <p id="like-user-{{ event.creator.id }}">
-                            {% for like_user in event.creator.like_users.all %}
-                                {{ like_user.nickname }}
-                            {% endfor %}
-                        </p>
                     </div>
                 </div>
         {% endfor %}
