@@ -67,8 +67,9 @@
     <div id="user_pk_section" style="display:none">{{user.pk}}</div>
     <a href="/accounts/logout" id='logout_btn'>로그아웃</a>
     <hr>
+    <button>
     <a href="{% url 'login:delete' user.pk %}" id="delete_btn">계정 삭제</a>
-
+    </button>
     <br/><br/><br/>
 </div>
 {% endblock %}
@@ -81,9 +82,9 @@
 
 
     let delete_btn = document.querySelector('#delete_btn')
-    {% comment %} delete_btn.addEventListener('click', function () {
-        confirm('정말 계정을 삭제하시겠습니까?\n확인을 누르면 되돌릴 수 없습니다!')
-    }) {% endcomment %}
+    // delete_btn.addEventListener('click', function () {
+    //    confirm('정말 계정을 삭제하시겠습니까?\n확인을 누르면 되돌릴 수 없습니다!')
+    // }) 
 
     delete_btn.onclick = function() {
         let confirm_result = confirm("정말 계정을 삭제하시겠습니까?\n되돌릴 수 없습니다.");
@@ -94,9 +95,8 @@
 
 
     let logout_btn = document.querySelector('#logout_btn')
-    {% comment %} logout_btn.addEventListener('click', function () {
-        confirm('로그아웃 하시겠습니까?')
-    }) {% endcomment %}
+    // logout_btn.addEventListener('click', function () {
+    //  confirm('로그아웃 하시겠습니까?')
 
     logout_btn.onclick = function() {
         let confirm_result = confirm("로그아웃을 하시겠습니까?");   
