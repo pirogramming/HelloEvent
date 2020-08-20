@@ -117,13 +117,20 @@ def comment_update(request, comment_id): # 댓글 수정하기
     return render(request, 'comment/comment_detail.html', {'comment_form':comment_form})
 
 
-
-# @login_required
 def comment_delete(request, comment_id):
-    comment = Comment.objects.get(pk=comment_id)
-    comment_creator = comment.creator
-    comment.delete()
-    return redirect('event:comment_detail',pk=comment_creator.id)
+    is_ajax = request.GET.get('is_ajax') if 'is_ajax' in request.GET else request.POST.get('is_ajax',False)
+    comment = get_object_or_404(Comment, pk=comment_id)
+    creator = comment.creator
 
-# ------------------------------------------------------------
+    if is_ajax:
+        print("ajax 성공")
+        comment.delete()
+        return JsonResponse({"works":True})
 
+    if request.method == "POST":
+        print('post 시작')
+        comment.delete()
+        return redirect(creator)
+    else:
+        print('get')
+        return render(request, 'comment/comment_detail.html', {'object': comment})
