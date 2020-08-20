@@ -29,12 +29,23 @@ def login(request):
 
 def main(request):
     user = request.user
-
-    creators = user.like_creators.all()
+    events = Event.objects.none()
+    today = datetime.today()
+    if user.is_authenticated:
+        user_is = True
+        creators = user.like_creators.all()
+        for creator in creators:
+            q = creator.events.filter(end_date_time__gt=today)
+            events = events | q
+    else:
+        user_is = False
+        creators = Creator.objects.none()
     print(creators)
 
-    ctx={
-         'creators':creators,
+    ctx = {
+        'creators':creators,
+        'user_is':user_is,
+        'events':events,
     }
     return render(request, 'login/main.html', ctx)
 

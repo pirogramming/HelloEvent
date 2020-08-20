@@ -115,9 +115,49 @@
     </a>
 </div>
 
+
+
+
 <!-- Marketing messaging and featurettes
 ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
+{% if user_is == True %}
+<div class="like-creator-events">
+    <div class="container_title">
+        <h1 style="color: #dd445b ; font-weight: bold;">진행 중인</h1>
+        <h1>Like 크리에이터의 이벤트</h1>
+        <hr/>
+        <br/>
+    </div>
+    <div class="row now-container">
+        {% if creators.count == 0 %}
+            <p>아직 좋아하는 크리에이터가 없으시군요! 하트를 눌러 크리에이터의 이벤트를 받아보세요!</p>
+        {% elif events.count == 0 %}
+            <p>현재 진행 중인 Like 크리에이터의 이벤트가 없습니다!</p>
+        {% else %}
+        {% for event in events %}
+        <div class="col-12 col-sm-6 shadow p-3 mb-5 bg-yellow rounded" style="text-align: center; width:85%;" id="event_box">
+           <a href="{% url "event:creator_detail"  event.id %}">
+            <img
+                        class="bd-placeholder-img rounded-circle"
+                        width="170"
+                        height="140"
+                        src="{{ event.creator.creator_photo.url }}"
+                        alt=""
+                />
+            <p>
+            <h3>{{ event.event_name }}</h3>
+            <h5>{{ event.creator.creator_name }}</h5>
+            <p>- {{ event.get_genre_display }} -</p>
+            </p>
+            </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
 
 <!--<div class="container">-->
 <div class="container_custom">

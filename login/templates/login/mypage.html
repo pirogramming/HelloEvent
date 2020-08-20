@@ -63,7 +63,7 @@
                                 <img src="{{ creator.creator_photo.url }}">
                             </div>
                             <div class="name">
-                                <a href="{% url "event:creator_detail"  creator.id %}">
+                                <a href="{% url "event:creator_detail"  creator.events.first.id %}">
                                     {{ creator.creator_name }}
                                 </a>
                             </div>
@@ -82,7 +82,7 @@
             {% else %}
                 {% for event in events %}
                     <div class="col-12 event">
-                        <a href="{% url "event:creator_detail"  event.creator.id %}">
+                        <a href="{% url "event:creator_detail"  event.id %}">
                             {{ event.event_name }}
                             <div id="processing">진행중</div> - {{ event.creator.creator_name }}
                         </a>
