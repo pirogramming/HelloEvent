@@ -2,7 +2,7 @@ from django.http import HttpResponse,JsonResponse
 from django.core import serializers
 from django.shortcuts import render,redirect
 from login.models import Member,Creator 
-from event.models import Event
+from event.models import Event,EventImage
 from location.models import Event_Location
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -34,25 +34,23 @@ def search_map(request):
 def ajax_search_genre(request):
     genre = request.POST.get('genre',None)
     events = Event.objects.filter(genre=genre)
-    # for event in events:
-        # print(event.location.city)
     locations = Event_Location.objects.all()
     creators = Creator.objects.all()
-    # print(events)
+    eventimages = EventImage.objects.all()
+
     event = serializers.serialize('json', events)
     location = serializers.serialize('json',locations)
     creator = serializers.serialize('json',creators)
+    eventimage = serializers.serialize('json',eventimages)
+    
     response_data = {}
     response_data['event'] = event
+    response_data['eventimage'] = eventimage
     response_data['location'] = location
     response_data['creator'] = creator
-    # data = json.loads(data)
-    # print(event)
-    print(creator)
-    # message = '성공'
-    # context = {
-    #     'find_events':events,
-    #     'message':message,
-    # }
+
+    print('eventimage 모델 : ',eventimage)
+    print('event 모델 : ',event)
+    print('evreator 모델 : ',creator)
     return JsonResponse(response_data)
         
