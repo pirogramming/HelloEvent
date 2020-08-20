@@ -91,11 +91,10 @@ def recomment_create_ajax(request, comment_id): # 대댓글 생성하기
     if is_ajax2:
         print("ajax성공")
         html = render_to_string('comment/recomment_create.html',{'recomment':recomment, 'username':request.user})
-        print(html)
         return JsonResponse({'html':html})
     else:
         print("ajax실패")
-    return redirect(reverse('event:comment_detail', args=[creator.pk]))
+    return redirect(reverse('comment:recomment_detail', args=[comment_id]))
 
 
 # @login_required
