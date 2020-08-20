@@ -9,14 +9,14 @@
 {% block main %}
 <!--header-->
 {% if event.genre == 'Busking' %}
-    <div class='header'style="background: url('{% static 'event/img/busking.jpg' %}') no-repeat; 
-    background-size: 100% auto; height:350px;"> 
+    <div class='header' style="background: url('{% static 'event/img/busk.jpg' %}') no-repeat;
+    background-size: 100% auto; height:350px;">
 {% elif event.genre == 'Flee' %}
-    <div class='header'style="background: url('{% static 'event/img/fleamarket.jpg' %}') no-repeat; 
-    background-size: 100% auto; height:350px"> 
+    <div class='header' style="background: url('{% static 'event/img/flea.png' %}') no-repeat;
+    background-size: 100% auto; height:350px">
 {% else %}
-    <div class='header'style="background: url('{% static 'event/img/exhibition.jpg' %}') no-repeat; 
-        background-size: 100% auto; height:350px"> 
+    <div class='header' style="background: url('{% static 'event/img/exhibit.png' %}') no-repeat;
+    background-size: cover; height:300px">
 {% endif %}
     <div class='flex-item'>
     {% if event.genre == 'Busking' %}
@@ -26,12 +26,14 @@
     {% else %}
         <p id='genre'>Exhibition</p>
     {% endif %}
-        <p id='creator_name'>{{ event.creator.creator_name }}</p>
+        <div class="line"></div>
+        <br/>
+        <h2 id='creator_name' style="font-weight: bold;">{{ event.creator.creator_name }}<span style="font-weight: lighter;">'s Page</span></h2>
     </div>
 </div>
 
 <!--content-->
-<div class="container_wrapper">
+<div class="container_wrapper" style="margin-top: 30px;">
     <div class="container first_content">
         <div class="row">
             <div class="col-lg-6 col-md-12 content_1">
@@ -42,7 +44,7 @@
                             <div class="carousel-item active" data-interval="4000">
                             <div class="imgwrapper">
                             <img src="{{ event_image.image.url }}" alt="background" style=""></div>
-                            </div> 
+                            </div>
                             {% else %}
                             <div class="carousel-item" data-interval="4000">
                             <img src="{{ event_image.image.url }}" alt="background" style="">
@@ -62,9 +64,10 @@
             </div>
             <div class="col-lg-6 col-md-12 content_2">
                 <div class="grid-item">
-                    <h2 id="title">Event Information</h2>
+                    <h2 id="title" style="margin: 0;">Event Information</h2>
+                    <hr/>
                     <br>
-                    <p id="event_name">[ {{event.event_name}} ]</p>
+                    <p id="event_name">{{event.event_name}}</p>
                     <p id="event_time"><b>일시</b>: {{event.start_date_time}} ~ {{event.end_date_time}}</p>
                     <p id="event_location"><b>장소</b>: {{event.location.city}} {{event.location.gu}} {{event.location.rest_address}}</p>
                     <p id="event_desc"><b>설명</b>: {{event.desc|linebreaksbr}}</p>
@@ -82,24 +85,24 @@
 
 <div class="container_wrapper">
     <div class="container history">
+        <div class="line"></div>
         <h2 id="title">{{event.creator.creator_name}}'s Event History</h2>
         {% for creator_event in events %}
-        <hr>
         <div class="row history_event">
-            <div class="col-lg-9 col-md-12 history_col">
+            <div class="col-lg-7 col-md-12 history_col">
                 <div class="infowrapper">
-                    <p id="event_name"><a href="{% url 'event:creator_detail' creator_event.pk %}">[ {{creator_event.event_name}} ]</a></p>
+                    <p id="event_name"><a href="{% url 'event:creator_detail' creator_event.pk %}">{{creator_event.event_name}}</a></p>
                     <p id="event_time"><b>일시</b>: {{creator_event.start_date_time}} ~ {{creator_event.end_date_time}}</p>
                     <p id="event_location"><b>장소</b>: {{creator_event.location.city}} {{creator_event.location.gu}} {{creator_event.location.rest_address}}</p>
                     <p id="event_desc"><b>설명</b>: {{creator_event.desc}}</p>
                     <p id='tag_name'>
                         {% for tag in creator_event.tags.all %}
-                            <a href="#">#{{tag.name}}</a>
+                        <a href="#"><button id="tag-box">{{tag.name}}</button></a>
                         {% endfor %}
                     </p>
                 </div>
             </div>
-            <div class="col-lg-3 d-none d-lg-block history_col">
+            <div class="col-lg-5 d-none d-lg-block history_col">
                 <!--{{creator_event.eventimage_set.all}}-->
                 <img src="{{creator_event.eventimage_set.all.first.image.url}}" alt="" class='history_imgs'/>
             </div>
@@ -120,7 +123,7 @@
                     <div class="grid-item2 left">
                         <b>{{comment.comment_text}}</b><br>
                         <small>{{comment.created_at}}</small>
-                    </div> 
+                    </div>
                 </div>
                 <br>
             </div>
@@ -129,9 +132,9 @@
                 <div class="col my-auto"><img src="{% static 'event/img/user3.png' %} " alt="" class='comment_user'><br>{{comment.member.nickname}}</div>
                 <div class="col grid2 speech-bubble1 my-auto">
                     <div class="grid-item2 left">
-                        <b>{{comment.comment_text}}</b><br> 
+                        <b>{{comment.comment_text}}</b><br>
                         <small>{{comment.created_at}}</small>
-                    </div> 
+                    </div>
                 </div>
                 <br>
             </div>
@@ -141,7 +144,7 @@
                 <div class="grid-item2 right">
                     <b>{{comment.comment_text}}</b><br>
                     <small>{{comment.created_at}}</small>
-                </div> 
+                </div>
             </div>
                 <div class="col my-auto"><img src="{% static 'event/img/user2.png' %} " alt="" class='comment_user'><br>{{comment.member.nickname}}</div>
                  <br>
@@ -158,14 +161,14 @@
                 <a href="{% url 'event:comment_detail' creator.pk %}" class="btn btn-outline-success my-2 my-sm-0">후기 작성하러가기</a>
             </div>
             {% endif %}
-            
+
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block injiscript %}
-    <script> 
+    <script>
     $('.carousel').carousel({interval: 2000,})
     </script>
 {% endblock %}

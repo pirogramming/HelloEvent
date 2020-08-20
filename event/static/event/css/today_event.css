@@ -60,21 +60,21 @@ main {
 
 
 .main {
-     /*margin:4rem 15rem 0;*/
+    /*margin:4rem 15rem 0;*/
 }
 
 .hovereffect img {
     position: absolute;
-     /*float:left; */
+    /*float:left; */
     /* top: 50%;
     left: 50%; */
     /* transform: translate(-50%, -50%); */
     /*max-height: 200px;*/
     /*max-width: 285px;*/
-     /*width: auto; height: auto;  */
+    /*width: auto; height: auto;  */
     width: 24rem;
     height: 24rem;
-     /*position: relative;*/
+    /*position: relative;*/
     /*cursor: default; */
 
 }
@@ -96,13 +96,18 @@ main {
     text-decoration: none;
 }
 
+p {
+    margin-bottom: 0;
+}
+
 .buttons {
     text-align: center;
 }
+
 .filter_btn {
     width: 80px;
     height: 35px;
-    border: 1px solid #fd8b83 ;
+    border: 1px solid #fd8b83;
     background-color: white;
     border-radius: 10px;
     color: #fd8b83;
@@ -115,52 +120,56 @@ main {
 
 .event_header {
     margin-left: 10px;
-    border-left: 2px solid #dd445b ;
+    border-left: 2px solid #dd445b;
     padding: 5px;
 }
-.event_header h3{
+
+.event_header h3 {
     margin-left: 5px;
 }
 
 .container1 {
     padding: 20px;
-    border: 1px dashed #dd445b ;
+    border: 1px dashed #dd445b;
     border-radius: 20px;
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
 }
 
 .container2 {
     padding: 20px;
-    border: 1px dashed #dd445b ;
+    border: 1px dashed #dd445b;
     border-radius: 20px;
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
 }
 
 .container3 {
     padding: 20px;
-    border: 1px dashed #dd445b ;
+    border: 1px dashed #dd445b;
     border-radius: 20px;
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
 }
+
 /* 여기서 부터 인지가 보내준 사이트 참고~ */
 
 .hovereffect {
     width: 100%;
-    height: 100%;
-     /*float: left; */
+    /*height: 100%;*/
+    /*float: left; */
     overflow: hidden;
     position: relative;
     text-align: center;
     cursor: default;
+    border-radius: 10px;
+
 }
 
 .hovereffect .overlay {
     position: absolute;
     overflow: hidden;
-    width: 100%!important;
-    height: 100%!important;
-    left: -0rem;
-    right: 0rem;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0;
+    right: 0;
     top: 3rem;
     border-bottom: 1px solid #FFF;
     border-top: 1px solid #FFF;
@@ -183,7 +192,9 @@ main {
     display: block;
     position: relative;
     -webkit-transition: all 0.35s;
+    width: 100%;
     transition: all 0.35s;
+    border-radius: 10px;
 }
 
 .hovereffect:hover img {

@@ -41,7 +41,7 @@
                 <div id="tabContent1" class="row not_yet_event">
                     {% for not_yet_event in not_yet_events.all %}
                     <div class='col-lg-4 col-md-12 not_yet_event_section'>
-                        이벤트 이름 : {{ not_yet_event.event_name }}<br>
+                        <p>이벤트 이름 : {{ not_yet_event.event_name }}</p><br>
                         <div class='hovereffect'>
                             <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt=""
                                  class='history_imgs1'>
@@ -69,7 +69,7 @@
                 <div id="tabContent2" class="row ing_event">
                     {% for ing_event in ing_events.all %}
                     <div class='col-lg-4 col-md-12 ing_event_section'>
-                        이벤트 이름 : {{ ing_event.event_name }}<br>
+                        <p>이벤트 이름 : {{ ing_event.event_name }}</p><br>
                         <div class='hovereffect'>
                             <img src="{{ ing_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs2'>
                             <div class="overlay">
@@ -96,7 +96,7 @@
                 <div id="tabContent3" class='row end_event'>
                     {% for end_event in end_events.all %}
                     <div class='col-lg-4 col-md-12 end_event_section'>
-                        이벤트 이름 : {{ end_event.event_name }}
+                        <p>이벤트 이름 : {{ end_event.event_name }}</p>
                         <div class='hovereffect'>
                             <img src="{{ end_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs3'>
                             <div class="overlay">
