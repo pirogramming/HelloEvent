@@ -12,47 +12,47 @@
 </div>
 <br/>
 <div class="contents" style="text-align: center; ; width: 500px; margin: 0 auto;">
-        {% if user.nickname == '' %}
-        <b>설정된 닉네임이 없습니다.</b>
-        <b>수정하기를 눌러 설정해주세요!</b>
-        {% else %}
+    {% if user.nickname == '' %}
+    <b>설정된 닉네임이 없습니다.</b>
+    <b>수정하기를 눌러 설정해주세요!</b>
+    {% else %}
 
-        <table class="type03">
-<!--            <tr>-->
-<!--                <th scope="row">가입 유형</th>-->
-<!--                <td>{{ user.username }}</td>-->
-<!--            </tr>-->
-            <tr>
-                <th scope="row">아이디</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th scope="row">닉네임</th>
-                <td>{{ user.nickname }}</td>
-            </tr>
-            <tr>
-                <th scope="row">선호지역</th>
-                <td>{{ user.city }} {{ user.gu }}</td>
-            </tr>
-            <tr>
-                <th scope="row">가입 날짜</th>
-                <td>{{ user.created_on }}</td>
-            </tr>
-        </table>
-        {% endif %}
-        <!--        <p><b>닉네임</b> {{ user.nickname }}</p>-->
+    <table class="type03">
+        <!--            <tr>-->
+        <!--                <th scope="row">가입 유형</th>-->
+        <!--                <td>{{ user.username }}</td>-->
+        <!--            </tr>-->
+        <tr>
+            <th scope="row">아이디</th>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th scope="row">닉네임</th>
+            <td>{{ user.nickname }}</td>
+        </tr>
+        <tr>
+            <th scope="row">선호지역</th>
+            <td>{{ user.city }} {{ user.gu }}</td>
+        </tr>
+        <tr>
+            <th scope="row">가입 날짜</th>
+            <td>{{ user.created_on }}</td>
+        </tr>
+    </table>
+    {% endif %}
+    <!--        <p><b>닉네임</b> {{ user.nickname }}</p>-->
 
-        <!--        <b>선호 지역 : {{ user.city }} {{ user.gu }}</b>-->
-        <!--        <p>이메일: {{ user.email }}</p>-->
-        <!--        <p>가입 날짜: {{ user.created_on }}</p>-->
+    <!--        <b>선호 지역 : {{ user.city }} {{ user.gu }}</b>-->
+    <!--        <p>이메일: {{ user.email }}</p>-->
+    <!--        <p>가입 날짜: {{ user.created_on }}</p>-->
 
 
     <button type="button">
         <a href="{% url 'login:update' user.pk %}">수정하기</a>
     </button>
-    <button type="button">
-        <a href="{% url 'login:main' %}">메인으로</a>
-    </button>
+<!--    <button type="button">-->
+<!--        <a href="{% url 'login:main' %}">메인으로</a>-->
+<!--    </button>-->
 
     {% if creator is None %}
     <button type="button" style="width: 140px!important;">
@@ -63,12 +63,14 @@
         <a href="{% url 'login:creator_mypage' user.pk %}">크리에이터 페이지</a>
     </button>
     {% endif %}
-    <br/><br/><br/>
+    <br/>
     <div id="user_pk_section" style="display:none">{{user.pk}}</div>
-    <a href="/accounts/logout" id='logout_btn'>로그아웃</a>
-    <hr>
-    <a href="{% url 'login:delete' user.pk %}" id="delete_btn">계정 삭제</a>
-
+    <!--    <button type="button" style="width: 140px!important;">-->
+    <!--    <a href="/accounts/logout" id='logout_btn'>로그아웃</a>-->
+    <!--    </button>-->
+    <button type="button" style="width: 140px!important;">
+        <a href="{% url 'login:delete' user.pk %}" id="delete_btn">계정 삭제</a>
+    </button>
     <br/><br/><br/>
 </div>
 {% endblock %}
@@ -81,30 +83,42 @@
 
 
     let delete_btn = document.querySelector('#delete_btn')
-    {% comment %} delete_btn.addEventListener('click', function () {
+    {%
+        comment %
+    }
+    delete_btn.addEventListener('click', function () {
         confirm('정말 계정을 삭제하시겠습니까?\n확인을 누르면 되돌릴 수 없습니다!')
-    }) {% endcomment %}
+    })
+    {%
+        endcomment %
+    }
 
-    delete_btn.onclick = function() {
+    delete_btn.onclick = function () {
         let confirm_result = confirm("정말 계정을 삭제하시겠습니까?\n되돌릴 수 없습니다.");
-        if (confirm_result === false){
+        if (confirm_result === false) {
             document.querySelector('#delete_btn').setAttribute('href', returnUrl)
         }
     }
 
 
     let logout_btn = document.querySelector('#logout_btn')
-    {% comment %} logout_btn.addEventListener('click', function () {
-        confirm('로그아웃 하시겠습니까?')
-    }) {% endcomment %}
-
-    logout_btn.onclick = function() {
-        let confirm_result = confirm("로그아웃을 하시겠습니까?");   
-        if(confirm_result === false){
-            document.querySelector('#logout_btn').setAttribute('href',returnUrl)
-        } 
+    {%
+        comment %
     }
-    
+    logout_btn.addEventListener('click', function () {
+        confirm('로그아웃 하시겠습니까?')
+    })
+    {%
+        endcomment %
+    }
+
+    logout_btn.onclick = function () {
+        let confirm_result = confirm("로그아웃을 하시겠습니까?");
+        if (confirm_result === false) {
+            document.querySelector('#logout_btn').setAttribute('href', returnUrl)
+        }
+    }
+
 
 </script>
 {% endblock %}
