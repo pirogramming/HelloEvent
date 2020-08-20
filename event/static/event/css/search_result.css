@@ -93,6 +93,7 @@ body {
     width:35%;
     display: flex;
     align-items: center;
+    margin-top : 10px;
 }
 
 #right_section img{
@@ -127,4 +128,8 @@ body {
 
 .like{
     cursor:pointer;
+}
+
+#event_time{
+    color:#7E526b
 }
