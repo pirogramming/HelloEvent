@@ -8,111 +8,110 @@
 {% block main %}
 <div class="entire_wrapper">
     <div class="container_wrapper">
-        <h1 style="color: #dd445b;">오늘의 이벤트</h1><br>
-        <h4><span>{{user.nickname}}</span> 님의 선호지역인
-            <span>{{user.city}} {{user.gu}}</span> 기반으로 검색된 결과입니다!
+        <h1 style="color: #dd445b;">오늘의 이벤트</h1>
+        <h5><b>{{user.nickname}}</b> 님의 선호지역인
+            <b>{{user.city}} {{user.gu}}</b> 기반으로 검색된 결과입니다.
             <!-- <a href='{% url "login:main" %}'><button>다른지역 검색하러 가기</button></a> -->
-        </h4>
+        </h5>
         <hr>
-        <p></p>
 
-        <div class="row">
-            <!--            <div class='col-lg-4 col-md-12 select_box1'>-->
-            <!-- <h5>오늘은</h5>
-            <h6>{{ today_date_time.date }} {{ today_name }}입니다.</h6> -->
-            <div style="margin-left: 10px;">
-                <a href="#eventheader1">
-                    <button type="button" class="filter_btn" onclick="div_notyet_event();">시작전</button>
-                </a>
-                <a href="#eventheader2">
-                    <button type="button" class="filter_btn" onclick="div_ing_event();">진행중</button>
-                </a>
-                <a href="#eventheader3">
-                    <button type="button" class="filter_btn" onclick="div_end_event();">마감</button>
-                </a>
-            </div>
-            <!--            </div>-->
-            <!-- <div class='col-lg-4 col-md-12 select_box2'>
-                <h5>현재 시간</h5>
-                <h6>{{ today_date_time.time }}</h6>
-                <p>(새로고침을 기준으로 변경 됨에 주의!)</p>
-            </div> -->
-            <!--            <div class='col-lg-8 col-md-12 select_box3'>-->
-            <!--            </div>-->
+    </div>
+    <div class="buttons">
+        <div>
+            <a href="#container1">
+                <button type="button" class="filter_btn">시작전</button>
+            </a>
+            <a href="#container2">
+                <button type="button" class="filter_btn">진행중</button>
+            </a>
+            <a href="#container3">
+                <button type="button" class="filter_btn">마감</button>
+            </a>
         </div>
-        <hr>
+
     </div>
 
     <div class='container_wrapper2'>
         <div class='col-lg-12 col-md-12 main'>
-            <div class="row event_header" id="eventheader1">
-                <h5>시작 전 이벤트</h5>
+            <div class="container1" id="container1">
+                <div class="row event_header" id="eventheader1">
+                    <h3>시작 전 이벤트</h3>
+                </div>
+                <br/>
+                <div id="tabContent1" class="row not_yet_event">
+                    {% for not_yet_event in not_yet_events.all %}
+                    <div class='col-lg-4 col-md-12 not_yet_event_section'>
+                        이벤트 이름 : {{ not_yet_event.event_name }}<br>
+                        <div class='hovereffect'>
+                            <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt=""
+                                 class='history_imgs1'>
+                            <div class="overlay">
+                                <h2>{{ not_yet_event.get_genre_display }}</h2>
+                                <p>
+                                    <b>두근두근! 곧 시작해요🤩</b><br>
+                                    {{ not_yet_event.start_date_time.time }}
+                                    {{ not_yet_event.end_date_time.time }}<br>
+                                    <a href="#">{{ not_yet_event.genre }} LINK</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!--                {{ not_yet_event.start_date_time}}<br>-->
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            <div id="tabContent1" class="row not_yet_event">
-                {% for not_yet_event in not_yet_events.all %}
-                <div class='col-lg-4 col-md-12 not_yet_event_section'>
-                    이벤트 이름 : {{ not_yet_event.event_name }}<br>
-                    <div class='hovereffect'>
-                        <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs1'>
-                        <div class="overlay">
-                            <h2>{{ not_yet_event.get_genre_display }}</h2>
-                            <p>
-                                <b>두근두근! 곧 시작해요🤩</b><br>
-                                {{ not_yet_event.start_date_time.time }}
-                                {{ not_yet_event.end_date_time.time }}<br>
-                                <a href="#">{{ not_yet_event.genre }} LINK</a>
-                            </p>
+            <br/><br/>
+            <div class="container2" id="container2">
+                <div class="row event_header" id="eventheader2">
+                    <h3>진행중인 이벤트</h3>
+                </div>
+                <br/>
+                <div id="tabContent2" class="row ing_event">
+                    {% for ing_event in ing_events.all %}
+                    <div class='col-lg-4 col-md-12 ing_event_section'>
+                        이벤트 이름 : {{ ing_event.event_name }}<br>
+                        <div class='hovereffect'>
+                            <img src="{{ ing_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs2'>
+                            <div class="overlay">
+                                <h2>{{ ing_event.get_genre_display }}</h2>
+                                <p>
+                                    <b>아직 진행 중이에요😎</b><br>
+                                    {{ ing_event.start_date_time.time}} ~
+                                    {{ ing_event.end_date_time.time }}<br>
+                                    <a href="#">{{ ing_event.genre }} LINK</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <!--                {{ not_yet_event.start_date_time}}<br>-->
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
-            <div class="row event_header" id="eventheader2">
-                <h3>진행중인 이벤트</h3>
-            </div>
-            <div id="tabContent2" class="row ing_event">
-                {% for ing_event in ing_events.all %}
-                <div class='col-lg-4 col-md-12 ing_event_section'>
-                    이벤트 이름 : {{ ing_event.event_name }}<br>
-                    <div class='hovereffect'>
-                        <img src="{{ ing_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs2'>
-                        <div class="overlay">
-                            <h2>{{ ing_event.get_genre_display }}</h2>
-                            <p>
-                                <b>아직 진행 중이에요😎</b><br>
-                                {{ ing_event.start_date_time.time}} ~
-                                {{ ing_event.end_date_time.time }}<br>
-                                <a href="#">{{ ing_event.genre }} LINK</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
             </div>
 
-
-            <div class="row event_header" id="eventheader3">
-                <h3>종료한 이벤트</h3>
-            </div>
-            <div id="tabContent3" class='row end_event'>
-                {% for end_event in end_events.all %}
-                <div class='col-lg-4 col-md-12 end_event_section'>
-                    이벤트 이름 : {{ end_event.event_name }}
-                    <div class='hovereffect'>
-                        <img src="{{ end_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs3'>
-                        <div class="overlay">
-                            <h2>{{ end_event.get_genre_display }}</h2>
-                            <p>
-                                <b>아쉽지만 종료되었어요😢</b><br>
-                                {{ end_event.start_date_time.time}} ~
-                                {{ end_event.end_date_time.time }}<br>
-                                <a href="#">크리에이터 LINK</a>
-                            </p>
+            <br/><br/>
+            <div class="container3" id="container3">
+                <div class="row event_header" id="eventheader3">
+                    <h3>종료한 이벤트</h3>
+                </div>
+                <br/>
+                <div id="tabContent3" class='row end_event'>
+                    {% for end_event in end_events.all %}
+                    <div class='col-lg-4 col-md-12 end_event_section'>
+                        이벤트 이름 : {{ end_event.event_name }}
+                        <div class='hovereffect'>
+                            <img src="{{ end_event.eventimage_set.all.first.image.url }}" alt="" class='history_imgs3'>
+                            <div class="overlay">
+                                <h2>{{ end_event.get_genre_display }}</h2>
+                                <p>
+                                    <b>아쉽지만 종료되었어요😢</b><br>
+                                    {{ end_event.start_date_time.time}} ~
+                                    {{ end_event.end_date_time.time }}<br>
+                                    <a href="#">크리에이터 LINK</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
 
@@ -127,65 +126,41 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <!--jquery사용하려면 필요한 스크립트 코드  (메서드 사용 가능하게 해줌)-->
 <script>
-    // let not_yet_btn = document.querySelector('#not_yet_btn')
-    // not_yet_btn.onclick = function() {
-    //     $('.row not_yet_event').show();
-    //     $('.row ing_event').hide();
-    //     $('.row end_event').hide();
-    // }
+    $(document).ready(function () {
+        $('a[href^="#"]').on('click', function (e) {
+            e.preventDefault();
 
+            var target = this.hash;
+            var $target = $(target);
 
-    var div_notyet = document.getElementById("not_yet_event");
-    var div_ing = document.getElementById("ing_event");
-    var div_end = document.getElementById("end_event");
-
-    var div_img2 = document.getElementByClassName('history_imgs2');
-
-    var title_notyet = document.getElementById("eventheader1")
-    var title_ing = document.getElementById("eventheader2")
-    var title_end = document.getElementById("eventheader3")
-
-    // var display_notyet = div_notyet.style.display;
-    // var display_ing = div_ing.style.display;
-    // var display_end = div_end.style.display;
-
-
-    //시작전
-    function div_notyet_event() {
-        div_notyet.setAttribute("style", 'display:block;');
-        div_notyet.setAttribute("style", 'float:left;');
-        div_ing.setAttribute("style", 'display:none;');
-        div_end.setAttribute("style", 'display:none;');
-        // title_ing.setAttribute("style", 'display: none;');
-        // title_end.setAttribute("style", 'display: none;');
-    }
-
-    //진행중
-    function div_ing_event() {
-        div_notyet.setAttribute("style", 'display:none;');
-        div_ing.setAttribute("style", 'display:block;');
-        div_ing.setAttribute("style", 'float:left;');
-        div_end.setAttribute("style", 'display:none!important;');
-        // title_notyet.setAttribute("style", 'display: none;');
-        // title_end.setAttribute("style", 'display: none;');
-    }
-
-    //마감
-    function div_end_event() {
-        div_notyet.setAttribute("style", 'display:none;');
-        div_ing.setAttribute("style", 'display:none;');
-        div_end.setAttribute("style", 'display:block;');
-        div_end.setAttribute("style", 'float:left;');
-        // title_notyet.setAttribute("style", 'display: none;');
-        // title_ing.setAttribute("style", 'display: none;');
-    }
-
-    $(".tabContent").on("click", function (e) {
-        e.preventDefault();//anchor이벤트의 기본동작을 막는다.
-        var thisTarget = $(this).attr("href");
-        $(window).scrollTop($(thisTarget).offset().top);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top - 100
+            }, 500, 'swing', function () {
+                // window.location.hash = target;
+            });
+        });
     });
+    // $(".filter_btn").click(function (event) {
+    //         event.preventDefault();
+    //         $(html, body).animate({scrollTop: $(this.hash).offset().top}, 500);
+    //     });
+    // });
 
+    // $(".container1").on("click", function (e) {
+    //     e.preventDefault();//anchor이벤트의 기본동작을 막는다.
+    //     var thisTarget = $(this).attr("href");
+    //     $(window).animate({scrollTop: $(thisTarget).offset().top}, 1000);
+    // });
+    // $(".eventheader2").on("click", function (e) {
+    //     e.preventDefault();//anchor이벤트의 기본동작을 막는다.
+    //     var thisTarget = $(this).attr("href");
+    //     $(window).scrollTop($(thisTarget).offset().top);
+    // });
+    // $(".eventheader3").on("click", function (e) {
+    //     e.preventDefault();//anchor이벤트의 기본동작을 막는다.
+    //     var thisTarget = $(this).attr("href");
+    //     $(window).scrollTop($(thisTarget).offset().top);
+    // });
 
 </script>
 

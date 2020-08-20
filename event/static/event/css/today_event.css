@@ -1,18 +1,27 @@
 main {
-    background-image: url("");
+    /*background-image: url("/static/img/haha.jpg");*/
+    /*background-size: auto;*/
+    background-color: white;
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+
 }
 
 
 .entire_wrapper {
+    /*padding: 5px;*/
     background-color: white;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 15px;
+    /*border: 2px solid #fd8b83 ;*/
 
 }
 
 .container_wrapper {
     /* margin: 4rem 15rem 0; */
     margin-top: 5%;
+    padding: 30px;
 
 }
 
@@ -22,12 +31,13 @@ main {
 
 
 .container_wrapper2 {
+    padding: 30px;
     /*margin: 4rem 15rem 0;*/
 
 }
 
 .container_wrapper span {
-    color: #fd8b83;
+    /*color: #fd8b83;*/
 }
 
 .container_wrapper2 {
@@ -77,10 +87,22 @@ main {
     margin: 0;
 }
 
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.buttons a {
+    text-decoration: none;
+}
+
+.buttons {
+    text-align: center;
+}
 .filter_btn {
     width: 80px;
     height: 35px;
-    border: 2px solid #fd8b83 ;
+    border: 1px solid #fd8b83 ;
     background-color: white;
     border-radius: 10px;
     color: #fd8b83;
@@ -91,7 +113,35 @@ main {
     color: white;
 }
 
+.event_header {
+    margin-left: 10px;
+    border-left: 2px solid #dd445b ;
+    padding: 5px;
+}
+.event_header h3{
+    margin-left: 5px;
+}
 
+.container1 {
+    padding: 20px;
+    border: 1px dashed #dd445b ;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+}
+
+.container2 {
+    padding: 20px;
+    border: 1px dashed #dd445b ;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+}
+
+.container3 {
+    padding: 20px;
+    border: 1px dashed #dd445b ;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+}
 /* 여기서 부터 인지가 보내준 사이트 참고~ */
 
 .hovereffect {
