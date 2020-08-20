@@ -40,8 +40,10 @@
                 <br/>
                 <div id="tabContent1" class="row not_yet_event">
                     {% for not_yet_event in not_yet_events.all %}
+                    {% if not_yet_event.location.city == user.city and not_yet_event.location.gu == user.gu %}
                     <div class='col-lg-4 col-md-12 not_yet_event_section'>
                         <p>이벤트 이름 : {{ not_yet_event.event_name }}</p><br>
+                        
                         <div class='hovereffect'>
                             <img src="{{ not_yet_event.eventimage_set.all.first.image.url }}" alt=""
                                  class='history_imgs1'>
@@ -55,8 +57,9 @@
                                 </p>
                             </div>
                         </div>
-                        <!--                {{ not_yet_event.start_date_time}}<br>-->
                     </div>
+
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -68,6 +71,8 @@
                 <br/>
                 <div id="tabContent2" class="row ing_event">
                     {% for ing_event in ing_events.all %}
+                    
+                    {% if ing_event.location.city == user.city and ing_event.location.gu == user.gu %}
                     <div class='col-lg-4 col-md-12 ing_event_section'>
                         <p>이벤트 이름 : {{ ing_event.event_name }}</p><br>
                         <div class='hovereffect'>
@@ -83,6 +88,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -95,6 +101,7 @@
                 <br/>
                 <div id="tabContent3" class='row end_event'>
                     {% for end_event in end_events.all %}
+                    {% if end_event.location.city == user.city and end_event.location.gu == user.gu %}
                     <div class='col-lg-4 col-md-12 end_event_section'>
                         <p>이벤트 이름 : {{ end_event.event_name }}</p>
                         <div class='hovereffect'>
@@ -110,6 +117,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
