@@ -7,18 +7,26 @@ body {
 }
 
 .container_wrapper {
-     background: #f9f9f9; /* Old browsers */
-     background: -moz-radial-gradient(center, ellipse cover,  #f9f9f9 1%, #ffffff 10%, #f6f6f6 29%, #e0ddce 100%); /* FF3.6-15 */
-     background: -webkit-radial-gradient(center, ellipse cover,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); /* Chrome10-25,Safari5.1-6 */
-     background: radial-gradient(ellipse at center,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#e0ddce',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-     padding:10px 0;
+     background: white; /* Old browsers */
+     /*background: -moz-radial-gradient(center, ellipse cover,  #f9f9f9 1%, #ffffff 10%, #f6f6f6 29%, #e0ddce 100%); !* FF3.6-15 *!*/
+     /*background: -webkit-radial-gradient(center, ellipse cover,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); !* Chrome10-25,Safari5.1-6 *!*/
+     /*background: radial-gradient(ellipse at center,  #f9f9f9 1%,#ffffff 10%,#f6f6f6 29%,#e0ddce 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+     /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#e0ddce',GradientType=1 ); !* IE6-9 fallback on horizontal gradient *!*/
+     padding:10px 30px;
+}
+
+.history .row {
+    border-radius: 25px;
+    border: 1px dashed #dd445b;
+    margin: 0 auto;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
 }
 
 a, a:hover {
     text-decoration: none;
 }
-/* --------------------------------------------- */
+/* -------------------------background: url('{% static 'event/img/fleamarket.jpg' %}') no-repeat;
+    background-size: 100% auto; height:350px-------------------- */
 
 
 /* header */
@@ -31,14 +39,28 @@ a, a:hover {
 .flex-item  {
     color:black;
     width: 80%;
-    padding: 50px;
+    margin-top: 30px;
+    /*margin-bottom: 40px;*/
+    padding: 40px 0;
     text-align: center;
     background-color: rgba( 255, 255, 255, 0.5 );
+    border-radius: 15px;
+    /*border-left: 1px solid #dd445b ;*/
+    /*border-right: 1px solid #dd445b ;*/
+}
+
+.line {
+    width: 100px;
+    height: 2px;
+    background-color: #dd445b ;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
 }
 
 .grid-item {
-    border-top: 2px solid rgba(31, 152, 223, 0.507);
-    border-bottom: 2px solid rgba(31, 152, 223, 0.507);
+    /*border-top: 2px solid rgba(31, 152, 223, 0.507);*/
+    /*border-bottom: 2px solid rgba(31, 152, 223, 0.507);*/
 }
 
 .flex-item p:first-child {
@@ -47,15 +69,16 @@ a, a:hover {
 }
 
 #creator_name {
-    font-family: 'Jua', sans-serif;
-    font-size:4rem;
-    font-weight: lighter;
+    /*font-family: 'Jua', sans-serif;*/
+    /*font-size: 30px;*/
+    /*font-weight: lighter;*/
 }
 
 #genre {
-    color: rgb(59, 54, 48);
+    /*color: rgb(59, 54, 48);*/
+    color: #dd445b ;
     font-size:2.5rem;
-    font-family: 'Lobster', cursive;
+    /*font-family: 'Lobster', cursive;*/
     font-weight: lighter;
     margin-bottom:5px;
 }
@@ -71,24 +94,27 @@ a, a:hover {
 }
 
 #event_name{
-    padding-bottom: 20px;
-    color: rgb(53, 49, 45);
+    padding-top: 10px;
+    /*color: rgb(53, 49, 45);*/
+    color: #5a5a5a;
     font-size:2rem;
-    font-family: 'Yeon Sung', cursive;
+    font-weight: bold;
+    /*font-family: 'Yeon Sung', cursive;*/
 }
 
 #event_name a{
     padding-bottom: 20px;
-    color: rgb(53, 49, 45);
-    font-size:2rem;
-    font-family: 'Yeon Sung', cursive;
+    color: #5a5a5a;
+    /*color: rgb(53, 49, 45);*/
+    font-size:1.3rem;
+    /*font-family: 'Yeon Sung', cursive;*/
 }
 
 #event_name a:hover{
     padding-bottom: 20px;
-    color: rgb(17, 5, 119);
-    font-size:2rem;
-    font-family: 'Yeon Sung', cursive;
+    /*color: rgb(17, 5, 119);*/
+    /*font-size:2rem;*/
+    /*font-family: 'Yeon Sung', cursive;*/
 }
 
 #event_time, #event_location {
@@ -144,29 +170,32 @@ a, a:hover {
 }
 
 #title{
-    color:black;
-    font-family: 'Cormorant Garamond', serif;
+    color: #dd445b ;
+    /*font-family: 'Cormorant Garamond', serif;*/
     font-weight: bold;
-    font-size: 2.5rem;
+    /*font-size: 2.5rem;*/
+    margin-bottom: 30px;
+    text-align: center;
 }
 #tag_name {
     font-style: italic;
 }
 #tag_name a {
     text-decoration: none;
-    color: rgb(33, 33, 138);
+    color: black;
+    /*color: rgb(33, 33, 138);*/
 }
 #tag_name a:hover {
     text-decoration: none;
-    color: indigo;
+    /*color: indigo;*/
 }
 /* --------------------------------------------- */
 
 
 /* event history */
 .history {
-    border-top: 2px solid rgba(5, 4, 59, 0.507);
-    border-bottom: 2px solid rgba(5, 4, 59, 0.507);
+    /*border-top: 2px solid rgba(5, 4, 59, 0.507);*/
+    /*border-bottom: 2px solid rgba(5, 4, 59, 0.507);*/
     padding-top:10px;
 }
 
@@ -198,6 +227,10 @@ a, a:hover {
 
 .grid2 {
     position: relative;
+}
+
+.comment_list {
+    margin-top: 15px;
 }
 
 .comment_list .row{
@@ -260,4 +293,24 @@ a, a:hover {
 	margin-right: -24px;
 }
 
+.infowrapper {
+    padding-left: 15px;
+}
+
+#tag-box {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #fd8b83;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #fd8b83;
+    text-align: center;
+    padding: 0.3rem 0.3rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#tag-box:hover{
+    background-color: #fd8b83;
+    color: white;
+}
 /* --------------------------------------------- */
