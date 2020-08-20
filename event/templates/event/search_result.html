@@ -22,8 +22,10 @@
             <img id="not-found-img" src="{% static "event/img/emojis.png" %}" >
         </div>
     {% else %}
+
         <div class="events-container">
         {% for event in results %}
+            <a href="{% url "event:creator_detail" event.pk %}" class="goto_detail">
                 <div class="row s_event-container ">
                     <div class="col-12 col-md-auto" id="left_section">
 {#                    <div id="left_section">#}
@@ -72,8 +74,10 @@
                         <img src="{{ event.eventimage_set.first.image.url }}" alt="이미지1">
                     </div>
                 </div>
+            </a>
         {% endfor %}
         </div>
+
     {% endif %}
     </div>
 

@@ -17,6 +17,7 @@ from login.forms import MemberForm, CreatorForm
 from login.models import Creator, Member
 
 from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 
 
@@ -27,7 +28,15 @@ def login(request):
     return render(request, 'login/login.html')
 
 def main(request):
-    return render(request, 'login/main.html')
+    user = request.user
+
+    creators = user.like_creators.all()
+    print(creators)
+
+    ctx={
+         'creators':creators,
+    }
+    return render(request, 'login/main.html', ctx)
 
 def signup_general(request):
     return render(request, 'login/signup.html')
@@ -77,14 +86,25 @@ def signup(request, pk):
 
 def mypage(request, pk):
     user = get_object_or_404(Member, pk=pk)
+
+    like_creators = Member.objects.get(id=request.user.pk).like_creators.all()
+    today = datetime.today()
+    events = Event.objects.none()
+    print(like_creators)
+    for creator in like_creators:
+        q = creator.events.filter(end_date_time__gt=today)
+        events = events | q
+    print(events)
     try:
-        creator = Member.objects.get(id=request.user.pk).creator
+        creators = Member.objects.get(id=request.user.pk).creator
     except:
-        creator = None
+        creators = None
         # creator 가 없을 때 발생하는 RelatedObjectDoesNotExist 예외 처리
     return render(request, 'login/mypage.html', {
         'user': user,
-        'creator': creator,
+        'creators': creators,
+        'like_creators':like_creators,
+        'events':events,
     })
 
 
@@ -279,6 +299,7 @@ def user_delete(request, pk):
         return render(request, "login/main.html")  
     return redirect('login:mypage', pk)
 
+
 @login_required
 @csrf_exempt
 def like(request):
@@ -298,6 +319,8 @@ def like(request):
         'creator_name':creator.creator_name,
     }
     return HttpResponse(json.dumps(ctx), content_type="application/json")
+
+
 
 
 

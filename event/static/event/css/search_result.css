@@ -38,6 +38,12 @@ body {
     background-color: white;
     margin-top: 20px;
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+.s_event-container:hover{
+
 }
 
 #left_section {
@@ -128,6 +134,10 @@ body {
 
 .like{
     cursor:pointer;
+}
+
+.like:hover{
+    color:orangered;
 }
 
 #event_time{

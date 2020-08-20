@@ -11,7 +11,8 @@
     <p>나의 프로필 정보를 확인할 수 있습니다</p>
 </div>
 <br/>
-<div class="contents" style="text-align: center; ; width: 500px; margin: 0 auto;">
+<div class="row contents-container" style="text-align: center; margin: 0 auto;">
+    <div class="col-12 col-md-6 login-table">
         {% if user.nickname == '' %}
         <b>설정된 닉네임이 없습니다.</b>
         <b>수정하기를 눌러 설정해주세요!</b>
@@ -45,32 +46,90 @@
         <!--        <b>선호 지역 : {{ user.city }} {{ user.gu }}</b>-->
         <!--        <p>이메일: {{ user.email }}</p>-->
         <!--        <p>가입 날짜: {{ user.created_on }}</p>-->
+    </div>
+    <div class="col-12 col-md-6 creators-events-list">
+        <div class="row creator_list">
+            <h5>LIKE 크리에이터</h5>
+            {% if like_creators.count == 0 %}
+                <div class="col-12 creator">
+                    <p>좋아하는 크리에이터가 없어요</p>
+                </div>
+            {% else %}
+                {% for creator in like_creators.all %}
 
+                    <div class="col-12 creator">
+                        <div id="creator_info">
+                            <div class="image">
+                                <img src="{{ creator.creator_photo.url }}">
+                            </div>
+                            <div class="name">
+                                <a href="{% url "event:creator_detail"  creator.id %}">
+                                    {{ creator.creator_name }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-    <button type="button">
-        <a href="{% url 'login:update' user.pk %}">수정하기</a>
-    </button>
-    <button type="button">
-        <a href="{% url 'login:main' %}">메인으로</a>
-    </button>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="row event_list">
+            <h5>LIKE 크리에이터의 이벤트 현황</h5>
+            {% if events.count == 0 %}
+                <div class="col-12 event">
+                    진행 중인 이벤트가 없요!
+                </div>
+            {% else %}
+                {% for event in events %}
+                    <div class="col-12 event">
+                        <a href="{% url "event:creator_detail"  event.creator.id %}">
+                            {{ event.event_name }}
+                            <div id="processing">진행중</div> - {{ event.creator.creator_name }}
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
 
-    {% if creator is None %}
-    <button type="button" style="width: 140px!important;">
-        <a href="{% url 'login:create_creator' %}">크리에이터 등록</a>
-    </button>
-    {% else %}
-    <button type="button" style="width: 140px!important;">
-        <a href="{% url 'login:creator_mypage' user.pk %}">크리에이터 페이지</a>
-    </button>
-    {% endif %}
-    <br/><br/><br/>
-    <div id="user_pk_section" style="display:none">{{user.pk}}</div>
-    <a href="/accounts/logout" id='logout_btn'>로그아웃</a>
-    <hr>
-    <a href="{% url 'login:delete' user.pk %}" id="delete_btn">계정 삭제</a>
-
-    <br/><br/><br/>
+    </div>
 </div>
+
+<div class="buttons-container">
+    <div class="item">
+        <button type="button">
+            <a href="{% url 'login:update' user.pk %}">수정하기</a>
+        </button>
+    </div>
+    <div class="item">
+        <button type="button">
+            <a href="{% url 'login:main' %}">메인으로</a>
+        </button>
+    </div>
+    <div class="item">
+        {% if creators is None %}
+        <button type="button" style="width: 140px!important;">
+            <a href="{% url 'login:create_creator' %}">크리에이터 등록</a>
+        </button>
+        {% else %}
+        <button type="button" style="width: 140px!important;">
+            <a href="{% url 'login:creator_mypage' user.pk %}">크리에이터 페이지</a>
+        </button>
+        {% endif %}
+    </div>
+</div>
+    <br/><br/><br/>
+    <div class="delete-container">
+        <div id="user_pk_section" style="display:none">{{user.pk}}</div>
+        <div class="logout">
+            <a href="/accounts/logout" id='logout_btn'>로그아웃</a>
+        </div>
+        <hr>
+        <div class="delete_account">
+            <a href="{% url 'login:delete' user.pk %}" id="delete_btn">계정 삭제</a>
+        </div>
+    </div>
+    <br/><br/><br/>
+
 {% endblock %}
 
 {% block hanseokscript %}
