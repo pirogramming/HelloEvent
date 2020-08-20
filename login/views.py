@@ -344,47 +344,47 @@ def event_update(request, pk):
         image_formset = ImageFormSet(queryset=event_image)
         starttime = event.start_date_time
         endtime = event.end_date_time
+        starttime_value = transfer_time(starttime)
+        endtime_value = transfer_time(endtime)
+        # if len(str(starttime.month)) == 1:
+        #     starttime_month = "0" + str(starttime.month)
+        # else:
+        #     starttime_month = str(starttime.month)
+        # if len(str(starttime.day)) == 1:
+        #     starttime_day = "0" + str(starttime.day)
+        # else:
+        #     starttime_day = str(starttime.day)
+        # if len(str(starttime.hour)) == 1:
+        #     starttime_hour = "0" + str(starttime.hour)
+        # else:
+        #     starttime_hour = str(starttime.hour)
+        # if len(str(starttime.minute)) == 1:
+        #     starttime_minute = "0" + str(starttime.minute)
+        # else:
+        #     starttime_minute = str(starttime.minute)
+        #     ##################################
+        # if len(str(endtime.month)) == 1:
+        #     endtime_month = "0" + str(endtime.month)
+        # else:
+        #     endtime_month = str(endtime.month)
+        # if len(str(endtime.day)) == 1:
+        #     endtime_day = "0" + str(endtime.day)
+        # else:
+        #     endtime_day = str(endtime.day)
+        # if len(str(endtime.hour)) == 1:
+        #     endtime_hour = "0" + str(endtime.hour)
+        # else:
+        #     endtime_hour = str(endtime.hour)
+        # if len(str(endtime.minute)) == 1:
+        #     endtime_minute = "0" + str(endtime.minute)
+        # else:
+        #     endtime_minute = str(endtime.minute)
 
-        if len(str(starttime.month)) == 1:
-            starttime_month = "0" + str(starttime.month)
-        else:
-            starttime_month = str(starttime.month)
-        if len(str(starttime.day)) == 1:
-            starttime_day = "0" + str(starttime.day)
-        else:
-            starttime_day = str(starttime.day)
-        if len(str(starttime.hour)) == 1:
-            starttime_hour = "0" + str(starttime.hour)
-        else:
-            starttime_hour = str(starttime.hour)
-        if len(str(starttime.minute)) == 1:
-            starttime_minute = "0" + str(starttime.minute)
-        else:
-            starttime_minute = str(starttime.minute)
-            ##################################
-        if len(str(endtime.month)) == 1:
-            endtime_month = "0" + str(endtime.month)
-        else:
-            endtime_month = str(endtime.month)
-        if len(str(endtime.day)) == 1:
-            endtime_day = "0" + str(endtime.day)
-        else:
-            endtime_day = str(endtime.day)
-        if len(str(endtime.hour)) == 1:
-            endtime_hour = "0" + str(endtime.hour)
-        else:
-            endtime_hour = str(endtime.hour)
-        if len(str(endtime.minute)) == 1:
-            endtime_minute = "0" + str(endtime.minute)
-        else:
-            endtime_minute = str(endtime.minute)
+        # starttime_value = str(starttime.year) + "-" + starttime_month + "-" + starttime_day + "T" + starttime_hour + ":" + starttime_minute
+        # endtime_value = str(endtime.year) + "-" + endtime_month + "-" + endtime_day + "T" + endtime_hour + ":" + endtime_minute
 
-
-        starttime_value = str(starttime.year) + "-" + starttime_month + "-" + starttime_day + "T" + starttime_hour + ":" + starttime_minute
-        endtime_value = str(endtime.year) + "-" + endtime_month + "-" + endtime_day + "T" + endtime_hour + ":" + endtime_minute
-
-        print(starttime)
-        print(starttime_value)
+        # print(starttime)
+        # print(starttime_value)
         return render(request, 'login/event_update.html', {
             'form': form,
             'image_formset': image_formset,
@@ -393,3 +393,24 @@ def event_update(request, pk):
             'starttime_value': starttime_value,
             'endtime_value': endtime_value,
         })
+
+
+def transfer_time(time):
+    if len(str(time.month)) == 1:
+        time_month = "0" + str(time.month)
+    else:
+        time_month = str(time.month)
+    if len(str(time.day)) == 1:
+        time_day = "0" + str(time.day)
+    else:
+        time_day = str(time.day)
+    if len(str(time.hour)) == 1:
+        time_hour = "0" + str(time.hour)
+    else:
+        time_hour = str(time.hour)
+    if len(str(time.minute)) == 1:
+        time_minute = "0" + str(time.minute)
+    else:
+        time_minute = str(time.minute)
+    transfered_time = str(time.year) + "-" + time_month + "-" + time_day + "T" + time_hour + ":" + time_minute
+    return transfered_time
