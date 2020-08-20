@@ -21,10 +21,6 @@
                 {% for image in image_formset %}
                     {{ image }}
                 {% endfor %}
-
-                {% for image in image_formset %}
-                    {{ image }}
-                {% endfor %}
                 <tr>
                     <td><b>시작 시간</b></td>
                     <td><input type="datetime-local" name="start_date_time" value="{{ starttime_value }}" required /></td>
