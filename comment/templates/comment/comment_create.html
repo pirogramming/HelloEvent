@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'comment/css/comment.css' %}">
+    
+</head>
+<body>
+<div class="single_comment">
+<div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> <span id='comment_text_{{comment.pk}}'>{{ comment.comment_text }}</span> </div>
+{% if comment.comment_photo %}
+<div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px' id="comment_photo_{{comment.pk}}"></div>
+{% endif %}
+<div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
+        <div class='row'>
+            <button id='recomment_btn_{{comment.id}}'>대댓글</button>
+            
+            <!-- 댓글작성자:{{comment.member}}
+            접속자:{{username}}-->
+        {% if comment.member == username %}
+            <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a>
+            <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-danger btn-sm btn_comment_delete">삭제</a>
+        {% elif comment.member == request.user %}
+            <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a>
+            <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-danger btn-sm btn_comment_delete">삭제</a>
+        {% endif %}
+        <div class='row' id='recomment_form_{{comment.id}}'>
+            <div class="container" id="recomment_list_{{comment.id}}">
+            {% for recomment in comment.recomment_set.all %}
+                {% include 'comment/recomment_create.html' %}
+            {% endfor %}
+            </div>
+<hr>
+            <div class="container">
+                <div id="comment_pk_section">{{comment.pk}}</div>
+                <form  action="{% url 'comment:recomment_create_ajax' comment.id %}" enctype='multipart/form-data' method='POST' id="recommentForm_{{comment.pk}}">
+                    {% csrf_token %}
+                    <input type="hidden" name='is_ajax2' value=''>
+                    {{ recomment_form }}
+                    <input type="submit" class="btn btn-primary" value='대댓글 입력' id='recomment_submit_btn'>
+                </form>
+                <button id="recomment_fold_{{comment.id}}">접기</button>
+            </div>
+        </div>
+        <hr>
+        <br>
+    </div>
+</div>
+
+<script>
+    $("#comment_list").scrollTop($("#comment_list")[0].scrollHeight);
+
+    let recobtn_{{comment.id}} = $('#recomment_btn_{{comment.id}}')
+    let fold_btn_{{comment.id}} = $('#recomment_fold_{{comment.id}}')
+
+    $('#recomment_form_{{comment.id}}').hide()
+    recobtn_{{comment.id}}.click(function(){
+        $('#recomment_form_{{comment.id}}').toggle()
+    })
+
+    fold_btn_{{comment.id}}.click(function(){
+    $('#recomment_form_{{comment.id}}').hide()
+    })
+</script>
+<script>
+    $('#recommentForm_{{comment.pk}}').submit(function(e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        $('input[name="is_ajax2"]').val("1");
+
+        url = $(this).attr('action');
+        var formData = new FormData(this);
+        $.ajax({
+            url:url,
+            method:"POST",
+            data:formData,
+            processData: false,
+            contentType: false,
+
+        }).done(function(data) {
+            $('#recomment_list_{{comment.id}}').append(data.html);
+            // is_ajax2 값 초기화
+            $('#recommentForm_{{comment.pk}} input[name="is_ajax2"]').val("");
+            $('#recommentForm_{{comment.pk}} #id_recomment_text').val("");
+            $('#recommentForm_{{comment.pk}} #id_recomment_photo').val("");
+        })
+        return false;
+    });
+</script>
+
+{% comment %} <script src="{% static 'comment/js/create2.js' %}"></script> {% endcomment %}
+</body>
+</html>
+
+    
