@@ -1,3 +1,4 @@
+let like_btn = document.querySelector('.like').children[0]
 $(".like").click(function(e){
     e.preventDefault()
     let pk = $(this).attr('name')
@@ -10,6 +11,18 @@ $(".like").click(function(e){
             dataType:"json",
 
             success: function(response){
+                if(response.message=="좋아요"){
+                    if(like_btn.classList.contains('far')){
+                        like_btn.classList.remove('far')
+                        like_btn.classList.add('fas')
+                    }
+                }
+                else {
+                    if(like_btn.classList.contains('fas')){
+                        like_btn.classList.remove('fas')
+                        like_btn.classList.add('far')
+                    }
+                }
                 $("#count-"+pk).text(response.like_count+"개");
             },
             error: function(request, status, error){

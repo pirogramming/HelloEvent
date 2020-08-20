@@ -29,6 +29,7 @@ body {
     width: 85%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     /*margin-bottom: 30px;*/
     float: right;
     border: 1px dashed #dd445b;
@@ -43,8 +44,25 @@ body {
     width: 60%;
 }
 
+#creator_name_like{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+#creator_name_like #name{
+    font-size: 1.5rem;
+
+}
+
+#creator_name_like #like{
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
 #right_section {
-    width: 35%;
+    width: 60%;
 }
 
 #left_section #tag-box {
@@ -53,7 +71,7 @@ body {
     color: #fd8b83;
     background-color: white;
     border-radius: 10px;
-    border: 1px solid #fd8b83 ;
+    border: 1px solid #fd8b83;
     text-align: center;
     padding: 0.3rem 0.3rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -70,6 +88,19 @@ body {
     color: white;
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
 }
+
+#right_section{
+    width:35%;
+    display: flex;
+    align-items: center;
+}
+
+#right_section img{
+    width:100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+}
+
 
 .s_event-container #event_name {
     font-size: 2rem;

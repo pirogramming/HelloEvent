@@ -24,13 +24,28 @@
     {% else %}
         <div class="events-container">
         {% for event in results %}
-                <div class="s_event-container ">
-                    <div id="left_section">
+                <div class="row s_event-container ">
+                    <div class="col-12 col-md-auto" id="left_section">
+{#                    <div id="left_section">#}
                         <div id="event_name">
                             {{ event.event_name }}
                         </div>
-                        <div id="creator_name">
-                            크리에이터 : <b>{{ event.creator.creator_name }}</b>
+                        <div id="creator_name_like">
+                            <div id="name">
+                                크리에이터 : <b>{{ event.creator.creator_name }}</b>
+                            </div>
+                            <div id="like">
+                                {% if user in event.creator.like_users.all %}
+                                    <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}">
+                                        <i class="fas fa-heart" ></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}">
+                                        <i class="far fa-heart" ></i>
+                                    </a>
+                                {% endif %}
+{#                                <p id="count-{{ event.creator.id }}">{{ event.creator.like_count }}개</p>#}
+                            </div>
                         </div>
                         <hr/>
                         <div id="event_time">
@@ -49,9 +64,10 @@
                             </a>
                         {% endfor %}
                     </div>
-                    <div id="right_section">
-                        <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}"> <i class="fas fa-heart" ></i></a>
-                        <p id="count-{{ event.creator.id }}">{{ event.creator.like_count }}개</p>
+
+                    <div class="col-12 col-md-auto" id="right_section">
+{#                    <div id="right_section">#}
+                        <img src="{{ event.eventimage_set.first.image.url }}" alt="이미지1">
                     </div>
                 </div>
         {% endfor %}
