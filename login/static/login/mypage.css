@@ -1,14 +1,17 @@
 table.type03 {
-    border-collapse: collapse;
+    /*border-collapse: collapse;*/
+    width: 100%;
     text-align: left;
     line-height: 1.5;
     border-top: 1px solid #ccc;
     border-left: 3px solid dimgray;
-    margin: 20px 10px;
+    margin-bottom: 10px;
+    /*margin: 20px 10px;*/
 }
 
 table.type03 th {
-    width: 147px;
+    /*width: 147px;*/
+    width:40%;
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
@@ -19,11 +22,76 @@ table.type03 th {
 }
 
 table.type03 td {
-    width: 349px;
+    /*width: 349px;*/
+    width: 70%;
     padding: 10px;
     vertical-align: top;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+}
+
+.creators-events-list{
+}
+
+.creator_list{
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 25px;
+
+}
+
+.creator_list h5{
+    margin : 4px auto;
+    color:#dd445b
+}
+
+.event_list h5{
+    margin : 4px auto;
+    color:#dd445b
+}
+
+.image img{
+    width:100%;
+    height:100%;
+    border-radius: 100%;
+}
+
+.image{
+    display: inline-block;
+    width:50px;
+    height:50px;
+    margin-right: 5px;
+
+}
+
+#creator_info{
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding:5px;
+    margin-top:3px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+}
+
+#creator_info:hover{
+    background-color: #fd8b83;
+    font-color: white;
+
+}
+
+.name{
+    display: inline-block;
+}
+
+.event_list{
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 1rem;
+}
+
+.event_list h5{
+    margin : 4px auto;
 }
 
 button a {
@@ -31,8 +99,55 @@ button a {
     color: white !important;
 }
 
+a{
+    text-decoration: none;
+    color : black;
+}
 
-.contents button {
+.creator_event{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.event{
+    margin-top:3px;
+}
+
+
+#processing{
+    display: inline-block;
+    padding: 1px 1px;
+    background-color: #dd445b;
+    color: white;
+}
+
+.creator_event .creator img{
+    width:2rem;
+    border-radius: 100%;
+}
+
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.item{
+    margin-right:4px;
+    margin-left: 4px;
+}
+
+.delete-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.buttons-container button {
     text-align: center !important;
     margin-top: 50px;
     height: 45px;
@@ -44,6 +159,6 @@ button a {
 
 }
 
-.contents button:hover {
+.buttons-container button:hover {
     background-color: #fc655a;!important;
 }

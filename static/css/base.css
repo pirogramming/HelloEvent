@@ -73,6 +73,7 @@ button {
 }
 
 
+
 /* Featurettes
 ------------------------- */
 
@@ -254,10 +255,13 @@ select {
     background-size: cover;
 }
 
-.row h2 {
+#row-main h2 {
     font-family: 'Roboto', sans-serif;
 }
 
+#row-main div {
+    margin: 0 auto;
+}
 
 .shadow:hover {
     transform: scale(1.03);

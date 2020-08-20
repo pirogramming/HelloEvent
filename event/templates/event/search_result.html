@@ -22,25 +22,44 @@
             <img id="not-found-img" src="{% static "event/img/emojis.png" %}" >
         </div>
     {% else %}
+
         <div class="events-container">
         {% for event in results %}
-                <div class="s_event-container ">
-                    <div id="left_section">
+            <a href="{% url "event:creator_detail" event.pk %}" class="goto_detail">
+                <div class="row s_event-container ">
+                    <div class="col-12 col-md-auto" id="left_section">
+{#                    <div id="left_section">#}
                         <div id="event_name">
                             {{ event.event_name }}
                         </div>
-                        <div id="creator_name">
-                            크리에이터 : <b>{{ event.creator.creator_name }}</b>
+                        <div id="creator_name_like">
+                            <div id="name">
+                                크리에이터 : <b>{{ event.creator.creator_name }}</b>
+                            </div>
+                            <div id="like">
+                                {% if user in event.creator.like_users.all %}
+                                    <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}">
+                                        <i class="fas fa-heart" ></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}">
+                                        <i class="far fa-heart" ></i>
+                                    </a>
+                                {% endif %}
+{#                                <p id="count-{{ event.creator.id }}">{{ event.creator.like_count }}개</p>#}
+                            </div>
+
+                        </div>
+                        <div id="loc">
+                                {{ event.location.city }}시 {{ event.location.gu }}
+                        </div>
+                        <hr/>
+                        <div id="event_desc">
+                            {{ event.desc|linebreaksbr}}<br>
                         </div>
                         <hr/>
                         <div id="event_time">
-                            {{ event.start_date_time }} ~ {{ event.end_date_time }}
-                        </div>
-                        <br/>
-                        <div id="event_desc">
-                            {{ event.desc|linebreaksbr}}<br>
-                            {{ event.start_date_time }}<br>
-                            {{ event.end_date_time }}
+                            <b>{{ event.end_date_time.month }}월 {{ event.end_date_time.day }}일 {{ event.end_date_time.time }}</b>에 이벤트가 끝나요!
                         </div>
                         <br/>
                         {% for tag in event.tags.all %}
@@ -49,17 +68,23 @@
                             </a>
                         {% endfor %}
                     </div>
-                    <div id="right_section">
-                        <a href="{% url "login:like_creator" event.creator.pk %}">
-                            <div id="like">
-                                좋아요
-                            </div>
-                        </a>
+
+                    <div class="col-12 col-md-auto" id="right_section">
+{#                    <div id="right_section">#}
+                        <img src="{{ event.eventimage_set.first.image.url }}" alt="이미지1">
                     </div>
                 </div>
+            </a>
         {% endfor %}
         </div>
+
     {% endif %}
     </div>
 
+{% endblock %}
+
+{% block kiyunscript %}
+    <script src="https://kit.fontawesome.com/7d6a50a6b2.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{% static 'login/js/like.js' %}"></script>
 {% endblock %}

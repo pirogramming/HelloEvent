@@ -1,5 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
-from django.http import JsonResponse
+import json
+
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth import login as auth_login
@@ -14,6 +17,8 @@ from django.urls import reverse
 from login.forms import MemberForm, CreatorForm
 from login.models import Creator, Member
 
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 from event.forms import EventForm, ImageForm, EventImage
 
 
@@ -22,7 +27,26 @@ def login(request):
 
 
 def main(request):
-    return render(request, 'login/main.html')
+    user = request.user
+    events = Event.objects.none()
+    today = datetime.today()
+    if user.is_authenticated:
+        user_is = True
+        creators = user.like_creators.all()
+        for creator in creators:
+            q = creator.events.filter(end_date_time__gt=today)
+            events = events | q
+    else:
+        user_is = False
+        creators = Creator.objects.none()
+    print(creators)
+
+    ctx = {
+        'creators':creators,
+        'user_is':user_is,
+        'events':events,
+    }
+    return render(request, 'login/main.html', ctx)
 
 
 def signup_general(request):
@@ -73,14 +97,25 @@ def signup(request, pk):
 
 def mypage(request, pk):
     user = get_object_or_404(Member, pk=pk)
+
+    like_creators = Member.objects.get(id=request.user.pk).like_creators.all()
+    today = datetime.today()
+    events = Event.objects.none()
+    print(like_creators)
+    for creator in like_creators:
+        q = creator.events.filter(end_date_time__gt=today)
+        events = events | q
+    print(events)
     try:
-        creator = Member.objects.get(id=request.user.pk).creator
+        creators = Member.objects.get(id=request.user.pk).creator
     except:
-        creator = None
+        creators = None
         # creator 가 없을 때 발생하는 RelatedObjectDoesNotExist 예외 처리
     return render(request, 'login/mypage.html', {
         'user': user,
-        'creator': creator,
+        'creators': creators,
+        'like_creators':like_creators,
+        'events':events,
     })
 
 
@@ -284,14 +319,26 @@ def user_delete(request, pk):
     return redirect('login:mypage', pk)
 
 
-def like(request, pk):
-    creator = get_object_or_404(Event, id=pk).creator
+@login_required
+@csrf_exempt
+def like(request):
+    pk = request.POST.get('pk', None)
+    print(pk)
+    creator = get_object_or_404(Event, pk=pk).creator
+    print(creator)
     if request.user in creator.like_users.all():
         creator.like_users.remove(request.user)
+        message = "좋아요 취소"
     else:
         creator.like_users.add(request.user)
+        message = "좋아요"
+    ctx = {
+        'like_count':creator.like_count,
+        'message':message,
+        'creator_name':creator.creator_name,
+    }
+    return HttpResponse(json.dumps(ctx), content_type="application/json")
 
-    return redirect("event:creator_detail", pk)
 
 
 def event_update(request, pk):
@@ -376,3 +423,5 @@ def transfer_time(time):
         time_minute = str(time.minute)
     transfered_time = str(time.year) + "-" + time_month + "-" + time_day + "T" + time_hour + ":" + time_minute
     return transfered_time
+
+

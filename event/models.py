@@ -1,7 +1,8 @@
 from django.db import models
 from login.models import Creator
 from location.models import Event_Location
-
+from datetime import datetime
+from django.utils import timezone
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=100)
@@ -12,8 +13,8 @@ class Event(models.Model):
     event_name = models.CharField(max_length=200, blank=False, verbose_name="이벤트 이름")
     desc = models.TextField(blank=True, verbose_name="이벤트 소개")
 
-    start_date_time = models.DateTimeField(auto_now=False, blank=False, verbose_name="이벤트 시작 날짜/시간")
-    end_date_time = models.DateTimeField(auto_now=False, blank=False, verbose_name="이벤트 종료 날짜/시간")
+    start_date_time = models.DateTimeField(auto_now=False, blank=False, default=timezone.now, verbose_name="이벤트 시작 날짜/시간")
+    end_date_time = models.DateTimeField(auto_now=False, blank=False, default=timezone.now, verbose_name="이벤트 종료 날짜/시간")
 
     tags = models.ManyToManyField(Tag, verbose_name="태그")
 
