@@ -110,6 +110,7 @@ def creator_detail(request, pk):
         'images':images,
         'image_num':image_num,
         'tags':tags,
+        'user':request.user,
     }
     return render(request, 'event/creator_event_detail.html', ctx)
 

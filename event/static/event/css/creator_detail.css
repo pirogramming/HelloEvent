@@ -313,4 +313,17 @@ a, a:hover {
     background-color: #fd8b83;
     color: white;
 }
+
+.row div {
+    margin: 0 auto;
+}
+
+.like{
+    cursor:pointer;
+}
+
+.like:hover{
+    color:orangered;
+}
+
 /* --------------------------------------------- */
