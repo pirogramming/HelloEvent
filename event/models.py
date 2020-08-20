@@ -20,8 +20,8 @@ class Event(models.Model):
 
     GENRE_LIST = (
         ('Busking', '버스킹'),
-        ('Flee', '플리마켓'),
-        ('Exihibit', '전시'),
+        ('Flea', '플리마켓'),
+        ('Exhibit', '전시'),
     )
     genre = models.CharField(max_length=100, choices=GENRE_LIST, verbose_name="이벤트 장르")
 

@@ -1,16 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block custom_style %}
 <link rel="stylesheet" href="{% static 'location/css/search_map.css' %}" />
 {% endblock %} {% block main %}
-<div class="container-fluid row">
-  <div class="map_wrap col-md-6 col-sm-12 col-xs-12">
-    <div id="map"></div>
-    <div class="hAddr">
-      <!-- <span class="title" style="font-weight: bold; display: block;"
-      >지도중심기준 행정동 주소정보</span
-    > -->
-      <span id="centerAddr"></span>
-    </div>
-  </div>
+<div class="container-fluid row flex-column-reverse flex-md-row">
   <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
     <div id="event_title_wrap">
       <div id="event_title">
@@ -20,9 +11,9 @@
     </div>
     <div id="event_category_wrap">
       <ul id="category_list">
-        <li><a href="#">버스킹</a></li>
-        <li><a href="#">플리마켓</a></li>
-        <li><a href="#">전시</a></li>
+        <li><button class="category Busking">버스킹</button></li>
+        <li><button class="category Flea">플리마켓</button></li>
+        <li><button class="category Exhibit">전시</button></li>
       </ul>
     </div>
     <hr />
@@ -56,7 +47,7 @@
             장르 : {{event.genre}}
           </div>
           <div class="event_content" id="event_city_{{event.pk}}">
-            {{event.location.city}}
+            위치 : {{event.location.city}}
           </div>
           <div class="event_content" id="event_gu_{{event.pk}}">
             {{event.location.gu}}
@@ -76,7 +67,15 @@
       {% endif %} {% endfor %}
     </div>
   </div>
-
+  <div class="map_wrap col-md-6 col-sm-12 col-xs-12">
+    <div id="map"></div>
+    <div class="hAddr">
+      <!-- <span class="title" style="font-weight: bold; display: block;"
+      >지도중심기준 행정동 주소정보</span
+    > -->
+      <span id="centerAddr"></span>
+    </div>
+  </div>
   <!-- 템플릿 변수를 자바스크립트 파일에 전달하기 위한 구역 -->
   <div class="template_variable_section">
     <div class="template_variable_city">{{selected_city}}</div>
@@ -88,5 +87,6 @@
   type="text/javascript"
   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4be94fffa6f06598b351be42b3a70113&libraries=services"
 ></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="{% static 'location/js/search_map.js' %}"></script>
 {% endblock %}

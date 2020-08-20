@@ -450,3 +450,173 @@ function map_reset(e) {
     }
   });
 }
+
+function isAMPM(hour) {
+  return hour < 12 ? "오전" : "오후";
+}
+
+// Ajax code
+$(".category").click(function (e) {
+  let choosed_genre = e.target.classList[1];
+  console.log(choosed_genre);
+  $.ajax({
+    type: "POST",
+    url: "genre/",
+    data: { genre: choosed_genre, csrfmiddlewaretoken: "{{ csrf_token }}" },
+    dataType: "json",
+    success: function (response) {
+      insertCode = "";
+      event_list = JSON.parse(response.event);
+      eventimage_list = JSON.parse(response.eventimage);
+      location_list = JSON.parse(response.location);
+      creator_list = JSON.parse(response.creator);
+      event_pk = [];
+      event_name = [];
+      event_genre = [];
+      location_city = [];
+      location_gu = [];
+      location_rest_address = [];
+      event_creator = [];
+      event_image = [];
+      event_startTime = [];
+      event_endTime = [];
+      imageEnrollCheck = false;
+      // JSON.parse(response.event)[0].fields.event_name
+      // JSON.parse(response.event)[0].fields.creator
+      // JSON.parse(response.event)[0].fields.genre
+
+      for (let i = 0; i < Object.keys(event_list).length; i++) {
+        event_pk.push(event_list[i].pk);
+        event_name.push(event_list[i].fields.event_name);
+        event_genre.push(event_list[i].fields.genre);
+        event_startTime.push(event_list[i].fields.start_date_time);
+        event_endTime.push(event_list[i].fields.end_date_time);
+      }
+
+      for (let i = 0; i < Object.keys(location_list).length; i++) {
+        for (let j = 0; j < Object.keys(event_list).length; j++) {
+          if (location_list[i].pk == event_list[j].fields.location) {
+            location_city.push(location_list[i].fields.city);
+            location_gu.push(location_list[i].fields.gu);
+            location_rest_address.push(location_list[i].fields.rest_address);
+          }
+        }
+      }
+
+      for (let i = 0; i < Object.keys(creator_list).length; i++) {
+        for (let j = 0; j < Object.keys(event_list).length; j++) {
+          if (creator_list[i].pk == event_list[j].fields.creator) {
+            event_creator.push(creator_list[i].fields.creator_name);
+          }
+        }
+      }
+
+      for (let i = 0; i < Object.keys(event_list).length; i++) {
+        for (let j = 0; j < Object.keys(eventimage_list).length; j++) {
+          if (
+            eventimage_list[j].fields.event == event_list[i].pk &&
+            imageEnrollCheck == false
+          ) {
+            event_image.push(eventimage_list[j].fields.image);
+            imageEnrollCheck = true;
+          }
+        }
+        imageEnrollCheck = false;
+      }
+
+      for (let i = 0; i < event_startTime.length; i++) {
+        year = new Date(event_startTime[i]).getFullYear();
+        month = new Date(event_startTime[i]).getMonth() + 1;
+        day = new Date(event_startTime[i]).getDate();
+        hours = new Date(event_startTime[i]).getHours();
+        ampm = isAMPM(Number(hours));
+        hours = Math.abs(12 - Number(hours));
+        minutes = new Date(event_startTime[i]).getMinutes();
+        event_startTime[i] =
+          year +
+          "년 " +
+          month +
+          "월 " +
+          day +
+          "일 " +
+          hours +
+          ":" +
+          minutes +
+          " " +
+          ampm;
+      }
+
+      for (let i = 0; i < event_endTime.length; i++) {
+        year = new Date(event_endTime[i]).getFullYear();
+        month = new Date(event_endTime[i]).getMonth() + 1;
+        day = new Date(event_endTime[i]).getDate();
+        hours = new Date(event_endTime[i]).getHours();
+        ampm = isAMPM(Number(hours));
+        hours = Math.abs(12 - Number(hours));
+        minutes = new Date(event_endTime[i]).getMinutes();
+        event_endTime[i] =
+          year +
+          "년 " +
+          month +
+          "월 " +
+          day +
+          "일 " +
+          hours +
+          ":" +
+          minutes +
+          " " +
+          ampm;
+      }
+      console.log(
+        event_pk,
+        event_name,
+        event_genre,
+        location_city,
+        location_gu,
+        location_rest_address,
+        event_creator,
+        event_image,
+        event_startTime,
+        event_endTime
+      );
+
+      $("#event_wrap").html("");
+
+      for (let i = 0; i < event_pk.length; i++) {
+        insertCode += `<div id="event_${event_pk[i]}" class="row event_post">
+        <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row">
+            <img class="col-xs-12 col-sm-12 col-md-12" src="/media/${event_image[i]}" alt="이벤트 이미지">
+        </div>
+        <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
+          <div class="event_content" id="event_title_${event_pk[i]}">
+            이벤트명 : ${event_name[i]}
+          </div>
+          <div class="event_content" id="event_creator_${event_pk[i]}">
+            주최자 : ${event_creator[i]}
+          </div>
+          <div class="event_content" id="event_genre_${event_pk[i]}">
+            장르 : ${event_genre[i]}
+          </div>
+          <div class="event_content" id="event_city_${event_pk[i]}">
+            위치 : ${location_city[i]}
+          </div>
+          <div class="event_content" id="event_gu_${event_pk[i]}">
+          ${location_gu[i]}
+          </div>
+          <div class="event_content" id="event_restAdress_${event_pk[i]}">
+          ${location_rest_address[i]}
+          </div>
+          <div class="event_content" id="event_startTime_${event_pk[i]}">
+            시작일시 : ${event_startTime[i]}
+          </div>
+          <div class="event_content" id="event_endTime_${event_pk[i]}">
+            종료일시 : ${event_endTime[i]}
+          </div>
+        </div>
+      </div>
+      <hr>`;
+      }
+      $("#event_wrap").html(insertCode);
+    },
+  });
+});
