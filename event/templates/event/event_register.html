@@ -9,6 +9,7 @@
     {% if user.is_authenticated %}
 
     <div class="registering">
+        <div class="wrapping">
         <h1 style="color: #dd445b;">이벤트 등록하기</h1>
         <h4><b>{{ creator.creator_name }}</b> 님의 개성있는 이벤트를 등록해주세요</h4>
         <hr/>
@@ -76,12 +77,19 @@
             <div class="location_form_section">
                 {{ location }}
             </div>
+            <div class="input_div">
+                <input id="enroll_btn" type="submit" value="이벤트 등록">
+            </div>
             <br/>
             <br/>
             <br/>
-            <h4>이벤트 등록 방법</h4>
-            <hr/>
-            <br/>
+
+        </form>
+        </div>
+    </div>
+
+    <div class="register_info">
+    <h4>이벤트 등록 방법</h4> <hr/><br/>
             <div>
                 <div class="event_helptext">
                     <img src="/static/img/black_check.png" alt="">
@@ -100,8 +108,6 @@
                     <p>'태그'에는 이벤트를 잘 나타낼 수 있는 키워드를 작성하시면 됩니다. <br/>검색은 '태그'를 기준으로 분류되니, '크리에이터명' '이벤트 이름' '이벤트 종류'를 포함하여 최대한 다양하게 작성해주세요.</p>
                 </div>
             </div>
-            <input id="enroll_btn" type="submit" value="이벤트 등록">
-        </form>
     </div>
     {% else %}
         <script type="text/javascript">

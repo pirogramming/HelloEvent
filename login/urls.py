@@ -19,6 +19,7 @@ urlpatterns = [
     path('login/<int:pk>/creator/', views.creator_mypage, name='creator_mypage'), # 크리에이터 마이페이지
     path('login/<int:pk>/creator/update/', views.creator_update, name='creator_update'), # 크리에이터 정보 수정
     path('login/<int:pk>/creator_delete/', views.creator_delete, name='creator_delete'),  # 크리에이터 계정 삭제
+    path('login/<int:pk>/event/update/', views.event_update, name='event_update'), # 크리에이터 이벤트 수정
     # path('login/<int:pk>/creator/delete/', views.creator_delete, name='creator_delete'), -> 이렇게 하면 삭제하고 나서 새로고침했을 때 delete url을 계속 유지해서 오류 뜸
 
 

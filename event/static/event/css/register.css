@@ -1,107 +1,115 @@
 /* .row div {
   margin-bottom: 1rem;
 } */
+main {
+    background-image: url('/static/img/register.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.wrapping {
+    padding-top: 25px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 30px;
+}
 
 .registering {
-  margin: 4rem 15rem 0;
+    /*margin: 4rem 15rem 0;*/
+    background-color: white !important;
+    margin-top: 55px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 15px;
 }
 
+
 #tag_input {
-  width: 100%;
-}
-#enroll_btn {
-  margin-top: 40px;
-  height: 45px;
-  width: 120px;
-  border: none;
-  border-radius: 10px;
-  background-color: #fd8b83;
-  color: white;
-  text-align: center;
-  /*margin: 0 auto;*/
-  margin-left: 43%;
-  margin-bottom: 30px;
+    width: 100%;
 }
 
 .registering .wrap {
-  align-items: center;
-  margin-top: 2rem;
+    align-items: center;
+    margin-top: 2rem;
 }
 
 .template_variable_section {
-  display: none;
+    display: none;
 }
 
 .registering .wrap .choose_section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
 }
 
 .row .choose_city {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
+
 .row .choose_gu {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .choose_section .search_btn {
-  width: 100%;
-  margin-bottom: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .map_wrap {
-  position: relative;
-  margin-bottom: 2rem;
-  margin-left: 2rem;
+    position: relative;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
 }
 
 #map {
-  width: 100%;
-  height: 350px;
+    width: 100%;
+    height: 350px;
 }
 
 .hAddr {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  border-radius: 2px;
-  background: #fff;
-  background: rgba(255, 255, 255, 0.8);
-  z-index: 1;
-  padding: 5px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 2px;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+    padding: 5px;
 }
 
 .hAddr {
-  margin-top: 1rem;
-  margin-left: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
 }
 
 .hAddr #centerAddr {
-  display: block;
-  margin-left: 1rem;
-  font-weight: bold;
+    display: block;
+    margin-left: 1rem;
+    font-weight: bold;
 }
 
 .bAddr {
-  padding: 5px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .bAddr_detail:nth-child(n) {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .location_form_section {
-  display: none;
+    display: none;
 }
 
 .btn-primary {
-  background-color: #fd8b83!important ;
-  border:none;
+    background-color: #fd8b83 !important;
+    border: none;
 }
 
 /*.event_helptext {*/
@@ -109,27 +117,46 @@
 /*}*/
 
 .event_helptext img {
-  margin-top: 5px;
-  padding-right: 10px;
-  width: 40px;
-  height: 30px;
-  float: left;
+    margin-top: 5px;
+    padding-right: 10px;
+    width: 40px;
+    height: 30px;
+    float: left;
 }
-.btn-primary:hover{
-  background-color: #fc655a;!important;
+
+.btn-primary:hover {
+    background-color: #fc655a;
+!important;
+}
+
+.input_div{
+    width: 100%;
+    text-align: center;
 }
 
 #enroll_btn {
-  text-align: center !important;
-    margin-top: 50px;
+    margin-top: 40px;
     height: 45px;
-    width: 110px;
+    width: 120px;
     border: none;
     border-radius: 10px;
+    background-color: #fd8b83;
     color: white;
-    background-color: #fd8b83 ;
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*margin-bottom: 3%;*/
 }
 
 #enroll_btn:hover {
-   background-color: #fc655a;!important;
+    background-color: #fc655a;
+!important;
+}
+
+.register_info {
+    background-color: white;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
 }

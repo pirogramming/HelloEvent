@@ -30,6 +30,7 @@
     <!--        <p>사진:<img src="{{ creator.creator_photo.url }}" alt="creator photo"></p>-->
     <!--        <p>설명 : {{ creator.desc }}</p>-->
 
+
     <button type="button"
             style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
         <a href="{% url 'login:creator_update' creator.pk %}" style="text-decoration: none; color: white;">수정하기</a>
@@ -39,19 +40,76 @@
         <a href="{% url 'login:main' %}" style="text-decoration: none; color: white;">메인으로</a>
     </button>
     <button type="button"
-        style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
-    <a href="{% url 'event:event_register' %}" style="text-decoration: none; color: white;">이벤트 등록</a>
-</button>
+            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+        <a href="{% url 'event:event_register' %}" style="text-decoration: none; color: white;">이벤트 등록</a>
+    </button>
     <br/>
-        <div id="user_pk_section" style="display:none">{{user.pk}}</div>
-        <a href="{% url 'login:creator_delete' user.pk %}" id="delete_creator" style="text-decoration: none; color: white;">
-        <button type="button"
-            style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 260px; border:none; border-radius: 10px;color: white; ">
-            크리에이터 계정 삭제</button></a>
     <br/><br/>
-<hr/>
-</div>
+    <hr/>
 
+</div>
+<div class="creator_event">
+    {% for event in events %}
+    <table class="event_info">
+        <tr>
+            <td><b>이벤트 이름</b></td>
+            <td>{{ event.event_name }}</td>
+        </tr>
+        <tr>
+            <td><b>장르</b></td>
+            <td>{{ event.genre }}</td>
+        </tr>
+        <tr>
+            <td><b>이벤트 장소</b></td>
+            <td>{{ event.location.city }} {{ event.location.gu }} {{ event.location.rest_address }}</td>
+        </tr>
+        <tr>
+            <td><b>이벤트 소개</b></td>
+            <td>{{ event.desc }}</td>
+        </tr>
+        <tr>
+            <td><b>시작 시간</b></td>
+            <td>{{ event.start_date_time }}</td>
+        </tr>
+        <tr>
+            <td><b>종료 시간</b></td>
+            <td>{{ event.end_date_time }}</td>
+        </tr>
+        <tr>
+            <td><b>이벤트 사진</b></td>
+            <td>
+                {% for image in event.eventimage_set.all %}
+                <img src="{{ image.image.url }}" alt="event photo"
+                     style="max-width: 500px; max-height: 300px;">
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td><b>태그</b></td>
+            <td>
+                {% for tag in event.tags.all %}
+                {{ tag.name }}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+    <button type="button">
+        <a href="{% url 'login:event_update' event.pk %}">수정하기</a>
+    </button>
+    {% endfor %}
+
+</div>
+<br/>
+<hr/>
+<div id="user_pk_section" style="display:none">{{user.pk}}</div>
+<div class="delete_creator" style="text-align: center">
+    <a href="{% url 'login:creator_delete' user.pk %}" id="delete_creator" style="text-decoration: none; color: white;">
+        <button type="button"
+                style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 260px; border:none; border-radius: 10px;color: white; ">
+            크리에이터 계정 삭제
+        </button>
+    </a>
+</div>
 {% endblock %}
 
 {% block hanseokscript %}
@@ -62,15 +120,14 @@
 
     let delete_creator = document.querySelector('#delete_creator')
 
-     delete_creator.onclick = function(e) {
+    delete_creator.onclick = function (e) {
         let confirm_result = confirm("정말 크리에이터를 지우시겠습니까?\n되돌릴 수 없습니다.");
-        if (confirm_result === false){
+        if (confirm_result === false) {
             //return true
             //document.querySelector('#delete_creator').setAttribute('href', returnUrl)
             e.preventDefault()   //이게 더 많이 쓰이는 방법이라고 함.
         }
     }
-  
 
 
 </script>

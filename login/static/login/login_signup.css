@@ -1,0 +1,17 @@
+#save_btn {
+    margin-top: 40px;
+    height: 45px;
+    width: 120px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fd8b83;
+    color: white;
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*margin-bottom: 3%;*/
+}
+
+#save_btn:hover {
+    background-color: #fc655a;
+!important;
+}

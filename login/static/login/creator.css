@@ -18,3 +18,23 @@ button a {
 .contents button:hover {
     background-color: #fc655a;!important;
 }
+
+.delete_creator button{
+     background-color: #fd8b83 ;
+}
+
+.delete_creator button:hover{
+     background-color: #fc655a;!important;
+}
+
+.creator_event {
+    width: 100%;
+    margin-left: 10%;
+    margin-right:10%;
+}
+
+.event_info {
+    border: 1px solid black;
+    margin: 30px;
+}
+
