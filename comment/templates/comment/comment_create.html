@@ -10,9 +10,9 @@
 </head>
 <body>
 <div class="single_comment">
-<div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> {{ comment.comment_text }} </div>
+<div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> <span id='comment_text_{{comment.pk}}'>{{ comment.comment_text }}</span> </div>
 {% if comment.comment_photo %}
-<div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
+<div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px' id="comment_photo_{{comment.pk}}"></div>
 {% endif %}
 <div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
         <div class='row'>
