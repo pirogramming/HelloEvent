@@ -258,9 +258,6 @@ select {
     font-family: 'Roboto', sans-serif;
 }
 
-.row div {
-    margin: 0 auto;
-}
 
 .shadow:hover {
     transform: scale(1.03);

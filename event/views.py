@@ -187,3 +187,10 @@ def today_event(request):
     }
 
     return render(request, "event/today_event.html", ctx)
+
+
+def event_delete(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    creator_pk = event.creator.pk
+    event.delete()
+    return redirect("login:creator_mypage", creator_pk)

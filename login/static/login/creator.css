@@ -28,13 +28,112 @@ button a {
 }
 
 .creator_event {
-    width: 100%;
+    /* width: 100%; */
     margin-left: 10%;
     margin-right:10%;
 }
 
-.event_info {
-    border: 1px solid black;
-    margin: 30px;
+
+
+
+
+/* creator_mypage */
+
+.mypage_title {
+    margin-top: 50px; 
+    text-align: center;
 }
 
+.mypage_title h2 {
+    color: #dd445b ; 
+}
+
+.contents {
+    margin-top: 100px; 
+    text-align: center; 
+    margin-bottom: 70px;
+}
+
+.contents img {
+    max-width: 40rem; 
+    max-height: 30rem;
+}
+
+#event_info img {
+    width: 15rem; 
+    height: 15rem;
+}
+
+.delete_creator .event_img {
+    margin: 0 auto; 
+    text-align: center!important; 
+    margin-top: 50px;  
+    height: 50px; 
+    width: 260px; 
+    border:none; 
+    border-radius: 10px;
+    color: white;
+}
+
+#event_btn {
+    border-radius: 10px;
+    color: white;
+    background-color: #fd8b83 ;
+    border: none;
+    float: left;
+    /* margin-left: 4rem; */
+}
+
+.event_delete_btn {
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    float: right;
+}
+
+#event_info {
+    border: 1px solid #fd8b83;
+    border-radius: 30px;
+    float:left;
+    padding: 2rem;
+    /* margin-right:2rem;
+    margin-left:2rem; */
+    /* margin-bottom:3rem; */
+    text-align:center;
+}
+
+
+#event_info h3 {
+    text-align: center;
+    color: #fd8b83 ;
+}
+
+#event_row {
+    /* margin: 0 10% !important; */
+}
+
+h1 {
+    text-align: center !important;
+    color: #dd445b;
+    padding-bottom: 5px;
+}
+
+h5 {
+    text-align: center !important;
+}
+
+.delete_creator {
+    text-align:center;
+}
+
+/* .creator_event {
+    margin-right: 10%;
+    margin-left: 10%;
+} */
+
+/* .event_info {
+    float:left;
+} */
+
+/* style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; */

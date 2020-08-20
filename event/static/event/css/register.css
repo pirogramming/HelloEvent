@@ -46,6 +46,10 @@ main {
     padding: 0;
 }
 
+.row div {
+    margin: 0 auto;
+}
+
 .row .choose_city {
     margin-bottom: 1rem;
 }

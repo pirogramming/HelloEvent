@@ -29,41 +29,7 @@
             <p>(새로고침을 기준으로 변경 됨에 주의!)</p>
         </div> -->
         <div class='col-lg-8 col-md-12 select_box3'>
-            <p>다른 지역 이벤트를 알아보고 싶나요?</p>
-                    <form action="{% url 'location:search_map'%}" method="post">
-                        {% csrf_token %}
-                        <select name="selected_city">
-                            <option selected>시</option>
-                            <option value="서울">서울특별시</option>
-                        </select>
-                        <select name="selected_gu">
-                            <option selected>구</option>
-                            <option>강남구</option>
-                            <option>송파구</option>
-                            <option>서초구</option>
-                            <option>강동구</option>
-                            <option>관악구</option>
-                            <option>영등포구</option>
-                            <option>강서구</option>
-                            <option>양천구</option>
-                            <option>구로구</option>
-                            <option>금천구</option>
-                            <option>종로구</option>
-                            <option>중구</option>
-                            <option>동대문구</option>
-                            <option>중랑구</option>
-                            <option>마포구</option>
-                            <option>용산구</option>
-                            <option>성동구</option>
-                            <option>광진구</option>
-                            <option>은평구</option>
-                            <option>서대문구</option>
-                            <option>성북구</option>
-                            <option>강북구</option>
-                            <option>도봉구</option>
-                            <option>노원구</option>
-                        </select>
-                        <button type="submit" class="search_icon">검색하기</button>
+
         </div>
     </div>
     <hr>
@@ -116,6 +82,7 @@
             </div>
             {% endfor %}
         </div>
+        <br><br><br>
         <div class="row event_header" id="eventheader">
             <h3>----------종료한 이벤트------------</h3>
         </div>
@@ -181,7 +148,7 @@ function div_notyet_event() {
  function div_ing_event() {
     div_notyet.setAttribute("style",'display:none;'); 
     div_ing.setAttribute("style",'display:block;'); 
-    div_img2.setAttribute("style",'float:left;'); 
+    div_ing.setAttribute("style",'float:left;'); 
     div_end.setAttribute("style",'display:none;'); 
  }
 

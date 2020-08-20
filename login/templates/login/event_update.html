@@ -21,10 +21,6 @@
                 {% for image in image_formset %}
                     {{ image }}
                 {% endfor %}
-
-                {% for image in image_formset %}
-                    {{ image }}
-                {% endfor %}
                 <tr>
                     <td><b>시작 시간</b></td>
                     <td><input type="datetime-local" name="start_date_time" value="{{ starttime_value }}" required /></td>
@@ -38,8 +34,8 @@
                     <td><input type="text" name="tags" value="{% for tag in tags %}{{ tag.name }}, {% endfor %}" required /></td>
                 </tr>
             </table>
-            <button type="submit"
-                    style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px;color: white; ">
+            <button type="submit" id="save_event_update"
+                    style="margin: 0 auto; text-align: center!important; margin-top: 50px;  height: 50px; width: 130px; border:none; border-radius: 10px; background-color: #fd8b83; color: white; ">
                 저장
             </button>
             <br/><br/><br/><br/>
@@ -50,4 +46,17 @@
 </div>
 
 
+{% endblock %}
+
+{% block hanseokscript %}
+<script>
+    let update_event = document.querySelector('#save_event_update')
+
+    update_event.onclick = function (e) {
+        let confirm_result = alert("수정이 완료되었습니다!");
+        if (confirm_result === false) {
+            e.preventDefault()   //이게 더 많이 쓰이는 방법이라고 함.
+        }
+    }
+</script>
 {% endblock %}
