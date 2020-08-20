@@ -254,13 +254,13 @@ select {
     background-size: cover;
 }
 
-.row h2 {
+#row-main h2 {
     font-family: 'Roboto', sans-serif;
 }
 
-/*.row div {*/
-/*    margin: 0 auto;*/
-/*}*/
+#row-main div {
+    margin: 0 auto;
+}
 
 .shadow:hover {
     transform: scale(1.03);
