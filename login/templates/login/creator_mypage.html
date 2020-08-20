@@ -49,7 +49,7 @@
     
     <div class="creator_event">
     {% for event in events %}
-            <div class="col-12 col-md-5" id="event_info">
+            <div class="col-12 col-md-6" id="event_info">
                 <tr>
                     <!-- <td><b>이벤트 이름</b></td> -->
                     <td><h3>{{ event.event_name }}</h3></td>
@@ -81,8 +81,8 @@
                     </td>
                 </tr>
                 <hr>
-                    <a href="{% url 'event:event_delete' event.pk %}">
-                        <button type="button" id="event_delete_btn">
+                    <a href="{% url 'event:event_delete' event.pk %}" >
+                        <button type="button" class="event_delete_btn" id="delete_event">
                             삭제하기
                         </button>
                     </a>
@@ -98,8 +98,8 @@
 <br/>
 <hr/>
 <div id="user_pk_section" style="display:none">{{user.pk}}</div>
-<div class="delete_creator" style="text-align: center">
-    <a href="{% url 'login:creator_delete' user.pk %}" id="delete_creator" style="text-decoration: none; color: white;">
+<div class="delete_creator">
+    <a href="{% url 'login:creator_delete' user.pk %}" id="delete_creator">
         <button type="button">
             크리에이터 계정 삭제
         </button>
@@ -109,14 +109,14 @@
 
 {% block hanseokscript %}
 <script>
-    let user_pk_tag = document.querySelector('#user_pk_section')
-    let user_pk = user_pk_tag.textContent
-    let returnUrl = '/login/' + user_pk + '/creator/'
+    // let user_pk_tag = document.querySelector('#user_pk_section')
+    // let user_pk = user_pk_tag.textContent
+    // let returnUrl = '/login/' + user_pk + '/creator/'
 
     let delete_creator = document.querySelector('#delete_creator')
 
     delete_creator.onclick = function (e) {
-        let confirm_result = confirm("정말 크리에이터를 지우시겠습니까?\n되돌릴 수 없습니다.");
+        let confirm_result = confirm("정말 크리에이터를 지우시겠습니까?\n※주의※ 되돌릴 수 없습니다.");
         if (confirm_result === false) {
             //return true
             //document.querySelector('#delete_creator').setAttribute('href', returnUrl)
@@ -124,6 +124,23 @@
         }
     }
 
+    // let delete_event = Array.from(document.querySelectorAll('.event_delete_btn'))
+    // let confirm_result = confirm('정말 이벤트를 지우시겠습니까?\n※주의※ 되돌릴 수 없습니다.');
+
+    // for(let i=0; i<delete_event[i].length;i++){
+    //     delete_event[i].addEventListener('click',function(e){
+    //         confirm_result
+    //         e.preventDefault()
+    //         console.log(e)
+    // })
+    let delete_event = document.querySelector('#delete_event')
+
+    delete_event.onclick = function (e) {
+        let confirm_result = confirm('정말 이벤트를 지우시겠습니까?\n※주의※ 되돌릴 수 없습니다.');
+        if (confirm_result === false) {
+            e.preventDefault()
+        }
+    }
 
 </script>
 {% endblock %}
