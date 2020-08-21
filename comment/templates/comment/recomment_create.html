@@ -1,7 +1,19 @@
 
-
-     <div class='row'><b>'{{ recomment.writer.nickname }}'님 : </b> <span>{{ recomment.recomment_text }}</span></div>
-            {% if recomment.recomment_photo %}
-            <div class='row'><img src="{{recomment.recomment_photo.url}}" style='max-width:300px'></div>
-            {% endif %}
+<div id="single_recomment">
+     <div class='row flex-container single-recomment' >
+        <div class="flex-item">
+            <b>'{{ recomment.writer.nickname }}'님 : </b> <span>{{ recomment.recomment_text }}</span>
+        </div>
+        <div class="flex-item-gnb">
+            {% if recomment.writer == username %}
+                <a href="{% url 'comment:recomment_delete' recomment.id %}" class="btn btn-sm btn-outline-success btn_recomment_delete_{{comment.pk}}">삭제</a>
+            {% elif recomment.writer == request.user %}
+                <a href="{% url 'comment:recomment_delete' recomment.id %}" class="btn btn-sm btn-outline-success btn_recomment_delete_{{comment.pk}}">삭제</a>
+            {% endif %}  
+        </div>
+        {% if recomment.recomment_photo %}
+        <div class='row'><img src="{{recomment.recomment_photo.url}}" style='max-width:300px'></div>
+        {% endif %}
+    </div>
 <hr>
+</div>

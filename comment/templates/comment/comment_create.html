@@ -26,14 +26,14 @@
             {% endfor %}
             </div>
 
-            <div class="container">
+            <div class="container recomment_submit">
                 {% comment %} <div id="comment_pk_section" type='hidden'>{{comment.pk}}</div> {% endcomment %}
                 <form class='row' action="{% url 'comment:recomment_create_ajax' comment.id %}" enctype='multipart/form-data' method='POST' id="recommentForm_{{comment.pk}}">
                     {% csrf_token %}
                     <input type="hidden" name='is_ajax2' value=''>
-                    <div class="col-7">{{ recomment_form.recomment_text }}</div>
-                    <div class="col-4">{{ recomment_form.recomment_photo }}</div>
-                    <div class="col-1"><input type="submit" class="btn btn-primary" value='OK' id='recomment_submit_btn'></div>
+                    <div class="col-md-7 col-sm-12">{{ recomment_form.recomment_text }}</div>
+                    <div class="col-md-4 col-sm-12">{{ recomment_form.recomment_photo }}</div>
+                    <div class="col-md-1 col-sm-12"><input type="submit" class="btn btn-primary" value='OK' id='recomment_submit_btn'></div>
                 </form>
                 <div class="fold_row row"><button id="recomment_fold_{{comment.id}}" class='btn btn-outline-success btn-sm'>접기</button></div>
             </div>
@@ -48,17 +48,20 @@
 
     let recobtn_{{comment.id}} = $('#recomment_btn_{{comment.id}}')
     let fold_btn_{{comment.id}} = $('#recomment_fold_{{comment.id}}')
-
+    
     $('#recomment_form_{{comment.id}}').hide()
     recobtn_{{comment.id}}.click(function(){
         $('#recomment_form_{{comment.id}}').toggle()
     })
-
+    
     fold_btn_{{comment.id}}.click(function(){
     $('#recomment_form_{{comment.id}}').hide()
     })
+    
+    
 </script>
 <script>
+// 대댓글 작성
     $('#recommentForm_{{comment.pk}}').submit(function(e){
         e.preventDefault()
         e.stopPropagation()
@@ -67,6 +70,7 @@
 
         url = $(this).attr('action');
         var formData = new FormData(this);
+
         $.ajax({
             url:url,
             method:"POST",
@@ -85,6 +89,26 @@
     });
 </script>
 
+<script>
+// 대댓글 삭제
+$('.btn_recomment_delete_{{comment.pk}}').click(function(e) {
+    e.preventDefault();
+    var input = confirm('대댓글을 삭제하시겠습니까?');
+    if (input==true) {
+        alert('대댓글을 삭제하였습니다.');
+        recomment = $(this).parents('#single_recomment');
+        url = $(this).attr('href')+"?is_ajax=1"; // ajax 호출임을 구분할 수 있게 값 추가
+        $.ajax({
+            url:url
+        }).done(function(data) {
+            if (data.works) {
+                console.log(recomment)
+                recomment.remove(); // 해당 객체 지우기
+            }
+        });
+    }
+});
+</script>
 {% comment %} <script src="{% static 'comment/js/create2.js' %}"></script> {% endcomment %}
 
 

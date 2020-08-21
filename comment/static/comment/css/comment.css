@@ -27,13 +27,14 @@ main li { list-style:none; }
     max-height:580px;
     overflow-y:auto;
     padding:10px;  
+    font-size: 1rem;
 }
+
 
 
 /* scrollbar */
 #comment_list::-webkit-scrollbar {
     width: 6px;
-    height:80%;
     background-color: #F5F5F5;
     border-radius: 25px;
 }
@@ -126,4 +127,33 @@ main li { list-style:none; }
 
 .recomment_form .container {
     padding-left:30px;
+}
+
+/* 대댓글 scroll */
+.recomment_list {
+    max-height:300px;
+    overflow-y:auto;
+}
+
+.recomment_list::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+    border-radius: 25px;
+}
+.recomment_list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(104, 140, 240, 0.089);
+    border-radius: 25px;
+}
+.recomment_list::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: #dd445b57;
+    outline: 1px solid  #dd445b2a;
+}
+
+/* 댓글 제출 폼 정렬 */
+.comment_submit, .recomment_submit {
+    text-align:center;
+}
+.recomment_submit {
+    width:100%;
 }

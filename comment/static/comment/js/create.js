@@ -1,5 +1,6 @@
 // scroll 하단에 고정
 $("#comment_list").scrollTop($("#comment_list")[0].scrollHeight);
+$(".recomment_list").scrollTop($(".recomment_list")[0].scrollHeight);  
 
 // 댓글 작성
 $('#comment_form').submit(function(e){
@@ -10,7 +11,10 @@ $('#comment_form').submit(function(e){
     var formData = new FormData(this);
     var writer = $('input[name="comment_writer"]').val();
     formData.append("user",writer)
-
+    if ($('#id_comment_text').val() == '' && $('#id_comment_photo').val() == ''){
+        alert('댓글을 입력해주세요')
+        return;
+    }
     $.ajax({
         url:url,
         method:"POST",
