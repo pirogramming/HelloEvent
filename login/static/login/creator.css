@@ -97,9 +97,6 @@ button a {
     border-radius: 30px;
     float:left;
     padding: 2rem;
-    /* margin-right:2rem;
-    margin-left:2rem; */
-    /* margin-bottom:3rem; */
     text-align:center;
 }
 
@@ -110,7 +107,8 @@ button a {
 }
 
 #event_row {
-    /* margin: 0 10% !important; */
+    padding-right: 10rem;
+    padding-left: 10rem;
 }
 
 h1 {
@@ -123,8 +121,8 @@ h5 {
     text-align: center !important;
 }
 
-.delete_creator {
-    text-align:center;
+.delete_creator{
+    text-align: center !important;
 }
 
 /* .creator_event {
