@@ -1,87 +1,128 @@
 .row div {
-  margin: 0;
+    margin: 0;
 }
 
 li {
-  list-style: none;
+    list-style: none;
 }
 
 #category_list {
-  padding-left: 0;
-  display: flex;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
 }
 
 #category_list li {
-  margin-right: 2rem;
+    margin-right: 2rem;
 }
 
 .container-fluid {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 #event_wrap .event_post {
-  margin-top: 2rem;
+    margin-top: 2rem;
 }
 
 #event_content_wrap {
-  border: 1px solid black;
-  display: inline-block;
-  width: 100%;
+    /*border: 1px solid black;*/
+    display: inline-block;
+    width: 100%;
 }
 
 #event_title_wrap {
-  padding-top: 1rem;
+    padding-top: 1rem;
 }
 
 .event_image_section {
-  display: inline-block;
-  padding: 0;
+    display: inline-block;
+    padding: 0;
 }
 
 .event_image_section img {
-  width: 15rem;
-  height: 15rem;
-  padding: 0;
+    width: 15rem;
+    height: 15rem;
+    padding: 0;
 }
 
 .event_content {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .event_content:nth-child(4),
 .event_content:nth-child(5),
 .event_content:nth-child(6) {
-  display: inline-block;
+    display: inline-block;
 }
 
 .map_wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 1rem !important;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1rem !important;
 }
 
 #map {
-  width: 100%;
-  height: 39rem;
+    width: 100%;
+    height: 39rem;
 }
 
 .hAddr {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  border-radius: 2px;
-  background: #fff;
-  background: rgba(255, 255, 255, 0.8);
-  z-index: 1;
-  padding: 5px;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    border-radius: 2px;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+    padding: 5px;
 }
 
 #centerAddr {
-  display: block;
-  font-weight: bold;
+    display: block;
+    font-weight: bold;
 }
 
 .template_variable_section {
-  display: none;
+    display: none;
+}
+
+#event_title h1 {
+    color: #dd445b;
+}
+
+#event_title {
+    padding: 15px;
+}
+
+#category_list button {
+    width: 80px;
+    height: 35px;
+    border: 1px solid #fd8b83;
+    background-color: white;
+    border-radius: 10px;
+    color: #fd8b83;
+}
+
+#category_list button:hover {
+    background-color: #fd8b83;
+    color: white;
+}
+
+#category_list li {
+    text-align: center;
+}
+
+.event_post {
+    border: 1px dashed #dd445b;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
+}
+
+.event_image_section img {
+    margin: 10%;
+}
+
+.event_content_section {
+    padding-top: 10%;
 }

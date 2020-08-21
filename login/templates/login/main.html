@@ -70,7 +70,8 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="/static/img/test2.jpg" alt="background" style="height: 800px;background-size: cover; background-position: center"/>
+            <img src="/static/img/test2.jpg" alt="background"
+                 style="height: 800px;background-size: cover; background-position: center"/>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>오늘의 이벤트</h1>
@@ -116,8 +117,6 @@
 </div>
 
 
-
-
 <!-- Marketing messaging and featurettes
 ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -131,20 +130,21 @@
     </div>
     <div class="row now-container">
         {% if creators.count == 0 %}
-            <p>아직 좋아하는 크리에이터가 없으시군요! 하트를 눌러 크리에이터의 이벤트를 받아보세요!</p>
+        <p>아직 좋아하는 크리에이터가 없으시군요! 하트를 눌러 크리에이터의 이벤트를 받아보세요!</p>
         {% elif events.count == 0 %}
-            <p>현재 진행 중인 Like 크리에이터의 이벤트가 없습니다!</p>
+        <p>현재 진행 중인 Like 크리에이터의 이벤트가 없습니다!</p>
         {% else %}
         {% for event in events %}
-        <div class="col-12 col-sm-6 shadow p-3 mb-5 bg-yellow rounded" style="text-align: center; width:85%;" id="event_box">
-           <a href="{% url "event:creator_detail"  event.id %}">
+        <div class="col-12 col-sm-6 shadow p-3 mb-5 bg-yellow rounded" style="text-align: center; width:85%;"
+             id="event_box">
+            <a href="{% url " event:creator_detail" event.id %}">
             <img
-                        class="bd-placeholder-img rounded-circle"
-                        width="170"
-                        height="140"
-                        src="{{ event.creator.creator_photo.url }}"
-                        alt=""
-                />
+                    class="bd-placeholder-img rounded-circle"
+                    width="170"
+                    height="140"
+                    src="{{ event.creator.creator_photo.url }}"
+                    alt=""
+            />
             <p>
             <h3>{{ event.event_name }}</h3>
             <h5>{{ event.creator.creator_name }}</h5>
@@ -157,6 +157,7 @@
     </div>
 </div>
 {% endif %}
+<br/><br/>
 
 
 <!--<div class="container">-->
@@ -228,10 +229,11 @@
 <br/><br/><br/>
 
 
-<div class="container_custom"  style="background-color: #c0d0e3;">
-<!--     style="background-color: #c0d0e3;"-->
+<div class="container_custom" style="background-color: #c0d0e3;">
+    <!--     style="background-color: #c0d0e3;"-->
 
-    <div class="row featurette" id="row-main" style="padding-top: 60px; padding-bottom: 60px;  background-color: #c0d0e3;">
+    <div class="row featurette" id="row-main"
+         style="padding-top: 60px; padding-bottom: 60px;  background-color: #c0d0e3;">
         <div class="col-md-7" style="background-color: #c0d0e3;">
             <h2
                     class="featurette-heading"
@@ -264,54 +266,17 @@
 
 <!--style="background-color: #fed2a5 -->
 <div class="container_custom" style="background-color: #fed2a5">
-    <div class="row featurette" id="row-main" style="padding-top: 60px; padding-bottom: 60px; background-color: #fed2a5;">
+    <div class="row featurette" id="row-main"
+         style="padding-top: 60px; padding-bottom: 60px; background-color: #fed2a5; text-align: right;">
         <div class="col-md-7 order-md-2">
-            <h2
-                    class="featurette-heading"
-                    style="font-size: 5em; color: #383A3F ;  !important;  font-family: 'Nanum Pen Script', cursive;"
-            >
-                아티스트 구독하기
-            </h2>
-            <br/><br/>
-            <span class="text-muted" style="font-size: 1.3em; font-weight: 600;"
-            >쉽게 확인하는 아티스트의 이벤트</span
-            >
-            <p class="lead">
-                이전에 봤던 공연, 다음에 또 보고싶은데?<br/>
-                내 취향에 꼭 맞는 아티스트를 발견했다면, '좋아요'를 눌러라!<br/>
-                마이페이지에서 쉽게 아티스트의 일정을 확인하고 문화생활을 즐기자.
-            </p>
-        </div>
-        <div class="col-md-5 order-md-1">
-<!--            <svg-->
-<!--                    class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"-->
-<!--                    width="500"-->
-<!--                    height="500"-->
-<!--                    xmlns="http://www.w3.org/2000/svg"-->
-<!--                    preserveAspectRatio="xMidYMid slice"-->
-<!--                    focusable="false"-->
-<!--                    role="img"-->
-<!--                    aria-label="Placeholder: 500x500"-->
-<!--            >-->
-<!--                <title>Placeholder</title>-->
-<!--                <rect width="100%" height="100%" fill="#eee"/>-->
-<!--                <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>-->
-<!--            </svg>-->
-        </div>
-    </div>
-</div>
-
-<!--background-color: #fd8b83-->
-<div class="container_custom" style="background-color: #fd8b83;">
-    <div class="row featurette" id="row-main" style="padding-top: 40px; padding-bottom: 40px; background-color: #fd8b83">
-        <div class="col-md-7">
             <h2
                     class="featurette-heading"
                     style="font-size: 5em; color: #383A3F;  !important;  font-family: 'Nanum Pen Script', cursive;"
             >
                 미리 확인하는 <br/>현장 분위기
             </h2>
-            <br/>
+
+            <br/><br/>
             <span class="text-muted" style="font-size: 1.3em; font-weight: 600;"
             >사진으로 느끼는 아티스트와 현장의 열기</span
             >
@@ -321,22 +286,50 @@
                 당신의 선택을 도와줄 것이다! <br/>현장의 분위기와 느낌을 미리 파악하고
                 선택의 만족도를 높이자.
             </p>
+
         </div>
         <div class="col-md-5">
-<!--            <svg-->
-<!--                    class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"-->
-<!--                    width="500"-->
-<!--                    height="500"-->
-<!--                    xmlns="http://www.w3.org/2000/svg"-->
-<!--                    preserveAspectRatio="xMidYMid slice"-->
-<!--                    focusable="false"-->
-<!--                    role="img"-->
-<!--                    aria-label="Placeholder: 500x500"-->
-<!--            >-->
-<!--                <title>Placeholder</title>-->
-<!--                <rect width="100%" height="100%" fill="#eee"/>-->
-<!--                <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>-->
-<!--            </svg>-->
+            <img
+                    class="bd-placeholder-img rounded-circle"
+                    width="400"
+                    height="400"
+                    src="/static/img/flea.png"
+                    alt="like.png"
+                    style="margin-top: 50px; left: 0;"
+            />
+        </div>
+    </div>
+</div>
+
+<!--background-color: #fd8b83-->
+<div class="container_custom" style="background-color: #fd8b83;">
+    <div class="row featurette" id="row-main"
+         style="padding-top: 40px; padding-bottom: 40px; background-color: #fd8b83">
+        <div class="col-md-7">
+            <h2
+                    class="featurette-heading"
+                    style="font-size: 5em; color: #383A3F ;  !important;  font-family: 'Nanum Pen Script', cursive;"
+            >
+                아티스트 구독하기
+            </h2>
+            <br/>
+            <span class="text-muted" style="font-size: 1.3em; font-weight: 600;"
+            >쉽게 확인하는 아티스트의 이벤트</span>
+            <p class="lead">
+                이전에 봤던 공연, 다음에 또 보고싶은데?<br/>
+                내 취향에 꼭 맞는 아티스트를 발견했다면, '좋아요'를 눌러라!<br/>
+                마이페이지에서 쉽게 아티스트의 일정을 확인하고 문화생활을 즐기자.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <img
+                    class="bd-placeholder-img rounded-circle"
+                    width="400"
+                    height="400"
+                    src="/static/img/likey.jpg"
+                    alt="like.png"
+                    style="margin-top: 30px; left: 0;"
+            />
         </div>
     </div>
 
