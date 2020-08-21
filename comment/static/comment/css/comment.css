@@ -153,3 +153,11 @@ li { list-style:none; }
     background-color: #dd445b57;
     outline: 1px solid  #dd445b2a;
 }
+
+/* 댓글 제출 폼 정렬 */
+.comment_submit, .recomment_submit {
+    text-align:center;
+}
+.recomment_submit {
+    width:100%;
+}

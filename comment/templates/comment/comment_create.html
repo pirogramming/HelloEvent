@@ -26,14 +26,14 @@
             {% endfor %}
             </div>
 
-            <div class="container">
+            <div class="container recomment_submit">
                 {% comment %} <div id="comment_pk_section" type='hidden'>{{comment.pk}}</div> {% endcomment %}
                 <form class='row' action="{% url 'comment:recomment_create_ajax' comment.id %}" enctype='multipart/form-data' method='POST' id="recommentForm_{{comment.pk}}">
                     {% csrf_token %}
                     <input type="hidden" name='is_ajax2' value=''>
-                    <div class="col-7">{{ recomment_form.recomment_text }}</div>
-                    <div class="col-4">{{ recomment_form.recomment_photo }}</div>
-                    <div class="col-1"><input type="submit" class="btn btn-primary" value='OK' id='recomment_submit_btn'></div>
+                    <div class="col-md-7 col-sm-12">{{ recomment_form.recomment_text }}</div>
+                    <div class="col-md-4 col-sm-12">{{ recomment_form.recomment_photo }}</div>
+                    <div class="col-md-1 col-sm-12"><input type="submit" class="btn btn-primary" value='OK' id='recomment_submit_btn'></div>
                 </form>
                 <div class="fold_row row"><button id="recomment_fold_{{comment.id}}" class='btn btn-outline-success btn-sm'>접기</button></div>
             </div>
