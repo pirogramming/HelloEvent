@@ -57,6 +57,8 @@ def register_event(request):
                 print("세이브가 되었을까?????")
                 for tag in tags:
                     print(tag)
+                    if tag == "":
+                        continue
                     tag = tag.strip()
                     _tag, _ = Tag.objects.get_or_create(name=tag)
                     event.tags.add(_tag)
@@ -139,7 +141,6 @@ def search_result(request):
     }
     return render(request, "event/search_result.html", ctx)
 
-# def delete_event
 
 def search_result_click(request, tag):
     data = tag
@@ -159,8 +160,8 @@ def search_result_click(request, tag):
         print(results)
     print(results)
     ctx = {
-        'data':data,
-        'results':results,
+        'data' : data,
+        'results' : results,
     }
     return render(request, "event/search_result.html", ctx)
 
