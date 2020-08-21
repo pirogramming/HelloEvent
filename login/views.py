@@ -373,6 +373,8 @@ def event_update(request, pk):
             tags = request.POST['tags'].split(',')
             for tag in tags:
                 tag = tag.strip()
+                if tag == "":
+                    continue
                 _tag, _ = Tag.objects.get_or_create(name=tag)
                 event.tags.add(_tag)
 
