@@ -30,9 +30,8 @@
         <div class="col-md-7 col-sm-12">{{ comment_form.comment_text }}</div>
         <div class="col-md-4 col-sm-12">{{ comment_form.comment_photo }}</div>
         <div class='col-md-1 col-sm-12'><input type="submit" class="btn btn-primary" value='댓글 입력' id='comment_submit_btn' ></div>
-        
+        <button class="goback"><a href="{% url 'event:creator_detail' creator.pk %}">뒤로가기</a></button>
         <br>
-        
     </form>
     <br/>
     </div>
