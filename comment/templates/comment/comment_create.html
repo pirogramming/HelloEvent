@@ -5,10 +5,10 @@
         <div id="del_btn" class='flex-item-gnb'>
             {% if comment.member == username %} <!-- 댓글작성자:{{comment.member}} , 접속자:{{username}}-->
                 {% comment %} <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a> {% endcomment %}
-                <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-sm btn-outline-success">삭제</a>
+                <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-sm btn-outline-success btn_comment_delete">삭제</a>
             {% elif comment.member == request.user %}
                 {% comment %} <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a> {% endcomment %}
-                <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-sm btn-outline-success">삭제</a>
+                <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-sm btn-outline-success btn_comment_delete">삭제</a>
             {% endif %}
         </div>
     </div>

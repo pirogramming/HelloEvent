@@ -45,3 +45,14 @@ a {
     border: none;
 }
 
+#event_box .like_creator{
+    text-decoration: none!important;
+}
+
+#event_box h5, #event_box p{
+    color: #383A3F;
+}
+
+#event_box h3 {
+    padding: 2%;
+}

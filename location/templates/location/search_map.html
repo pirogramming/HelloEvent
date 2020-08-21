@@ -5,9 +5,10 @@
   <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
     <div id="event_title_wrap">
       <div id="event_title">
-        <h1><span id='event_title_city'>{{selected_city}}</span> <span id='event_title_gu'>{{selected_gu}}</span> 지역 검색 결과</h1>
+        <h1><span id='event_title_city'>{{selected_city}}</span> <span id='event_title_gu'>{{selected_gu}}</span></h1>
+          <h4>지역 검색 결과</h4>
       </div>
-            <form action="{% url 'location:search_map'%}" method="post">
+            <form action="{% url 'location:search_map'%}" method="post" style="margin-left: 10px;">
                         {% csrf_token %}
                         <select name="selected_city">
                             <option selected>시</option>
@@ -72,7 +73,7 @@
             {% for event in events %}
             {% if event.location.city == selected_city and event.location.gu == selected_gu %}
             <div id="event_{{event.pk}}" class="row event_post">
-                <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row" style="border: 1px solid red;">
+                <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row">
                     {% if event.eventimage_set.first.image.url %}
                     <img
                             class="col-xs-12 col-sm-12 col-md-12"
@@ -89,10 +90,12 @@
                 </div>
                 <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
                     <div class="event_content" id="event_title_{{event.pk}}">
-                        이벤트명 : {{event.event_name}}
+                       <a href="{% url 'event:creator_detail' event.creator.pk %}">
+                           <b>{{event.event_name}}</b>
+                       </a>
                     </div>
                     <div class="event_content" id="event_creator_{{event.pk}}">
-                        크리에이터명 : {{event.creator}}
+                        <p class="creator_name">크리에이터명 : {{event.creator.creator_name}}</p>
                     </div>
                     <div class="event_content" id="event_genre_{{event.pk}}">
                         장르 : {{event.genre}}
