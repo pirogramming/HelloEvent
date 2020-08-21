@@ -61,7 +61,7 @@
     
 </script>
 <script>
-// 대댓글 생성
+// 대댓글 작성
     $('#recommentForm_{{comment.pk}}').submit(function(e){
         e.preventDefault()
         e.stopPropagation()
@@ -70,6 +70,7 @@
 
         url = $(this).attr('action');
         var formData = new FormData(this);
+
         $.ajax({
             url:url,
             method:"POST",

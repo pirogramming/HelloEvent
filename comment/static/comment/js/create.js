@@ -11,7 +11,10 @@ $('#comment_form').submit(function(e){
     var formData = new FormData(this);
     var writer = $('input[name="comment_writer"]').val();
     formData.append("user",writer)
-
+    if ($('#id_comment_text').val() == '' && $('#id_comment_photo').val() == ''){
+        alert('댓글을 입력해주세요')
+        return;
+    }
     $.ajax({
         url:url,
         method:"POST",
@@ -46,12 +49,3 @@ $('.btn_comment_delete').click(function(e) {
         });
     }
 });
-
-
-
-$(function() {
-    /* Rounded Dark */
-    $("#comment_list").mCustomScrollbar({
-      theme: "rounded-dark"
-    });
-  });
