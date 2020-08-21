@@ -314,6 +314,10 @@ a, a:hover {
     color: white;
 }
 
+#info_tag:hover {
+    color: #fd8b83;
+}
+
 .row div {
     margin: 0 auto;
 }
@@ -327,3 +331,6 @@ a, a:hover {
 }
 
 /* --------------------------------------------- */
+.row div {
+    margin: 0 auto;
+}

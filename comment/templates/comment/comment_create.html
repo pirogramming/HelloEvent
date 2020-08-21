@@ -1,53 +1,46 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'comment/css/comment.css' %}">
-    
-</head>
-<body>
+
 <div class="single_comment">
-<div class='row'><b>{{ comment.member.nickname }}님의 댓글 :</b> <span id='comment_text_{{comment.pk}}'>{{ comment.comment_text }}</span> </div>
-{% if comment.comment_photo %}
-<div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px' id="comment_photo_{{comment.pk}}"></div>
-{% endif %}
-<div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
-        <div class='row'>
-            <button id='recomment_btn_{{comment.id}}'>대댓글</button>
-            
-            <!-- 댓글작성자:{{comment.member}}
-            접속자:{{username}}-->
-        {% if comment.member == username %}
-            <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a>
-            <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-danger btn-sm btn_comment_delete">삭제</a>
-        {% elif comment.member == request.user %}
-            <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a>
-            <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-danger btn-sm btn_comment_delete">삭제</a>
-        {% endif %}
-        <div class='row' id='recomment_form_{{comment.id}}'>
-            <div class="container" id="recomment_list_{{comment.id}}">
+    <div class='row flex-container'>
+        <div id="content" class='flex-item'><b>'{{ comment.member.nickname }}'님 :</b> <span id='comment_text_{{comment.pk}}'>{{ comment.comment_text }}</span> </div>
+        <div id="del_btn" class='flex-item-gnb'>
+            {% if comment.member == username %} <!-- 댓글작성자:{{comment.member}} , 접속자:{{username}}-->
+                {% comment %} <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a> {% endcomment %}
+                <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-sm btn-outline-success">삭제</a>
+            {% elif comment.member == request.user %}
+                {% comment %} <a href="{% url 'comment:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">수정</a> {% endcomment %}
+                <a href="{% url 'comment:comment_delete' comment.id %}" class="btn btn-sm btn-outline-success">삭제</a>
+            {% endif %}
+        </div>
+    </div>
+    {% if comment.comment_photo %}
+    <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px' id="comment_photo_{{comment.pk}}"></div>
+    {% endif %}
+    <div class='row' id='create_at'><small>{{comment.created_at}}</small></div>
+    <div class='row recomment_area'>
+        <button id='recomment_btn_{{comment.id}}' class="btn btn-outline-success btn-sm">대댓글</button>
+      
+        <div class='row recomment_form' id='recomment_form_{{comment.id}}'>
+            <div class="container recomment_list" id="recomment_list_{{comment.id}}">
             {% for recomment in comment.recomment_set.all %}
                 {% include 'comment/recomment_create.html' %}
             {% endfor %}
             </div>
-<hr>
+
             <div class="container">
-                <div id="comment_pk_section">{{comment.pk}}</div>
-                <form  action="{% url 'comment:recomment_create_ajax' comment.id %}" enctype='multipart/form-data' method='POST' id="recommentForm_{{comment.pk}}">
+                {% comment %} <div id="comment_pk_section" type='hidden'>{{comment.pk}}</div> {% endcomment %}
+                <form class='row' action="{% url 'comment:recomment_create_ajax' comment.id %}" enctype='multipart/form-data' method='POST' id="recommentForm_{{comment.pk}}">
                     {% csrf_token %}
                     <input type="hidden" name='is_ajax2' value=''>
-                    {{ recomment_form }}
-                    <input type="submit" class="btn btn-primary" value='대댓글 입력' id='recomment_submit_btn'>
+                    <div class="col-7">{{ recomment_form.recomment_text }}</div>
+                    <div class="col-4">{{ recomment_form.recomment_photo }}</div>
+                    <div class="col-1"><input type="submit" class="btn btn-primary" value='OK' id='recomment_submit_btn'></div>
                 </form>
-                <button id="recomment_fold_{{comment.id}}">접기</button>
+                <div class="fold_row row"><button id="recomment_fold_{{comment.id}}" class='btn btn-outline-success btn-sm'>접기</button></div>
             </div>
         </div>
-        <hr>
-        <br>
+
     </div>
+    <hr>
 </div>
 
 <script>
@@ -93,7 +86,6 @@
 </script>
 
 {% comment %} <script src="{% static 'comment/js/create2.js' %}"></script> {% endcomment %}
-</body>
-</html>
+
 
     
