@@ -74,7 +74,7 @@
                     <br>
                     <p id='tag_name'>
                     {% for tag in tags %}
-                        <a href="">#{{tag.name}}</a>
+                        <a href="" id='info_tag'>#{{tag.name}}</a>
                     {% endfor %}
                     </p>
                 </div>
@@ -158,6 +158,7 @@
             </div>
             {% else %}
             <div class="col">
+                <p>후기가 아직 없어요!</p>
                 <a href="{% url 'event:comment_detail' creator.pk %}" class="btn btn-outline-success my-2 my-sm-0">후기 작성하러가기</a>
             </div>
             {% endif %}

@@ -313,4 +313,11 @@ a, a:hover {
     background-color: #fd8b83;
     color: white;
 }
+
+#info_tag:hover {
+    color: #fd8b83;
+}
 /* --------------------------------------------- */
+.row div {
+    margin: 0 auto;
+}
