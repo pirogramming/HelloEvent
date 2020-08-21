@@ -14,8 +14,11 @@
 <div class="container" id='comment_list' class="custom-scrollbar-js p-2">  
     {% for comment in comments %}
         {% include 'comment/comment_create.html' %}
-    {% endfor %}
 
+    {% endfor %}
+    
+
+        
 </div>
     <hr>
 <div class="container">
@@ -33,7 +36,6 @@
     </form>
 
     </div>
-        <a href="{% url 'event:creator_detail' creator.pk %}">뒤로 가기</a>
 </div>
 {% endblock %}
 

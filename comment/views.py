@@ -134,3 +134,25 @@ def comment_delete(request, comment_id):
     else:
         print('get')
         return render(request, 'comment/comment_detail.html', {'object': comment})
+
+
+def recomment_delete(request, recomment_id):
+    is_ajax = request.GET.get('is_ajax') if 'is_ajax' in request.GET else request.POST.get('is_ajax',False)
+
+    recomment = get_object_or_404(Recomment, pk=recomment_id)
+    comment = get_object_or_404(Comment, pk=recomment.parent.pk)
+    creator = comment.creator
+
+    if is_ajax:
+        print("ajax 성공")
+        recomment.delete()
+        print('삭제')
+        return JsonResponse({"works":True})
+
+    if request.method == "POST":
+        print('post 시작')
+        recomment.delete()
+        return redirect(creator)
+    else:
+        print('get')
+        return render(request, 'comment/comment_detail.html', {'object': recomment} )

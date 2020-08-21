@@ -47,6 +47,8 @@ $('.btn_comment_delete').click(function(e) {
     }
 });
 
+
+
 $(function() {
     /* Rounded Dark */
     $("#comment_list").mCustomScrollbar({
