@@ -547,6 +547,20 @@ $(".category").click(function (e) {
         ampm = isAMPM(Number(hours));
         hours = Math.abs(12 - Number(hours));
         minutes = new Date(event_startTime[i]).getMinutes();
+        if (minutes > 0 && minutes < 10) {
+          minutesDic = {
+            "1": "01",
+            "2": "02",
+            "3": "03",
+            "4": "04",
+            "5": "05",
+            "6": "06",
+            "7": "07",
+            "8": "08",
+            "9": "09",
+          };
+          minutes = minutesDic[String(minutes)];
+        }
         event_startTime[i] =
           year +
           "년 " +
@@ -569,6 +583,20 @@ $(".category").click(function (e) {
         ampm = isAMPM(Number(hours));
         hours = Math.abs(12 - Number(hours));
         minutes = new Date(event_endTime[i]).getMinutes();
+        if (minutes > 0 && minutes < 10) {
+          minutesDic = {
+            "1": "01",
+            "2": "02",
+            "3": "03",
+            "4": "04",
+            "5": "05",
+            "6": "06",
+            "7": "07",
+            "8": "08",
+            "9": "09",
+          };
+          minutes = minutesDic[String(minutes)];
+        }
         event_endTime[i] =
           year +
           "년 " +
