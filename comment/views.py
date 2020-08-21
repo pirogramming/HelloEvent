@@ -31,6 +31,7 @@ def comment_detail(request, pk): # 댓글 보여주기
     }
     return render(request, 'comment/comment_detail.html', ctx)
 
+@login_required
 @csrf_exempt
 def comment_create_ajax(request, pk): # 댓글 생성하기
     # is_ajax : ajax 기능에 의해 호출된 것인지 구분하기 위한 값
@@ -38,16 +39,18 @@ def comment_create_ajax(request, pk): # 댓글 생성하기
 
     creator = Creator.objects.get(pk=pk)
     comment_form = CommentForm(request.POST, request.FILES)
+    recomment_form = RecommentForm(request.POST, request.FILES)
+    recomment = recomment_form.save(commit=False)
 
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
         comment.member = request.user
         comment.creator = creator
         comment.save()
-
+            
     if is_ajax:
         # 데이터 만들어서 던져주기
-        html = render_to_string('comment/comment_create.html',{'comment':comment, 'username':request.user})
+        html = render_to_string('comment/comment_create.html',{'comment':comment, 'username':request.user, 'recomment_form':recomment_form, 'recomment':recomment})
         return JsonResponse({'html':html})
     return redirect(reverse('event:comment_detail', args=[pk]))
 
@@ -74,7 +77,8 @@ def recomment_detail(request, comment_id): # 대댓글 보여주기
     }
     return render(request, 'comment/comment_detail.html', ctx)
 
-
+@login_required
+@csrf_exempt
 def recomment_create_ajax(request, comment_id): # 대댓글 생성하기
     # is_ajax : ajax 기능에 의해 호출된 것인지 구분하기 위한 값
     is_ajax2 = request.POST.get('is_ajax2')
