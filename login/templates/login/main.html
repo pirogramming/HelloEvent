@@ -137,7 +137,7 @@
         {% for event in events %}
         <div class="col-12 col-sm-6 shadow p-3 mb-5 bg-yellow rounded" style="text-align: center; width:85%;"
              id="event_box">
-            <a href="{% url "event:creator_detail" event.id %}">
+            <a href="{% url 'event:creator_detail' event.id %}" class="like_creator">
             <img
                     class="bd-placeholder-img rounded-circle"
                     width="170"
@@ -293,7 +293,7 @@
                     class="bd-placeholder-img rounded-circle"
                     width="400"
                     height="400"
-                    src="/static/img/flea.png"
+                    src="/static/img/flea.jpg"
                     alt="like.png"
                     style="margin-top: 50px; left: 0;"
             />

@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td><b>태그</b></td>
-                    <td><input type="text" name="tags" value="{% for tag in tags %}{{ tag.name }}, {% endfor %}" required /></td>
+                    <td><input type="text" name="tags" placeholder="쉼표(,)로 태그를 구분해주세요." value="{% for tag in tags %}{{ tag.name }}, {% endfor %}" required /></td>
                 </tr>
             </table>
             <button type="submit" id="save_event_update"

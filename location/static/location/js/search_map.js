@@ -604,10 +604,10 @@ $(".category").click(function (e) {
         </div>
         <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
           <div class="event_content" id="event_title_${event_pk[i]}">
-            이벤트명 : ${event_name[i]}
+            <b>${event_name[i]}</b>
           </div>
           <div class="event_content" id="event_creator_${event_pk[i]}">
-            주최자 : ${event_creator[i]}
+            <p class="creator_name">크리에이터명 : ${event_creator[i]}</p>
           </div>
           <div class="event_content" id="event_genre_${event_pk[i]}">
             장르 : ${event_genre[i]}

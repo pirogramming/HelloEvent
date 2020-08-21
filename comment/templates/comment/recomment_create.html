@@ -2,6 +2,6 @@
 
      <div class='row'><b>'{{ recomment.writer.nickname }}'님 : </b> <span>{{ recomment.recomment_text }}</span></div>
             {% if recomment.recomment_photo %}
-            <div class='row'><img src="{{comment.comment_photo.url}}" style='max-width:300px'></div>
+            <div class='row'><img src="{{recomment.recomment_photo.url}}" style='max-width:300px'></div>
             {% endif %}
 <hr>

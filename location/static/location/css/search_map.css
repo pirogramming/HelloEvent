@@ -119,10 +119,27 @@ li {
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .2);
 }
 
+.event_content a{
+    text-decoration: none;
+}
+
+.event_content b {
+    color: #dd445b;
+    font-size: 1.4rem;
+}
+
+.creator_name{
+    color: #dd445b;
+}
+
 .event_image_section img {
     margin: 10%;
 }
 
 .event_content_section {
     padding-top: 10%;
+}
+
+.event_time {
+    font-size: 0.8rem;
 }

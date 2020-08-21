@@ -50,13 +50,13 @@
     <div class="col-12 col-md-6 creators-events-list">
         <div class="row creator_list">
             <h5>LIKE 크리에이터</h5>
+            <br/><br/>
             {% if like_creators.count == 0 %}
                 <div class="col-12 creator">
                     <p>좋아하는 크리에이터가 없어요</p>
                 </div>
             {% else %}
                 {% for creator in like_creators.all %}
-
                     <div class="col-12 creator">
                         <div id="creator_info">
                             <div class="image">
@@ -75,9 +75,10 @@
         </div>
         <div class="row event_list">
             <h5>LIKE 크리에이터의 이벤트 현황</h5>
+            <br/><br/>
             {% if events.count == 0 %}
                 <div class="col-12 event">
-                    진행 중인 이벤트가 없요!
+                    진행 중인 이벤트가 없어요!
                 </div>
             {% else %}
                 {% for event in events %}
@@ -100,11 +101,11 @@
             <a href="{% url 'login:update' user.pk %}">수정하기</a>
         </button>
     </div>
-    <div class="item">
-        <button type="button">
-            <a href="{% url 'login:main' %}">메인으로</a>
-        </button>
-    </div>
+<!--    <div class="item">-->
+<!--        <button type="button">-->
+<!--            <a href="{% url 'login:main' %}">메인으로</a>-->
+<!--        </button>-->
+<!--    </div>-->
     <div class="item">
         {% if creators is None %}
         <button type="button" style="width: 140px!important;">
@@ -117,16 +118,15 @@
         {% endif %}
     </div>
 </div>
-    <br/><br/><br/>
+    <br/>
     <div class="delete-container">
         <div id="user_pk_section" style="display:none">{{user.pk}}</div>
-        <div class="logout">
-            <a href="/accounts/logout" id='logout_btn'>로그아웃</a>
-        </div>
-        <hr>
-        <div class="delete_account">
+<!--        <div class="logout">-->
+<!--            <a href="/accounts/logout" id='logout_btn'>로그아웃</a>-->
+<!--        </div>-->
+        <button type="button"><div class="delete_account">
             <a href="{% url 'login:delete' user.pk %}" id="delete_btn">계정 삭제</a>
-        </div>
+        </div></button>
     </div>
     <br/><br/><br/>
 

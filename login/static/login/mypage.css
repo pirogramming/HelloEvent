@@ -47,7 +47,7 @@ table.type03 td {
 
 .event_list h5{
     margin : 4px auto;
-    color:#dd445b
+    color:#dd445b;
 }
 
 .image img{
@@ -74,9 +74,14 @@ table.type03 td {
 }
 
 #creator_info:hover{
-    background-color: #fd8b83;
-    font-color: white;
+    /*background-color: #fd8b83;*/
+    /*border: 1px solid #fd8b83;*/
 
+}
+
+#creator_info a:hover{
+    color: #dd445b;
+    font-weight: bold;
 }
 
 .name{
@@ -147,7 +152,7 @@ a{
 
 }
 
-.buttons-container button {
+.buttons-container button, .delete-container button {
     text-align: center !important;
     margin-top: 50px;
     height: 45px;
@@ -159,6 +164,14 @@ a{
 
 }
 
-.buttons-container button:hover {
+.buttons-container button:hover, .delete-container button:hover {
     background-color: #fc655a;!important;
+}
+
+#creator_info a {
+    text-decoration: none;
+}
+
+.event_list a {
+    text-decoration: none;
 }
