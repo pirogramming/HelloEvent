@@ -46,12 +46,9 @@
 <h5>각 이벤트를 수정하거나 삭제할 수 있습니다</h5>
 <br><br><br>
 <div class="row" id="event_row">
-    
-    <div class="creator_event">
     {% for event in events %}
             <div class="col-12 col-md-6" id="event_info">
                 <tr>
-                    <!-- <td><b>이벤트 이름</b></td> -->
                     <td><h3>{{ event.event_name }}</h3></td>
                 </tr>
                 <hr>
@@ -90,17 +87,17 @@
                         <button type="button" id="event_btn">수정하기
                         </button>    
                         </a>                
-            </div>
-    {% endfor %}
-</div>
-</div>
+                    </div>
+                {% endfor %}
+        </div>
+    <!-- </div> -->
 </div>
 <br/>
 <hr/>
 <div id="user_pk_section" style="display:none">{{user.pk}}</div>
 <div class="delete_creator">
     <a href="{% url 'login:creator_delete' user.pk %}" id="delete_creator">
-        <button type="button">
+        <button type="button" class="delete_btn">
             크리에이터 계정 삭제
         </button>
     </a>
