@@ -8,6 +8,8 @@ var mapContainer = document.getElementById("map"), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
+// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
+var markers = [];
 //유저가 검색한 장소로 맵이 바로 나타나게 함
 findUserSelectedLocation();
 
@@ -93,9 +95,6 @@ for (let i = 0; i < events_count; i++) {
 
 // 등록된 이벤트들의 좌표를 반환해주는 함수
 function showEventLocation(city, gu, rest_address) {}
-
-// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
-var markers = [];
 
 let changed_coordinate;
 // 지도를 클릭한 위치에 표출할 마커입니다
@@ -458,13 +457,21 @@ function isAMPM(hour) {
 // Ajax code
 $(".category").click(function (e) {
   let choosed_genre = e.target.classList[1];
+  let selected_city = document.querySelector("#event_title_city").textContent;
+  let selected_gu = document.querySelector("#event_title_gu").textContent;
   console.log(choosed_genre);
   $.ajax({
     type: "POST",
     url: "genre/",
-    data: { genre: choosed_genre, csrfmiddlewaretoken: "{{ csrf_token }}" },
+    data: {
+      selected_city: selected_city,
+      selected_gu: selected_gu,
+      genre: choosed_genre,
+      csrfmiddlewaretoken: "{{ csrf_token }}",
+    },
     dataType: "json",
     success: function (response) {
+      console.log(selected_city, selected_gu);
       insertCode = "";
       event_list = JSON.parse(response.event);
       eventimage_list = JSON.parse(response.eventimage);
@@ -481,6 +488,7 @@ $(".category").click(function (e) {
       event_startTime = [];
       event_endTime = [];
       imageEnrollCheck = false;
+      is_existImage = false;
       // JSON.parse(response.event)[0].fields.event_name
       // JSON.parse(response.event)[0].fields.creator
       // JSON.parse(response.event)[0].fields.genre
@@ -518,10 +526,17 @@ $(".category").click(function (e) {
             imageEnrollCheck == false
           ) {
             event_image.push(eventimage_list[j].fields.image);
+            console.log(eventimage_list[j].fields.image);
             imageEnrollCheck = true;
+            is_existImage = true;
           }
         }
+        // 이벤트 사진을 등록 안했을 때 기본이미지 삽입
+        if (!is_existImage) {
+          event_image.push("creator_photo/default.jpg");
+        }
         imageEnrollCheck = false;
+        is_existImage = false;
       }
 
       for (let i = 0; i < event_startTime.length; i++) {

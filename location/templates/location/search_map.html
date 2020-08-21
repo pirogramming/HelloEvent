@@ -2,12 +2,11 @@
 <link rel="stylesheet" href="{% static 'location/css/search_map.css' %}"/>
 {% endblock %} {% block main %}
 <div class="container-fluid row flex-column-reverse flex-md-row">
-    <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
-        <div id="event_title_wrap">
-            <div id="event_title">
-                <h1>{{selected_city}} {{selected_gu}}</h1>
-                <h4>지역 검색 결과</h4>
-            </div>
+  <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
+    <div id="event_title_wrap">
+      <div id="event_title">
+        <h1><span id='event_title_city'>{{selected_city}}</span> <span id='event_title_gu'>{{selected_gu}}</span> 지역 검색 결과</h1>
+      </div>
             <form action="{% url 'location:search_map'%}" method="post">
                         {% csrf_token %}
                         <select name="selected_city">
