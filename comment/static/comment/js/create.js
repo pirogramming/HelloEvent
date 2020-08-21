@@ -1,5 +1,6 @@
 // scroll 하단에 고정
 $("#comment_list").scrollTop($("#comment_list")[0].scrollHeight);
+$(".recomment_list").scrollTop($(".recomment_list")[0].scrollHeight);  
 
 // 댓글 작성
 $('#comment_form').submit(function(e){
@@ -45,3 +46,10 @@ $('.btn_comment_delete').click(function(e) {
         });
     }
 });
+
+$(function() {
+    /* Rounded Dark */
+    $("#comment_list").mCustomScrollbar({
+      theme: "rounded-dark"
+    });
+  });
