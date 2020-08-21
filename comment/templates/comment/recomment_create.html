@@ -1,4 +1,3 @@
-
 <div id="single_recomment">
      <div class='row flex-container single-recomment' >
         <div class="flex-item">
@@ -11,9 +10,10 @@
                 <a href="{% url 'comment:recomment_delete' recomment.id %}" class="btn btn-sm btn-outline-success btn_recomment_delete_{{comment.pk}}">삭제</a>
             {% endif %}  
         </div>
+    </div>
         {% if recomment.recomment_photo %}
         <div class='row'><img src="{{recomment.recomment_photo.url}}" style='max-width:300px'></div>
         {% endif %}
-    </div>
+        <div class='row' id='create_at'><small>{{recomment.created_at}}</small></div>
 <hr>
 </div>
