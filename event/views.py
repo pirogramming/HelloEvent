@@ -121,7 +121,7 @@ def search_result(request):
     # endtime = startdate + datetime.timedelta()
     if 'search_data' in request.GET:
         data = request.GET['search_data']
-        tags = Tag.objects.filter(Q(name__icontains=data))
+        tags = Tag.objects.filter(Q(name__exact=data))
         print(tags)
         today = datetime.today()
         print(today)
@@ -144,7 +144,7 @@ def search_result(request):
 
 def search_result_click(request, tag):
     data = tag
-    tags = Tag.objects.filter(Q(name__icontains=data))
+    tags = Tag.objects.filter(Q(name__exact=data))
     print(tags)
     today = datetime.today()
     print(today)
