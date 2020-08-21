@@ -74,7 +74,7 @@
                     <br>
                     <p id='tag_name'>
                     {% for tag in tags %}
-                        <a href="">#{{tag.name}}</a>
+                        <a href="#"><button id="tag-box">{{tag.name}}</button></a>
                     {% endfor %}
                     </p>
                 </div>
@@ -86,7 +86,7 @@
 <div class="container_wrapper">
     <div class="container history">
         <div class="line"></div>
-        <h2 id="title">{{event.creator.creator_name}}'s Event History</h2>
+        <h2 id="title">Event History</h2>
         {% for creator_event in events %}
         <div class="row history_event">
             <div class="col-lg-7 col-md-12 history_col">
@@ -113,7 +113,8 @@
 
 <div class="container_wrapper">
     <div class="container comment_list">
-        <h2 id='title'>{{event.creator.creator_name}}'s Visitor Book</h2>
+        <div class="line"></div>
+        <h2 id='title'>Visitor Book</h2>
         <br>
         {% for comment in comment_3 %}
             {% if forloop.first %}

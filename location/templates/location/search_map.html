@@ -1,91 +1,143 @@
 {% extends 'base.html' %} {% load static %} {% block custom_style %}
-<link rel="stylesheet" href="{% static 'location/css/search_map.css' %}" />
+<link rel="stylesheet" href="{% static 'location/css/search_map.css' %}"/>
 {% endblock %} {% block main %}
 <div class="container-fluid row flex-column-reverse flex-md-row">
-  <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
-    <div id="event_title_wrap">
-      <div id="event_title">
-        <h1>"{{selected_city}} {{selected_gu}}" 지역 검색 결과</h1>
-      </div>
-      <hr />
-    </div>
-    <div id="event_category_wrap">
-      <ul id="category_list">
-        <li><button class="category Busking">버스킹</button></li>
-        <li><button class="category Flea">플리마켓</button></li>
-        <li><button class="category Exhibit">전시</button></li>
-      </ul>
-    </div>
-    <hr />
-    <div id="event_wrap">
-      {% for event in events %}   
-      {% if event.location.city == selected_city and event.location.gu == selected_gu %}
-      <div id="event_{{event.pk}}" class="row event_post">
-        <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row">
-          {% if event.eventimage_set.first.image.url %}
-            <img
-              class="col-xs-12 col-sm-12 col-md-12"
-              src="{{event.eventimage_set.first.image.url}}"
-              alt="이벤트 이미지"
-            />
-          {% else %}
-            <img
-            class="col-xs-12 col-sm-12 col-md-12"
-            src="/media/creator_photo/default.jpg"
-            alt="기본 이미지"
-           />
-          {% endif %}
+    <div id="event_content_wrap" class="col-md-6 col-sm-12 col-xs-12">
+        <div id="event_title_wrap">
+            <div id="event_title">
+                <h1>{{selected_city}} {{selected_gu}}</h1>
+                <h4>지역 검색 결과</h4>
+            </div>
+            <form action="{% url 'location:search_map'%}" method="post">
+                        {% csrf_token %}
+                        <select name="selected_city">
+                            <option selected>시</option>
+                            <option value="서울">서울특별시</option>
+                        </select>
+                        <select name="selected_gu">
+                            <option selected>구</option>
+                            <option>강남구</option>
+                            <option>송파구</option>
+                            <option>서초구</option>
+                            <option>강동구</option>
+                            <option>관악구</option>
+                            <option>영등포구</option>
+                            <option>강서구</option>
+                            <option>양천구</option>
+                            <option>구로구</option>
+                            <option>금천구</option>
+                            <option>종로구</option>
+                            <option>중구</option>
+                            <option>동대문구</option>
+                            <option>중랑구</option>
+                            <option>마포구</option>
+                            <option>용산구</option>
+                            <option>성동구</option>
+                            <option>광진구</option>
+                            <option>은평구</option>
+                            <option>서대문구</option>
+                            <option>성북구</option>
+                            <option>강북구</option>
+                            <option>도봉구</option>
+                            <option>노원구</option>
+                        </select>
+                        <button
+                                type="submit"
+                                class="search_icon"
+                                style="border: none; background-color: transparent;"
+                        >
+                            <img
+                                    src="/static/img/gray.png"
+                                    alt="search_icon.png"
+                                    style="height: 35px; width: 35px; background-size: 10px;"
+                            />
+                        </button>
+                    </form>
+            <hr/>
         </div>
-        <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
-          <div class="event_content" id="event_title_{{event.pk}}">
-            이벤트명 : {{event.event_name}}
-          </div>
-          <div class="event_content" id="event_creator_{{event.pk}}">
-            주최자 : {{event.creator}}
-          </div>
-          <div class="event_content" id="event_genre_{{event.pk}}">
-            장르 : {{event.genre}}
-          </div>
-          <div class="event_content" id="event_city_{{event.pk}}">
-            위치 : {{event.location.city}}
-          </div>
-          <div class="event_content" id="event_gu_{{event.pk}}">
-            {{event.location.gu}}
-          </div>
-          <div class="event_content" id="event_restAdress_{{event.pk}}">
-            {{event.location.rest_address}}
-          </div>
-          <div class="event_content" id="event_startTime_{{event.pk}}">
-            시작일시 : {{event.start_date_time}}
-          </div>
-          <div class="event_content" id="event_endTime_{{event.pk}}">
-            종료일시 : {{event.end_date_time}}
-          </div>
+        <div id="event_category_wrap">
+            <ul id="category_list">
+                <li>
+                    <button class="category Busking">버스킹</button>
+                </li>
+                <li>
+                    <button class="category Flea">플리마켓</button>
+                </li>
+                <li>
+                    <button class="category Exhibit">전시</button>
+                </li>
+            </ul>
         </div>
-      </div>
-      <hr />
-      {% endif %} {% endfor %}
+
+        <div id="event_wrap">
+            {% for event in events %}
+            {% if event.location.city == selected_city and event.location.gu == selected_gu %}
+            <div id="event_{{event.pk}}" class="row event_post">
+                <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row" style="border: 1px solid red;">
+                    {% if event.eventimage_set.first.image.url %}
+                    <img
+                            class="col-xs-12 col-sm-12 col-md-12"
+                            src="{{event.eventimage_set.first.image.url}}"
+                            alt="이벤트 이미지"
+                    />
+                    {% else %}
+                    <img
+                            class="col-xs-12 col-sm-12 col-md-12"
+                            src="/media/creator_photo/default.jpg"
+                            alt="기본 이미지"
+                    />
+                    {% endif %}
+                </div>
+                <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
+                    <div class="event_content" id="event_title_{{event.pk}}">
+                        이벤트명 : {{event.event_name}}
+                    </div>
+                    <div class="event_content" id="event_creator_{{event.pk}}">
+                        크리에이터명 : {{event.creator}}
+                    </div>
+                    <div class="event_content" id="event_genre_{{event.pk}}">
+                        장르 : {{event.genre}}
+                    </div>
+                    <div class="event_content" id="event_city_{{event.pk}}">
+                        위치 : {{event.location.city}}
+                    </div>
+                    <div class="event_content" id="event_gu_{{event.pk}}">
+                        {{event.location.gu}}
+                    </div>
+                    <div class="event_content" id="event_restAdress_{{event.pk}}">
+                        {{event.location.rest_address}}
+                    </div>
+                    <div class="event_content" id="event_startTime_{{event.pk}}">
+                        시작일시 : {{event.start_date_time}}
+                    </div>
+                    <div class="event_content" id="event_endTime_{{event.pk}}">
+                        종료일시 : {{event.end_date_time}}
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            {% endif %} {% endfor %}
+        </div>
     </div>
-  </div>
-  <div class="map_wrap col-md-6 col-sm-12 col-xs-12">
-    <div id="map"></div>
-    <div class="hAddr">
-      <!-- <span class="title" style="font-weight: bold; display: block;"
-      >지도중심기준 행정동 주소정보</span
-    > -->
-      <span id="centerAddr"></span>
+    <div class="map_wrap col-md-6 col-sm-12 col-xs-12">
+        <div id="map"></div>
+        <div class="hAddr">
+            <!-- <span class="title" style="font-weight: bold; display: block;"
+            >지도중심기준 행정동 주소정보</span
+          > -->
+            <span id="centerAddr"></span>
+        </div>
     </div>
-  </div>
-  <!-- 템플릿 변수를 자바스크립트 파일에 전달하기 위한 구역 -->
-  <div class="template_variable_section">
-    <div class="template_variable_city">{{selected_city}}</div>
-    <div class="template_variable_gu">{{selected_gu}}</div>
-  </div>
+    <!-- 템플릿 변수를 자바스크립트 파일에 전달하기 위한 구역 -->
+    <div class="template_variable_section">
+        <div class="template_variable_city">{{selected_city}}</div>
+        <div class="template_variable_gu">{{selected_gu}}</div>
+    </div>
 </div>
 {% endblock %} {% block jinheescript %}
 <script
-  type="text/javascript"
-  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4be94fffa6f06598b351be42b3a70113&libraries=services"
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4be94fffa6f06598b351be42b3a70113&libraries=services"
 ></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="{% static 'location/js/search_map.js' %}"></script>
