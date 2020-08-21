@@ -85,7 +85,7 @@
                     <br>
                     <p id='tag_name'>
                     {% for tag in tags %}
-                        <a href="">#{{tag.name}}</a>
+                        <a href="{% url "event:search_result_click" tag.name %}"><button id="tag-box">{{tag.name}}</button></a>
                     {% endfor %}
                     </p>
                 </div>
@@ -108,7 +108,7 @@
                     <p id="event_desc"><b>설명</b>: {{creator_event.desc}}</p>
                     <p id='tag_name'>
                         {% for tag in creator_event.tags.all %}
-                        <a href="#"><button id="tag-box">{{tag.name}}</button></a>
+                        <a href="{% url "event:search_result_click" tag.name %}"><button id="tag-box">{{tag.name}}</button></a>
                         {% endfor %}
                     </p>
                 </div>
