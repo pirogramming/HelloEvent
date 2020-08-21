@@ -317,4 +317,13 @@ a, a:hover {
 .row div {
     margin: 0 auto;
 }
+
+.like{
+    cursor:pointer;
+}
+
+.like:hover{
+    color:orangered;
+}
+
 /* --------------------------------------------- */

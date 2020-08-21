@@ -29,6 +29,17 @@
         <div class="line"></div>
         <br/>
         <h2 id='creator_name' style="font-weight: bold;">{{ event.creator.creator_name }}<span style="font-weight: lighter;">'s Page</span></h2>
+        <span>
+            {% if user in event.creator.like_users.all %}
+                <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}">
+                    <i class="fas fa-heart fa-2x" ></i>
+                </a>
+            {% else %}
+                <a href="{% url 'login:like_creator' %}" class="like" name="{{ event.id }}">
+                    <i class="far fa-heart fa-2x" ></i>
+                </a>
+            {% endif %}
+        </span>
     </div>
 </div>
 
@@ -74,7 +85,7 @@
                     <br>
                     <p id='tag_name'>
                     {% for tag in tags %}
-                        <a href="#"><button id="tag-box">{{tag.name}}</button></a>
+                        <a href="{% url "event:search_result_click" tag.name %}"><button id="tag-box">{{tag.name}}</button></a>
                     {% endfor %}
                     </p>
                 </div>
@@ -97,7 +108,7 @@
                     <p id="event_desc"><b>설명</b>: {{creator_event.desc}}</p>
                     <p id='tag_name'>
                         {% for tag in creator_event.tags.all %}
-                        <a href="#"><button id="tag-box">{{tag.name}}</button></a>
+                        <a href="{% url "event:search_result_click" tag.name %}"><button id="tag-box">{{tag.name}}</button></a>
                         {% endfor %}
                     </p>
                 </div>
@@ -172,4 +183,9 @@
     <script>
     $('.carousel').carousel({interval: 2000,})
     </script>
+{% endblock %}
+{% block kiyunscript %}
+    <script src="https://kit.fontawesome.com/7d6a50a6b2.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{% static 'login/js/like.js' %}"></script>
 {% endblock %}
