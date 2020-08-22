@@ -630,39 +630,76 @@ $(".category").click(function (e) {
       $("#event_wrap").html("");
 
       for (let i = 0; i < event_pk.length; i++) {
-        insertCode += `<div id="event_${event_pk[i]}" class="row event_post">
-        <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row">
-            <img class="col-xs-12 col-sm-12 col-md-12" src="/media/${event_image[i]}" alt="이벤트 이미지">
+        // 등록된 이벤트 사진이 없을 때 기본이미지 삽입
+        if (event_image[i].includes("static")) {
+          insertCode += `<div id="event_${event_pk[i]}" class="row event_post">
+          <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row">
+              <img class="col-xs-12 col-sm-12 col-md-12" src="/static/img/default.jpg" alt="이벤트 이미지">
+          </div>
+          <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
+            <div class="event_content" id="event_title_${event_pk[i]}">
+            <a href="/event/creator_event/${event_pk[i]}/"
+            <b>${event_name[i]}</b></a>
+            </div>
+            <div class="event_content" id="event_creator_${event_pk[i]}">
+              <p class="creator_name">크리에이터명 : ${event_creator[i]}</p>
+            </div>
+            <div class="event_content" id="event_genre_${event_pk[i]}">
+              장르 : ${event_genre[i]}
+            </div>
+            <div class="event_content" id="event_city_${event_pk[i]}">
+              위치 : ${location_city[i]}
+            </div>
+            <div class="event_content" id="event_gu_${event_pk[i]}">
+            ${location_gu[i]}
+            </div>
+            <div class="event_content" id="event_restAdress_${event_pk[i]}">
+            ${location_rest_address[i]}
+            </div>
+            <div class="event_content" id="event_startTime_${event_pk[i]}">
+              시작일시 : ${event_startTime[i]}
+            </div>
+            <div class="event_content" id="event_endTime_${event_pk[i]}">
+              종료일시 : ${event_endTime[i]}
+            </div>
+          </div>
         </div>
-        <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
-          <div class="event_content" id="event_title_${event_pk[i]}">
-          <a href="/event/creator_event/${event_pk[i]}/"
-          <b>${event_name[i]}</b></a>
+        <hr>`;
+        } else {
+          insertCode += `<div id="event_${event_pk[i]}" class="row event_post">
+          <div class="event_image_section col-xs-12 col-sm-12 col-md-6 row">
+              <img class="col-xs-12 col-sm-12 col-md-12" src="/media/${event_image[i]}" alt="이벤트 이미지">
           </div>
-          <div class="event_content" id="event_creator_${event_pk[i]}">
-            <p class="creator_name">크리에이터명 : ${event_creator[i]}</p>
-          </div>
-          <div class="event_content" id="event_genre_${event_pk[i]}">
-            장르 : ${event_genre[i]}
-          </div>
-          <div class="event_content" id="event_city_${event_pk[i]}">
-            위치 : ${location_city[i]}
-          </div>
-          <div class="event_content" id="event_gu_${event_pk[i]}">
-          ${location_gu[i]}
-          </div>
-          <div class="event_content" id="event_restAdress_${event_pk[i]}">
-          ${location_rest_address[i]}
-          </div>
-          <div class="event_content" id="event_startTime_${event_pk[i]}">
-            시작일시 : ${event_startTime[i]}
-          </div>
-          <div class="event_content" id="event_endTime_${event_pk[i]}">
-            종료일시 : ${event_endTime[i]}
+          <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
+            <div class="event_content" id="event_title_${event_pk[i]}">
+            <a href="/event/creator_event/${event_pk[i]}/"
+            <b>${event_name[i]}</b></a>
+            </div>
+            <div class="event_content" id="event_creator_${event_pk[i]}">
+              <p class="creator_name">크리에이터명 : ${event_creator[i]}</p>
+            </div>
+            <div class="event_content" id="event_genre_${event_pk[i]}">
+              장르 : ${event_genre[i]}
+            </div>
+            <div class="event_content" id="event_city_${event_pk[i]}">
+              위치 : ${location_city[i]}
+            </div>
+            <div class="event_content" id="event_gu_${event_pk[i]}">
+            ${location_gu[i]}
+            </div>
+            <div class="event_content" id="event_restAdress_${event_pk[i]}">
+            ${location_rest_address[i]}
+            </div>
+            <div class="event_content" id="event_startTime_${event_pk[i]}">
+              시작일시 : ${event_startTime[i]}
+            </div>
+            <div class="event_content" id="event_endTime_${event_pk[i]}">
+              종료일시 : ${event_endTime[i]}
+            </div>
           </div>
         </div>
-      </div>
-      <hr>`;
+        <hr>`;
+        }
       }
       $("#event_wrap").html(insertCode);
     },
