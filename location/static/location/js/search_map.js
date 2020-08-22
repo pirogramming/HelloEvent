@@ -22,10 +22,10 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 let events = Array.from(
   document.querySelector("#event_wrap").childNodes
 ).filter((node) => node.nodeName == "DIV");
-
 // 현재 등록된 이벤트의 갯수(view로부터 넘어온 Event_event queryset의 갯수)
 let events_count = events.length;
 for (let i = 0; i < events_count; i++) {
+  eventPK = events[i].getAttribute("id").replace("event_", "");
   let events_div_list = Array.from(events[i].childNodes).filter(
     (node) => node.nodeName == "DIV"
   );
@@ -61,6 +61,10 @@ for (let i = 0; i < events_count; i++) {
          ${events_div_list[7].textContent}
          </div>`,
       });
+      // 마커에 클릭이벤트를 등록합니다
+      // kakao.maps.event.addListener(marker, "click", function (e) {
+      //   window.location.href = `/event/creator_event/${eventPK}/`;
+      // });
 
       // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
       // 이벤트 리스너로는 클로저를 만들어 등록합니다
@@ -533,7 +537,7 @@ $(".category").click(function (e) {
         }
         // 이벤트 사진을 등록 안했을 때 기본이미지 삽입
         if (!is_existImage) {
-          event_image.push("creator_photo/default.jpg");
+          event_image.push("static/img/default.jpg");
         }
         imageEnrollCheck = false;
         is_existImage = false;
@@ -632,7 +636,8 @@ $(".category").click(function (e) {
         </div>
         <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
           <div class="event_content" id="event_title_${event_pk[i]}">
-            <b>${event_name[i]}</b>
+          <a href="/event/creator_event/${event_pk[i]}/"
+          <b>${event_name[i]}</b></a>
           </div>
           <div class="event_content" id="event_creator_${event_pk[i]}">
             <p class="creator_name">크리에이터명 : ${event_creator[i]}</p>
