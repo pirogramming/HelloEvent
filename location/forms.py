@@ -1,5 +1,4 @@
 from django import forms
-
 from .models import Event_Location
 
 class LocationForm(forms.ModelForm):
