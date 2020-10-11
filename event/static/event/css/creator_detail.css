@@ -176,8 +176,14 @@ a:hover {
   /*font-family: 'Cormorant Garamond', serif;*/
   font-weight: bold;
   /*font-size: 2.5rem;*/
+  
+  text-align: center;
+}
+#title_desc {
+  color: #dd445b;
   margin-bottom: 30px;
   text-align: center;
+  /* font-family: ; */
 }
 #tag_name {
   font-style: italic;
