@@ -75,10 +75,29 @@ class CreatorForm(forms.ModelForm):
 
             'desc': forms.Textarea(
                 attrs={'class': 'form-control', 'style': 'width:100%', 'style': 'height: 150px;', 'placeholder': '크리에이터 개인/팀 간략한 소개를 적어주세요', }
-            )
+            ),
+
+            'facebook' : forms.URLInput(
+                attrs={'class': 'form-control', 'style': 'width: 80%', 'style': 'margin:0 auto',
+                       'placeholder': '페이스북 프로필 링크를 붙여넣어주세요', }
+            ),
+
+            'instagram' : forms.TextInput(
+                attrs={'class': 'form-control', 'style': 'width: 80%', 'style': 'margin:0 auto',
+                       'placeholder': '인스타그램 아이디를 적어주세요', }
+            ),
+
+            'webpage' : forms.URLInput(
+                attrs={'class': 'form-control', 'style': 'width: 80%', 'style': 'margin:0 auto',
+                       'placeholder': '홈페이지 주소를 붙여넣어주세요', }
+            ),
+
         }
         labels = {
             'creator_name': '크리에이터명',
             'creator_photo': '크리에이터 사진',
             'desc': '개인/팀 소개',
+            'facebook' : '페이스북 링크',
+            'instagram' : '인스타그램 아이디',
+            'webpage' : '웹페이지 링크',
         }

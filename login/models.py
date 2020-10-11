@@ -60,6 +60,10 @@ class Creator(models.Model):
     member = models.OneToOneField(Member, on_delete=models.CASCADE, default=None, null=True, blank=True, related_name="creator")
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_creators")
 
+    facebook = models.URLField(null=True, verbose_name="페이스북 url")
+    instagram = models.CharField(max_length=200, null=True, blank=True, verbose_name="인스타그램 url")
+    webpage = models.URLField(null=True, verbose_name="홈페이지 url")
+
     @property
     def like_count(self):
         return self.like_users.count()
