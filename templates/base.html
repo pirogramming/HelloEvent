@@ -78,6 +78,11 @@
                         {% if user.is_authenticated %}
                             <div class="dropdown-content" id="myDropdown" dir="rtl">
                                 <a href="{% url 'login:mypage' user.pk %}">마이페이지</a><br/>
+                                {% if creator is None %}
+                                    <a href="{% url 'login:create_creator' %}">크리에이터 페이지</a><br/>
+                                {% else %}
+                                    <a href="{% url 'login:creator_mypage' user.pk %}">크리에이터 페이지</a><br/>
+                                {% endif %}
                                 <a href="/accounts/logout">로그아웃</a><br/>
                             </div>
                         {% else %}
