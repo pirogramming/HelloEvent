@@ -83,14 +83,14 @@
                     {% else %}
                     <img
                             class="col-xs-12 col-sm-12 col-md-12"
-                            src="/media/creator_photo/default.jpg"
+                            src="/static/img/default.jpg"
                             alt="기본 이미지"
                     />
                     {% endif %}
                 </div>
                 <div class="event_content_section col-xs-12 col-sm-12 col-md-6">
                     <div class="event_content" id="event_title_{{event.pk}}">
-                       <a href="{% url 'event:creator_detail' event.creator.pk %}">
+                       <a href="{% url 'event:creator_detail' event.pk %}">
                            <b>{{event.event_name}}</b>
                        </a>
                     </div>
